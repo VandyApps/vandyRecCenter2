@@ -33,6 +33,7 @@
 		211C2E9917FF5F4100C4400A /* 374-basketball@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 211C2E9717FF5F4100C4400A /* 374-basketball@2x.png */; };
 		211C2E9C17FF606C00C4400A /* RecClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 211C2E9B17FF606C00C4400A /* RecClient.m */; };
 		211C2EA117FF642700C4400A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 211C2EA017FF642700C4400A /* MBProgressHUD.m */; };
+		21244F2B1800B22900EE27BC /* TimeString.m in Sources */ = {isa = PBXBuildFile; fileRef = 21244F291800B22900EE27BC /* TimeString.m */; };
 		2129749417FE465C007210AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2129749317FE465C007210AB /* Foundation.framework */; };
 		2129749617FE465C007210AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2129749517FE465C007210AB /* CoreGraphics.framework */; };
 		2129749817FE465C007210AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2129749717FE465C007210AB /* UIKit.framework */; };
@@ -102,6 +103,8 @@
 		211C2E9B17FF606C00C4400A /* RecClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecClient.m; sourceTree = "<group>"; };
 		211C2E9F17FF642700C4400A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		211C2EA017FF642700C4400A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		21244F281800B22900EE27BC /* TimeString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeString.h; sourceTree = "<group>"; };
+		21244F291800B22900EE27BC /* TimeString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeString.m; sourceTree = "<group>"; };
 		2129749017FE465C007210AB /* VandyRecCenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VandyRecCenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2129749317FE465C007210AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2129749517FE465C007210AB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -235,17 +238,27 @@
 			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
-		211C2EA317FF718700C4400A /* Array */ = {
+		211C2EA317FF718700C4400A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				21244F2C1800B26400EE27BC /* TimeString */,
 			);
-			name = Array;
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		21244F2C1800B26400EE27BC /* TimeString */ = {
+			isa = PBXGroup;
+			children = (
+				21244F281800B22900EE27BC /* TimeString.h */,
+				21244F291800B22900EE27BC /* TimeString.m */,
+			);
+			name = TimeString;
 			sourceTree = "<group>";
 		};
 		2129748717FE465C007210AB = {
 			isa = PBXGroup;
 			children = (
-				211C2EA317FF718700C4400A /* Array */,
+				211C2EA317FF718700C4400A /* Helpers */,
 				2129753417FE4D89007210AB /* Vendor */,
 				2129749917FE465C007210AB /* VandyRecCenter */,
 				212974B817FE465C007210AB /* VandyRecCenterTests */,
@@ -495,6 +508,7 @@
 				212974E117FE466D007210AB /* AFURLConnectionOperation.m in Sources */,
 				211C2EA117FF642700C4400A /* MBProgressHUD.m in Sources */,
 				212974E017FE466D007210AB /* AFSecurityPolicy.m in Sources */,
+				21244F2B1800B22900EE27BC /* TimeString.m in Sources */,
 				2119C8E217FF140400D4A284 /* MainMenuViewController.m in Sources */,
 				2129753A17FE4E0D007210AB /* JASidePanelController.m in Sources */,
 				211C2E8817FF464D00C4400A /* NotificationViewController.m in Sources */,

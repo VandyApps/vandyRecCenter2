@@ -26,14 +26,13 @@
 @property (nonatomic, strong, readonly) NSArray* items;
 @property (nonatomic, weak) id<NoticiationDelegate> delegate;
 
-#pragma mark - Singleton Instance
+
 + (NotificationCollection*) sharedInstance;
 
-#pragma mark - adding notifications
+
 - (void) addNotification: (Notification*) notification;
 - (void) removeNotificationWithID: (NSString*) ID;
 - (void) initialImport;
 
-#pragma mark - convenience methods
 - (NSUInteger) count;
 @end
