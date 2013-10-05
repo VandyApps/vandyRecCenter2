@@ -16,7 +16,6 @@ typedef enum {
 
 
 #import <Foundation/Foundation.h>
-#import "TimeStringStyle.h"
 //this class is for parsing and validating time strings
 //of the following formats:
 // 12:00 am
