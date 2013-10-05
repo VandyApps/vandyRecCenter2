@@ -1,0 +1,20 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+
+    #define vanderbiltGold [UIColor colorWithRed:169.f/255.f green: 149.f/255.f blue: 90.f/255.f alpha: 1]
+    #define cellColor1 [UIColor colorWithRed: .28 green: .28 blue:.28 alpha:1]
+    #define cellColor2 [UIColor colorWithRed: .2 green: .2 blue:.2 alpha:1]
+#endif
