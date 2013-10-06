@@ -22,7 +22,7 @@
     if (_viewControllers == nil) {
         UIStoryboard* mainSB = [UIStoryboard storyboardWithName: @"Main" bundle: [NSBundle mainBundle]];
         
-        _viewControllers = @[[mainSB instantiateInitialViewController], [mainSB instantiateViewControllerWithIdentifier: @"hours"], [mainSB instantiateViewControllerWithIdentifier: @"groupFitness"]];
+        _viewControllers = @[[mainSB instantiateInitialViewController], [mainSB instantiateViewControllerWithIdentifier: @"hours"], [mainSB instantiateViewControllerWithIdentifier: @"traffic"], [mainSB instantiateViewControllerWithIdentifier: @"groupFitness"]];
     }
     return _viewControllers;
 }
