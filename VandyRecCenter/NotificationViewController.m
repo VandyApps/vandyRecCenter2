@@ -34,13 +34,12 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.backgroundColor = vanderbiltGold;
     [NotificationCollection sharedInstance].delegate = self;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear: YES];
-    
+    self.tableView.backgroundColor = [UIColor darkGrayColor];
     self.HUD = [MBProgressHUD showHUDAddedTo: self.tableView animated: YES];
     self.HUD.mode = MBProgressHUDModeIndeterminate;
     self.HUD.labelText = @"Loading";
@@ -64,12 +63,26 @@
         cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    cell.backgroundColor = (indexPath.row%2) ? cellColor1 : cellColor2;
+    UIView* contentView = [cell viewWithTag: CELL_CONTENTVIEW_TAG];
+    UIView* messageContainer = [cell viewWithTag: CELL_MESSAGE_CONTRAINER_TAG];
+    //make sure that the colors are set correctly
+    cell.backgroundColor = [UIColor clearColor];
+    //contentView.backgroundColor = (indexPath.row%2) ? cellColor1 : cellColor2;
+    
+    //style the content view
+    contentView.layer.cornerRadius = 5.0f;
+    contentView.backgroundColor = [UIColor whiteColor];
     
     //set title of the cell, message and icon of the cell
-    [(UILabel*) [cell viewWithTag: 1] setText: @"NEWS"];
-    [(UITextField*) [cell viewWithTag: 3] setText: notification.message];
-    [(UIImageView*) [cell viewWithTag: 2] setImage: [UIImage imageNamed: @"354-newspaper"]];
+    [(UILabel*) [cell viewWithTag: CELL_HEADER_TAG] setText: @"NEWS"];
+    [(UILabel*) [cell viewWithTag: CELL_HEADER_TAG] setFont: [UIFont fontWithName: @"TrebuchetMS-Bold" size: 18]];
+    [(UITextField*) [cell viewWithTag: CELL_MESSAGE_TAG] setText: notification.message];
+    [(UIImageView*) [cell viewWithTag: CELL_ICON_TAG] setImage: [UIImage imageNamed: @"354-newspaper"]];
+    
+    CALayer *topBorder = [CALayer layer];
+    topBorder.frame = CGRectMake(0.0f, 0, messageContainer.frame.size.width, 1.0f);
+    topBorder.backgroundColor = [UIColor darkGrayColor].CGColor;
+    [messageContainer.layer addSublayer:topBorder];
     
     return cell;
 }
