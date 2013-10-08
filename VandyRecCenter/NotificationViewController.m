@@ -39,7 +39,7 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear: YES];
-    self.tableView.backgroundColor = [UIColor darkGrayColor];
+    self.tableView.backgroundColor = [UIColor clearColor];
     self.HUD = [MBProgressHUD showHUDAddedTo: self.tableView animated: YES];
     self.HUD.mode = MBProgressHUDModeIndeterminate;
     self.HUD.labelText = @"Loading";
@@ -70,7 +70,7 @@
     //contentView.backgroundColor = (indexPath.row%2) ? cellColor1 : cellColor2;
     
     //style the content view
-    contentView.layer.cornerRadius = 5.0f;
+    contentView.layer.cornerRadius = 18.0f;
     contentView.backgroundColor = [UIColor whiteColor];
     
     //set title of the cell, message and icon of the cell
@@ -81,7 +81,7 @@
     
     CALayer *topBorder = [CALayer layer];
     topBorder.frame = CGRectMake(0.0f, 0, messageContainer.frame.size.width, 1.0f);
-    topBorder.backgroundColor = [UIColor darkGrayColor].CGColor;
+    topBorder.backgroundColor = vanderbiltGold.CGColor;
     [messageContainer.layer addSublayer:topBorder];
     
     return cell;
