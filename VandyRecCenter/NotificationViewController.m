@@ -15,6 +15,16 @@
 
 @synthesize tableView = _tableView;
 @synthesize HUD = _HUD;
+@synthesize colorMap = _colorMap;
+
+#pragma mark - Getters
+
+- (NSArray*) colorMap {
+    if (!_colorMap) {
+        _colorMap = @[vanderbiltGold, [UIColor blueColor], [UIColor darkGrayColor], [UIColor greenColor]];
+    }
+    return _colorMap;
+}
 
 #pragma mark - Initialization
 
@@ -69,13 +79,21 @@
     cell.backgroundColor = [UIColor clearColor];
     //contentView.backgroundColor = (indexPath.row%2) ? cellColor1 : cellColor2;
     
+    
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.cornerRadius = 12.0f;
+    gradient.frame = contentView.bounds;
+    gradient.colors = [NSArray arrayWithObjects:(id)[UIColor whiteColor].CGColor, (id)[UIColor whiteColor].CGColor, (id) [UIColor whiteColor].CGColor, vanderbiltGold.CGColor, nil];
+    [contentView.layer insertSublayer:gradient atIndex:0];
     //style the content view
-    contentView.layer.cornerRadius = 18.0f;
+    contentView.layer.cornerRadius = 12.0f;
     contentView.backgroundColor = [UIColor whiteColor];
     
     //set title of the cell, message and icon of the cell
     [(UILabel*) [cell viewWithTag: CELL_HEADER_TAG] setText: @"NEWS"];
     [(UILabel*) [cell viewWithTag: CELL_HEADER_TAG] setFont: [UIFont fontWithName: @"TrebuchetMS-Bold" size: 18]];
+    
+    [(UITextField*) [cell viewWithTag: CELL_MESSAGE_TAG] setFont: [UIFont fontWithName: @"Verdana" size: 12]];
     [(UITextField*) [cell viewWithTag: CELL_MESSAGE_TAG] setText: notification.message];
     [(UIImageView*) [cell viewWithTag: CELL_ICON_TAG] setImage: [UIImage imageNamed: @"354-newspaper"]];
     

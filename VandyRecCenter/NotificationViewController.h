@@ -19,6 +19,12 @@
 
 @interface NotificationViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NoticiationDelegate>
 
+//color mapping that corresponds a color to a notification type
+#define COLOR_MAP_NEWS 0
+#define COLOR_MAP_HOURS 1
+#define COLOR_MAP_GROUP_FITNESS 2
+#define COLOR_MAP_INTRAMURALS 3
+@property (nonatomic, strong, readonly) NSArray* colorMap;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) MBProgressHUD* HUD;
 
