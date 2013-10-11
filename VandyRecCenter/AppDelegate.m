@@ -30,6 +30,7 @@
 - (UINavigationController*) centralViewController {
     if (_centralViewController == nil) {
         _centralViewController = [[UINavigationController alloc] init];
+        //_centralViewController.navigationBar.items = @[item];
     }
     return _centralViewController;
 }
@@ -37,6 +38,7 @@
 - (JASidePanelController*) panelViewController {
     if (_panelViewController == nil) {
         _panelViewController = [[JASidePanelController alloc] init];
+        
     }
     return _panelViewController;
 }
@@ -69,15 +71,24 @@
     
     [self.centralViewController pushViewController: [self.viewControllers objectAtIndex: 0] animated: NO];
     
+    
     [self.panelViewController setCenterPanel: self.centralViewController];
     [self.panelViewController setLeftPanel: self.leftPanelViewController];
     [self.panelViewController setRightPanel: self.rightPanelViewController];
-    NSLog(@"%@", self.rightPanelViewController);
+    
+    [self setUpViewControllers];
+    
     self.window.rootViewController = self.panelViewController;
     
     return YES;
 }
-							
+
+- (void) setUpViewControllers {
+    for (size_t i =0; i < self.viewControllers.count; ++i) {
+        UIViewController* controller = [self.viewControllers objectAtIndex: i];
+        controller.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"428-checkmark1.png"] style:UIBarButtonItemStylePlain target:self.panelViewController action:@selector(toggleRightPanel:)];
+    }
+}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
