@@ -28,6 +28,8 @@
 @property (nonatomic, strong) CKCalendarHeaderView *headerView;
 
 @property (nonatomic, strong) UITableView *table;
+#pragma mark - BRENDAN ADD PROPERTY
+@property (nonatomic, strong) GFTableViewController* tableController;
 @property (nonatomic, strong) NSArray *events;
 
 //  The index of the highlighted cell
@@ -66,8 +68,12 @@
         
         //  Accessory Table
         _table = [UITableView new];
-        [_table setDelegate:self];
-        [_table setDataSource:self];
+#pragma mark - BRENDAN OVERIDE TABLEVIEW DATASOURCE AND DELEGATE
+        _tableController = [[GFTableViewController alloc] init];
+        _table.delegate = _tableController;
+        _table.dataSource = _tableController;
+        //[_table setDelegate:self];
+        //[_table setDataSource:self];
         
         [_table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         [_table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"noDataCell"];

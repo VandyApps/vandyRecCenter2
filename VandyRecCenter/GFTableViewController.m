@@ -13,13 +13,32 @@
 #pragma mark - TableViewDataSource
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    //NSInteger count = 0;
+    //if (count == 0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"noDataCell"];
+        [[cell textLabel] setTextAlignment:NSTextAlignmentCenter];
+        [[cell textLabel] setTextColor:[UIColor colorWithWhite:0.2 alpha:0.8]];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        if ([indexPath row] == 1) {
+            [[cell textLabel] setText:NSLocalizedString(@"No Group Fitness Classes", @"A label for a table with no Group Fitness Classes.")];
+        }
+        else
+        {
+            [[cell textLabel] setText:@""];
+        }
+        
+    //}
+        return cell;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return 2;
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80.0f;
+}
 
 #pragma mark - TableViewDelegate
 

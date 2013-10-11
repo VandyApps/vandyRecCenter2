@@ -15,6 +15,8 @@
 #import "CKCalendarDelegate.h"
 #import "CKCalendarDataSource.h"
 
+#import "GFTableViewController.h"
+
 @interface CKCalendarView : UIView
 
 @property (nonatomic, assign) CKCalendarDisplayMode displayMode;
