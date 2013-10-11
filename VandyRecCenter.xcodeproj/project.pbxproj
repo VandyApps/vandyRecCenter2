@@ -78,6 +78,7 @@
 		2129753A17FE4E0D007210AB /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2129753717FE4E0D007210AB /* JASidePanelController.m */; };
 		2129753B17FE4E0D007210AB /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2129753917FE4E0D007210AB /* UIViewController+JASidePanel.m */; };
 		212FB75918010659009C6A83 /* GroupFitnessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 212FB75818010659009C6A83 /* GroupFitnessViewController.m */; };
+		21325306180853C100ED855D /* GFTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21325305180853C100ED855D /* GFTableViewController.m */; };
 		2150C9771801BE2100DCB3E5 /* Linen - 320x640 - iPhone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2150C9741801BE2100DCB3E5 /* Linen - 320x640 - iPhone.jpg */; };
 		2150C9781801BE2100DCB3E5 /* Linen - 640x960 - iPhone@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2150C9751801BE2100DCB3E5 /* Linen - 640x960 - iPhone@2x.jpg */; };
 		2150C9791801BE2100DCB3E5 /* Linen - 640x1136 - iPhone 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2150C9761801BE2100DCB3E5 /* Linen - 640x1136 - iPhone 5.jpg */; };
@@ -220,6 +221,8 @@
 		2129753917FE4E0D007210AB /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
 		212FB75718010659009C6A83 /* GroupFitnessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupFitnessViewController.h; sourceTree = "<group>"; };
 		212FB75818010659009C6A83 /* GroupFitnessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupFitnessViewController.m; sourceTree = "<group>"; };
+		21325304180853C100ED855D /* GFTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFTableViewController.h; sourceTree = "<group>"; };
+		21325305180853C100ED855D /* GFTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFTableViewController.m; sourceTree = "<group>"; };
 		2150C9741801BE2100DCB3E5 /* Linen - 320x640 - iPhone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Linen - 320x640 - iPhone.jpg"; sourceTree = "<group>"; };
 		2150C9751801BE2100DCB3E5 /* Linen - 640x960 - iPhone@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Linen - 640x960 - iPhone@2x.jpg"; sourceTree = "<group>"; };
 		2150C9761801BE2100DCB3E5 /* Linen - 640x1136 - iPhone 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Linen - 640x1136 - iPhone 5.jpg"; sourceTree = "<group>"; };
@@ -582,6 +585,8 @@
 			children = (
 				212FB75718010659009C6A83 /* GroupFitnessViewController.h */,
 				212FB75818010659009C6A83 /* GroupFitnessViewController.m */,
+				21325304180853C100ED855D /* GFTableViewController.h */,
+				21325305180853C100ED855D /* GFTableViewController.m */,
 			);
 			name = GF;
 			sourceTree = "<group>";
@@ -767,6 +772,7 @@
 				212974E117FE466D007210AB /* AFURLConnectionOperation.m in Sources */,
 				211C2EA117FF642700C4400A /* MBProgressHUD.m in Sources */,
 				212974E017FE466D007210AB /* AFSecurityPolicy.m in Sources */,
+				21325306180853C100ED855D /* GFTableViewController.m in Sources */,
 				21244F2B1800B22900EE27BC /* TimeString.m in Sources */,
 				2119C8E217FF140400D4A284 /* MainMenuViewController.m in Sources */,
 				21278AD51807BE7C00E76BD0 /* CKCalendarViewControllerInternal.m in Sources */,
