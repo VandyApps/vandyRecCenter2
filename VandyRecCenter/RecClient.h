@@ -16,9 +16,11 @@
 
 - (void) fetchNews: ( void (^)(NSError* error, NSArray* news)) block;
 
-- (void) fetchHours: (void(^)(NSError* error, id JSON)) block;
+- (void) fetchHours: (void(^)(NSError* error, NSArray* hours)) block;
 
-- (void) fetchGroupFitness: (void(^)(NSError* error, id JSON)) block;
+- (void) fetchGroupFitness: (void(^)(NSError* error, NSArray* classes)) block;
+- (void) fetchGroupFitnessForMonth: (NSInteger) month year: (NSInteger) year block:(void (^)(NSError *, NSArray* classes))block;
+- (void) fetchGroupFitnessSpecialDates: (void(^)(NSError* error, NSArray* specialDates)) block;
 
 - (void) fetchIntramurals: (void(^)(NSError* error, id JSON)) block;
 

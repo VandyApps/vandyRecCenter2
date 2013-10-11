@@ -41,4 +41,35 @@ static BOOL initialized = NO;
         block(error, nil);
     }];
 }
+
+- (void) fetchGroupFitness:(void (^)(NSError *, NSArray*))block {
+    [self GET: @"GF" parameters: nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        block(nil, (NSArray*) responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        block(error, nil);
+    }];
+}
+
+- (void) fetchGroupFitnessForMonth:(NSInteger)month year:(NSInteger)year block:(void (^)(NSError *, NSArray*))block {
+
+    NSDictionary* params = @{@"type":@"GFClass",
+                             @"month": @(month),
+                             @"year": @(year)};
+    
+    [self GET: @"GF" parameters: params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        block(nil, (NSArray*) responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        block(error, nil);
+    }];
+}
+
+- (void) fetchGroupFitnessSpecialDates:(void (^)(NSError *, NSArray *))block {
+    NSDictionary* params = @{@"type": @"GFSpecialDate"};
+    
+    [self GET: @"GF" parameters: params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        block(nil, (NSArray*) responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        block(error, nil);
+    }];
+}
 @end
