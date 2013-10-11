@@ -27,8 +27,9 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    CKCalendarView* calendar = [[CKCalendarView alloc] initWithMode: CKCalendarViewModeWeek];
-    [self.view addSubview: calendar];
+    self.calendar = [[CKCalendarView alloc] initWithMode: CKCalendarViewModeWeek];
+    self.calendar.backgroundColor = vanderbiltGold;
+    [self.view addSubview: self.calendar];
     
 }
 

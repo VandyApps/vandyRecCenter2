@@ -29,20 +29,20 @@
     if (self) {
         // Initialization code
         _state = CKCalendarMonthCellStateNormal;
-        
+#pragma mark Color Changes
         //  Normal Cell Colors
-        _normalBackgroundColor = kCalendarColorLightGray;
-        _selectedBackgroundColor = kCalendarColorBlue;
+        _normalBackgroundColor = vanderbiltGold; //kCalendarColorLightGray;
+        _selectedBackgroundColor = [UIColor blackColor];//kCalendarColorBlue;
         _inactiveSelectedBackgroundColor = kCalendarColorDarkGray;
         
         //  Today Cell Colors
-        _todayBackgroundColor = kCalendarColorBluishGray;
-        _todaySelectedBackgroundColor = kCalendarColorBlue;
-        _todayTextShadowColor = kCalendarColorTodayShadowBlue;
+        _todayBackgroundColor =  [UIColor darkGrayColor]; //kCalendarColorBluishGray;
+        _todaySelectedBackgroundColor = [UIColor blackColor];//kCalendarColorBlue;
+        _todayTextShadowColor = [UIColor blackColor];//kCalendarColorTodayShadowBlue;
         _todayTextColor = [UIColor whiteColor];
         
         //  Text Colors
-        _textColor = kCalendarColorDarkTextGradient;
+        _textColor = [UIColor blackColor];//kCalendarColorDarkTextGradient;
         _textShadowColor = [UIColor whiteColor];
         _textSelectedColor = [UIColor whiteColor];
         _textSelectedShadowColor = kCalendarColorSelectedShadowBlue;
@@ -50,8 +50,8 @@
         _dotColor = kCalendarColorDarkTextGradient;
         _selectedDotColor = [UIColor whiteColor];
         
-        _cellBorderColor = kCalendarColorCellBorder;
-        _selectedCellBorderColor = kCalendarColorSelectedCellBorder;
+        _cellBorderColor = [UIColor blackColor];//kCalendarColorCellBorder;
+        _selectedCellBorderColor = [UIColor darkGrayColor];//kCalendarColorSelectedCellBorder;
         
         // Label
         _label = [UILabel new];

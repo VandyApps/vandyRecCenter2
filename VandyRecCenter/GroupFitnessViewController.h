@@ -10,7 +10,7 @@
 #import "CalendarKit.h"
 
 @interface GroupFitnessViewController : UIViewController
-@property (nonatomic, weak) IBOutlet UITableView* tableView;
 
+@property (nonatomic, strong) CKCalendarView* calendar;
 
 @end
