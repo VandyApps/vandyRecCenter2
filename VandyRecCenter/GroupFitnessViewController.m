@@ -26,6 +26,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    CKCalendarView* calendar = [[CKCalendarView alloc] initWithMode: CKCalendarViewModeWeek];
+    [self.view addSubview: calendar];
     
 }
 

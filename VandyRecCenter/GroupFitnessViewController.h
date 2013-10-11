@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CalendarKit.h"
 
 @interface GroupFitnessViewController : UIViewController
 @property (nonatomic, weak) IBOutlet UITableView* tableView;
