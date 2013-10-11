@@ -129,7 +129,7 @@
         
         CAGradientLayer *gradient = [CAGradientLayer layer];
         gradient.frame = contentView.bounds;
-        gradient.colors = @[(id) [UIColor whiteColor].CGColor, (id) [UIColor whiteColor].CGColor, (id) [UIColor darkGrayColor].CGColor];
+        gradient.colors = @[(id) [UIColor whiteColor].CGColor, (id) [UIColor whiteColor].CGColor, (id) [UIColor lightGrayColor].CGColor];
         gradient.cornerRadius = 12.0f;
         [contentView.layer insertSublayer: gradient atIndex: 0];
         
