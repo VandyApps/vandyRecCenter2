@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "CalendarKit.h"
 
-@interface GroupFitnessViewController : UIViewController
+@interface GroupFitnessViewController : UIViewController <CKCalendarViewDataSource, CKCalendarViewDelegate>
 
 @property (nonatomic, strong) CKCalendarView* calendar;
-
+@property (nonatomic, weak) IBOutlet UIButton* todayButton;
 @end

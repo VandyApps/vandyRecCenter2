@@ -962,14 +962,16 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         if ([indexPath row] == 1) {
-            [[cell textLabel] setText:NSLocalizedString(@"No Events", @"A label for a table with no events.")];
+            [[cell textLabel] setText:NSLocalizedString(@"No Group Fitness Classes", @"A label for a table with no events.")];
         }
         else
         {
             [[cell textLabel] setText:@""];
         }
+        
         return cell;
     }
+    
     
     UITableViewCell *cell = [[self table] dequeueReusableCellWithIdentifier:@"cell"];
     
@@ -978,6 +980,13 @@
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     [[cell textLabel] setText:[event title]];
+    
+    #pragma BRENDAN CELL CUSTOMIZATION
+    //begin customization
+    
+    
+    
+    //end customization
     
     return cell;
 }
@@ -995,6 +1004,7 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
 
 #pragma mark - Date Calculations
 
@@ -1228,4 +1238,11 @@
     NSDate *dateToSelect = [[self calendar] dateByAddingDays:[self selectedIndex] toDate:firstDate];
     [self setDate:dateToSelect animated:NO];
 }
+
+
+#pragma  mark - BRENDAN ADDED CHANGES
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80.0f;
+}
+
 @end
