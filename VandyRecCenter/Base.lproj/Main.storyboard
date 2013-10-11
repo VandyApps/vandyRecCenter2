@@ -46,18 +46,27 @@
                                                                 <constraint firstAttribute="height" constant="42" id="EyM-SP-aac"/>
                                                             </constraints>
                                                             <state key="normal" image="11-clock.png"/>
+                                                            <connections>
+                                                                <action selector="toggleHours:" destination="dMS-VD-DM5" eventType="touchUpInside" id="sT5-md-cYB"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Oq-X5-0Jk" userLabel="GFControl">
                                                             <rect key="frame" x="122" y="18" width="42" height="42"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.4340720663" green="0.4340720663" blue="0.4340720663" alpha="1" colorSpace="calibratedRGB"/>
                                                             <state key="normal" image="63-runner.png"/>
+                                                            <connections>
+                                                                <action selector="toggleGroupFitness:" destination="dMS-VD-DM5" eventType="touchUpInside" id="qs8-FD-95z"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSV-e3-bBt" userLabel="IMControl">
                                                             <rect key="frame" x="172" y="18" width="42" height="42"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.4340720663" green="0.4340720663" blue="0.4340720663" alpha="1" colorSpace="calibratedRGB"/>
                                                             <state key="normal" image="374-basketball.png"/>
+                                                            <connections>
+                                                                <action selector="toggleIntramurals:" destination="dMS-VD-DM5" eventType="touchUpInside" id="hbo-Ou-Bgw"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wug-X2-1bY" userLabel="NewsControl">
                                                             <rect key="frame" x="20" y="18" width="42" height="42"/>
@@ -68,6 +77,9 @@
                                                                 <constraint firstAttribute="width" constant="42" id="RgB-h9-2di"/>
                                                             </constraints>
                                                             <state key="normal" image="354-newspaper-w.png"/>
+                                                            <connections>
+                                                                <action selector="toggleNews:" destination="dMS-VD-DM5" eventType="touchUpInside" id="qOa-Cy-2xx"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
