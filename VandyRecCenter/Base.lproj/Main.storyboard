@@ -33,18 +33,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="260" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jZp-3b-V5a">
+                                                <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jZp-3b-V5a">
                                                     <rect key="frame" x="13" y="1" width="234" height="78"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXP-22-34M" userLabel="hoursControl">
+                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXP-22-34M" userLabel="hoursControl">
                                                             <rect key="frame" x="70" y="18" width="42" height="42"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.4340720663" green="0.4340720663" blue="0.4340720663" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="42" id="Ehw-Vy-egO"/>
-                                                                <constraint firstAttribute="height" constant="42" id="EyM-SP-aac"/>
-                                                            </constraints>
                                                             <state key="normal" image="11-clock.png"/>
                                                             <connections>
                                                                 <action selector="toggleHours:" destination="dMS-VD-DM5" eventType="touchUpInside" id="sT5-md-cYB"/>
@@ -68,14 +64,10 @@
                                                                 <action selector="toggleIntramurals:" destination="dMS-VD-DM5" eventType="touchUpInside" id="hbo-Ou-Bgw"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wug-X2-1bY" userLabel="NewsControl">
+                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wug-X2-1bY" userLabel="NewsControl">
                                                             <rect key="frame" x="20" y="18" width="42" height="42"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.4340720663" green="0.4340720663" blue="0.4340720663" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="42" id="Itj-i6-lIZ"/>
-                                                                <constraint firstAttribute="width" constant="42" id="RgB-h9-2di"/>
-                                                            </constraints>
                                                             <state key="normal" image="354-newspaper-w.png"/>
                                                             <connections>
                                                                 <action selector="toggleNews:" destination="dMS-VD-DM5" eventType="touchUpInside" id="qOa-Cy-2xx"/>
@@ -85,10 +77,6 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="centerX" secondItem="jZp-3b-V5a" secondAttribute="centerX" id="2aF-F7-yn5"/>
-                                                <constraint firstAttribute="centerY" secondItem="jZp-3b-V5a" secondAttribute="centerY" id="zH9-Ob-fBl"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="notificationCell" rowHeight="185" id="T0H-Wc-xB4">
@@ -261,24 +249,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6f-3f-wAT" customClass="MZDayPicker">
-                                <rect key="frame" x="0.0" y="31" width="320" height="85"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="85" id="mJb-ge-Urc"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="g6f-3f-wAT" firstAttribute="top" secondItem="2cx-FV-yKT" secondAttribute="top" constant="31" id="IsW-vO-v0O"/>
-                            <constraint firstItem="g6f-3f-wAT" firstAttribute="leading" secondItem="2cx-FV-yKT" secondAttribute="leading" id="cdU-Yc-wci"/>
-                            <constraint firstAttribute="trailing" secondItem="g6f-3f-wAT" secondAttribute="trailing" id="kNq-Xv-Pix"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="dayPicker" destination="g6f-3f-wAT" id="wRx-4M-bav"/>
                         <outlet property="tableView" destination="nbA-Ov-M3A" id="r9C-5U-Adw"/>
                     </connections>
                 </viewController>

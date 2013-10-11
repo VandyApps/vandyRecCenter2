@@ -53,6 +53,7 @@
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = vanderbiltGold;
     
+    //select home by default
     NSIndexPath *defaultIndexPath = [NSIndexPath indexPathForRow:0 inSection: 0];
     [self.tableView selectRowAtIndexPath:defaultIndexPath animated: NO scrollPosition:UITableViewScrollPositionNone];
 }

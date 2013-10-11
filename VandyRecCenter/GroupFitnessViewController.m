@@ -26,11 +26,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.dayPicker.month = 10;
-    self.dayPicker.year = 2013;
-    [self.dayPicker setActiveDaysFrom: 1 toDay: 20];
-    [self.dayPicker setActiveDayColor:vanderbiltGold];
-    [self.dayPicker setCurrentDay: 5];
+    
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear: YES];
 }
 
 - (void)didReceiveMemoryWarning

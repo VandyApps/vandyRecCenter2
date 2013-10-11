@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MZDayPicker.h"
+
 
 @interface GroupFitnessViewController : UIViewController
 @property (nonatomic, weak) IBOutlet UITableView* tableView;
-@property (nonatomic, weak) IBOutlet MZDayPicker* dayPicker;
+
 
 @end
