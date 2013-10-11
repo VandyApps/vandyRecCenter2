@@ -79,6 +79,7 @@
 		2129753B17FE4E0D007210AB /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2129753917FE4E0D007210AB /* UIViewController+JASidePanel.m */; };
 		212FB75918010659009C6A83 /* GroupFitnessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 212FB75818010659009C6A83 /* GroupFitnessViewController.m */; };
 		21325306180853C100ED855D /* GFTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21325305180853C100ED855D /* GFTableViewController.m */; };
+		2132530A18085B3000ED855D /* Intramural.m in Sources */ = {isa = PBXBuildFile; fileRef = 2132530918085B3000ED855D /* Intramural.m */; };
 		2150C9771801BE2100DCB3E5 /* Linen - 320x640 - iPhone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2150C9741801BE2100DCB3E5 /* Linen - 320x640 - iPhone.jpg */; };
 		2150C9781801BE2100DCB3E5 /* Linen - 640x960 - iPhone@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2150C9751801BE2100DCB3E5 /* Linen - 640x960 - iPhone@2x.jpg */; };
 		2150C9791801BE2100DCB3E5 /* Linen - 640x1136 - iPhone 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2150C9761801BE2100DCB3E5 /* Linen - 640x1136 - iPhone 5.jpg */; };
@@ -223,6 +224,8 @@
 		212FB75818010659009C6A83 /* GroupFitnessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupFitnessViewController.m; sourceTree = "<group>"; };
 		21325304180853C100ED855D /* GFTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFTableViewController.h; sourceTree = "<group>"; };
 		21325305180853C100ED855D /* GFTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFTableViewController.m; sourceTree = "<group>"; };
+		2132530818085B2F00ED855D /* Intramural.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intramural.h; sourceTree = "<group>"; };
+		2132530918085B3000ED855D /* Intramural.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Intramural.m; sourceTree = "<group>"; };
 		2150C9741801BE2100DCB3E5 /* Linen - 320x640 - iPhone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Linen - 320x640 - iPhone.jpg"; sourceTree = "<group>"; };
 		2150C9751801BE2100DCB3E5 /* Linen - 640x960 - iPhone@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Linen - 640x960 - iPhone@2x.jpg"; sourceTree = "<group>"; };
 		2150C9761801BE2100DCB3E5 /* Linen - 640x1136 - iPhone 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Linen - 640x1136 - iPhone 5.jpg"; sourceTree = "<group>"; };
@@ -493,6 +496,7 @@
 				2119C8E117FF140400D4A284 /* MainMenuViewController.m */,
 				211C2E8917FF48E200C4400A /* Notifications */,
 				212FB75A18010687009C6A83 /* GF */,
+				2132530718085B1700ED855D /* Intramurals */,
 				212974A517FE465C007210AB /* Main.storyboard */,
 				212974AB17FE465C007210AB /* Images.xcassets */,
 				211C2E9D17FF607200C4400A /* Web Client */,
@@ -589,6 +593,15 @@
 				21325305180853C100ED855D /* GFTableViewController.m */,
 			);
 			name = GF;
+			sourceTree = "<group>";
+		};
+		2132530718085B1700ED855D /* Intramurals */ = {
+			isa = PBXGroup;
+			children = (
+				2132530818085B2F00ED855D /* Intramural.h */,
+				2132530918085B3000ED855D /* Intramural.m */,
+			);
+			name = Intramurals;
 			sourceTree = "<group>";
 		};
 		21BC3F3318012F5600F6C4E3 /* white */ = {
@@ -791,6 +804,7 @@
 				21278AC41807BE7C00E76BD0 /* NSCalendar+DateComparison.m in Sources */,
 				211C2E9C17FF606C00C4400A /* RecClient.m in Sources */,
 				21278AD31807BE7C00E76BD0 /* MBPolygonView.m in Sources */,
+				2132530A18085B3000ED855D /* Intramural.m in Sources */,
 				21278ACF1807BE7C00E76BD0 /* CKCalendarCell.m in Sources */,
 				21278ACC1807BE7C00E76BD0 /* UIColor+HexString.m in Sources */,
 				212FB75918010659009C6A83 /* GroupFitnessViewController.m in Sources */,
