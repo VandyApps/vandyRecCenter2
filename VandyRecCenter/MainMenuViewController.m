@@ -52,7 +52,11 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = vanderbiltGold;
+    
+    NSIndexPath *defaultIndexPath = [NSIndexPath indexPathForRow:0 inSection: 0];
+    [self.tableView selectRowAtIndexPath:defaultIndexPath animated: NO scrollPosition:UITableViewScrollPositionNone];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -74,6 +78,12 @@
     [(UIImageView*) [cell viewWithTag: 1] setImage: [self.mainMenuIcons objectAtIndex: indexPath.row]];
     //color the cell
     cell.backgroundColor = (indexPath.row %2) ? cellColor1 : cellColor2;
+    
+    //set the background view for a selected cell
+    UIView* backgroundView = [[UIView alloc] init];
+    backgroundView.backgroundColor = [UIColor colorWithRed: 228.f/255.f green:200.f/255.f blue:124.f/255.f alpha: 1];
+    cell.selectedBackgroundView = backgroundView;
+    
     return cell;
     
     
@@ -89,6 +99,7 @@
 
 #pragma mark - Table View Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [self.delegate didSelectedControllerWithTitle: [self.mainMenu objectAtIndex: indexPath.row] atIndex:indexPath.row];
     
 }
