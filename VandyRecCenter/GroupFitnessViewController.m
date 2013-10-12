@@ -75,36 +75,34 @@
 
 #pragma mark - Calendar View Data Source
 - (NSArray *)calendarView:(CKCalendarView *)calendarView eventsForDate:(NSDate *)date {
-
     
-    //uses methods from custom date class
-    NSUInteger day = date.day;
-    NSUInteger month = date.month;
     NSUInteger year = date.year;
-    NSArray* classes;
-    NSLog(@"Loading for month %u and year %u", month, year);
-    if (![self.collection dataLoadedForYear: year month:month]) {
-        NSLog(@"Not yet loaded");
+    NSUInteger month = date.month;
+    NSUInteger day = date.day;
+    __block NSArray* GFClasses;
+    if (![self.collection dataLoadedForYear:year month: month]) {
+        
         MBProgressHUD* HUD;
         HUD = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
         HUD.mode = MBProgressHUDModeIndeterminate;
         HUD.labelText = @"Loading";
-        [self.collection loadMonth:month andYear:year block:^(NSError *error, GFModel *model) {
+        
+        [self.collection loadMonth: month andYear: year block:^(NSError *error, GFModel *model) {
+            GFClasses = [model GFClassesForDay: day];
             [HUD hide: YES];
-            [self setGFClassesForDay: day month:month year:year];
+            
         }];
     } else {
-        [self setGFClassesForDay: day month:month year:year];
+        [self.collection GFClassesForYear:year month:month day:day block:^(NSError *error, NSArray *_GFClasses) {
+            GFClasses = _GFClasses;
+        }];
     }
-    return classes;
+    return GFClasses;
+    
+    
 }
 
-- (void) setGFClassesForDay: (NSUInteger) day month: (NSUInteger) month year: (NSUInteger) year {
-    [self.collection GFClassesForYear:year month:month day:day block:^(NSError *error, NSArray *GFClasses) {
-        self.calendar.tableController.GFClassesToDisplay = GFClasses;
-        NSLog(@"Classes here: %@", GFClasses);
-    }];
-}
+
 #pragma mark - Calendar View Delegate
 
 @end

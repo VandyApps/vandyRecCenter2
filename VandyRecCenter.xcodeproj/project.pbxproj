@@ -516,12 +516,12 @@
 				212974A317FE465C007210AB /* AppDelegate.m */,
 				2119C8E017FF140400D4A284 /* MainMenuViewController.h */,
 				2119C8E117FF140400D4A284 /* MainMenuViewController.m */,
+				211C2E9D17FF607200C4400A /* Web Client */,
 				211C2E8917FF48E200C4400A /* Notifications */,
 				212FB75A18010687009C6A83 /* GF */,
 				2132530718085B1700ED855D /* Intramurals */,
 				212974A517FE465C007210AB /* Main.storyboard */,
 				212974AB17FE465C007210AB /* Images.xcassets */,
-				211C2E9D17FF607200C4400A /* Web Client */,
 				2119C90317FF1A2800D4A284 /* Images */,
 				2129749A17FE465C007210AB /* Supporting Files */,
 			);

@@ -20,7 +20,7 @@
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger count = self.GFClassesToDisplay.count;
-    
+    NSLog(@"Count is %i", count);
     if (count == 0) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"noDataCell"];
         [[cell textLabel] setTextAlignment:NSTextAlignmentCenter];
@@ -43,7 +43,10 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    cell.textLabel.text = [[self.GFClassesToDisplay objectAtIndex: indexPath.row] objectForKey: @"className"];
+    UILabel* label = [[UILabel alloc] initWithFrame: CGRectMake( 20, 20 , 100,  30)];
+    label.text = [[self.GFClassesToDisplay objectAtIndex: indexPath.row] objectForKey: @"className"];
+    NSLog(@"Class name: %@",[[self.GFClassesToDisplay objectAtIndex: indexPath.row] objectForKey: @"className"] );
+    [cell addSubview: label];
     return cell;
     
 }

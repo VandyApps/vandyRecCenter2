@@ -109,23 +109,33 @@
     [self reloadAnimated:NO];
 }
 
+#pragma mark - BRENDAN CHANGES HERE
+
 - (void)reloadAnimated:(BOOL)animated
 {
     if ([[self dataSource] respondsToSelector:@selector(calendarView:eventsForDate:)]) {
+        //BRENDAN - NO LONGER USING EVENTS, SORTING NOT NEEDED
+        /*
         NSArray *sortedArray = [[[self dataSource] calendarView:self eventsForDate:[self date]] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             NSDate *d1 = [obj1 date];
             NSDate *d2 = [obj2 date];
             
             return [d1 compare:d2];
         }];
+         
         
         [self setEvents:sortedArray];
+         */
+        
+        //set the GFClasses to the events variable
+        self.events = [self.dataSource calendarView: self eventsForDate: self.date];
     }
     
     [[self table] reloadData];
     
     [self layoutSubviewsAnimated:animated];
 }
+
 
 #pragma mark - View Hierarchy
 
@@ -632,7 +642,13 @@
     [self layoutSubviewsAnimated:animated];
     
 }
-
+#pragma mark - BRENDAN set events customization
+- (void) setEvents:(NSArray *)events {
+    _events = events;
+    if (self.tableController) {
+        self.tableController.GFClassesToDisplay = events;
+    }
+}
 
 - (void)setMinimumDate:(NSDate *)minimumDate
 {
