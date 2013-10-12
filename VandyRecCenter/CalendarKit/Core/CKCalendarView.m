@@ -28,8 +28,7 @@
 @property (nonatomic, strong) CKCalendarHeaderView *headerView;
 
 @property (nonatomic, strong) UITableView *table;
-#pragma mark - BRENDAN ADD PROPERTY
-@property (nonatomic, strong) GFTableViewController* tableController;
+
 @property (nonatomic, strong) NSArray *events;
 
 //  The index of the highlighted cell

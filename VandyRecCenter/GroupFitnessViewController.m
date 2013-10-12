@@ -16,7 +16,18 @@
 
 @synthesize calendar = _calendar;
 @synthesize todayButton = _todayButton;
+@synthesize collection = _collection;
 
+#pragma mark - Getters
+
+- (GFCollection*) collection {
+    if (!_collection) {
+        _collection = [[GFCollection alloc] init];
+    }
+    return _collection;
+}
+
+#pragma mark - Initializer
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,6 +37,7 @@
     return self;
 }
 
+#pragma mark - Lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -63,11 +75,35 @@
 
 #pragma mark - Calendar View Data Source
 - (NSArray *)calendarView:(CKCalendarView *)calendarView eventsForDate:(NSDate *)date {
-    CKCalendarEvent* event = [[CKCalendarEvent alloc] init];
-    event.title = @"This is an event";
-    event.date = [[NSDate alloc] init];
-    //event.info = @"Here is some info about this event.  This is a long description here so I wonder what will happen";
-    return @[event];
+
+    
+    //uses methods from custom date class
+    NSUInteger day = date.day;
+    NSUInteger month = date.month;
+    NSUInteger year = date.year;
+    NSArray* classes;
+    NSLog(@"Loading for month %u and year %u", month, year);
+    if (![self.collection dataLoadedForYear: year month:month]) {
+        NSLog(@"Not yet loaded");
+        MBProgressHUD* HUD;
+        HUD = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
+        HUD.mode = MBProgressHUDModeIndeterminate;
+        HUD.labelText = @"Loading";
+        [self.collection loadMonth:month andYear:year block:^(NSError *error, GFModel *model) {
+            [HUD hide: YES];
+            [self setGFClassesForDay: day month:month year:year];
+        }];
+    } else {
+        [self setGFClassesForDay: day month:month year:year];
+    }
+    return classes;
+}
+
+- (void) setGFClassesForDay: (NSUInteger) day month: (NSUInteger) month year: (NSUInteger) year {
+    [self.collection GFClassesForYear:year month:month day:day block:^(NSError *error, NSArray *GFClasses) {
+        self.calendar.tableController.GFClassesToDisplay = GFClasses;
+        NSLog(@"Classes here: %@", GFClasses);
+    }];
 }
 #pragma mark - Calendar View Delegate
 

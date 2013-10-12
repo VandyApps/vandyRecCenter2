@@ -83,6 +83,12 @@
 		2150C9771801BE2100DCB3E5 /* Linen - 320x640 - iPhone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2150C9741801BE2100DCB3E5 /* Linen - 320x640 - iPhone.jpg */; };
 		2150C9781801BE2100DCB3E5 /* Linen - 640x960 - iPhone@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2150C9751801BE2100DCB3E5 /* Linen - 640x960 - iPhone@2x.jpg */; };
 		2150C9791801BE2100DCB3E5 /* Linen - 640x1136 - iPhone 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2150C9761801BE2100DCB3E5 /* Linen - 640x1136 - iPhone 5.jpg */; };
+		215B8DAB1809B50F009C248E /* DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 215B8D9E1809B50F009C248E /* DateHelper.m */; };
+		215B8DAC1809B50F009C248E /* GFCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 215B8DA01809B50F009C248E /* GFCollection.m */; };
+		215B8DAD1809B50F009C248E /* GFFavorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 215B8DA21809B50F009C248E /* GFFavorites.m */; };
+		215B8DAE1809B50F009C248E /* GFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 215B8DA41809B50F009C248E /* GFModel.m */; };
+		215B8DAF1809B50F009C248E /* GFSpecialDates.m in Sources */ = {isa = PBXBuildFile; fileRef = 215B8DA61809B50F009C248E /* GFSpecialDates.m */; };
+		215B8DB11809B50F009C248E /* NSDate-MyDateClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 215B8DAA1809B50F009C248E /* NSDate-MyDateClass.m */; };
 		218E9AFA18078F6100629285 /* 428-checkmark1.png in Resources */ = {isa = PBXBuildFile; fileRef = 218E9AF818078F6100629285 /* 428-checkmark1.png */; };
 		218E9AFB18078F6100629285 /* 428-checkmark1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 218E9AF918078F6100629285 /* 428-checkmark1@2x.png */; };
 		21BC3F3718012FA800F6C4E3 /* 354-newspaper.png in Resources */ = {isa = PBXBuildFile; fileRef = 21BC3F3518012FA800F6C4E3 /* 354-newspaper.png */; };
@@ -229,6 +235,18 @@
 		2150C9741801BE2100DCB3E5 /* Linen - 320x640 - iPhone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Linen - 320x640 - iPhone.jpg"; sourceTree = "<group>"; };
 		2150C9751801BE2100DCB3E5 /* Linen - 640x960 - iPhone@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Linen - 640x960 - iPhone@2x.jpg"; sourceTree = "<group>"; };
 		2150C9761801BE2100DCB3E5 /* Linen - 640x1136 - iPhone 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Linen - 640x1136 - iPhone 5.jpg"; sourceTree = "<group>"; };
+		215B8D9D1809B50F009C248E /* DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelper.h; sourceTree = "<group>"; };
+		215B8D9E1809B50F009C248E /* DateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateHelper.m; sourceTree = "<group>"; };
+		215B8D9F1809B50F009C248E /* GFCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GFCollection.h; path = ../GFCollection.h; sourceTree = "<group>"; };
+		215B8DA01809B50F009C248E /* GFCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GFCollection.m; path = ../GFCollection.m; sourceTree = "<group>"; };
+		215B8DA11809B50F009C248E /* GFFavorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GFFavorites.h; path = ../GFFavorites.h; sourceTree = "<group>"; };
+		215B8DA21809B50F009C248E /* GFFavorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GFFavorites.m; path = ../GFFavorites.m; sourceTree = "<group>"; };
+		215B8DA31809B50F009C248E /* GFModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GFModel.h; path = ../GFModel.h; sourceTree = "<group>"; };
+		215B8DA41809B50F009C248E /* GFModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GFModel.m; path = ../GFModel.m; sourceTree = "<group>"; };
+		215B8DA51809B50F009C248E /* GFSpecialDates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GFSpecialDates.h; path = ../GFSpecialDates.h; sourceTree = "<group>"; };
+		215B8DA61809B50F009C248E /* GFSpecialDates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GFSpecialDates.m; path = ../GFSpecialDates.m; sourceTree = "<group>"; };
+		215B8DA91809B50F009C248E /* NSDate-MyDateClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-MyDateClass.h"; sourceTree = "<group>"; };
+		215B8DAA1809B50F009C248E /* NSDate-MyDateClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-MyDateClass.m"; sourceTree = "<group>"; };
 		218E9AF818078F6100629285 /* 428-checkmark1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "428-checkmark1.png"; sourceTree = "<group>"; };
 		218E9AF918078F6100629285 /* 428-checkmark1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "428-checkmark1@2x.png"; sourceTree = "<group>"; };
 		21AAB9FD17FE8640006AA6C5 /* VandyRecCenter Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VandyRecCenter Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -314,6 +332,10 @@
 		211C2EA317FF718700C4400A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				215B8D9D1809B50F009C248E /* DateHelper.h */,
+				215B8D9E1809B50F009C248E /* DateHelper.m */,
+				215B8DA91809B50F009C248E /* NSDate-MyDateClass.h */,
+				215B8DAA1809B50F009C248E /* NSDate-MyDateClass.m */,
 				21244F2C1800B26400EE27BC /* TimeString */,
 			);
 			name = Helpers;
@@ -591,6 +613,7 @@
 				212FB75818010659009C6A83 /* GroupFitnessViewController.m */,
 				21325304180853C100ED855D /* GFTableViewController.h */,
 				21325305180853C100ED855D /* GFTableViewController.m */,
+				215B8DB21809C7C9009C248E /* Model */,
 			);
 			name = GF;
 			sourceTree = "<group>";
@@ -602,6 +625,21 @@
 				2132530918085B3000ED855D /* Intramural.m */,
 			);
 			name = Intramurals;
+			sourceTree = "<group>";
+		};
+		215B8DB21809C7C9009C248E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				215B8D9F1809B50F009C248E /* GFCollection.h */,
+				215B8DA01809B50F009C248E /* GFCollection.m */,
+				215B8DA11809B50F009C248E /* GFFavorites.h */,
+				215B8DA21809B50F009C248E /* GFFavorites.m */,
+				215B8DA31809B50F009C248E /* GFModel.h */,
+				215B8DA41809B50F009C248E /* GFModel.m */,
+				215B8DA51809B50F009C248E /* GFSpecialDates.h */,
+				215B8DA61809B50F009C248E /* GFSpecialDates.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		21BC3F3318012F5600F6C4E3 /* white */ = {
@@ -780,6 +818,7 @@
 				21278AD41807BE7C00E76BD0 /* CKCalendarViewController.m in Sources */,
 				21278AD01807BE7C00E76BD0 /* CKCalendarEvent.m in Sources */,
 				212974E317FE466D007210AB /* AFURLResponseSerialization.m in Sources */,
+				215B8DAC1809B50F009C248E /* GFCollection.m in Sources */,
 				21278AC61807BE7C00E76BD0 /* NSCalendar+Juncture.m in Sources */,
 				21278AC31807BE7C00E76BD0 /* NSCalendar+Components.m in Sources */,
 				212974E117FE466D007210AB /* AFURLConnectionOperation.m in Sources */,
@@ -789,8 +828,10 @@
 				21244F2B1800B22900EE27BC /* TimeString.m in Sources */,
 				2119C8E217FF140400D4A284 /* MainMenuViewController.m in Sources */,
 				21278AD51807BE7C00E76BD0 /* CKCalendarViewControllerInternal.m in Sources */,
+				215B8DB11809B50F009C248E /* NSDate-MyDateClass.m in Sources */,
 				2129753A17FE4E0D007210AB /* JASidePanelController.m in Sources */,
 				21278ACE1807BE7C00E76BD0 /* UIView+Border.m in Sources */,
+				215B8DAE1809B50F009C248E /* GFModel.m in Sources */,
 				21278ACB1807BE7C00E76BD0 /* NSString+Color.m in Sources */,
 				21278AC51807BE7C00E76BD0 /* NSCalendar+DateManipulation.m in Sources */,
 				211C2E8817FF464D00C4400A /* NotificationViewController.m in Sources */,
@@ -801,12 +842,15 @@
 				212974A417FE465C007210AB /* AppDelegate.m in Sources */,
 				212974A017FE465C007210AB /* main.m in Sources */,
 				2129753B17FE4E0D007210AB /* UIViewController+JASidePanel.m in Sources */,
+				215B8DAF1809B50F009C248E /* GFSpecialDates.m in Sources */,
 				21278AC41807BE7C00E76BD0 /* NSCalendar+DateComparison.m in Sources */,
 				211C2E9C17FF606C00C4400A /* RecClient.m in Sources */,
+				215B8DAD1809B50F009C248E /* GFFavorites.m in Sources */,
 				21278AD31807BE7C00E76BD0 /* MBPolygonView.m in Sources */,
 				2132530A18085B3000ED855D /* Intramural.m in Sources */,
 				21278ACF1807BE7C00E76BD0 /* CKCalendarCell.m in Sources */,
 				21278ACC1807BE7C00E76BD0 /* UIColor+HexString.m in Sources */,
+				215B8DAB1809B50F009C248E /* DateHelper.m in Sources */,
 				212FB75918010659009C6A83 /* GroupFitnessViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
