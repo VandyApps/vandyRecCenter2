@@ -76,6 +76,10 @@
         
         [_table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         [_table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"noDataCell"];
+#pragma mark - Fix this
+        //[_table registerNib:[UINib nibWithNibName:@"GroupFitnessCell"
+              //                                     bundle:[NSBundle mainBundle]]
+           //  forCellReuseIdentifier:@"groupFitnessCell"];
         
         //  Events for selected date
         _events = [NSMutableArray new];

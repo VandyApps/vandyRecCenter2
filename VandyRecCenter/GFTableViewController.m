@@ -38,15 +38,14 @@
     }
     
     //count > 0 here
-    
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"cell"];
+    NSDictionary* GFClass = [self.GFClassesToDisplay objectAtIndex: indexPath.row];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"groupFitnessCell"];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        NSArray* nib = [[NSBundle mainBundle] loadNibNamed: @"GroupFitnessCell" owner: self options:nil];
+        cell = [nib objectAtIndex: 0];
+        //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"groupFitnessCell"];
     }
-    UILabel* label = [[UILabel alloc] initWithFrame: CGRectMake( 20, 20 , 100,  30)];
-    label.text = [[self.GFClassesToDisplay objectAtIndex: indexPath.row] objectForKey: @"className"];
-    NSLog(@"Class name: %@",[[self.GFClassesToDisplay objectAtIndex: indexPath.row] objectForKey: @"className"] );
-    [cell addSubview: label];
+    [(UILabel*)[cell viewWithTag: CELL_CLASSNAME_LABEL] setText: [GFClass objectForKey: @"className" ]];
     return cell;
     
 }
@@ -59,7 +58,7 @@
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80.0f;
+    return 140.f;
 }
 
 #pragma mark - TableViewDelegate
