@@ -34,6 +34,7 @@
         {
             [[cell textLabel] setText:@""];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     
@@ -52,6 +53,8 @@
     button.backgroundColor = vanderbiltGold;
     [button setTitle: @"+" forState: UIControlStateNormal];
     
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }
