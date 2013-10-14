@@ -38,7 +38,7 @@
     }
     
     //count > 0 here
-    NSDictionary* GFClass = [self.GFClassesToDisplay objectAtIndex: indexPath.row];
+    NSDictionary* GFClass = [self.GFClassesToDisplay objectAtIndex: indexPath.section];
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"groupFitnessCell"];
     if (!cell) {
         NSArray* nib = [[NSBundle mainBundle] loadNibNamed: @"GroupFitnessCell" owner: self options:nil];
@@ -60,11 +60,37 @@
     if (self.GFClassesToDisplay.count == 0) {
         return 2;
     }
-    return self.GFClassesToDisplay.count;
+    return 1;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 80.f;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return (self.GFClassesToDisplay.count) ? self.GFClassesToDisplay.count : 1;
+}
+
+- (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (self.GFClassesToDisplay.count) {
+        UIView* header = [[UIView alloc] init];
+        CAGradientLayer* gradient = [[CAGradientLayer alloc] init];
+        gradient.frame = CGRectMake(0, 0, self.view.frame.size.width, 24);
+        gradient.colors  = @[(id) [UIColor blackColor].CGColor,(id) [UIColor darkGrayColor].CGColor];
+        [header.layer insertSublayer: gradient atIndex: 0];
+        
+        UILabel* headerTitle = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, 20)];
+        
+        headerTitle.textColor = [UIColor whiteColor];
+        headerTitle.font = [UIFont systemFontOfSize: 12];
+        headerTitle.textAlignment = NSTextAlignmentCenter;
+        headerTitle.backgroundColor = [UIColor clearColor];
+        headerTitle.text = [[self.GFClassesToDisplay objectAtIndex: section] objectForKey: @"timeRange"];
+        [header addSubview: headerTitle];
+        
+        return header;
+    }
+    return  nil;
 }
 
 #pragma mark - TableViewDelegate
