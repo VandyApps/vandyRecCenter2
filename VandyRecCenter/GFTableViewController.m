@@ -46,6 +46,12 @@
         //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"groupFitnessCell"];
     }
     [(UILabel*)[cell viewWithTag: CELL_CLASSNAME_LABEL] setText: [GFClass objectForKey: @"className" ]];
+    [(UILabel*)[cell viewWithTag: CELL_INSTRUCTOR_LABEL] setText: [GFClass objectForKey: @"instructor" ]];
+    UIButton* button = (UIButton*) [cell viewWithTag: CELL_ADD_BUTTON];
+    //here, need to check if the goal is added or not
+    button.backgroundColor = vanderbiltGold;
+    [button setTitle: @"+" forState: UIControlStateNormal];
+    
     return cell;
     
 }
@@ -58,7 +64,7 @@
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 140.f;
+    return 80.f;
 }
 
 #pragma mark - TableViewDelegate
