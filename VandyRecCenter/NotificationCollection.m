@@ -50,7 +50,36 @@ static BOOL initialized = NO;
     }];
 }
 
+
 #pragma mark - Manage Notifications
+- (void) addNotification:(Notification *)notification {
+    //find insertion spot of notification
+    NSInteger index = 0;
+    while (index < self.items.count && [(Notification*)[self.items objectAtIndex: index] priority] < notification.priority) {
+    
+        index++;
+    }
+    
+    if (index == self.items.count) {
+        _items = [self.items arrayByAddingObject: notification];
+    } else {
+        _items = [[[self.items subarrayWithRange: NSMakeRange(0, index)] arrayByAddingObject: notification] arrayByAddingObjectsFromArray: [self.items subarrayWithRange: NSMakeRange(index, self.items.count - index)]];
+    }
+}
+
+- (void) removeNotificationWithID:(NSString *)ID {
+    NSUInteger index = 0;
+    while (index < self.items.count && ![ID isEqualToString: [(Notification*)[self.items objectAtIndex: index] ID]]) {
+    
+        index++;
+    }
+    
+    //check if the index does not fall off the end
+    if (index != self.items.count) {
+        _items = [[_items subarrayWithRange: NSMakeRange(0, index)] arrayByAddingObjectsFromArray:[_items subarrayWithRange: NSMakeRange(index + 1, self.items.count - index - 1)]];
+    }
+}
+
 
 #pragma mark - Convenience Methods
 - (NSUInteger) count {
