@@ -33,7 +33,7 @@
     
     /* */
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
-        [self performSelector:NSSelectorFromString(@"setEdgesForExtendedLayout:") withObject:0];
+        [self performSelector:@selector(setEdgesForExtendedLayout:) withObject:0];
     }
     
     [self setTitle:NSLocalizedString(@"Calendar", @"A title for the calendar view.")];
@@ -57,7 +57,7 @@
     NSArray *items = @[NSLocalizedString(@"Month", @"A title for the month view button."), NSLocalizedString(@"Week",@"A title for the week view button."), NSLocalizedString(@"Day", @"A title for the day view button.")];
     
     [self setModePicker:[[UISegmentedControl alloc] initWithItems:items]];
-    [[self modePicker] setSegmentedControlStyle:UISegmentedControlStyleBar];
+    //[[self modePicker] setSegmentedControlStyle:UISegmentedControlStyleBar];
     [[self modePicker] addTarget:self action:@selector(modeChangedUsingControl:) forControlEvents:UIControlEventValueChanged];
     [[self modePicker] setSelectedSegmentIndex:0];
     

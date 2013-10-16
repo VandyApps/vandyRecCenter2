@@ -15,8 +15,6 @@
 
 - (NSArray *)calendarView:(CKCalendarView *)calendarView eventsForDate:(NSDate *)date;
 
-#pragma mark - BRENDAN CUSTOM DATASOURCE METHOD
-- (void) calendarView: (CKCalendarView*) calendarView eventsSetTo: (NSArray*) event;
 @end
 
 

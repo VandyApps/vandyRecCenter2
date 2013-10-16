@@ -73,4 +73,5 @@ static BOOL initialized = NO;
         block(error, nil);
     }];
 }
+
 @end

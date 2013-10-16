@@ -15,6 +15,6 @@
 @property (nonatomic, strong, readonly) NSString* league;
 @property (nonatomic, strong, readonly) NSString* name;
 
-+ (id) intramuralWithData: (NSDictionary*) data;
-- (NSArray*) gamesForDate: (NSArray*) date;
+//+ (id) intramuralWithData: (NSDictionary*) data;
+//- (NSArray*) gamesForDate: (NSArray*) date;
 @end

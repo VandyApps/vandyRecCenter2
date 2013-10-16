@@ -264,4 +264,12 @@
     [self.HUD hide: YES];
 }
 
+
+- (void) notificationAdded:(Notification *)notification atIndex:(NSUInteger)index {
+
+}
+
+- (void) notificationRemoved:(Notification *)notification fromIndex:(NSUInteger)index {
+
+}
 @end
