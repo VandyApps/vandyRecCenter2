@@ -39,7 +39,7 @@
     }
     
     //count > 0 here
-    NSDictionary* GFClass = [self.GFClassesToDisplay objectAtIndex: indexPath.section];
+    NSDictionary* GFClass = [self.GFClassesToDisplay objectAtIndex: indexPath.row];
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"groupFitnessCell"];
     if (!cell) {
         NSArray* nib = [[NSBundle mainBundle] loadNibNamed: @"GroupFitnessCell" owner: self options:nil];
@@ -48,9 +48,21 @@
     }
     [(UILabel*)[cell viewWithTag: CELL_CLASSNAME_LABEL] setText: [GFClass objectForKey: @"className" ]];
     [(UILabel*)[cell viewWithTag: CELL_INSTRUCTOR_LABEL] setText: [GFClass objectForKey: @"instructor" ]];
+    
+    UILabel* timeRangeLabel =  (UILabel*) [cell viewWithTag: CELL_TIMERANGE_LABEL];
+    timeRangeLabel.text = [GFClass objectForKey: @"timeRange"];
+     
+    CALayer *topBorder = [CALayer layer];
+    topBorder.frame = CGRectMake(0.0f, timeRangeLabel.frame.size.height - 1, timeRangeLabel.frame.size.width, 1.0f);
+    topBorder.backgroundColor = [UIColor blackColor].CGColor;
+    [timeRangeLabel.layer addSublayer:topBorder];
+    
+    
+    
     UIButton* button = (UIButton*) [cell viewWithTag: CELL_ADD_BUTTON];
     //here, need to check if the goal is added or not
     button.backgroundColor = vanderbiltGold;
+    button.layer.cornerRadius = 5.0f;
     [button setTitle: @"+" forState: UIControlStateNormal];
     
     
@@ -63,17 +75,17 @@
     if (self.GFClassesToDisplay.count == 0) {
         return 2;
     }
-    return 1;
+    return self.GFClassesToDisplay.count;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80.f;
+    return 100.f;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return (self.GFClassesToDisplay.count) ? self.GFClassesToDisplay.count : 1;
+    return 1;
 }
-
+/*
 - (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (self.GFClassesToDisplay.count) {
         UIView* header = [[UIView alloc] init];
@@ -95,6 +107,7 @@
     }
     return  nil;
 }
+ */
 
 #pragma mark - TableViewDelegate
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
