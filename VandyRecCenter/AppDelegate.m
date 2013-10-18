@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "TimeString.h"
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -19,6 +19,7 @@
 
 #pragma mark - Getters
 - (NSArray*) viewControllers {
+    
     if (_viewControllers == nil) {
         UIStoryboard* mainSB = [UIStoryboard storyboardWithName: @"Main" bundle: [NSBundle mainBundle]];
         

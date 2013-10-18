@@ -36,6 +36,7 @@ typedef enum {
 
 //default initializer
 - (id) initWithString: (NSString*) timeString;
+
 //initializes with the current time
 - (id) init;
 //intializes with the current time in the passed in time zone
