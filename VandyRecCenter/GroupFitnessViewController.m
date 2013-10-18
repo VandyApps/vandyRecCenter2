@@ -8,6 +8,7 @@
 
 #import "GroupFitnessViewController.h"
 
+
 @interface GroupFitnessViewController ()
 
 @end
@@ -47,24 +48,37 @@
     [self.view addSubview: self.calendar];
     self.calendar.delegate = self;
     self.calendar.dataSource = self;
+     
+}
+
+- (UIImage *)resizeImage:(UIImage*)image newSize:(CGSize)newSize {
+    CGRect newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
+    CGImageRef imageRef = image.CGImage;
     
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    // Set the quality level to use when rescaling
+    CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
+    CGAffineTransform flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, newSize.height);
+    
+    CGContextConcatCTM(context, flipVertical);
+    // Draw into the context; this scales the image
+    CGContextDrawImage(context, newRect, imageRef);
+    
+    // Get the resized image from the context and a UIImage
+    CGImageRef newImageRef = CGBitmapContextCreateImage(context);
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    
+    CGImageRelease(newImageRef);
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear: YES];
     
-    self.todayButton.backgroundColor = vanderbiltGold;//[UIColor colorWithRed: 0 green: 153/255.f blue: 204/255.f alpha:.8];
-    self.todayButton.alpha = .8;
-    self.todayButton.layer.cornerRadius = self.todayButton.frame.size.height / 2.0;
-    self.todayButton.layer.borderColor = [UIColor blackColor].CGColor;
-    self.todayButton.layer.borderWidth = 2.0f;
-    
-    //add shadow to button
-    self.todayButton.layer.masksToBounds = NO;
-    self.todayButton.layer.shadowOffset = CGSizeMake(-3, 6);
-    self.todayButton.layer.shadowRadius = 5;
-    self.todayButton.layer.shadowOpacity = 1;
-    [self.view bringSubviewToFront: self.todayButton];
 }
 
 - (void)didReceiveMemoryWarning

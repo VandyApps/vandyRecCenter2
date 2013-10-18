@@ -243,29 +243,8 @@
                     <view key="view" contentMode="scaleToFill" id="2cx-FV-yKT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ehi-cT-JmX">
-                                <rect key="frame" x="20" y="488" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="81l-C1-2N1"/>
-                                    <constraint firstAttribute="height" constant="60" id="FqT-8o-0zI"/>
-                                </constraints>
-                                <state key="normal" title="Today">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Ehi-cT-JmX" firstAttribute="leading" secondItem="2cx-FV-yKT" secondAttribute="leading" constant="20" id="e4P-Iw-dgr"/>
-                            <constraint firstAttribute="bottom" secondItem="Ehi-cT-JmX" secondAttribute="bottom" constant="20" id="oeO-tm-dMa"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="todayButton" destination="Ehi-cT-JmX" id="Rta-Hd-7R5"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MQx-xZ-Jka" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

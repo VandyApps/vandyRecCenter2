@@ -12,6 +12,7 @@
 #import "GFCollection.h"
 #import "MBProgressHUD.h"
 
+
 @interface GroupFitnessViewController : UIViewController <CKCalendarViewDataSource, CKCalendarViewDelegate>
 
 @property (nonatomic, strong) CKCalendarView* calendar;
