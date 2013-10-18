@@ -266,10 +266,10 @@
 
 
 - (void) notificationAdded:(Notification *)notification atIndex:(NSUInteger)index {
-
+    NSLog(@"Notification added");
 }
 
 - (void) notificationRemoved:(Notification *)notification fromIndex:(NSUInteger)index {
-
+    NSLog(@"Notification removed");
 }
 @end

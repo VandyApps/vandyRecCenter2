@@ -16,7 +16,7 @@
 
 - (void) fetchNews: ( void (^)(NSError* error, NSArray* news)) block;
 
-//- (void) fetchHours: (void(^)(NSError* error, NSArray* hours)) block;
+- (void) fetchHours: (void(^)(NSError* error, NSArray* hours)) block;
 
 - (void) fetchGroupFitness: (void(^)(NSError* error, NSArray* classes)) block;
 - (void) fetchGroupFitnessForMonth: (NSInteger) month year: (NSInteger) year block:(void (^)(NSError *, NSArray* classes))block;

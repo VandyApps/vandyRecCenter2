@@ -42,6 +42,14 @@ static BOOL initialized = NO;
     }];
 }
 
+- (void) fetchHours:(void (^)(NSError *, NSArray *))block {
+    [self GET:@"hours" parameters:Nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        block(nil, (NSArray*) responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            block(error, nil);
+        }];
+}
+
 - (void) fetchGroupFitness:(void (^)(NSError *, NSArray*))block {
     [self GET: @"GF" parameters: nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         block(nil, (NSArray*) responseObject);
