@@ -31,6 +31,7 @@
 
 
 - (void) addNotification: (Notification*) notification;
+- (void) removeNotification: (Notification*) notification;
 - (void) removeNotificationWithID: (NSString*) ID;
 - (void) initialImport;
 

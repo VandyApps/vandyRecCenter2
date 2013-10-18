@@ -65,6 +65,10 @@ static BOOL initialized = NO;
     } else {
         _items = [[[self.items subarrayWithRange: NSMakeRange(0, index)] arrayByAddingObject: notification] arrayByAddingObjectsFromArray: [self.items subarrayWithRange: NSMakeRange(index, self.items.count - index)]];
     }
+    
+    if (self.delegate) {
+        [self.delegate notificationAdded:notification atIndex: index];
+    }
 }
 
 - (void) removeNotificationWithID:(NSString *)ID {
@@ -73,13 +77,20 @@ static BOOL initialized = NO;
     
         index++;
     }
-    
+    Notification* notification = [self.items objectAtIndex: index];
     //check if the index does not fall off the end
     if (index != self.items.count) {
         _items = [[_items subarrayWithRange: NSMakeRange(0, index)] arrayByAddingObjectsFromArray:[_items subarrayWithRange: NSMakeRange(index + 1, self.items.count - index - 1)]];
     }
+    
+    if (self.delegate) {
+        [self.delegate notificationRemoved: notification fromIndex: index];
+    }
 }
 
+- (void) removeNotification: (Notification*) notification {
+    [self removeNotificationWithID: notification.ID];
+}
 
 #pragma mark - Convenience Methods
 - (NSUInteger) count {
