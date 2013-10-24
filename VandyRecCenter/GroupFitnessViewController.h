@@ -7,15 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CalendarKit.h"
+
 #import "GFTableViewController.h"
 #import "GFCollection.h"
 #import "MBProgressHUD.h"
 
 
-@interface GroupFitnessViewController : UIViewController <CKCalendarViewDataSource, CKCalendarViewDelegate>
+@interface GroupFitnessViewController : UIViewController
 
-@property (nonatomic, strong) CKCalendarView* calendar;
 @property (nonatomic, strong) GFCollection* collection;
 @property (nonatomic, weak) IBOutlet UIButton* todayButton;
 @end

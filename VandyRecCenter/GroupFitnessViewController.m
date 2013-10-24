@@ -15,7 +15,7 @@
 
 @implementation GroupFitnessViewController
 
-@synthesize calendar = _calendar;
+
 @synthesize todayButton = _todayButton;
 @synthesize collection = _collection;
 
@@ -43,11 +43,7 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.calendar = [[CKCalendarView alloc] initWithMode: CKCalendarViewModeWeek];
-    self.calendar.backgroundColor = vanderbiltGold;
-    [self.view addSubview: self.calendar];
-    self.calendar.delegate = self;
-    self.calendar.dataSource = self;
+    
      
 }
 
@@ -86,37 +82,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - Calendar View Data Source
-- (NSArray *)calendarView:(CKCalendarView *)calendarView eventsForDate:(NSDate *)date {
-    
-    NSUInteger year = date.year;
-    NSUInteger month = date.month;
-    NSUInteger day = date.day;
-    __block NSArray* GFClasses;
-    if (![self.collection dataLoadedForYear:year month: month]) {
-        
-        MBProgressHUD* HUD;
-        HUD = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
-        HUD.mode = MBProgressHUDModeIndeterminate;
-        HUD.labelText = @"Loading";
-        
-        [self.collection loadMonth: month andYear: year block:^(NSError *error, GFModel *model) {
-            GFClasses = [model GFClassesForDay: day];
-            [HUD hide: YES];
-            
-        }];
-    } else {
-        [self.collection GFClassesForYear:year month:month day:day block:^(NSError *error, NSArray *_GFClasses) {
-            GFClasses = _GFClasses;
-        }];
-    }
-    return GFClasses;
-    
-    
-}
-
-
-#pragma mark - Calendar View Delegate
 
 @end
