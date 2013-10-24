@@ -11,7 +11,7 @@
 
 @implementation GroupFitnessViewController
 
-@synthesize tableView = _tableView;
+
 @synthesize collection = _collection;
 @synthesize calendar = _calendar;
 
@@ -37,19 +37,16 @@
 #pragma mark - Setup
 
 - (void) setUpCalendar {
-    self.calendar = [[DSLCalendarView alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/2.0)];
+    self.calendar = [[DSLCalendarView alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3.0)];
+    
     self.calendar.delegate = self;
     [self.view addSubview: self.calendar];
 }
 
+/* this should be called after setUpCalendar*/
+- (void) setUpOptionPanel {
 
-/*this method must be called after setting up calendar*/
-- (void) setUpTableView {
-    self.tableView = [[UITableView alloc] initWithFrame: CGRectMake(0, self.calendar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.calendar.frame.size.height)];
-    
-    [self.view addSubview: self.tableView];
 }
-
 
 #pragma mark - Lifecycle
 - (void)viewDidLoad
@@ -57,7 +54,7 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self setUpCalendar];
-    [self setUpTableView];
+    [self setUpOptionPanel];
 }
 
 - (UIImage *)resizeImage:(UIImage*)image newSize:(CGSize)newSize {
@@ -99,13 +96,12 @@
 #pragma mark - Calendar Delegate
 
 - (void)calendarView:(DSLCalendarView*)calendarView didSelectRange:(DSLCalendarRange*)range {
+    
 }
 
 - (void) calendarView:(DSLCalendarView *)calendarView willChangeToVisibleMonth:(NSDateComponents *)month duration:(NSTimeInterval)duration {
     [UIView animateWithDuration: duration animations:^{
         
-        CGRect tableViewFrame = CGRectMake(0, calendarView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - calendarView.frame.size.height);
-        self.tableView.frame = tableViewFrame;
     }];
 }
 

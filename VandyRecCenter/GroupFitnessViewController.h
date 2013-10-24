@@ -15,6 +15,6 @@
 @interface GroupFitnessViewController : UIViewController
 
 @property (nonatomic, strong) GFCollection* collection;
-@property (nonatomic, strong) UITableView* tableView;
+
 @property (nonatomic, strong) DSLCalendarView* calendar;
 @end
