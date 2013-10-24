@@ -1,23 +1,19 @@
-//
-//  GroupFitnessViewController.m
-//  VandyRecCenter
-//
-//  Created by Brendan McNamara on 10/5/13.
-//  Copyright (c) 2013 Brendan McNamara. All rights reserved.
-//
 
 #import "GroupFitnessViewController.h"
+#import "GFTableViewController.h"
+#import "GFCollection.h"
+#import "MBProgressHUD.h"
+#import "DSLCalendarView.h"
 
-
-@interface GroupFitnessViewController ()
+@interface GroupFitnessViewController () <DSLCalendarViewDelegate>
 
 @end
 
 @implementation GroupFitnessViewController
 
-
-@synthesize todayButton = _todayButton;
+@synthesize tableView = _tableView;
 @synthesize collection = _collection;
+@synthesize calendar = _calendar;
 
 #pragma mark - Getters
 
@@ -38,13 +34,30 @@
     return self;
 }
 
+#pragma mark - Setup
+
+- (void) setUpCalendar {
+    self.calendar = [[DSLCalendarView alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/2.0)];
+    self.calendar.delegate = self;
+    [self.view addSubview: self.calendar];
+}
+
+
+/*this method must be called after setting up calendar*/
+- (void) setUpTableView {
+    self.tableView = [[UITableView alloc] initWithFrame: CGRectMake(0, self.calendar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.calendar.frame.size.height)];
+    
+    [self.view addSubview: self.tableView];
+}
+
+
 #pragma mark - Lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-     
+    [self setUpCalendar];
+    [self setUpTableView];
 }
 
 - (UIImage *)resizeImage:(UIImage*)image newSize:(CGSize)newSize {
@@ -82,5 +95,23 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Calendar Delegate
+
+- (void)calendarView:(DSLCalendarView*)calendarView didSelectRange:(DSLCalendarRange*)range {
+}
+
+- (void) calendarView:(DSLCalendarView *)calendarView willChangeToVisibleMonth:(NSDateComponents *)month duration:(NSTimeInterval)duration {
+    [UIView animateWithDuration: duration animations:^{
+        
+        CGRect tableViewFrame = CGRectMake(0, calendarView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - calendarView.frame.size.height);
+        self.tableView.frame = tableViewFrame;
+    }];
+}
+
+- (void) calendarView:(DSLCalendarView *)calendarView didChangeToVisibleMonth:(NSDateComponents *)month {
+}
+
+
 
 @end

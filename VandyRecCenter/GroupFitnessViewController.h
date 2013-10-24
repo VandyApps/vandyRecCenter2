@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-#import "GFTableViewController.h"
-#import "GFCollection.h"
-#import "MBProgressHUD.h"
+@class GFCollection;
 
+@class DSLCalendarView;
 
 @interface GroupFitnessViewController : UIViewController
 
 @property (nonatomic, strong) GFCollection* collection;
-@property (nonatomic, weak) IBOutlet UIButton* todayButton;
+@property (nonatomic, strong) UITableView* tableView;
+@property (nonatomic, strong) DSLCalendarView* calendar;
 @end
