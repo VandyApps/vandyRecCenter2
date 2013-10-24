@@ -30,7 +30,7 @@
 - (void) loadMonth: (NSUInteger) month andYear: (NSUInteger) year block: (void(^)(NSError* error, GFModel* model)) block;
 
 
-- (BOOL) dataLoadedForYear: (NSUInteger) year month: (NSUInteger) month;
+- (BOOL) dataLoadedForMonth: (NSUInteger) year year: (NSUInteger) month;
 
 //gets the classes for the current day
 //if the GFClasses for the the day have not

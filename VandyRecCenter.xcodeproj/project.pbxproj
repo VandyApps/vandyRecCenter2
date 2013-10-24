@@ -17,6 +17,7 @@
 		2102F7E4180F845E005FB01C /* 426-calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2102F7E2180F845E005FB01C /* 426-calendar@2x.png */; };
 		2109AE831810C34700EA190E /* Hours.m in Sources */ = {isa = PBXBuildFile; fileRef = 2109AE821810C34700EA190E /* Hours.m */; };
 		2109AE861810C6C400EA190E /* NSArray+MyArrayClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2109AE851810C6C400EA190E /* NSArray+MyArrayClass.m */; };
+		210BCB6D1819B45F00666500 /* GFTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 210BCB6C1819B45F00666500 /* GFTableView.xib */; };
 		2119C8E217FF140400D4A284 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2119C8E117FF140400D4A284 /* MainMenuViewController.m */; };
 		2119C8F317FF1A2400D4A284 /* 11-clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 2119C8E317FF1A2400D4A284 /* 11-clock.png */; };
 		2119C8F417FF1A2400D4A284 /* 11-clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2119C8E417FF1A2400D4A284 /* 11-clock@2x.png */; };
@@ -141,6 +142,7 @@
 		2109AE821810C34700EA190E /* Hours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hours.m; sourceTree = "<group>"; };
 		2109AE841810C6C400EA190E /* NSArray+MyArrayClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MyArrayClass.h"; sourceTree = "<group>"; };
 		2109AE851810C6C400EA190E /* NSArray+MyArrayClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MyArrayClass.m"; sourceTree = "<group>"; };
+		210BCB6C1819B45F00666500 /* GFTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GFTableView.xib; sourceTree = "<group>"; };
 		2119C8E017FF140400D4A284 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		2119C8E117FF140400D4A284 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		2119C8E317FF1A2400D4A284 /* 11-clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "11-clock.png"; sourceTree = "<group>"; };
@@ -536,6 +538,7 @@
 				212FB75818010659009C6A83 /* GroupFitnessViewController.m */,
 				21325304180853C100ED855D /* GFTableViewController.h */,
 				21325305180853C100ED855D /* GFTableViewController.m */,
+				210BCB6C1819B45F00666500 /* GFTableView.xib */,
 				214EF646180A55BB00047573 /* GroupFitnessCell.xib */,
 				215B8DB21809C7C9009C248E /* Model */,
 			);
@@ -764,6 +767,7 @@
 				2102F7DF180F8436005FB01C /* 332-rotate.png in Resources */,
 				2119C90117FF1A2400D4A284 /* 426-calendar-w.png in Resources */,
 				2119C90217FF1A2400D4A284 /* 426-calendar-w@2x.png in Resources */,
+				210BCB6D1819B45F00666500 /* GFTableView.xib in Resources */,
 				2119C8FE17FF1A2400D4A284 /* 112-group@2x.png in Resources */,
 				21E66EC61818DD2200BA803F /* DSLCalendarDayCallout.png in Resources */,
 				21BC3F3718012FA800F6C4E3 /* 354-newspaper.png in Resources */,

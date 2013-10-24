@@ -101,8 +101,8 @@
     NSDate* endDate = range.endDay.date;
     NSLog(@"Date with range called");
     
-    BOOL fetchFromServer = ![self.collection dataLoadedForYear: startDate.year month: startDate.month]
-                        || ![self.collection dataLoadedForYear: endDate.year month:endDate.month];
+    BOOL fetchFromServer = ![self.collection dataLoadedForMonth: startDate.month year: startDate.year]
+                        || ![self.collection dataLoadedForMonth: endDate.month year:endDate.year];
     
     BOOL makeTwoFetches = startDate.month != endDate.month;
     
@@ -116,7 +116,6 @@
         if (fetchFromServer && !makeTwoFetches) {
             [HUD hide: YES];
         }
-        
         
     }];
     

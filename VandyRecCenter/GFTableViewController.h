@@ -16,8 +16,14 @@
 #define CELL_TIMERANGE_LABEL 4
 #define CELL_ADD_BUTTON 5
 
+
+@interface GFTableViewClassData : NSObject
+
+@end
+
 @interface GFTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray* GFClassesToDisplay;
 @property (nonatomic, weak) IBOutlet UITableViewCell* cell;
+
 @end
