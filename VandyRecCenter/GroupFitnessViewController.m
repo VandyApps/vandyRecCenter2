@@ -4,6 +4,7 @@
 #import "GFCollection.h"
 #import "MBProgressHUD.h"
 #import "DSLCalendarView.h"
+#import "NSDate-MyDateClass.h"
 
 @interface GroupFitnessViewController () <DSLCalendarViewDelegate>
 
@@ -96,6 +97,38 @@
 #pragma mark - Calendar Delegate
 
 - (void)calendarView:(DSLCalendarView*)calendarView didSelectRange:(DSLCalendarRange*)range {
+    NSDate* startDate = range.startDay.date;
+    NSDate* endDate = range.endDay.date;
+    NSLog(@"Date with range called");
+    
+    BOOL fetchFromServer = ![self.collection dataLoadedForYear: startDate.year month: startDate.month]
+                        || ![self.collection dataLoadedForYear: endDate.year month:endDate.month];
+    
+    BOOL makeTwoFetches = startDate.month != endDate.month;
+    
+    MBProgressHUD* HUD;
+    if (fetchFromServer) {
+        HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        HUD.mode = MBProgressHUDModeIndeterminate;
+    }
+    
+    [self.collection loadMonth: startDate.month andYear:startDate.year block:^(NSError *error, GFModel *model) {
+        if (fetchFromServer && !makeTwoFetches) {
+            [HUD hide: YES];
+        }
+        
+        
+    }];
+    
+    if (makeTwoFetches) {
+        [self.collection loadMonth: endDate.month andYear:endDate.year block:^(NSError *error, GFModel *model) {
+            if (fetchFromServer) {
+                [HUD hide: YES];
+            }
+            
+            
+        }];
+    }
     
 }
 
