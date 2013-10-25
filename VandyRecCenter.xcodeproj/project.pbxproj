@@ -114,6 +114,7 @@
 		21F6DA03181087F800B52D56 /* blue_rotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 21F6D9FA181087F800B52D56 /* blue_rotate.png */; };
 		21F6DA04181087F800B52D56 /* blue_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 21F6D9FB181087F800B52D56 /* blue_star.png */; };
 		21F6DA05181087F800B52D56 /* blue_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 21F6D9FC181087F800B52D56 /* blue_clock.png */; };
+		93789CB6181A381B00BA764C /* NSDate+DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 93789CB5181A381B00BA764C /* NSDate+DateHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -298,6 +299,8 @@
 		21F6D9FA181087F800B52D56 /* blue_rotate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_rotate.png; sourceTree = "<group>"; };
 		21F6D9FB181087F800B52D56 /* blue_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_star.png; sourceTree = "<group>"; };
 		21F6D9FC181087F800B52D56 /* blue_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_clock.png; sourceTree = "<group>"; };
+		93789CB4181A381B00BA764C /* NSDate+DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateHelper.h"; sourceTree = "<group>"; };
+		93789CB5181A381B00BA764C /* NSDate+DateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateHelper.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -407,6 +410,7 @@
 		211C2EA317FF718700C4400A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				93789CB3181A37EE00BA764C /* DateHelper */,
 				215B8D9D1809B50F009C248E /* DateHelper.h */,
 				215B8D9E1809B50F009C248E /* DateHelper.m */,
 				215B8DA91809B50F009C248E /* NSDate-MyDateClass.h */,
@@ -783,6 +787,16 @@
 			path = blue_icons;
 			sourceTree = "<group>";
 		};
+		93789CB3181A37EE00BA764C /* DateHelper */ = {
+			isa = PBXGroup;
+			children = (
+				93789CB4181A381B00BA764C /* NSDate+DateHelper.h */,
+				93789CB5181A381B00BA764C /* NSDate+DateHelper.m */,
+			);
+			name = DateHelper;
+			path = VandyRecCenter;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -938,6 +952,7 @@
 				21278AD11807BE7C00E76BD0 /* CKCalendarHeaderView.m in Sources */,
 				21278AD41807BE7C00E76BD0 /* CKCalendarViewController.m in Sources */,
 				21278AD01807BE7C00E76BD0 /* CKCalendarEvent.m in Sources */,
+				93789CB6181A381B00BA764C /* NSDate+DateHelper.m in Sources */,
 				212974E317FE466D007210AB /* AFURLResponseSerialization.m in Sources */,
 				215B8DAC1809B50F009C248E /* GFCollection.m in Sources */,
 				21278AC61807BE7C00E76BD0 /* NSCalendar+Juncture.m in Sources */,
