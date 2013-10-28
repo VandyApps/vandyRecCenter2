@@ -7,7 +7,23 @@
 //
 
 #import "Hours.h"
+#import "TimeString.h"
+#import "RecClient.h"
 
 @implementation Hours
+
+
+- (void) loadData:(void (^)(NSError* error, Hours* hoursModel))block {
+    RecClient* webClient = [RecClient sharedClient];
+    
+    [webClient fetchHours:^(NSError *error, NSArray *hours) {
+        if (!error) {
+            _hours = hours;
+           
+        }
+        block(error, self);
+    }];
+}
+
 
 @end

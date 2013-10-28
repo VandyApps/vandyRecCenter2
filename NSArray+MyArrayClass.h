@@ -11,7 +11,7 @@
 @interface NSArray(MyArrayClass)
 
 - (NSArray*) filter: (BOOL (^)(id element, NSUInteger index)) block;
-- (id) reduce: (id (^)(id element, NSUInteger index)) block;
+- (NSInteger) reduce: (NSInteger (^)(NSInteger memo, id element, NSUInteger index)) block;
 
 //block returns true to continue, false to exit
 - (void) forEach: (BOOL (^)(id element, NSUInteger index)) block;

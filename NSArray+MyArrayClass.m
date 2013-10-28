@@ -14,38 +14,27 @@
 // If the callback function returns true, place the element in
 // the resulting array.
 - (NSArray*) filter: (BOOL (^)(id element, NSUInteger index)) block {
-    NSMutableArray* filteredArray = [[NSMutableArray alloc] init];
+    NSArray* filteredArray = [[NSArray alloc] init];
     
-    for (id element in self) { // Is self the array?
-        NSUInteger elementIndex = [self indexOfObject:element];
-        if (block(element, elementIndex)) [filteredArray addObject:element];
+    for (id item in self) { // Is self the array?
+        NSUInteger elementIndex = [self indexOfObject:item];
+        if (block(item, elementIndex)) filteredArray = [filteredArray arrayByAddingObjectsFromArray: item];
     }
     
     return filteredArray;
 };
 
-- (id) reduce: (id (^)(id element, NSUInteger index)) block {
-    id element;
-    
-    if (!element || ![element count]) { // check that there are methods in array?
-        [NSException raise:@"Invalid Array" format:@"Array is empty or null"];
-    }
-    
-    id reducedValue;
-    
-    for (element in self) {
-        NSUInteger elementIndex = [self indexOfObject:element];
-        reducedValue = block(element, elementIndex);
-    }
-    
-    return reducedValue;
-    
+// I think this needs lastItem/nextItem parameters like in javascript
+- (NSInteger) reduce: (NSInteger (^)(NSInteger memo, id element, NSUInteger index)) block {
+    return 0;
 };
 
+
+// What do I need to test to return a bool?
 - (void) forEach: (BOOL (^)(id element, NSUInteger index)) block {
-    for (id element in self) {
-        NSUInteger elementIndex = [self indexOfObject:element];
-        block(element, elementIndex);
+    BOOL isDone = NO;
+    for (NSUInteger i = 0; i < self.count && !isDone; ++i) {
+        isDone = isDone || block(self[i], i);
     }
 };
 
