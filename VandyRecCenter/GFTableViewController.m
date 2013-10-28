@@ -50,76 +50,39 @@
 
 @implementation GFTableViewController
 
-
+- (IBAction)done:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 #pragma mark - Lifecycle
 
 - (void) viewDidLoad:(BOOL)animated {
     [super viewDidAppear: animated];
+    
 }
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear: animated];
+    self.navigationView.backgroundColor = vanderbiltGold;
+}
+
+
 #pragma mark - TableViewDataSource
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger count = self.GFClassesToDisplay.count;
-    NSLog(@"Count is %i", count);
-    if (count == 0) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"noDataCell"];
-        [[cell textLabel] setTextAlignment:NSTextAlignmentCenter];
-        [[cell textLabel] setTextColor:[UIColor colorWithWhite:0.2 alpha:0.8]];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        
-        if ([indexPath row] == 1) {
-            [[cell textLabel] setText:NSLocalizedString(@"No Group Fitness Classes", @"A label for a table with no Group Fitness Classes.")];
-        }
-        else
-        {
-            [[cell textLabel] setText:@""];
-        }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
+    static NSString* cellIdentifier = @"cell";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
-    //count > 0 here
-    NSDictionary* GFClass = [self.GFClassesToDisplay objectAtIndex: indexPath.row];
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"groupFitnessCell"];
-    if (!cell) {
-        NSArray* nib = [[NSBundle mainBundle] loadNibNamed: @"GroupFitnessCell" owner: self options:nil];
-        cell = [nib objectAtIndex: 0];
-        //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"groupFitnessCell"];
-    }
-    [(UILabel*)[cell viewWithTag: CELL_CLASSNAME_LABEL] setText: [GFClass objectForKey: @"className" ]];
-    [(UILabel*)[cell viewWithTag: CELL_INSTRUCTOR_LABEL] setText: [GFClass objectForKey: @"instructor" ]];
-    
-    UILabel* timeRangeLabel =  (UILabel*) [cell viewWithTag: CELL_TIMERANGE_LABEL];
-    timeRangeLabel.text = [GFClass objectForKey: @"timeRange"];
-     
-    CALayer *topBorder = [CALayer layer];
-    topBorder.frame = CGRectMake(0.0f, timeRangeLabel.frame.size.height - 1, timeRangeLabel.frame.size.width, 1.0f);
-    topBorder.backgroundColor = [UIColor blackColor].CGColor;
-    [timeRangeLabel.layer addSublayer:topBorder];
-    
-    
-    
-    UIButton* button = (UIButton*) [cell viewWithTag: CELL_ADD_BUTTON];
-    //here, need to check if the goal is added or not
-    button.backgroundColor = vanderbiltGold;
-    button.layer.cornerRadius = 5.0f;
-    [button setTitle: @"+" forState: UIControlStateNormal];
-    
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    UILabel* label = [[UILabel alloc] initWithFrame: CGRectMake(20, 10, 200, 20)];
+    label.text = @"This is the title";
+    [cell addSubview: label];
     return cell;
-    
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.GFClassesToDisplay.count == 0) {
-        return 2;
-    }
-    return self.GFClassesToDisplay.count;
-}
-
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100.f;
+    return 20;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

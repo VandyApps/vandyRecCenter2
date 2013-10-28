@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class GFCollection;
-
 @class DSLCalendarView;
+@class GFTableViewController;
 
 @interface GroupFitnessViewController : UIViewController
 
 @property (nonatomic, strong) GFCollection* collection;
-
 @property (nonatomic, strong) DSLCalendarView* calendar;
+@property (nonatomic, strong) GFTableViewController* modalView;
+
 @end

@@ -40,6 +40,9 @@
 @interface GFTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray* GFClassesToDisplay;
-@property (nonatomic, weak) IBOutlet UITableViewCell* cell;
+@property (nonatomic, weak) IBOutlet UITableView* tableView;
+@property (nonatomic, weak) IBOutlet UIView* navigationView;
+@property (nonatomic, weak) IBOutlet UILabel* titleView;
 
+- (IBAction)done:(id)sender;
 @end

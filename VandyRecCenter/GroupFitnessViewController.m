@@ -15,6 +15,7 @@
 
 @synthesize collection = _collection;
 @synthesize calendar = _calendar;
+@synthesize modalView = _modalView;
 
 #pragma mark - Getters
 
@@ -23,6 +24,14 @@
         _collection = [[GFCollection alloc] init];
     }
     return _collection;
+}
+
+
+- (GFTableViewController*) modalView {
+    if (!_modalView) {
+        _modalView = [[GFTableViewController alloc] initWithNibName: @"GFTableView" bundle: [NSBundle mainBundle]];
+    }
+    return _modalView;
 }
 
 #pragma mark - Initializer
@@ -114,6 +123,7 @@
     
     [self.collection loadMonth: startDate.month andYear:startDate.year block:^(NSError *error, GFModel *model) {
         if (fetchFromServer && !makeTwoFetches) {
+            [self presentViewController: self.modalView animated:YES completion:nil];
             [HUD hide: YES];
         }
         
@@ -122,6 +132,7 @@
     if (makeTwoFetches) {
         [self.collection loadMonth: endDate.month andYear:endDate.year block:^(NSError *error, GFModel *model) {
             if (fetchFromServer) {
+                [self presentViewController: self.modalView animated:YES completion:nil];
                 [HUD hide: YES];
             }
             
