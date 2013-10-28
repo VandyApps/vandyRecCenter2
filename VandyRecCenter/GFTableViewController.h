@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MBProgressHUD.h"
+
 
 
 #define CELL_CLASSNAME_LABEL 1
@@ -17,9 +17,25 @@
 #define CELL_ADD_BUTTON 5
 
 
+/*
+ Collection of classes to display that are organized in a way that
+ is easy for the table view controller to output to the view
+ */
 @interface GFTableViewClassData : NSObject
 
+@property (nonatomic) NSUInteger sectionCount;
+//private property needed which is an array of arrays
+//another private property with an array of section titles
+- (NSUInteger) countForGFClassesInSectionAtIndex: (NSUInteger) index;
+- (NSString*) titleForSectionAtIndex: (NSUInteger) index;
+- (NSDictionary*) GFClassForIndexPath: (NSIndexPath*) indexPath;
+
+//add classes to the end of the table in a new section
+- (void) pushGFClasses: (NSArray*) GFClasses withTitle: (NSString*) title;
+//clear the enter set of classes
+- (void) clearClasses;
 @end
+
 
 @interface GFTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 

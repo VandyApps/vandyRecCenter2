@@ -7,6 +7,46 @@
 //
 
 #import "GFTableViewController.h"
+#import "MBProgressHUD.h"
+
+
+@interface GFTableViewClassData()
+
+@property (nonatomic, strong) NSArray* GFClassesForTable;
+
+@end
+
+@implementation GFTableViewClassData
+
+@synthesize sectionCount = _sectionCount;
+@synthesize GFClassesForTable = _GFClassesForTable;
+
+- (NSUInteger) sectionCount {
+    return _GFClassesForTable.count;
+}
+
+- (NSUInteger) countForGFClassesInSectionAtIndex: (NSUInteger) index {
+    return [[_GFClassesForTable[index] objectForKey: @"GFClasses"] count];
+}
+- (NSString*) titleForSectionAtIndex: (NSUInteger) index {
+    return [_GFClassesForTable[index] objectForKey: @"title"];
+}
+- (NSDictionary*) GFClassForIndexPath: (NSIndexPath*) indexPath {
+    NSArray* GFClasses = [_GFClassesForTable[indexPath.section] objectForKey: @"GFClasses"];
+    return GFClasses[indexPath.row];
+}
+
+- (void) pushGFClasses: (NSArray*) GFClasses withTitle: (NSString*) title {
+    NSDictionary* newEntry = @{@"title": title, @"GFClasses": GFClasses};
+    self.GFClassesForTable = [_GFClassesForTable arrayByAddingObject: newEntry];
+}
+
+- (void) clearClasses {
+    self.GFClassesForTable = @[];
+}
+
+@end
+
 
 @implementation GFTableViewController
 
