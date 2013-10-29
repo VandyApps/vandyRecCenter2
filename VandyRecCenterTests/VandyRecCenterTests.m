@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "NSArray+MyArrayClass.h"
+#import "NSDate+DateHelper.h"
 
 @interface VandyRecCenterTests : XCTestCase
 
@@ -27,26 +28,22 @@
     [super tearDown];
 }
 
-- (void)testExample
-{
-    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-    
-}
+/* Test Array Category */
 
-//-(void)testReduceBlock
-//{
-//    NSArray *myStringArray = @[@"String 1", @"String 2"];
-//    NSArray *myIntegerArray = @[@0, @1, @2, @3, @4];
-//    
-//    [myStringArray reduce:^id(id element, NSUInteger index) {
-//        //pass
-//    }];
-//    
-//    [myIntegerArray reduce:^id(id element, NSUInteger index) {
-//        NSUInteger x = (NSUInteger)element + (NSUInteger)myIntegerArray[index - 1];
-//        return x;
-//    }];
-//}
+// What's up with this answer being 8070450532247929002?
+-(void)testReduceBlock
+{
+    NSArray *myIntegerArray = @[@0, @1, @2, @3, @4];
+    
+    NSInteger integerArraySum = [myIntegerArray reduce:^NSInteger(NSInteger memo, id element, NSUInteger index) {
+        return memo + (NSInteger)element;
+    }];
+    
+    NSLog(@"My array thing: %lu",  integerArraySum);
+    
+    // Should be 10 but isn't... (8070450532247929002)
+    XCTAssertTrue(integerArraySum == 10, @"Integer value should be sum of array items");
+}
 
 - (void)testFilterBlock
 {
@@ -61,7 +58,7 @@
         return FALSE;
     }];
     
-    XCTAssertTrue([filteredIntegerArray isEqual:@[@3]], @"Integer elements are filtered correctly");
+    XCTAssertTrue([filteredIntegerArray isEqual:@[@3]], @"Integer elements should be filtered correctly");
     
     NSArray *filteredStringArray = [myStringArray filter:^BOOL(id element, NSUInteger index) {
         if ([element isEqualToString:@"String 1"]) {
@@ -70,24 +67,28 @@
         return FALSE;
     }];
     
-    XCTAssertTrue([filteredStringArray isEqual:@[@"String 1"]], @"String elements are filtered correctly");
+    XCTAssertTrue([filteredStringArray isEqual:@[@"String 1"]], @"String elements should be filtered correctly");
     
 }
 
-
-//TODO: Write a better test... not sure if this is testing anything other than iteration
 - (void)testForEachBlock
 {
-    NSArray *myArray = @[@"String 1", @"String 2"];
+    NSArray *myArray = @[@"String 1", @"String 2", @"String 3"];
+    __block NSArray *newArray = @[];
     [myArray forEach:^BOOL(id element, NSUInteger index) {
-        if (index == 0) {
-            XCTAssertTrue([element  isEqual: @"String 1"], @"Elements are in expected places");
-        } else if (index == 1) {
-            XCTAssertTrue([element isEqual: @"String 2"], @"Elements are in expected places");
+        newArray = [newArray arrayByAddingObject:element];
+        if ([element isEqualToString:@"String 2"]) {
+            return FALSE;
         }
-        XCTAssertTrue(element == myArray[index], @"Element is equal to it's position in array");
-        return YES;
+        return TRUE;
     }];
+    
+    XCTAssertTrue([newArray isEqual:@[@"String 1"]], @"Loop should quit when block returns false");
 }
+
+/* Test Date Category */
+
+
+/* Test Hours Model */
 
 @end

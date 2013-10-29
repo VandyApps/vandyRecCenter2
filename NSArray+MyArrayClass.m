@@ -15,10 +15,8 @@
 // the resulting array.
 - (NSArray*) filter: (BOOL (^)(id element, NSUInteger index)) block {
     NSArray* filteredArray = [[NSArray alloc] init];
-    
-    for (id item in self) { // Is self the array?
-        NSUInteger elementIndex = [self indexOfObject:item];
-        if (block(item, elementIndex)) filteredArray = [filteredArray arrayByAddingObjectsFromArray: item];
+    for (NSUInteger i = 0; i < self.count; i++) {
+        if (block(self[i], i)) filteredArray = [filteredArray arrayByAddingObject: self[i]];
     }
     
     return filteredArray;
@@ -26,14 +24,17 @@
 
 // I think this needs lastItem/nextItem parameters like in javascript
 - (NSInteger) reduce: (NSInteger (^)(NSInteger memo, id element, NSUInteger index)) block {
-    return 0;
+    NSInteger lastValue = 0;
+    for (NSUInteger i = 0; i < self.count; i++) {
+        lastValue = block(lastValue, self[i], i);
+    }
+    return lastValue;
 };
 
 
-// What do I need to test to return a bool?
 - (void) forEach: (BOOL (^)(id element, NSUInteger index)) block {
     BOOL isDone = NO;
-    for (NSUInteger i = 0; i < self.count && !isDone; ++i) {
+    for (NSUInteger i = 0; i < self.count && !isDone; i++) {
         isDone = isDone || block(self[i], i);
     }
 };
