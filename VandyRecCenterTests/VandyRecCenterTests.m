@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "NSArray+MyArrayClass.h"
 #import "NSDate+DateHelper.h"
+#import "Hours.h"
 
 @interface VandyRecCenterTests : XCTestCase
 
@@ -16,13 +17,13 @@
 
 @implementation VandyRecCenterTests
 
-- (void)setUp
+- (void) setUp
 {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
-- (void)tearDown
+- (void) tearDown
 {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
@@ -31,7 +32,7 @@
 /* Test Array Category */
 
 // What's up with this answer being 8070450532247929002?
--(void)testReduceBlock
+-(void) testReduceBlock
 {
     NSArray *myIntegerArray = @[@0, @1, @2, @3, @4];
     
@@ -45,7 +46,7 @@
     XCTAssertTrue(integerArraySum == 10, @"Integer value should be sum of array items");
 }
 
-- (void)testFilterBlock
+- (void) testFilterBlock
 {
     NSArray *myStringArray = @[@"String 1", @"String 2"];
     NSArray *myIntegerArray = @[@1, @2, @3, @4, @5];
@@ -71,7 +72,7 @@
     
 }
 
-- (void)testForEachBlock
+- (void) testForEachBlock
 {
     NSArray *myArray = @[@"String 1", @"String 2", @"String 3"];
     __block NSArray *newArray = @[];
@@ -90,5 +91,30 @@
 
 
 /* Test Hours Model */
+
+- (void) testHoursWithTitle
+{
+    Hours* myHours = [[Hours alloc] init];
+    NSArray* myArray = @[@{@"name": @"foo", @"thing1": @2}, @{@"name": @"bar", @"thing1": @3}, @{@"name": @"bar", @"thing1": @4}];
+    
+    [myHours setValue:myArray forKey:@"hours"]; // Hack; replace with initWithHours: method
+    
+    NSDictionary* correctResponse = @{@"name": @"bar", @"thing1": @3};
+    NSDictionary* response = [myHours hoursWithTitle:@"bar"];
+    
+    XCTAssertTrue([response isEqualToDictionary:correctResponse], @"hoursWithTitle should return single hours entry");
+}
+
+- (void) testDefaultHours {
+    Hours* myHours = [[Hours alloc] init];
+    NSArray* myArray = @[@{@"name": @"foo", @"priorityNumber": @0}, @{@"name": @"bar", @"priorityNumber": @1}, @{@"name": @"han", @"priorityNumber": @0}];
+    
+    [myHours setValue:myArray forKey:@"hours"];
+    
+    NSArray* correctResponse = @[@{@"name": @"foo", @"priorityNumber": @0}, @{@"name": @"han", @"priorityNumber": @0}];
+    NSArray* response = [myHours defaultHours];
+    
+    XCTAssertTrue([response isEqualToArray:correctResponse], @"defaultHours should return array of all entries with priority 0");
+}
 
 @end
