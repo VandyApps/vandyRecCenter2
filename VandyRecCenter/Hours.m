@@ -48,15 +48,76 @@
     return hours;
 }
 
+// Filters hours and returns array of all hours where priorityNumber == 0
 - (NSArray*) defaultHours {
     return [_hours filter:^BOOL(id element, NSUInteger index) {
         NSNumber *priority = [element objectForKey:@"priorityNumber"];
-        NSLog(@"priority: %@", priority);
         if ([priority isEqualToNumber:@0]) {
             return TRUE;
         }
         return FALSE;
     }];
+}
+
+// Filters hours and returns array of all hours where facilityHours == true
+- (NSArray*) facilityHours {
+    return [_hours filter:^BOOL(id element, NSUInteger index) {
+        NSNumber *isFacilityHours = [element objectForKey:@"facilityHours"];
+        if ([isFacilityHours isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+            return TRUE;
+        }
+        return FALSE;
+    }];
+}
+
+// Filters hours and returns array of all hours where closedHours == true
+- (NSArray*) closedHours {
+    return [_hours filter:^BOOL(id element, NSUInteger index) {
+        NSNumber *isClosedHours = [element objectForKey:@"closedHours"];
+        if ([isClosedHours isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+            return TRUE;
+        }
+        return FALSE;
+    }];
+}
+
+// Filters hours, returns array of all hours where priorityNumber != 0,
+// facilityHours == false, and closedHours == false
+- (NSArray*) otherHours {
+    return [_hours filter:^BOOL(id element, NSUInteger index) {
+        NSNumber *isClosedHours = [element objectForKey:@"closedHours"];
+        NSNumber *isFacilityHours = [element objectForKey:@"facilityHours"];
+        NSNumber *priority = [element objectForKey:@"priorityNumber"];
+        NSLog(@"isClosedHours: %@", isClosedHours);
+        
+        if (!isClosedHours
+            && ![isFacilityHours isEqualToNumber:[NSNumber numberWithBool:YES]]
+            && ![priority isEqualToNumber:@0]) {
+            return TRUE;
+        }
+        return FALSE;
+    }];
+}
+
+// Uses starting/ending dates, priority number, and times (with timeString)
+// to determine the current hours
+- (NSDictionary*) currentHours {
+    __block NSDictionary* hours = [[NSDictionary alloc] init];
+    [_hours forEach:^BOOL(id element, NSUInteger index) {
+        // get today's date
+        
+        // get array of hours dicts where closed != true and facilityHours == true
+        
+        // get today's day of week
+        
+        // get the hours of the corresponding day of week in the dict
+        
+        // compare today's date to start/end dates on the right day to find matching dicts
+        
+        // return dict of today's hours with highest priority
+        return 0;
+    }];
+    return 0;
 }
 
 

@@ -115,6 +115,9 @@
 		21F6DA04181087F800B52D56 /* blue_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 21F6D9FB181087F800B52D56 /* blue_star.png */; };
 		21F6DA05181087F800B52D56 /* blue_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 21F6D9FC181087F800B52D56 /* blue_clock.png */; };
 		93789CB6181A381B00BA764C /* NSDate+DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 93789CB5181A381B00BA764C /* NSDate+DateHelper.m */; };
+		937A65BE1821B88800152BD5 /* ArrayCategoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A65BD1821B88800152BD5 /* ArrayCategoryTests.m */; };
+		937A65C01821B8B300152BD5 /* HoursModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A65BF1821B8B300152BD5 /* HoursModelTests.m */; };
+		937A65C21821B8CF00152BD5 /* TimeStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A65C11821B8CF00152BD5 /* TimeStringTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -301,6 +304,9 @@
 		21F6D9FC181087F800B52D56 /* blue_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_clock.png; sourceTree = "<group>"; };
 		93789CB4181A381B00BA764C /* NSDate+DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateHelper.h"; sourceTree = "<group>"; };
 		93789CB5181A381B00BA764C /* NSDate+DateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateHelper.m"; sourceTree = "<group>"; };
+		937A65BD1821B88800152BD5 /* ArrayCategoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayCategoryTests.m; sourceTree = "<group>"; };
+		937A65BF1821B8B300152BD5 /* HoursModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoursModelTests.m; sourceTree = "<group>"; };
+		937A65C11821B8CF00152BD5 /* TimeStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeStringTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -626,6 +632,9 @@
 			children = (
 				212974BE17FE465C007210AB /* VandyRecCenterTests.m */,
 				212974B917FE465C007210AB /* Supporting Files */,
+				937A65BD1821B88800152BD5 /* ArrayCategoryTests.m */,
+				937A65BF1821B8B300152BD5 /* HoursModelTests.m */,
+				937A65C11821B8CF00152BD5 /* TimeStringTests.m */,
 			);
 			path = VandyRecCenterTests;
 			sourceTree = "<group>";
@@ -999,6 +1008,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				212974BF17FE465C007210AB /* VandyRecCenterTests.m in Sources */,
+				937A65C21821B8CF00152BD5 /* TimeStringTests.m in Sources */,
+				937A65BE1821B88800152BD5 /* ArrayCategoryTests.m in Sources */,
+				937A65C01821B8B300152BD5 /* HoursModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
