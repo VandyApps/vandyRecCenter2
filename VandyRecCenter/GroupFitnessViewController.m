@@ -115,10 +115,11 @@
     while ([start compare: end] != NSOrderedDescending) {
         NSLog(@"Adding for date %@", start);
         [self.collection GFClassesForYear: start.year month:start.month day:start.day block:^(NSError *error, NSArray *GFClasses) {
-            NSLog(@"Classes: %@", GFClasses);
-            //change eventually and check for errors
-            NSString* dateString = [NSString stringWithFormat: @"%i/%i/%i", start.month, start.day, start.year];
-            [self.modalView.classData pushGFClasses: GFClasses withTitle: dateString];
+            if (GFClasses.count) {
+                //change eventually and check for errors
+                NSString* dateString = [NSString stringWithFormat: @"%i/%i/%i", start.month, start.day, start.year];
+                [self.modalView.classData pushGFClasses: GFClasses withTitle: dateString];
+            }
         }];
         
         start = [start dateByIncrementingDay];
