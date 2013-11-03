@@ -115,10 +115,16 @@
     
     BOOL makeTwoFetches = startDate.month != endDate.month;
     
-    MBProgressHUD* HUD;
-    if (fetchFromServer) {
+    static MBProgressHUD* HUD;
+    
+    if (fetchFromServer && !HUD) {
+        
         HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        HUD.labelText = @"Loading";
         HUD.mode = MBProgressHUDModeIndeterminate;
+    } else if (fetchFromServer) {
+        //don't need to re-initialize the loading view
+        [HUD show: YES];
     }
     
     [self.collection loadMonth: startDate.month andYear:startDate.year block:^(NSError *error, GFModel *model) {
