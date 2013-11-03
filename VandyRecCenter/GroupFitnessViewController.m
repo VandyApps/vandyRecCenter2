@@ -103,12 +103,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Modal View Prep
+- (void) addClassesToModalViewFromDate: (NSDate*) start toDate: (NSDate*) end {
+    while ([start compare: end] != NSOrderedDescending) {
+        NSLog(@"Adding for date %@", start);
+        [self.collection GFClassesForYear: start.year month:start.month day:start.day block:^(NSError *error, NSArray *GFClasses) {
+            
+            //change eventually and check for errors
+            NSString* dateString = [NSString stringWithFormat: @"%i/%i/%i", start.month, start.day, start.year];
+            [self.modalView.classData pushGFClasses: GFClasses withTitle: dateString];
+        }];
+        
+        start = [start dateByIncrementingDay];
+    }
+}
+
 #pragma mark - Calendar Delegate
 
 - (void)calendarView:(DSLCalendarView*)calendarView didSelectRange:(DSLCalendarRange*)range {
     NSDate* startDate = range.startDay.date;
     NSDate* endDate = range.endDay.date;
-    NSLog(@"Date with range called");
     
     BOOL fetchFromServer = ![self.collection dataLoadedForMonth: startDate.month year: startDate.year]
                         || ![self.collection dataLoadedForMonth: endDate.month year:endDate.year];
@@ -129,6 +143,7 @@
     
     [self.collection loadMonth: startDate.month andYear:startDate.year block:^(NSError *error, GFModel *model) {
         if (fetchFromServer && !makeTwoFetches) {
+            [self addClassesToModalViewFromDate: startDate toDate: endDate];
             [self presentViewController: self.modalView animated:YES completion:nil];
             [HUD hide: YES];
         }
@@ -138,6 +153,7 @@
     if (makeTwoFetches) {
         [self.collection loadMonth: endDate.month andYear:endDate.year block:^(NSError *error, GFModel *model) {
             if (fetchFromServer) {
+                [self addClassesToModalViewFromDate: startDate toDate:endDate];
                 [self presentViewController: self.modalView animated:YES completion:nil];
                 [HUD hide: YES];
             }
@@ -152,9 +168,6 @@
     [UIView animateWithDuration: duration animations:^{
         
     }];
-}
-
-- (void) calendarView:(DSLCalendarView *)calendarView didChangeToVisibleMonth:(NSDateComponents *)month {
 }
 
 
