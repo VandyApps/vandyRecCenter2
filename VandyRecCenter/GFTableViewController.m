@@ -21,6 +21,14 @@
 @synthesize sectionCount = _sectionCount;
 @synthesize GFClassesForTable = _GFClassesForTable;
 
+- (NSArray*) GFClassesForTable {
+    if (_GFClassesForTable == nil) {
+        _GFClassesForTable = @[];
+    }
+    return _GFClassesForTable;
+}
+
+
 - (NSUInteger) sectionCount {
     return _GFClassesForTable.count;
 }
@@ -39,6 +47,7 @@
 - (void) pushGFClasses: (NSArray*) GFClasses withTitle: (NSString*) title {
     NSDictionary* newEntry = @{@"title": title, @"GFClasses": GFClasses};
     self.GFClassesForTable = [_GFClassesForTable arrayByAddingObject: newEntry];
+    NSLog(@"Table: %@",  self.GFClassesForTable);
 }
 
 - (void) clearClasses {
@@ -50,9 +59,26 @@
 
 @implementation GFTableViewController
 
+@synthesize tableView = _tableView;
+@synthesize classData = _classData;
+
+#pragma mark - Getters
+
+- (GFTableViewClassData*) classData {
+    if (_classData == nil) {
+        _classData = [[GFTableViewClassData alloc] init];
+    }
+    
+    return _classData;
+}
+
+#pragma mark - Events
+
 - (IBAction)done:(id)sender {
+    [self.classData clearClasses];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 #pragma mark - Lifecycle
 
 - (void) viewDidLoad:(BOOL)animated {
@@ -75,42 +101,28 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    NSDictionary* class = [self.classData GFClassForIndexPath: indexPath];
+    
     UILabel* label = [[UILabel alloc] initWithFrame: CGRectMake(20, 10, 200, 20)];
-    label.text = @"This is the title";
+    label.text = [class objectForKey: @"className"];
     [cell addSubview: label];
     return cell;
 }
 
+
+- (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    return [self.classData titleForSectionAtIndex: section];
+}
+
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return [self.classData countForGFClassesInSectionAtIndex: section];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    
+    return self.classData.sectionCount;
 }
-/*
-- (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (self.GFClassesToDisplay.count) {
-        UIView* header = [[UIView alloc] init];
-        CAGradientLayer* gradient = [[CAGradientLayer alloc] init];
-        gradient.frame = CGRectMake(0, 0, self.view.frame.size.width, 24);
-        gradient.colors  = @[(id) [UIColor blackColor].CGColor,(id) [UIColor darkGrayColor].CGColor];
-        [header.layer insertSublayer: gradient atIndex: 0];
-        
-        UILabel* headerTitle = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, 20)];
-        
-        headerTitle.textColor = [UIColor whiteColor];
-        headerTitle.font = [UIFont systemFontOfSize: 12];
-        headerTitle.textAlignment = NSTextAlignmentCenter;
-        headerTitle.backgroundColor = [UIColor clearColor];
-        headerTitle.text = [[self.GFClassesToDisplay objectAtIndex: section] objectForKey: @"timeRange"];
-        [header addSubview: headerTitle];
-        
-        return header;
-    }
-    return  nil;
-}
- */
 
 #pragma mark - TableViewDelegate
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -104,11 +104,18 @@
 }
 
 #pragma mark - Modal View Prep
+
+- (void) displayResultsFromDate: (NSDate*) start toDate: (NSDate*) end {
+    [self addClassesToModalViewFromDate: start toDate:end];
+    [self presentViewController: self.modalView animated: YES completion:nil];
+    [self.modalView.tableView reloadData];
+}
+
 - (void) addClassesToModalViewFromDate: (NSDate*) start toDate: (NSDate*) end {
     while ([start compare: end] != NSOrderedDescending) {
         NSLog(@"Adding for date %@", start);
         [self.collection GFClassesForYear: start.year month:start.month day:start.day block:^(NSError *error, NSArray *GFClasses) {
-            
+            NSLog(@"Classes: %@", GFClasses);
             //change eventually and check for errors
             NSString* dateString = [NSString stringWithFormat: @"%i/%i/%i", start.month, start.day, start.year];
             [self.modalView.classData pushGFClasses: GFClasses withTitle: dateString];
@@ -143,8 +150,7 @@
     
     [self.collection loadMonth: startDate.month andYear:startDate.year block:^(NSError *error, GFModel *model) {
         if (fetchFromServer && !makeTwoFetches) {
-            [self addClassesToModalViewFromDate: startDate toDate: endDate];
-            [self presentViewController: self.modalView animated:YES completion:nil];
+            [self displayResultsFromDate: startDate toDate: endDate];
             [HUD hide: YES];
         }
         
@@ -153,8 +159,7 @@
     if (makeTwoFetches) {
         [self.collection loadMonth: endDate.month andYear:endDate.year block:^(NSError *error, GFModel *model) {
             if (fetchFromServer) {
-                [self addClassesToModalViewFromDate: startDate toDate:endDate];
-                [self presentViewController: self.modalView animated:YES completion:nil];
+                [self displayResultsFromDate: startDate toDate: endDate];
                 [HUD hide: YES];
             }
             
