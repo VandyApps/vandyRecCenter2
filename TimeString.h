@@ -52,6 +52,6 @@ typedef enum {
 
 + (BOOL) validTimeString: (NSString*) timeString;
 
-//FOR AARON
+//FOR AARON (for timeUntilClosed and timeUntilOpen methods)
 + (NSTimeInterval) timeRangeBetweenTime: (TimeString*) time1 andTime: (TimeString*) time2;
 @end

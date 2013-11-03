@@ -53,9 +53,9 @@
     return [_hours filter:^BOOL(id element, NSUInteger index) {
         NSNumber *priority = [element objectForKey:@"priorityNumber"];
         if ([priority isEqualToNumber:@0]) {
-            return TRUE;
+            return YES;
         }
-        return FALSE;
+        return NO;
     }];
 }
 
@@ -64,9 +64,9 @@
     return [_hours filter:^BOOL(id element, NSUInteger index) {
         NSNumber *isFacilityHours = [element objectForKey:@"facilityHours"];
         if ([isFacilityHours isEqualToNumber:[NSNumber numberWithBool:YES]]) {
-            return TRUE;
+            return YES;
         }
-        return FALSE;
+        return NO;
     }];
 }
 
@@ -75,9 +75,9 @@
     return [_hours filter:^BOOL(id element, NSUInteger index) {
         NSNumber *isClosedHours = [element objectForKey:@"closedHours"];
         if ([isClosedHours isEqualToNumber:[NSNumber numberWithBool:YES]]) {
-            return TRUE;
+            return YES;
         }
-        return FALSE;
+        return NO;
     }];
 }
 
@@ -85,39 +85,85 @@
 // facilityHours == false, and closedHours == false
 - (NSArray*) otherHours {
     return [_hours filter:^BOOL(id element, NSUInteger index) {
-        NSNumber *isClosedHours = [element objectForKey:@"closedHours"];
-        NSNumber *isFacilityHours = [element objectForKey:@"facilityHours"];
+        BOOL isClosedHours = [[element objectForKey:@"closedHours"] boolValue];
+        BOOL isFacilityHours = [[element objectForKey:@"facilityHours"] boolValue];
         NSNumber *priority = [element objectForKey:@"priorityNumber"];
-        NSLog(@"isClosedHours: %@", isClosedHours);
         
-        if (!isClosedHours
-            && ![isFacilityHours isEqualToNumber:[NSNumber numberWithBool:YES]]
-            && ![priority isEqualToNumber:@0]) {
-            return TRUE;
+        if (!isClosedHours && !isFacilityHours && [priority intValue] != 0) {
+            return YES;
         }
-        return FALSE;
+        return NO;
     }];
 }
+
+/* TODO PROBLEMS: 1. What if dict for today is empty? How to fall back?
+             2. What if the priority number and dates are the same?
+*/
 
 // Uses starting/ending dates, priority number, and times (with timeString)
 // to determine the current hours
 - (NSDictionary*) currentHours {
-    __block NSDictionary* hours = [[NSDictionary alloc] init];
-    [_hours forEach:^BOOL(id element, NSUInteger index) {
-        // get today's date
+    NSDate *today = [[NSDate alloc] init]; // get today's date object
+    
+    // get array of hours dicts where closed == false and facilityHours == true
+    NSArray *facilityAndNotClosedHours = [_hours filter:^BOOL(id element, NSUInteger index) {
+        BOOL isClosedHours = [[element objectForKey:@"closedHours"] boolValue];
+        BOOL isFacilityHours = [[element objectForKey:@"facilityHours"] boolValue];
         
-        // get array of hours dicts where closed != true and facilityHours == true
-        
-        // get today's day of week
-        
-        // get the hours of the corresponding day of week in the dict
-        
-        // compare today's date to start/end dates on the right day to find matching dicts
-        
-        // return dict of today's hours with highest priority
-        return 0;
+        if (!isClosedHours && isFacilityHours) {
+            return YES;
+        }
+        return NO;
     }];
-    return 0;
+    
+    // compare today's date to start/end dates to find matching dicts
+    NSArray *withinDateRange = [facilityAndNotClosedHours filter:^BOOL(id element, NSUInteger index) {
+        NSString *startDateString = [element objectForKey:@"startDate"];
+        NSString *endDateString = [element objectForKey:@"endDate"];
+        NSDate *startDate = [NSDate dateWithDateString:startDateString];
+        NSDate *endDate = [NSDate dateWithDateString:endDateString];
+        BOOL isAfterStart = [self myDate:today isAfterDate:startDate];
+        BOOL isBeforeEnd = [self myDate:today isBeforeDate:endDate];
+        
+        if (isAfterStart && isBeforeEnd) {
+            return YES;
+        }
+        
+        return NO;
+    }];
+    
+    // filter by priority where highest priority is kept and last is discarded
+    __block NSDictionary *hours;
+    NSNumber *priority = @-1;
+    [withinDateRange forEach:^BOOL(id element, NSUInteger index) {
+        // check that priority is less than the element's priority number
+        if ([[element objectForKey:@"priorityNumber"] compare:priority] == NSOrderedDescending) {
+            hours = element;
+            return YES;
+        }
+        return NO;
+    }];
+        
+    // select dict matching today's weekday
+    NSArray *times = [hours objectForKey:@"times"];
+    NSDictionary *currentHours = times[today.weekDay - 1]; // subtract one because Sunday should be 0
+    
+    // return dict of today's hours with highest priority
+    return currentHours;
+}
+
+
+// Helpers for currentHours method
+- (BOOL) myDate:(NSDate*)date isBeforeDate:(NSDate*)anotherDate {
+    if ([date compare:anotherDate] == NSOrderedAscending) {
+        return YES; // before date
+    } else {
+        return FALSE; // after or equal to date
+    }
+}
+
+- (BOOL) myDate:(NSDate*)date isAfterDate:(NSDate*)anotherDate {
+    return ![self myDate:date isBeforeDate:anotherDate];
 }
 
 

@@ -26,4 +26,8 @@
     [super tearDown];
 }
 
+- (void) testNothing {
+    // do nothing
+}
+
 @end
