@@ -96,12 +96,26 @@
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString* cellIdentifier = @"cell";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
+    static NSString* blankCellIdentifier = @"emptyCell";
+    
+    
+    UITableViewCell* cell;
+    
+    if (self.classData.sectionCount) {
+       cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier: blankCellIdentifier];
+    }
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    [self setupTableViewForCell: cell atIndexPath: indexPath];
+    if (self.classData.sectionCount) {
+        [self setupTableViewForCell: cell atIndexPath: indexPath];
+    } else {
+        [self setupBlankTableViewCell: cell];
+    }
+    
     return cell;
 }
 
@@ -176,29 +190,37 @@
 }
 
 - (void) setupBlankTableViewCell: (UITableViewCell*) cell {
-
-   
+    static NSUInteger blankLabelTag = 1;
+    
+    UILabel* blankLabel = (UILabel*) [cell viewWithTag: blankLabelTag];
+    
+    if (blankLabel == nil) {
+        blankLabel = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
+        blankLabel.tag = blankLabelTag;
+        [cell addSubview: blankLabel];
+    }
+    
+    blankLabel.textAlignment = NSTextAlignmentCenter;
+    blankLabel.text = @"No Group Fitness Classes";
+    
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 110.f;
+    return (self.classData.sectionCount) ? 110.f : 50.f;
 }
 
 - (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    return [self.classData titleForSectionAtIndex: section];
+    return (self.classData.sectionCount) ? [self.classData titleForSectionAtIndex: section] : @"TRY ANOTHER DATE";
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.classData countForGFClassesInSectionAtIndex: section];
+    return (self.classData.sectionCount) ? [self.classData countForGFClassesInSectionAtIndex: section] : 1;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return self.classData.sectionCount;
+    return (self.classData.sectionCount) ? self.classData.sectionCount : 1;
 }
 
-#pragma mark - TableViewDelegate
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-}
 @end
