@@ -112,12 +112,16 @@
 }
 
 - (void) addClassesToModalViewFromDate: (NSDate*) start toDate: (NSDate*) end {
+    
     while ([start compare: end] != NSOrderedDescending) {
         NSLog(@"Adding for date %@", start);
         [self.collection GFClassesForYear: start.year month:start.month day:start.day block:^(NSError *error, NSArray *GFClasses) {
+            //must check for errors
             if (GFClasses.count) {
-                //change eventually and check for errors
-                NSString* dateString = [NSString stringWithFormat: @"%i/%i/%i", start.month, start.day, start.year];
+                NSDateFormatter* formatDate = [[NSDateFormatter alloc] init];
+                formatDate.timeStyle = NSDateFormatterNoStyle;
+                formatDate.dateStyle = NSDateFormatterMediumStyle;
+                                NSString* dateString = [formatDate stringFromDate: start];
                 [self.modalView.classData pushGFClasses: GFClasses withTitle: dateString];
             }
         }];
