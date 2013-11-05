@@ -203,6 +203,27 @@
     return FALSE;
 }
 
+- (BOOL) willOpenLaterToday {
+    TimeString* currentTime = [[TimeString alloc] initWithTimeZone:[NSTimeZone localTimeZone]];
+    NSComparisonResult openTimeComparison = [currentTime compareTimeString:[self openingTime]];
+    
+    if (openTimeComparison == NSOrderedAscending) {
+        // opening time is in the future
+        return TRUE;
+    }
+    return FALSE;
+}
+
+- (BOOL) wasOpenEarlierToday {
+    TimeString* currentTime = [[TimeString alloc] initWithTimeZone:[NSTimeZone localTimeZone]];
+    NSComparisonResult closedTimeComparison = [currentTime compareTimeString:[self closedTime]];
+    if (closedTimeComparison == NSOrderedDescending) {
+        // closed time has already passed
+        return TRUE;
+    }
+    return FALSE;
+}
+
 # pragma mark - 'Time until' methods
 
 

@@ -161,4 +161,18 @@ NSArray *currentHoursArray = nil;
     XCTAssert([myHours isOpen] == TRUE, @"isOpen should return true if open and false if not open");
 }
 
+// TODO: Mock current time so tests will pass all the time
+- (void) testWillOpenLaterToday {
+    Hours* myHours = [[Hours alloc] init];
+    [myHours setValue:currentHoursArray forKey:@"hours"];
+    XCTAssert([myHours willOpenLaterToday] == TRUE, @"willOpenLaterToday returns true if the opening time is later than the current time. Returns false if opening time has passed.");
+}
+
+// TODO: Same as above
+- (void) testWasOpenEarlierToday {
+    Hours* myHours = [[Hours alloc] init];
+    [myHours setValue:currentHoursArray forKey:@"hours"];
+    XCTAssert([myHours wasOpenEarlierToday] == TRUE, @"wasOpenEarlierToday returns true if the closed time has passed.");
+}
+
 @end
