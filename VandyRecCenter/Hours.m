@@ -34,6 +34,8 @@
     }];
 }
 
+# pragma mark - Sort by title
+
 // Grabs first occurrence where name in dict matches parameter name
 - (NSDictionary*) hoursWithTitle:(NSString *)hoursTitle {
     __block NSDictionary* hours;
@@ -48,6 +50,7 @@
     return hours;
 }
 
+# pragma mark - Hours types
 // Filters hours and returns array of all hours where priorityNumber == 0
 - (NSArray*) defaultHours {
     return [_hours filter:^BOOL(id element, NSUInteger index) {
@@ -96,12 +99,16 @@
     }];
 }
 
+# pragma mark - Current hours methods
+
 /* TODO PROBLEMS: 1. What if dict for today is empty? How to fall back?
              2. What if the priority number and dates are the same?
 */
 
 // Uses starting/ending dates, priority number, and times (with timeString)
 // to determine the current hours
+
+// TODO make it use timezone
 - (NSDictionary*) currentHours {
     NSDate *today = [[NSDate alloc] init]; // get today's date object
     
@@ -146,6 +153,7 @@
         
     // select dict matching today's weekday
     NSArray *times = [hours objectForKey:@"times"];
+    // TODO check time zone and stuff for weekday
     NSDictionary *currentHours = times[today.weekDay - 1]; // subtract one because Sunday should be 0
     
     // return dict of today's hours with highest priority
@@ -153,6 +161,7 @@
 }
 
 
+# pragma mark - Hours Comparison Helpers
 // Helpers for currentHours method
 - (BOOL) myDate:(NSDate*)date isBeforeDate:(NSDate*)anotherDate {
     if ([date compare:anotherDate] == NSOrderedAscending) {
@@ -165,6 +174,36 @@
 - (BOOL) myDate:(NSDate*)date isAfterDate:(NSDate*)anotherDate {
     return ![self myDate:date isBeforeDate:anotherDate];
 }
+
+# pragma mark - Open/Closed Methods
+
+- (TimeString*) openingTime {
+    NSString* openingHoursString = [[self currentHours] objectForKey:@"startTime"];
+    return [[TimeString alloc] initWithString:openingHoursString];
+}
+
+- (TimeString*) closedTime {
+    NSString* closingHoursString = [[self currentHours] objectForKey:@"endTime"];
+    return [[TimeString alloc] initWithString:closingHoursString];
+}
+
+# pragma mark - Boolean methods
+
+- (BOOL) isOpen {
+    TimeString* currentTime = [[TimeString alloc] initWithTimeZone:[NSTimeZone localTimeZone]];
+    NSComparisonResult openTimeComparison = [currentTime compareTimeString:[self openingTime]];
+    NSComparisonResult closedTimeComparison = [currentTime compareTimeString:[self closedTime]];
+    
+    if ((openTimeComparison == NSOrderedDescending && closedTimeComparison == NSOrderedAscending)
+        || openTimeComparison == NSOrderedSame) {
+        // current time is the same as the opening time up to (and not including) the closing time
+        return TRUE;
+    }
+    
+    return FALSE;
+}
+
+# pragma mark - 'Time until' methods
 
 
 @end

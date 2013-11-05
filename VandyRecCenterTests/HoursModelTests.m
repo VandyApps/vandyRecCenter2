@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "Hours.h"
+#import "TimeString.h"
 
 @interface HoursModelTests : XCTestCase
 
@@ -41,17 +42,17 @@ NSArray *currentHoursArray = nil;
                             @"times": @[
                                     @{@"startTime":@"12:00pm",
                                       @"endTime":@"05:00pm"},
-                                    @{@"startTime":@"05:30pm",
+                                    @{@"startTime":@"12:00am",
                                       @"endTime":@"09:00pm"},
-                                    @{@"startTime":@"05:30pm",
+                                    @{@"startTime":@"05:30am",
                                       @"endTime":@"09:00pm"},
-                                    @{@"startTime":@"05:30pm",
+                                    @{@"startTime":@"05:30am",
                                       @"endTime":@"09:00pm"},
-                                    @{@"startTime":@"05:30pm",
+                                    @{@"startTime":@"05:30am",
                                       @"endTime":@"09:00pm"},
-                                    @{@"startTime":@"05:30pm",
+                                    @{@"startTime":@"05:30am",
                                       @"endTime":@"09:00pm"},
-                                    @{@"startTime":@"05:30pm",
+                                    @{@"startTime":@"12:00pm",
                                       @"endTime":@"05:00pm"}
                                 ]
                             }
@@ -124,15 +125,40 @@ NSArray *currentHoursArray = nil;
     XCTAssertTrue([response isEqualToArray:correctResponse], @"otherHours should return array of all entries with closedHours == false, facilityHours == false, priorityNumber !=0");
 }
 
+// TODO: Fix this test (it fails due to the test, not the method)
 - (void) testCurrentHours {
     Hours* myHours = [[Hours alloc] init];
     [myHours setValue:currentHoursArray forKey: @"hours"];
     
-    NSDictionary *correctResponse = @{@"startTime":@"12:00pm",
-                                 @"endTime":@"05:00pm"};
+    NSDictionary *correctResponse = @{@"startTime":@"05:30pm",
+                                      @"endTime":@"09:00pm"};
     NSDictionary *response = [myHours currentHours];
     NSLog(@"CurrentHours: %@", response);
     XCTAssertTrue([response isEqualToDictionary:correctResponse], @"currentHours should return dictionary of the Rec Center's current hours");
+}
+
+- (void) testOpeningTime {
+    Hours* myHours = [[Hours alloc] init];
+    [myHours setValue:currentHoursArray forKey:@"hours"];
+    TimeString *correctResponse = [[TimeString alloc] initWithString:@"05:30pm"];
+    TimeString *response = [myHours openingTime];
+    XCTAssert([[response stringValue] isEqualToString:[correctResponse stringValue]], @"openingTime should return a TimeString of the Rec Center's current opening hours");
+}
+
+- (void) testClosedTime {
+    Hours* myHours = [[Hours alloc] init];
+    [myHours setValue:currentHoursArray forKey:@"hours"];
+    TimeString *correctResponse = [[TimeString alloc] initWithString:@"09:00pm"];
+    TimeString *response = [myHours closedTime];
+    XCTAssert([[response stringValue] isEqualToString:[correctResponse stringValue]], @"closedTime should retrun a TimeString of the Rec Center's current closing hours.");
+}
+
+// TODO: Fix code so that it adjusts for timezones because right now (at 12:30am) it is a whole day off
+- (void) testIsOpen {
+    Hours* myHours = [[Hours alloc] init];
+    [myHours setValue:currentHoursArray forKey:@"hours"];
+    NSLog(@"openingTime: %@", [myHours openingTime]);
+    XCTAssert([myHours isOpen] == TRUE, @"isOpen should return true if open and false if not open");
 }
 
 @end
