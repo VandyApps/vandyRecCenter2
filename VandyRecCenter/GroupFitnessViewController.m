@@ -25,7 +25,7 @@
 static CGFloat navBarHeight = 64;
 static CGFloat bottomLayerBorderDistance = 6.f;
 static CGFloat buttonSize = 40.f;
-static CGFloat buttonPadding = 60.f;
+static CGFloat buttonPadding = 100.f;
 
 #pragma mark - Getters
 
