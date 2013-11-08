@@ -8,6 +8,8 @@
 
 @interface GroupFitnessViewController () <DSLCalendarViewDelegate>
 
+@property (nonatomic, strong) UIView* optionsView;
+
 @end
 
 @implementation GroupFitnessViewController
@@ -16,6 +18,7 @@
 @synthesize collection = _collection;
 @synthesize calendar = _calendar;
 @synthesize modalView = _modalView;
+@synthesize optionsView = _optionsView;
 
 #pragma mark - Getters
 
@@ -47,7 +50,7 @@
 #pragma mark - Setup
 
 /* facade for setup methods*/
-- (void) setUp {
+- (void) setup {
     [self setUpCalendar];
     [self setUpOptionPanel];
 }
@@ -58,7 +61,10 @@
 
 /* this should be called after setUpCalendar*/
 - (void) setUpOptionPanel {
-
+    self.optionsView = [[UIView alloc] initWithFrame: CGRectMake(0, self.calendar.frame.size.height, self.view.frame.size.height, self.view.frame.size.height - self.calendar.frame.size.height)];
+    
+    self.optionsView.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview: self.optionsView];
 }
 
 #pragma mark - Lifecycle
@@ -66,7 +72,7 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self setUp];
+    [self setup];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -91,7 +97,6 @@
 - (void) addClassesToModalViewFromDate: (NSDate*) start toDate: (NSDate*) end {
     
     while ([start compare: end] != NSOrderedDescending) {
-        NSLog(@"Adding for date %@", start);
         [self.collection GFClassesForYear: start.year month:start.month day:start.day block:^(NSError *error, NSArray *GFClasses) {
             //must check for errors
             if (GFClasses.count) {
@@ -153,7 +158,8 @@
 
 - (void) calendarView:(DSLCalendarView *)calendarView willChangeToVisibleMonth:(NSDateComponents *)month duration:(NSTimeInterval)duration {
     [UIView animateWithDuration: duration animations:^{
-        
+        CGRect frame = CGRectMake(0, self.calendar.frame.size.height, self.view.frame.size.height, self.view.frame.size.height - self.calendar.frame.size.height);
+        self.optionsView.frame = frame;
     }];
 }
 
