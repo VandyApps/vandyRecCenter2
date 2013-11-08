@@ -127,18 +127,21 @@
     static NSUInteger instructorLabelTag = 3;
     static NSUInteger locationLabelTag = 4;
     static NSUInteger addButtonTag = 5;
+    static NSUInteger blankCellTag = 6;
     
     UILabel* classNameLabel;
     UILabel* hoursLabel;
     UILabel* instructorLabel;
     UILabel* locationLabel;
     UIButton* addButton;
+    UILabel* blankCellLabel;
 
     classNameLabel = (UILabel*) [cell viewWithTag: classNameLabelTag];
     hoursLabel = (UILabel*) [cell viewWithTag: hoursLabelTag];
     instructorLabel = (UILabel*) [cell viewWithTag: instructorLabelTag];
     locationLabel = (UILabel*) [cell viewWithTag: locationLabelTag];
     addButton = (UIButton*) [cell viewWithTag: addButtonTag];
+    blankCellLabel = (UILabel*) [cell viewWithTag: blankCellTag];
     
     if (classNameLabel == nil) {
         classNameLabel = [[UILabel alloc] initWithFrame: CGRectMake(20, 10, 230, 30)];
@@ -171,7 +174,9 @@
         [cell addSubview: addButton];
     }
     
-    
+    if (blankCellLabel) {
+        [blankCellLabel removeFromSuperview];
+    }
     
     classNameLabel.text = [class objectForKey: @"className"];
     
@@ -190,7 +195,7 @@
 }
 
 - (void) setupBlankTableViewCell: (UITableViewCell*) cell {
-    static NSUInteger blankLabelTag = 1;
+    static NSUInteger blankLabelTag = 6;
     
     UILabel* blankLabel = (UILabel*) [cell viewWithTag: blankLabelTag];
     
