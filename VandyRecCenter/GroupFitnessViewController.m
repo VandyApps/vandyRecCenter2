@@ -9,16 +9,23 @@
 @interface GroupFitnessViewController () <DSLCalendarViewDelegate>
 
 @property (nonatomic, strong) UIView* optionsView;
-
+@property (nonatomic, strong) UIView* topLayerOptionsView;
+@property (nonatomic, strong) UIView* bottomLayerOptionsView;
 @end
 
 @implementation GroupFitnessViewController
 
-
+#pragma mark - Synthesize
 @synthesize collection = _collection;
 @synthesize calendar = _calendar;
 @synthesize modalView = _modalView;
 @synthesize optionsView = _optionsView;
+
+#pragma mark - Private Static Variables
+static CGFloat navBarHeight = 64;
+static CGFloat bottomLayerBorderDistance = 6.f;
+static CGFloat buttonSize = 40.f;
+static CGFloat buttonPadding = 60.f;
 
 #pragma mark - Getters
 
@@ -61,13 +68,74 @@
 
 /* this should be called after setUpCalendar*/
 - (void) setUpOptionPanel {
-    self.optionsView = [[UIView alloc] initWithFrame: CGRectMake(0, self.calendar.frame.size.height, self.view.frame.size.height, self.view.frame.size.height - self.calendar.frame.size.height)];
+    self.optionsView = [[UIView alloc] initWithFrame: CGRectMake(0, self.calendar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.calendar.frame.size.height - navBarHeight)];
     
-    self.optionsView.backgroundColor = [UIColor lightGrayColor];
+    self.optionsView.backgroundColor = [UIColor colorWithRed: .95f green: .95f blue: .95f alpha:1];
+    
+    
+    //set up nested views
+    self.bottomLayerOptionsView = [[UIView alloc] initWithFrame: CGRectMake(bottomLayerBorderDistance, bottomLayerBorderDistance, self.optionsView.frame.size.width - (2* bottomLayerBorderDistance), self.optionsView.frame.size.height - (2* bottomLayerBorderDistance))];
+    
+    self.topLayerOptionsView = [[UIView alloc] initWithFrame: CGRectMake(bottomLayerBorderDistance * 2, bottomLayerBorderDistance * 2, self.optionsView.frame.size.width - (4* bottomLayerBorderDistance), self.optionsView.frame.size.height - (4* bottomLayerBorderDistance))];
+    
+    self.bottomLayerOptionsView.layer.borderWidth = 1.f;
+    self.bottomLayerOptionsView.layer.borderColor = [UIColor blackColor].CGColor;
+    self.topLayerOptionsView.layer.borderWidth = 1.f;
+    self.bottomLayerOptionsView.layer.borderColor = [UIColor blackColor].CGColor;
+    
+    //create the buttons to the interface
+    //buttons are to be nested within the bottomLayer for the
+    //options view
+    CGFloat collectiveButtonSize = (buttonSize * 2) + buttonPadding;
+    self.todayButton = [[UIButton alloc] initWithFrame: CGRectMake((self.topLayerOptionsView.frame.size.width - collectiveButtonSize)/ 2.f, (self.topLayerOptionsView.frame.size.height - buttonSize) /2.f, buttonSize, buttonSize)];
+    self.todayButton.backgroundColor = [UIColor lightGrayColor];
+    
+    self.favoriteButton = [[UIButton alloc] initWithFrame: CGRectMake(self.todayButton.frame.origin.x + self.todayButton.frame.size.width + buttonPadding, (self.topLayerOptionsView.frame.size.height - buttonSize) / 2.f, buttonSize, buttonSize)];
+    self.favoriteButton.backgroundColor = [UIColor lightGrayColor];
+    
+    //add the subviews to the options view
+    [self.optionsView addSubview: self.bottomLayerOptionsView];
+    [self.optionsView addSubview: self.topLayerOptionsView];
+    [self.topLayerOptionsView addSubview: self.todayButton];
+    [self.topLayerOptionsView addSubview: self.favoriteButton];
+    
     [self.view addSubview: self.optionsView];
+    
+
 }
 
+
+#pragma  mark - Helper Methods
+
+- (void) resizeOptionsViewWithDuration: (NSTimeInterval) duration {
+    [UIView animateWithDuration: duration animations:^{
+        CGRect optionsViewFrame = CGRectMake(0, self.calendar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.calendar.frame.size.height);
+        self.optionsView.frame = optionsViewFrame;
+        
+        CGRect bottomLayerFrame = CGRectMake(bottomLayerBorderDistance, bottomLayerBorderDistance, self.optionsView.frame.size.width - (2* bottomLayerBorderDistance), self.optionsView.frame.size.height - (2* bottomLayerBorderDistance));
+        self.bottomLayerOptionsView.frame = bottomLayerFrame;
+        
+        CGRect topLayerFrame = CGRectMake(bottomLayerBorderDistance * 2, bottomLayerBorderDistance * 2, self.optionsView.frame.size.width - (4* bottomLayerBorderDistance), self.optionsView.frame.size.height - (4* bottomLayerBorderDistance));
+        
+        self.topLayerOptionsView.frame = topLayerFrame;
+        
+        
+        CGFloat collectiveButtonSize = (buttonSize * 2) + buttonPadding;
+        CGRect todayButtonFrame = CGRectMake((self.topLayerOptionsView.frame.size.width - collectiveButtonSize)/ 2.f, (self.topLayerOptionsView.frame.size.height - buttonSize) /2.f, buttonSize, buttonSize);
+        
+        self.todayButton.frame = todayButtonFrame;
+        
+        CGRect favoriteButtonFrame = CGRectMake(self.todayButton.frame.origin.x + self.todayButton.frame.size.width + buttonPadding, (self.topLayerOptionsView.frame.size.height - buttonSize) / 2.f, buttonSize, buttonSize);
+        
+        self.favoriteButton.frame = favoriteButtonFrame;
+
+    }];
+    
+}
+
+
 #pragma mark - Lifecycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -149,18 +217,13 @@
                 [self displayResultsFromDate: startDate toDate: endDate];
                 [HUD hide: YES];
             }
-            
-            
         }];
     }
     
 }
 
 - (void) calendarView:(DSLCalendarView *)calendarView willChangeToVisibleMonth:(NSDateComponents *)month duration:(NSTimeInterval)duration {
-    [UIView animateWithDuration: duration animations:^{
-        CGRect frame = CGRectMake(0, self.calendar.frame.size.height, self.view.frame.size.height, self.view.frame.size.height - self.calendar.frame.size.height);
-        self.optionsView.frame = frame;
-    }];
+    [self resizeOptionsViewWithDuration: duration];
 }
 
 

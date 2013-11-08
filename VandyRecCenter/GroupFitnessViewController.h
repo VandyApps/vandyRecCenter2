@@ -18,4 +18,6 @@
 @property (nonatomic, weak) IBOutlet DSLCalendarView* calendar;
 @property (nonatomic, strong) GFTableViewController* modalView;
 
+@property (nonatomic, strong) UIButton* todayButton;
+@property (nonatomic, strong) UIButton* favoriteButton;
 @end
