@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
-
 #define CELL_CLASSNAME_LABEL 1
 #define CELL_INSTRUCTOR_LABEL 2
 #define CELL_LOCATION_LABEL 3

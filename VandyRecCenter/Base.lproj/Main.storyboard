@@ -243,8 +243,24 @@
                     <view key="view" contentMode="scaleToFill" id="2cx-FV-yKT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRI-uM-Jok" customClass="DSLCalendarView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PRI-uM-Jok" firstAttribute="top" secondItem="2cx-FV-yKT" secondAttribute="top" id="EGf-Os-LRx"/>
+                            <constraint firstAttribute="bottom" secondItem="PRI-uM-Jok" secondAttribute="bottom" constant="40" id="VEX-Xw-K1a"/>
+                            <constraint firstItem="PRI-uM-Jok" firstAttribute="leading" secondItem="2cx-FV-yKT" secondAttribute="leading" id="gX7-ht-Egd"/>
+                            <constraint firstAttribute="trailing" secondItem="PRI-uM-Jok" secondAttribute="trailing" id="jQv-KV-z58"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="calendar" destination="PRI-uM-Jok" id="1f4-zy-aTq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MQx-xZ-Jka" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
