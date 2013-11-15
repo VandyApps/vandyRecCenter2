@@ -69,10 +69,9 @@ NSArray *currentHoursArray = nil;
 
 - (void) testHoursWithTitle
 {
-    Hours* myHours = [[Hours alloc] init];
     NSArray* myArray = @[@{@"name": @"foo", @"thing1": @2}, @{@"name": @"bar", @"thing1": @3}, @{@"name": @"bar", @"thing1": @4}];
     
-    [myHours setValue:myArray forKey:@"hours"]; // Hack; replace with initWithHours: method
+    Hours* myHours = [[Hours alloc] initWithHours:myArray];
     
     NSDictionary* correctResponse = @{@"name": @"bar", @"thing1": @3};
     NSDictionary* response = [myHours hoursWithTitle:@"bar"];
@@ -81,10 +80,9 @@ NSArray *currentHoursArray = nil;
 }
 
 - (void) testDefaultHours {
-    Hours* myHours = [[Hours alloc] init];
     NSArray* myArray = @[@{@"name": @"foo", @"priorityNumber": @0}, @{@"name": @"bar", @"priorityNumber": @1}, @{@"name": @"han", @"priorityNumber": @0}];
     
-    [myHours setValue:myArray forKey:@"hours"];
+    Hours* myHours = [[Hours alloc] initWithHours:myArray];
     
     NSArray* correctResponse = @[@{@"name": @"foo", @"priorityNumber": @0}, @{@"name": @"han", @"priorityNumber": @0}];
     NSArray* response = [myHours defaultHours];
@@ -93,10 +91,9 @@ NSArray *currentHoursArray = nil;
 }
 
 - (void) testFacilityHours {
-    Hours* myHours = [[Hours alloc] init];
     NSArray* myArray = @[@{@"name": @"foo", @"facilityHours": @TRUE}, @{@"name": @"bar", @"facilityHours": @FALSE}];
     
-    [myHours setValue:myArray forKey:@"hours"];
+    Hours* myHours = [[Hours alloc] initWithHours:myArray];
     
     NSArray* correctResponse = @[@{@"name": @"foo", @"facilityHours": @TRUE}];
     NSArray* response = [myHours facilityHours];
@@ -105,10 +102,9 @@ NSArray *currentHoursArray = nil;
 }
 
 - (void) testClosedHours {
-    Hours* myHours = [[Hours alloc] init];
     NSArray* myArray = @[@{@"name": @"foo", @"closedHours": @TRUE}, @{@"name": @"bar", @"closedHours": @FALSE}];
     
-    [myHours setValue:myArray forKey:@"hours"];
+    Hours* myHours = [[Hours alloc] initWithHours:myArray];
     
     NSArray *correctResponse = @[@{@"name": @"foo", @"closedHours": @TRUE}];
     NSArray *response = [myHours closedHours];
@@ -117,8 +113,7 @@ NSArray *currentHoursArray = nil;
 }
 
 - (void) testOtherHours {
-    Hours* myHours = [[Hours alloc] init];
-    [myHours setValue:hoursArray forKey:@"hours"];
+    Hours* myHours = [[Hours alloc] initWithHours:hoursArray];
     NSArray *correctResponse = @[@{@"name": @"bar", @"priorityNumber": @1,
                                    @"facilityHours": @FALSE, @"closedHours": @FALSE}];
     NSArray *response = [myHours otherHours];
@@ -127,8 +122,9 @@ NSArray *currentHoursArray = nil;
 
 // TODO: Fix this test (it fails due to the test, not the method)
 - (void) testCurrentHours {
-    Hours* myHours = [[Hours alloc] init];
-    [myHours setValue:currentHoursArray forKey: @"hours"];
+    Hours* myHours = [[Hours alloc] initWithHours:currentHoursArray];
+    NSDate *today = [[NSDate alloc] init];
+    NSLog(@"currentTime: %@", today);
     
     NSDictionary *correctResponse = @{@"startTime":@"05:30pm",
                                       @"endTime":@"09:00pm"};
@@ -138,16 +134,14 @@ NSArray *currentHoursArray = nil;
 }
 
 - (void) testOpeningTime {
-    Hours* myHours = [[Hours alloc] init];
-    [myHours setValue:currentHoursArray forKey:@"hours"];
+    Hours* myHours = [[Hours alloc] initWithHours:currentHoursArray];
     TimeString *correctResponse = [[TimeString alloc] initWithString:@"05:30pm"];
     TimeString *response = [myHours openingTime];
     XCTAssert([[response stringValue] isEqualToString:[correctResponse stringValue]], @"openingTime should return a TimeString of the Rec Center's current opening hours");
 }
 
 - (void) testClosedTime {
-    Hours* myHours = [[Hours alloc] init];
-    [myHours setValue:currentHoursArray forKey:@"hours"];
+    Hours* myHours = [[Hours alloc] initWithHours:currentHoursArray];
     TimeString *correctResponse = [[TimeString alloc] initWithString:@"09:00pm"];
     TimeString *response = [myHours closedTime];
     XCTAssert([[response stringValue] isEqualToString:[correctResponse stringValue]], @"closedTime should retrun a TimeString of the Rec Center's current closing hours.");
@@ -155,24 +149,32 @@ NSArray *currentHoursArray = nil;
 
 // TODO: Fix code so that it adjusts for timezones because right now (at 12:30am) it is a whole day off
 - (void) testIsOpen {
-    Hours* myHours = [[Hours alloc] init];
-    [myHours setValue:currentHoursArray forKey:@"hours"];
+    Hours* myHours = [[Hours alloc] initWithHours:currentHoursArray];
     NSLog(@"openingTime: %@", [myHours openingTime]);
     XCTAssert([myHours isOpen] == TRUE, @"isOpen should return true if open and false if not open");
 }
 
 // TODO: Mock current time so tests will pass all the time
 - (void) testWillOpenLaterToday {
-    Hours* myHours = [[Hours alloc] init];
-    [myHours setValue:currentHoursArray forKey:@"hours"];
-    XCTAssert([myHours willOpenLaterToday] == TRUE, @"willOpenLaterToday returns true if the opening time is later than the current time. Returns false if opening time has passed.");
+    Hours* myHours = [[Hours alloc] initWithHours:currentHoursArray];
+    XCTAssert([myHours willOpenLaterToday] == FALSE, @"willOpenLaterToday returns true if the opening time is later than the current time. Returns false if opening time has passed.");
 }
 
 // TODO: Same as above
 - (void) testWasOpenEarlierToday {
-    Hours* myHours = [[Hours alloc] init];
-    [myHours setValue:currentHoursArray forKey:@"hours"];
-    XCTAssert([myHours wasOpenEarlierToday] == TRUE, @"wasOpenEarlierToday returns true if the closed time has passed.");
+    Hours* myHours = [[Hours alloc] initWithHours:currentHoursArray];
+    XCTAssert([myHours wasOpenEarlierToday] == FALSE, @"wasOpenEarlierToday returns true if the closed time has passed.");
+}
+
+// TODO: Figure out how to get a consistent time interval to test...
+- (void) testTimeUntilClosed {
+    Hours* myHours = [[Hours alloc] initWithHours:currentHoursArray];
+    NSLog(@"Time Until Closed: %f", [myHours timeUntilClosed]);
+}
+
+- (void) testTimeUntilOpen {
+    Hours* myHours = [[Hours alloc] initWithHours:currentHoursArray];
+    NSLog(@"Time Until Open: %f", [myHours timeUntilOpen]);
 }
 
 @end

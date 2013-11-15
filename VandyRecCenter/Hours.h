@@ -11,11 +11,11 @@
 
 @interface Hours : NSObject
 
-
 @property (nonatomic, strong, readonly) NSArray* hours;
-@property (nonatomic, readonly) NSUInteger maxPriorityNumber;
 
 - (id) init;
+
+- (id) initWithHours: (NSArray*) hours;
 
 - (void) loadData: (void (^)(NSError* error, Hours* hoursModel)) block;
 

@@ -29,7 +29,14 @@
 
 - (void) testTimeRangeBetweenTime
 {
-    
+    TimeString* time1 = [[TimeString alloc] initWithString:@"8:00am"];
+    TimeString* time2 = [[TimeString alloc] initWithString:@"10:00am"];
+    NSLog(@"time1 time2: %f", [TimeString timeRangeBetweenTime:time1 andTime:time2]);
+    XCTAssert([TimeString timeRangeBetweenTime:time1 andTime:time2] == 7200, @"timeRangeBetweenTime returns positive number of seconds difference if andTime: (time2) is after time1");
+    TimeString* time3 = [[TimeString alloc] initWithString:@"6:00am"];
+    NSLog(@"time1 time3: %f", [TimeString timeRangeBetweenTime:time1 andTime:time3]);
+    XCTAssert([TimeString timeRangeBetweenTime:time1 andTime:time3] == -7200, @"timeRangeBetweenTime returns negative number of seconds difference if andTime: (time3) is before time1");
+    XCTAssert([TimeString timeRangeBetweenTime:time2 andTime:time2] == 0, @"timeRangeBetweenTime returns 0 if passed the same time");
 }
 
 @end

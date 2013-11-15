@@ -16,11 +16,25 @@
 
 @synthesize hours = _hours;
 
+# pragma mark - Properties
+
 - (NSArray*) hours {
     if (!_hours) {
         // What do I do here? call loadData?
     }
     return _hours;
+}
+
+# pragma mark - Initialization
+
+- (id) init {
+    self = [super init];
+    return self;
+}
+
+- (id) initWithHours:(NSArray *)hours {
+    _hours = hours;
+    return self;
 }
 
 - (void) loadData:(void (^)(NSError* error, Hours* hoursModel))block {
@@ -226,5 +240,22 @@
 
 # pragma mark - 'Time until' methods
 
+- (NSTimeInterval) timeUntilClosed {
+    TimeString *currentTime = [[TimeString alloc] initWithTimeZone:[NSTimeZone localTimeZone]];
+    if ([self isOpen]) {
+        return [TimeString timeRangeBetweenTime:currentTime andTime:[self closedTime]];
+    }
+    
+    return 0; // Rec is already closed
+}
+
+- (NSTimeInterval) timeUntilOpen {
+    TimeString *currentTime = [[TimeString alloc] initWithTimeZone:[NSTimeZone localTimeZone]];
+    if ([self isOpen] == NO) {
+        return [TimeString timeRangeBetweenTime:currentTime andTime:[self openingTime]];
+    }
+    
+    return 0; // Rec is already open
+}
 
 @end
