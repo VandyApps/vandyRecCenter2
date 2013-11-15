@@ -51,4 +51,6 @@ typedef enum {
 - (NSComparisonResult) compareTimeString: (TimeString*) timeString;
 
 + (BOOL) validTimeString: (NSString*) timeString;
+
++ (NSTimeInterval) timeRangeBetweenTime: (TimeString*) time1 andTime: (TimeString*) time2;
 @end

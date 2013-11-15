@@ -126,7 +126,7 @@
     }
     
     if (!self.isAM && self.hours != 12) {
-        minutes += (12*60);
+        minutes += (12 * 60);
     }
     minutes += self.minutes;
     return minutes;
@@ -138,15 +138,11 @@
 
 #pragma mark Comparison
 + (NSComparisonResult) compareTimeString1:(TimeString *)timeString1 timeString2:(TimeString *)timeString2 {
-    
     if ([timeString1 timeInMinutes] < [timeString2 timeInMinutes]) {
-        
-        return NSOrderedAscending;
+        return NSOrderedAscending; // timeString1 is prior to timeString2
     } else if ([timeString1 timeInMinutes] > [timeString2 timeInMinutes]) {
-        
-        return NSOrderedDescending;
+        return NSOrderedDescending; // timeString1 is after timeString2
     } else {
-        
         return NSOrderedSame;
     }
 }
@@ -166,4 +162,19 @@
         return NO;
     }
 }
+
+#pragma mark - Range
+
+// range > 0 if time2 is later than time1; range < 0 if time2 is earlier than time1
++ (NSTimeInterval) timeRangeBetweenTime:(TimeString *)time1 andTime:(TimeString *)time2 {
+    NSComparisonResult timeComparison = [time1 compareTimeString:time2];
+    if (timeComparison == NSOrderedAscending) {
+        return (NSTimeInterval)([time2 timeInSeconds] - [time1 timeInSeconds]);
+    } else if (timeComparison == NSOrderedDescending) {
+        return -(NSTimeInterval)([time1 timeInSeconds] - [time2 timeInSeconds]);
+    }
+    
+    return 0; // The times are exactly the same
+}
+
 @end
