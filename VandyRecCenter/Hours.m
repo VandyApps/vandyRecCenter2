@@ -258,4 +258,8 @@
     return 0; // Rec is already open
 }
 
+//- (NSDictionary*) hoursFromCurrentDay:(NSInteger)offset {
+//    
+//}
+
 @end
