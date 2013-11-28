@@ -36,7 +36,6 @@
         return memo + (NSInteger)element;
     }];
     
-    NSLog(@"My array thing: %lu",  integerArraySum);
     
     // Should be 10 but isn't... (8070450532247929002)
     XCTAssertTrue(integerArraySum == 10, @"Integer value should be sum of array items");

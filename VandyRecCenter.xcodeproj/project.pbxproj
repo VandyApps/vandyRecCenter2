@@ -81,6 +81,13 @@
 		215B8DAE1809B50F009C248E /* GFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 215B8DA41809B50F009C248E /* GFModel.m */; };
 		215B8DAF1809B50F009C248E /* GFSpecialDates.m in Sources */ = {isa = PBXBuildFile; fileRef = 215B8DA61809B50F009C248E /* GFSpecialDates.m */; };
 		215B8DB11809B50F009C248E /* NSDate-MyDateClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 215B8DAA1809B50F009C248E /* NSDate-MyDateClass.m */; };
+		21645BC21835C2A800AF7040 /* HoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21645BC11835C2A800AF7040 /* HoursViewController.m */; };
+		217C82451846C2E600B02644 /* BMIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 217C82361846C2E600B02644 /* BMIndexPath.m */; };
+		217C82461846C2E600B02644 /* BMInfinitePager.m in Sources */ = {isa = PBXBuildFile; fileRef = 217C82381846C2E600B02644 /* BMInfinitePager.m */; };
+		217C82471846C2E600B02644 /* BMHorizontalPager.m in Sources */ = {isa = PBXBuildFile; fileRef = 217C823C1846C2E600B02644 /* BMHorizontalPager.m */; };
+		217C82481846C2E600B02644 /* BMHorizontalPagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 217C823F1846C2E600B02644 /* BMHorizontalPagerImpl.m */; };
+		217C82491846C2E600B02644 /* BMInfinitePagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 217C82411846C2E600B02644 /* BMInfinitePagerImpl.m */; };
+		217C824A1846C2E600B02644 /* BMVerticalPagerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 217C82441846C2E600B02644 /* BMVerticalPagerImpl.m */; };
 		218E9AFA18078F6100629285 /* 428-checkmark1.png in Resources */ = {isa = PBXBuildFile; fileRef = 218E9AF818078F6100629285 /* 428-checkmark1.png */; };
 		218E9AFB18078F6100629285 /* 428-checkmark1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 218E9AF918078F6100629285 /* 428-checkmark1@2x.png */; };
 		21BC3F3718012FA800F6C4E3 /* 354-newspaper.png in Resources */ = {isa = PBXBuildFile; fileRef = 21BC3F3518012FA800F6C4E3 /* 354-newspaper.png */; };
@@ -241,6 +248,22 @@
 		215B8DA61809B50F009C248E /* GFSpecialDates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GFSpecialDates.m; path = ../GFSpecialDates.m; sourceTree = "<group>"; };
 		215B8DA91809B50F009C248E /* NSDate-MyDateClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-MyDateClass.h"; sourceTree = "<group>"; };
 		215B8DAA1809B50F009C248E /* NSDate-MyDateClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-MyDateClass.m"; sourceTree = "<group>"; };
+		21645BC01835C2A800AF7040 /* HoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoursViewController.h; sourceTree = "<group>"; };
+		21645BC11835C2A800AF7040 /* HoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoursViewController.m; sourceTree = "<group>"; };
+		217C82351846C2E600B02644 /* BMIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMIndexPath.h; sourceTree = "<group>"; };
+		217C82361846C2E600B02644 /* BMIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMIndexPath.m; sourceTree = "<group>"; };
+		217C82371846C2E600B02644 /* BMInfinitePager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMInfinitePager.h; sourceTree = "<group>"; };
+		217C82381846C2E600B02644 /* BMInfinitePager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMInfinitePager.m; sourceTree = "<group>"; };
+		217C82391846C2E600B02644 /* BMInfinitePagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMInfinitePagerDelegate.h; sourceTree = "<group>"; };
+		217C823B1846C2E600B02644 /* BMHorizontalPager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMHorizontalPager.h; sourceTree = "<group>"; };
+		217C823C1846C2E600B02644 /* BMHorizontalPager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMHorizontalPager.m; sourceTree = "<group>"; };
+		217C823E1846C2E600B02644 /* BMHorizontalPagerImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMHorizontalPagerImpl.h; sourceTree = "<group>"; };
+		217C823F1846C2E600B02644 /* BMHorizontalPagerImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMHorizontalPagerImpl.m; sourceTree = "<group>"; };
+		217C82401846C2E600B02644 /* BMInfinitePagerImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMInfinitePagerImpl.h; sourceTree = "<group>"; };
+		217C82411846C2E600B02644 /* BMInfinitePagerImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMInfinitePagerImpl.m; sourceTree = "<group>"; };
+		217C82421846C2E600B02644 /* BMInfinitePagerImplDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMInfinitePagerImplDelegate.h; sourceTree = "<group>"; };
+		217C82431846C2E600B02644 /* BMVerticalPagerImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVerticalPagerImpl.h; sourceTree = "<group>"; };
+		217C82441846C2E600B02644 /* BMVerticalPagerImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMVerticalPagerImpl.m; sourceTree = "<group>"; };
 		218E9AF818078F6100629285 /* 428-checkmark1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "428-checkmark1.png"; sourceTree = "<group>"; };
 		218E9AF918078F6100629285 /* 428-checkmark1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "428-checkmark1@2x.png"; sourceTree = "<group>"; };
 		21AAB9FD17FE8640006AA6C5 /* VandyRecCenter Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VandyRecCenter Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -319,6 +342,8 @@
 			isa = PBXGroup;
 			children = (
 				2109AE801810C2E300EA190E /* Model */,
+				21645BC01835C2A800AF7040 /* HoursViewController.h */,
+				21645BC11835C2A800AF7040 /* HoursViewController.m */,
 			);
 			name = Hours;
 			sourceTree = "<group>";
@@ -522,6 +547,7 @@
 		2129753417FE4D89007210AB /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				217C82341846C2E600B02644 /* BMInfinitePager */,
 				21E66E9A1818DD2200BA803F /* DSLCalendarView */,
 				211C2E9E17FF641100C4400A /* MBProgressHUD */,
 				2129753517FE4E0D007210AB /* JASidePanels */,
@@ -577,6 +603,44 @@
 				215B8DA61809B50F009C248E /* GFSpecialDates.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		217C82341846C2E600B02644 /* BMInfinitePager */ = {
+			isa = PBXGroup;
+			children = (
+				217C82351846C2E600B02644 /* BMIndexPath.h */,
+				217C82361846C2E600B02644 /* BMIndexPath.m */,
+				217C82371846C2E600B02644 /* BMInfinitePager.h */,
+				217C82381846C2E600B02644 /* BMInfinitePager.m */,
+				217C82391846C2E600B02644 /* BMInfinitePagerDelegate.h */,
+				217C823A1846C2E600B02644 /* Private */,
+			);
+			name = BMInfinitePager;
+			path = ../BMInfinitePager/BMInfinitePager/BMInfinitePager;
+			sourceTree = "<group>";
+		};
+		217C823A1846C2E600B02644 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				217C823B1846C2E600B02644 /* BMHorizontalPager.h */,
+				217C823C1846C2E600B02644 /* BMHorizontalPager.m */,
+				217C823D1846C2E600B02644 /* Implementation */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+		217C823D1846C2E600B02644 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				217C823E1846C2E600B02644 /* BMHorizontalPagerImpl.h */,
+				217C823F1846C2E600B02644 /* BMHorizontalPagerImpl.m */,
+				217C82401846C2E600B02644 /* BMInfinitePagerImpl.h */,
+				217C82411846C2E600B02644 /* BMInfinitePagerImpl.m */,
+				217C82421846C2E600B02644 /* BMInfinitePagerImplDelegate.h */,
+				217C82431846C2E600B02644 /* BMVerticalPagerImpl.h */,
+				217C82441846C2E600B02644 /* BMVerticalPagerImpl.m */,
+			);
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 		21BC3F3318012F5600F6C4E3 /* white */ = {
@@ -854,7 +918,9 @@
 			files = (
 				21E66EBA1818DD2200BA803F /* DSLCalendarDayCalloutView.m in Sources */,
 				211C2E9117FF493E00C4400A /* NotificationCollection.m in Sources */,
+				217C824A1846C2E600B02644 /* BMVerticalPagerImpl.m in Sources */,
 				211C2E8E17FF492D00C4400A /* Notification.m in Sources */,
+				217C82451846C2E600B02644 /* BMIndexPath.m in Sources */,
 				212974DC17FE466D007210AB /* AFHTTPRequestOperation.m in Sources */,
 				21E66EBD1818DD2200BA803F /* DSLCalendarMonthSelectorView.m in Sources */,
 				212974DD17FE466D007210AB /* AFHTTPRequestOperationManager.m in Sources */,
@@ -871,6 +937,8 @@
 				21244F2B1800B22900EE27BC /* TimeString.m in Sources */,
 				2119C8E217FF140400D4A284 /* MainMenuViewController.m in Sources */,
 				215B8DB11809B50F009C248E /* NSDate-MyDateClass.m in Sources */,
+				217C82461846C2E600B02644 /* BMInfinitePager.m in Sources */,
+				21645BC21835C2A800AF7040 /* HoursViewController.m in Sources */,
 				21E66EBC1818DD2200BA803F /* DSLCalendarDayView.m in Sources */,
 				2129753A17FE4E0D007210AB /* JASidePanelController.m in Sources */,
 				2109AE831810C34700EA190E /* Hours.m in Sources */,
@@ -881,12 +949,15 @@
 				212974E217FE466D007210AB /* AFURLRequestSerialization.m in Sources */,
 				212974E417FE466D007210AB /* AFURLSessionManager.m in Sources */,
 				21E66ED01818DD2200BA803F /* NSDate+DSLCalendarView.m in Sources */,
+				217C82491846C2E600B02644 /* BMInfinitePagerImpl.m in Sources */,
+				217C82481846C2E600B02644 /* BMHorizontalPagerImpl.m in Sources */,
 				212974A417FE465C007210AB /* AppDelegate.m in Sources */,
 				212974A017FE465C007210AB /* main.m in Sources */,
 				2129753B17FE4E0D007210AB /* UIViewController+JASidePanel.m in Sources */,
 				215B8DAF1809B50F009C248E /* GFSpecialDates.m in Sources */,
 				211C2E9C17FF606C00C4400A /* RecClient.m in Sources */,
 				21E66EC11818DD2200BA803F /* DSLCalendarView.m in Sources */,
+				217C82471846C2E600B02644 /* BMHorizontalPager.m in Sources */,
 				215B8DAD1809B50F009C248E /* GFFavorites.m in Sources */,
 				2132530A18085B3000ED855D /* Intramural.m in Sources */,
 				215B8DAB1809B50F009C248E /* DateHelper.m in Sources */,
