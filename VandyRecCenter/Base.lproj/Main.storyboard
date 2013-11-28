@@ -278,22 +278,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="58T-IN-iFR" userLabel="content wrapper">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1j7-w1-O5p" userLabel="contentView">
                                 <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zfE-Tk-VYd" userLabel="pagerWrapper">
+                                        <rect key="frame" x="0.0" y="30" width="320" height="300"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="YHD-K7-2YM"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="zfE-Tk-VYd" firstAttribute="leading" secondItem="1j7-w1-O5p" secondAttribute="leading" id="F98-YC-OHv"/>
+                                    <constraint firstAttribute="trailing" secondItem="zfE-Tk-VYd" secondAttribute="trailing" id="Pqk-xX-Rtj"/>
+                                    <constraint firstItem="zfE-Tk-VYd" firstAttribute="top" secondItem="1j7-w1-O5p" secondAttribute="top" constant="30" id="pKv-F7-mDq"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="58T-IN-iFR" firstAttribute="leading" secondItem="6AZ-7f-FFS" secondAttribute="leading" id="Fgl-gL-GAK"/>
-                            <constraint firstAttribute="trailing" secondItem="58T-IN-iFR" secondAttribute="trailing" id="NiQ-8S-EBp"/>
-                            <constraint firstAttribute="bottom" secondItem="58T-IN-iFR" secondAttribute="bottom" id="cUv-Ts-nr8"/>
-                            <constraint firstItem="58T-IN-iFR" firstAttribute="top" secondItem="6AZ-7f-FFS" secondAttribute="top" constant="64" id="f64-zE-fD0"/>
+                            <constraint firstAttribute="trailing" secondItem="1j7-w1-O5p" secondAttribute="trailing" id="TmE-aM-6De"/>
+                            <constraint firstItem="1j7-w1-O5p" firstAttribute="top" secondItem="6AZ-7f-FFS" secondAttribute="top" constant="64" id="Wpq-m5-HoV"/>
+                            <constraint firstAttribute="bottom" secondItem="1j7-w1-O5p" secondAttribute="bottom" id="oG5-dK-QDf"/>
+                            <constraint firstItem="1j7-w1-O5p" firstAttribute="leading" secondItem="6AZ-7f-FFS" secondAttribute="leading" id="yVN-eL-myK"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="contentView" destination="58T-IN-iFR" id="3Y3-rt-rwE"/>
+                        <outlet property="contentView" destination="1j7-w1-O5p" id="Kn6-9U-cqq"/>
+                        <outlet property="pagerWrapper" destination="zfE-Tk-VYd" id="bSi-DX-cZE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nO7-7R-pnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
