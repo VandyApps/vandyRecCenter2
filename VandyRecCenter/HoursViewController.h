@@ -11,12 +11,7 @@
 
 @class BMInfinitePager;
 
-@interface HoursViewController : UIViewController <BMInfinitePagerDelegate>
+@interface HoursViewController : UIViewController
 
-
-@property (nonatomic, weak) IBOutlet UIView* pagerWrapper;
-@property (nonatomic, weak) IBOutlet UIView* contentView;
-
-@property (nonatomic, strong) BMInfinitePager* pager;
 
 @end

@@ -8,6 +8,13 @@
 
 #import "AppDelegate.h"
 #import "TimeString.h"
+
+#import "HomeViewController.h"
+#import "TrafficViewController.h"
+#import "HoursViewController.h"
+#import "GroupFitnessViewController.h"
+#import "NotificationViewController.h"
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -21,9 +28,10 @@
 - (NSArray*) viewControllers {
     
     if (_viewControllers == nil) {
-        UIStoryboard* mainSB = [UIStoryboard storyboardWithName: @"Main" bundle: [NSBundle mainBundle]];
-        
-        _viewControllers = @[[mainSB instantiateInitialViewController], [mainSB instantiateViewControllerWithIdentifier: @"hours"], [mainSB instantiateViewControllerWithIdentifier: @"traffic"], [mainSB instantiateViewControllerWithIdentifier: @"groupFitness"]];
+        _viewControllers =
+            @[  [[HomeViewController alloc] initWithNibName: @"HomeView" bundle: [NSBundle mainBundle]], [[HoursViewController alloc] initWithNibName: @"HoursView" bundle: [NSBundle mainBundle]],
+                [[TrafficViewController alloc] initWithNibName: @"TrafficView" bundle: [NSBundle mainBundle]],
+                [[GroupFitnessViewController alloc] initWithNibName: @"GFView" bundle: [NSBundle mainBundle]]];
     }
     return _viewControllers;
 }
@@ -46,8 +54,9 @@
 
 - (MainMenuViewController*) leftPanelViewController {
     if (_leftPanelViewController == nil) {
-        UIStoryboard* mainSB = [UIStoryboard storyboardWithName: @"Main" bundle: [NSBundle mainBundle]];
-        _leftPanelViewController = [mainSB instantiateViewControllerWithIdentifier: @"leftPanel"];
+        
+        _leftPanelViewController = [[MainMenuViewController alloc] initWithNibName: @"MainMenuView" bundle:[NSBundle mainBundle]];
+        
         _leftPanelViewController.delegate = self;
     }
     return _leftPanelViewController;
@@ -55,8 +64,8 @@
 
 - (NotificationViewController*) rightPanelViewController {
     if (_rightPanelViewController == nil) {
-        UIStoryboard* mainSB = [UIStoryboard storyboardWithName: @"Main" bundle: [NSBundle mainBundle]];
-        _rightPanelViewController = [mainSB instantiateViewControllerWithIdentifier: @"rightPanel"];
+        
+        _rightPanelViewController = [[NotificationViewController alloc] initWithNibName: @"NotificationView" bundle: [NSBundle mainBundle]];
     }
     return _rightPanelViewController;
 }

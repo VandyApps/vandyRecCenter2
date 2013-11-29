@@ -43,6 +43,14 @@
 		211C2E9C17FF606C00C4400A /* RecClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 211C2E9B17FF606C00C4400A /* RecClient.m */; };
 		211C2EA117FF642700C4400A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 211C2EA017FF642700C4400A /* MBProgressHUD.m */; };
 		21244F2B1800B22900EE27BC /* TimeString.m in Sources */ = {isa = PBXBuildFile; fileRef = 21244F291800B22900EE27BC /* TimeString.m */; };
+		2126B4281849277500DF79FF /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2126B4271849277500DF79FF /* NotificationView.xib */; };
+		2126B42B18492A8700DF79FF /* MainMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2126B42A18492A8700DF79FF /* MainMenuView.xib */; };
+		2126B42E1849365000DF79FF /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2126B42D1849365000DF79FF /* HomeView.xib */; };
+		2126B4311849366800DF79FF /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2126B4301849366800DF79FF /* HomeViewController.m */; };
+		2126B435184937AD00DF79FF /* TrafficViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2126B434184937AD00DF79FF /* TrafficViewController.m */; };
+		2126B437184937BC00DF79FF /* TrafficView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2126B436184937BC00DF79FF /* TrafficView.xib */; };
+		2126B4391849386600DF79FF /* HoursView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2126B4381849386600DF79FF /* HoursView.xib */; };
+		2126B43B1849390300DF79FF /* GFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2126B43A1849390300DF79FF /* GFView.xib */; };
 		21278A891807B5A100E76BD0 /* 354-newspaper-w.png in Resources */ = {isa = PBXBuildFile; fileRef = 21278A871807B5A100E76BD0 /* 354-newspaper-w.png */; };
 		21278A8A1807B5A100E76BD0 /* 354-newspaper-w@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21278A881807B5A100E76BD0 /* 354-newspaper-w@2x.png */; };
 		2129749417FE465C007210AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2129749317FE465C007210AB /* Foundation.framework */; };
@@ -51,7 +59,6 @@
 		2129749E17FE465C007210AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2129749C17FE465C007210AB /* InfoPlist.strings */; };
 		212974A017FE465C007210AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2129749F17FE465C007210AB /* main.m */; };
 		212974A417FE465C007210AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 212974A317FE465C007210AB /* AppDelegate.m */; };
-		212974A717FE465C007210AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 212974A517FE465C007210AB /* Main.storyboard */; };
 		212974AC17FE465C007210AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212974AB17FE465C007210AB /* Images.xcassets */; };
 		212974B317FE465C007210AB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212974B217FE465C007210AB /* XCTest.framework */; };
 		212974B417FE465C007210AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2129749317FE465C007210AB /* Foundation.framework */; };
@@ -185,6 +192,16 @@
 		211C2EA017FF642700C4400A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		21244F281800B22900EE27BC /* TimeString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeString.h; sourceTree = "<group>"; };
 		21244F291800B22900EE27BC /* TimeString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeString.m; sourceTree = "<group>"; };
+		2126B4271849277500DF79FF /* NotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
+		2126B42A18492A8700DF79FF /* MainMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuView.xib; sourceTree = "<group>"; };
+		2126B42D1849365000DF79FF /* HomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
+		2126B42F1849366800DF79FF /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		2126B4301849366800DF79FF /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		2126B433184937AD00DF79FF /* TrafficViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficViewController.h; sourceTree = "<group>"; };
+		2126B434184937AD00DF79FF /* TrafficViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrafficViewController.m; sourceTree = "<group>"; };
+		2126B436184937BC00DF79FF /* TrafficView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrafficView.xib; sourceTree = "<group>"; };
+		2126B4381849386600DF79FF /* HoursView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HoursView.xib; sourceTree = "<group>"; };
+		2126B43A1849390300DF79FF /* GFView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GFView.xib; sourceTree = "<group>"; };
 		21278A871807B5A100E76BD0 /* 354-newspaper-w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "354-newspaper-w.png"; sourceTree = "<group>"; };
 		21278A881807B5A100E76BD0 /* 354-newspaper-w@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "354-newspaper-w@2x.png"; sourceTree = "<group>"; };
 		2129749017FE465C007210AB /* VandyRecCenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VandyRecCenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,7 +214,6 @@
 		212974A117FE465C007210AB /* VandyRecCenter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VandyRecCenter-Prefix.pch"; sourceTree = "<group>"; };
 		212974A217FE465C007210AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		212974A317FE465C007210AB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		212974A617FE465C007210AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		212974AB17FE465C007210AB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		212974B117FE465C007210AB /* VandyRecCenterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VandyRecCenterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		212974B217FE465C007210AB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -344,6 +360,7 @@
 				2109AE801810C2E300EA190E /* Model */,
 				21645BC01835C2A800AF7040 /* HoursViewController.h */,
 				21645BC11835C2A800AF7040 /* HoursViewController.m */,
+				2126B4381849386600DF79FF /* HoursView.xib */,
 			);
 			name = Hours;
 			sourceTree = "<group>";
@@ -376,6 +393,7 @@
 				211C2E8617FF464D00C4400A /* NotificationViewController.h */,
 				211C2E8717FF464D00C4400A /* NotificationViewController.m */,
 				211C2E8B17FF490E00C4400A /* Model */,
+				2126B4271849277500DF79FF /* NotificationView.xib */,
 			);
 			name = Notifications;
 			sourceTree = "<group>";
@@ -433,6 +451,36 @@
 			name = TimeString;
 			sourceTree = "<group>";
 		};
+		2126B42918492A6700DF79FF /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				2119C8E017FF140400D4A284 /* MainMenuViewController.h */,
+				2119C8E117FF140400D4A284 /* MainMenuViewController.m */,
+				2126B42A18492A8700DF79FF /* MainMenuView.xib */,
+			);
+			name = MainMenu;
+			sourceTree = "<group>";
+		};
+		2126B42C1849363400DF79FF /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				2126B42D1849365000DF79FF /* HomeView.xib */,
+				2126B42F1849366800DF79FF /* HomeViewController.h */,
+				2126B4301849366800DF79FF /* HomeViewController.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		2126B4321849377200DF79FF /* Traffic */ = {
+			isa = PBXGroup;
+			children = (
+				2126B433184937AD00DF79FF /* TrafficViewController.h */,
+				2126B434184937AD00DF79FF /* TrafficViewController.m */,
+				2126B436184937BC00DF79FF /* TrafficView.xib */,
+			);
+			name = Traffic;
+			sourceTree = "<group>";
+		};
 		2129748717FE465C007210AB = {
 			isa = PBXGroup;
 			children = (
@@ -471,14 +519,14 @@
 			children = (
 				212974A217FE465C007210AB /* AppDelegate.h */,
 				212974A317FE465C007210AB /* AppDelegate.m */,
-				2119C8E017FF140400D4A284 /* MainMenuViewController.h */,
-				2119C8E117FF140400D4A284 /* MainMenuViewController.m */,
 				211C2E9D17FF607200C4400A /* Web Client */,
 				211C2E8917FF48E200C4400A /* Notifications */,
+				2126B42918492A6700DF79FF /* MainMenu */,
+				2126B42C1849363400DF79FF /* Home */,
 				2109AE7F1810C2D600EA190E /* Hours */,
 				212FB75A18010687009C6A83 /* GF */,
+				2126B4321849377200DF79FF /* Traffic */,
 				2132530718085B1700ED855D /* Intramurals */,
-				212974A517FE465C007210AB /* Main.storyboard */,
 				212974AB17FE465C007210AB /* Images.xcassets */,
 				2119C90317FF1A2800D4A284 /* Images */,
 				2129749A17FE465C007210AB /* Supporting Files */,
@@ -575,6 +623,7 @@
 				212FB75818010659009C6A83 /* GroupFitnessViewController.m */,
 				21325304180853C100ED855D /* GFTableViewController.h */,
 				21325305180853C100ED855D /* GFTableViewController.m */,
+				2126B43A1849390300DF79FF /* GFView.xib */,
 				210BCB6C1819B45F00666500 /* GFTableView.xib */,
 				215B8DB21809C7C9009C248E /* Model */,
 			);
@@ -842,6 +891,7 @@
 				21E66ECD1818DD2200BA803F /* DSLCalendarDaySelection-right@2x.png in Resources */,
 				2119C90017FF1A2400D4A284 /* 402-globe2@2x.png in Resources */,
 				21E66EC21818DD2200BA803F /* DSLCalendar-nextMonth.png in Resources */,
+				2126B4281849277500DF79FF /* NotificationView.xib in Resources */,
 				2119C8FB17FF1A2400D4A284 /* 103-map.png in Resources */,
 				2150C9791801BE2100DCB3E5 /* Linen - 640x1136 - iPhone 5.jpg in Resources */,
 				21E66EC91818DD2200BA803F /* DSLCalendarDaySelection-left@2x.png in Resources */,
@@ -866,7 +916,9 @@
 				211C2E9817FF5F4100C4400A /* 374-basketball.png in Resources */,
 				2102F7DC180F8436005FB01C /* 310-alarm-clock@2x.png in Resources */,
 				21E66EC71818DD2200BA803F /* DSLCalendarDayCallout@2x.png in Resources */,
+				2126B43B1849390300DF79FF /* GFView.xib in Resources */,
 				2119C8F317FF1A2400D4A284 /* 11-clock.png in Resources */,
+				2126B42B18492A8700DF79FF /* MainMenuView.xib in Resources */,
 				21E66ECB1818DD2200BA803F /* DSLCalendarDaySelection-middle@2x.png in Resources */,
 				2119C8F917FF1A2400D4A284 /* 83-calendar.png in Resources */,
 				21278A8A1807B5A100E76BD0 /* 354-newspaper-w@2x.png in Resources */,
@@ -875,11 +927,12 @@
 				21F6DA03181087F800B52D56 /* blue_rotate.png in Resources */,
 				2119C8FA17FF1A2400D4A284 /* 83-calendar@2x.png in Resources */,
 				2119C8F617FF1A2400D4A284 /* 53-house@2x.png in Resources */,
+				2126B4391849386600DF79FF /* HoursView.xib in Resources */,
 				21E66EC41818DD2200BA803F /* DSLCalendar-previousMonth.png in Resources */,
 				2102F7E3180F845E005FB01C /* 426-calendar.png in Resources */,
-				212974A717FE465C007210AB /* Main.storyboard in Resources */,
 				2102F7DD180F8436005FB01C /* 321-like.png in Resources */,
 				21E66EC81818DD2200BA803F /* DSLCalendarDaySelection-left.png in Resources */,
+				2126B437184937BC00DF79FF /* TrafficView.xib in Resources */,
 				21F6DA04181087F800B52D56 /* blue_star.png in Resources */,
 				21278A891807B5A100E76BD0 /* 354-newspaper-w.png in Resources */,
 				21E66ECF1818DD2200BA803F /* DSLCalendarDaySelection@2x.png in Resources */,
@@ -892,6 +945,7 @@
 				21F6DA02181087F800B52D56 /* blue_x.png in Resources */,
 				21E66ECC1818DD2200BA803F /* DSLCalendarDaySelection-right.png in Resources */,
 				2119C8FF17FF1A2400D4A284 /* 402-globe2.png in Resources */,
+				2126B42E1849365000DF79FF /* HomeView.xib in Resources */,
 				21F6DA01181087F800B52D56 /* blue_man.png in Resources */,
 				21E66EBE1818DD2200BA803F /* DSLCalendarMonthSelectorView.xib in Resources */,
 				21F6D9FF181087F800B52D56 /* blue_check.png in Resources */,
@@ -916,6 +970,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2126B435184937AD00DF79FF /* TrafficViewController.m in Sources */,
 				21E66EBA1818DD2200BA803F /* DSLCalendarDayCalloutView.m in Sources */,
 				211C2E9117FF493E00C4400A /* NotificationCollection.m in Sources */,
 				217C824A1846C2E600B02644 /* BMVerticalPagerImpl.m in Sources */,
@@ -952,6 +1007,7 @@
 				217C82491846C2E600B02644 /* BMInfinitePagerImpl.m in Sources */,
 				217C82481846C2E600B02644 /* BMHorizontalPagerImpl.m in Sources */,
 				212974A417FE465C007210AB /* AppDelegate.m in Sources */,
+				2126B4311849366800DF79FF /* HomeViewController.m in Sources */,
 				212974A017FE465C007210AB /* main.m in Sources */,
 				2129753B17FE4E0D007210AB /* UIViewController+JASidePanel.m in Sources */,
 				215B8DAF1809B50F009C248E /* GFSpecialDates.m in Sources */,
@@ -993,14 +1049,6 @@
 				2129749D17FE465C007210AB /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		212974A517FE465C007210AB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				212974A617FE465C007210AB /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		212974BB17FE465C007210AB /* InfoPlist.strings */ = {
