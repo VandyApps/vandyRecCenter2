@@ -20,9 +20,4 @@
 @property (nonatomic, strong) MBProgressHUD* HUD;
 
 
-- (IBAction) toggleNews:(id)sender;
-- (IBAction) toggleHours:(id)sender;
-- (IBAction) toggleGroupFitness:(id)sender;
-- (IBAction) toggleIntramurals:(id)sender;
-
 @end
