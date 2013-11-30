@@ -19,9 +19,13 @@
                     <rect key="frame" x="60" y="0.0" width="260" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="F4l-oV-FwN"/>
+                        <outlet property="delegate" destination="-1" id="TkG-RL-m8Y"/>
+                    </connections>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="cqz-qe-MtX" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="60" id="S7n-KU-E0q"/>
                 <constraint firstAttribute="bottom" secondItem="cqz-qe-MtX" secondAttribute="bottom" id="XpG-8R-vK5"/>
