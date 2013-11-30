@@ -41,8 +41,13 @@ static CGFloat ArrowButtonPadding = 15;
     
     self.rightButton = [BMArrowButton arrowButtonWithFrame: CGRectMake(self.view.frame.size.width - ArrowButtonPadding - ArrowButtonWidth, 64 + PagerTopPadding + PagerHeight / 2.f, ArrowButtonWidth, ArrowButtonHeight) style: BMArrowButtonStyleRight];
     
-    [self.leftButton addTarget: self action: @selector(leftButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.rightButton addTarget: self action: @selector(rightButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.leftButton addTarget: self
+                        action: @selector(leftButtonPressed:)
+              forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.rightButton addTarget: self
+                         action: @selector(rightButtonPressed:)
+               forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview: self.leftButton];
     [self.view addSubview: self.rightButton];
@@ -67,9 +72,17 @@ static CGFloat ArrowButtonPadding = 15;
 #pragma mark - Pager Delegate
 
 - (UIView*) pager:(BMInfinitePager *)pager viewForOffset:(BMIndexPath *)offset {
+    static CGFloat contentViewPadding = 10;
     UIView* view = [[UIView alloc] init];
     
-    view.backgroundColor = (offset.row % 2) ? vanderbiltGold : [UIColor darkGrayColor];
+    UIView* contentView = [[UIView alloc] initWithFrame: CGRectMake(contentViewPadding, contentViewPadding, pager.pageSize.width - 2 * contentViewPadding, pager.pageSize.height - 2 * contentViewPadding)];
+    
+    contentView.layer.borderColor = [UIColor brownColor].CGColor;
+    contentView.layer.borderWidth = 5.f;
+    contentView.layer.cornerRadius = 5.f;
+    
+    [view addSubview: contentView];
+    
     return view;
 }
 
