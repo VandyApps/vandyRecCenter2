@@ -10,8 +10,12 @@
 #import "BMInfinitePagerDelegate.h"
 
 @class BMInfinitePager;
+@class BMArrowButton;
 
-@interface HoursViewController : UIViewController
+@interface HoursViewController : UIViewController <BMInfinitePagerDelegate>
 
+@property (nonatomic, strong) BMInfinitePager* pager;
 
+@property (nonatomic, strong) BMArrowButton* leftButton;
+@property (nonatomic, strong) BMArrowButton* rightButton;
 @end
