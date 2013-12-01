@@ -86,9 +86,6 @@
 		212FB75918010659009C6A83 /* GroupFitnessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 212FB75818010659009C6A83 /* GroupFitnessViewController.m */; };
 		21325306180853C100ED855D /* GFTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21325305180853C100ED855D /* GFTableViewController.m */; };
 		2132530A18085B3000ED855D /* Intramural.m in Sources */ = {isa = PBXBuildFile; fileRef = 2132530918085B3000ED855D /* Intramural.m */; };
-		2150C9771801BE2100DCB3E5 /* Linen - 320x640 - iPhone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2150C9741801BE2100DCB3E5 /* Linen - 320x640 - iPhone.jpg */; };
-		2150C9781801BE2100DCB3E5 /* Linen - 640x960 - iPhone@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2150C9751801BE2100DCB3E5 /* Linen - 640x960 - iPhone@2x.jpg */; };
-		2150C9791801BE2100DCB3E5 /* Linen - 640x1136 - iPhone 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2150C9761801BE2100DCB3E5 /* Linen - 640x1136 - iPhone 5.jpg */; };
 		215B8DAB1809B50F009C248E /* DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 215B8D9E1809B50F009C248E /* DateHelper.m */; };
 		215B8DAC1809B50F009C248E /* GFCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 215B8DA01809B50F009C248E /* GFCollection.m */; };
 		215B8DAD1809B50F009C248E /* GFFavorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 215B8DA21809B50F009C248E /* GFFavorites.m */; };
@@ -123,14 +120,6 @@
 		21E66ECE1818DD2200BA803F /* DSLCalendarDaySelection.png in Resources */ = {isa = PBXBuildFile; fileRef = 21E66EB61818DD2200BA803F /* DSLCalendarDaySelection.png */; };
 		21E66ECF1818DD2200BA803F /* DSLCalendarDaySelection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21E66EB71818DD2200BA803F /* DSLCalendarDaySelection@2x.png */; };
 		21E66ED01818DD2200BA803F /* NSDate+DSLCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E66EB91818DD2200BA803F /* NSDate+DSLCalendarView.m */; };
-		21F6D9FD181087F800B52D56 /* blue_asterisk.png in Resources */ = {isa = PBXBuildFile; fileRef = 21F6D9F4181087F800B52D56 /* blue_asterisk.png */; };
-		21F6D9FF181087F800B52D56 /* blue_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 21F6D9F6181087F800B52D56 /* blue_check.png */; };
-		21F6DA00181087F800B52D56 /* blue_left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 21F6D9F7181087F800B52D56 /* blue_left_arrow.png */; };
-		21F6DA01181087F800B52D56 /* blue_man.png in Resources */ = {isa = PBXBuildFile; fileRef = 21F6D9F8181087F800B52D56 /* blue_man.png */; };
-		21F6DA02181087F800B52D56 /* blue_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21F6D9F9181087F800B52D56 /* blue_x.png */; };
-		21F6DA03181087F800B52D56 /* blue_rotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 21F6D9FA181087F800B52D56 /* blue_rotate.png */; };
-		21F6DA04181087F800B52D56 /* blue_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 21F6D9FB181087F800B52D56 /* blue_star.png */; };
-		21F6DA05181087F800B52D56 /* blue_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 21F6D9FC181087F800B52D56 /* blue_clock.png */; };
 		93789CB6181A381B00BA764C /* NSDate+DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 93789CB5181A381B00BA764C /* NSDate+DateHelper.m */; };
 		937A65BE1821B88800152BD5 /* ArrayCategoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A65BD1821B88800152BD5 /* ArrayCategoryTests.m */; };
 		937A65C01821B8B300152BD5 /* HoursModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A65BF1821B8B300152BD5 /* HoursModelTests.m */; };
@@ -266,9 +255,6 @@
 		21325305180853C100ED855D /* GFTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFTableViewController.m; sourceTree = "<group>"; };
 		2132530818085B2F00ED855D /* Intramural.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intramural.h; sourceTree = "<group>"; };
 		2132530918085B3000ED855D /* Intramural.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Intramural.m; sourceTree = "<group>"; };
-		2150C9741801BE2100DCB3E5 /* Linen - 320x640 - iPhone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Linen - 320x640 - iPhone.jpg"; sourceTree = "<group>"; };
-		2150C9751801BE2100DCB3E5 /* Linen - 640x960 - iPhone@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Linen - 640x960 - iPhone@2x.jpg"; sourceTree = "<group>"; };
-		2150C9761801BE2100DCB3E5 /* Linen - 640x1136 - iPhone 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Linen - 640x1136 - iPhone 5.jpg"; sourceTree = "<group>"; };
 		215B8D9D1809B50F009C248E /* DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelper.h; sourceTree = "<group>"; };
 		215B8D9E1809B50F009C248E /* DateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateHelper.m; sourceTree = "<group>"; };
 		215B8D9F1809B50F009C248E /* GFCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GFCollection.h; path = ../GFCollection.h; sourceTree = "<group>"; };
@@ -318,14 +304,6 @@
 		21E66EB71818DD2200BA803F /* DSLCalendarDaySelection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection@2x.png"; sourceTree = "<group>"; };
 		21E66EB81818DD2200BA803F /* NSDate+DSLCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DSLCalendarView.h"; sourceTree = "<group>"; };
 		21E66EB91818DD2200BA803F /* NSDate+DSLCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DSLCalendarView.m"; sourceTree = "<group>"; };
-		21F6D9F4181087F800B52D56 /* blue_asterisk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_asterisk.png; sourceTree = "<group>"; };
-		21F6D9F6181087F800B52D56 /* blue_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_check.png; sourceTree = "<group>"; };
-		21F6D9F7181087F800B52D56 /* blue_left_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_left_arrow.png; sourceTree = "<group>"; };
-		21F6D9F8181087F800B52D56 /* blue_man.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_man.png; sourceTree = "<group>"; };
-		21F6D9F9181087F800B52D56 /* blue_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_x.png; sourceTree = "<group>"; };
-		21F6D9FA181087F800B52D56 /* blue_rotate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_rotate.png; sourceTree = "<group>"; };
-		21F6D9FB181087F800B52D56 /* blue_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_star.png; sourceTree = "<group>"; };
-		21F6D9FC181087F800B52D56 /* blue_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_clock.png; sourceTree = "<group>"; };
 		93789CB4181A381B00BA764C /* NSDate+DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateHelper.h"; sourceTree = "<group>"; };
 		93789CB5181A381B00BA764C /* NSDate+DateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateHelper.m"; sourceTree = "<group>"; };
 		937A65BD1821B88800152BD5 /* ArrayCategoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayCategoryTests.m; sourceTree = "<group>"; };
@@ -380,10 +358,6 @@
 		2119C90317FF1A2800D4A284 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				2150C9741801BE2100DCB3E5 /* Linen - 320x640 - iPhone.jpg */,
-				2150C9751801BE2100DCB3E5 /* Linen - 640x960 - iPhone@2x.jpg */,
-				2150C9761801BE2100DCB3E5 /* Linen - 640x1136 - iPhone 5.jpg */,
-				21F6D9F3181087F800B52D56 /* blue_icons */,
 				21BC3F3418012F6500F6C4E3 /* gray */,
 				21BC3F3318012F5600F6C4E3 /* white */,
 			);
@@ -795,21 +769,6 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		21F6D9F3181087F800B52D56 /* blue_icons */ = {
-			isa = PBXGroup;
-			children = (
-				21F6D9F4181087F800B52D56 /* blue_asterisk.png */,
-				21F6D9F6181087F800B52D56 /* blue_check.png */,
-				21F6D9F7181087F800B52D56 /* blue_left_arrow.png */,
-				21F6D9F8181087F800B52D56 /* blue_man.png */,
-				21F6D9F9181087F800B52D56 /* blue_x.png */,
-				21F6D9FA181087F800B52D56 /* blue_rotate.png */,
-				21F6D9FB181087F800B52D56 /* blue_star.png */,
-				21F6D9FC181087F800B52D56 /* blue_clock.png */,
-			);
-			path = blue_icons;
-			sourceTree = "<group>";
-		};
 		93789CB3181A37EE00BA764C /* DateHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -905,7 +864,6 @@
 				21E66EC21818DD2200BA803F /* DSLCalendar-nextMonth.png in Resources */,
 				2126B4281849277500DF79FF /* NotificationView.xib in Resources */,
 				2119C8FB17FF1A2400D4A284 /* 103-map.png in Resources */,
-				2150C9791801BE2100DCB3E5 /* Linen - 640x1136 - iPhone 5.jpg in Resources */,
 				21E66EC91818DD2200BA803F /* DSLCalendarDaySelection-left@2x.png in Resources */,
 				21E66EC51818DD2200BA803F /* DSLCalendar-previousMonth@2x.png in Resources */,
 				2119C8F817FF1A2400D4A284 /* 63-runner@2x.png in Resources */,
@@ -924,7 +882,6 @@
 				21E66ECA1818DD2200BA803F /* DSLCalendarDaySelection-middle.png in Resources */,
 				2102F7DE180F8436005FB01C /* 321-like@2x.png in Resources */,
 				2102F7E4180F845E005FB01C /* 426-calendar@2x.png in Resources */,
-				2150C9781801BE2100DCB3E5 /* Linen - 640x960 - iPhone@2x.jpg in Resources */,
 				211C2E9817FF5F4100C4400A /* 374-basketball.png in Resources */,
 				2102F7DC180F8436005FB01C /* 310-alarm-clock@2x.png in Resources */,
 				21E66EC71818DD2200BA803F /* DSLCalendarDayCallout@2x.png in Resources */,
@@ -934,9 +891,7 @@
 				21E66ECB1818DD2200BA803F /* DSLCalendarDaySelection-middle@2x.png in Resources */,
 				2119C8F917FF1A2400D4A284 /* 83-calendar.png in Resources */,
 				21278A8A1807B5A100E76BD0 /* 354-newspaper-w@2x.png in Resources */,
-				21F6D9FD181087F800B52D56 /* blue_asterisk.png in Resources */,
 				21BC3F3818012FA800F6C4E3 /* 354-newspaper@2x.png in Resources */,
-				21F6DA03181087F800B52D56 /* blue_rotate.png in Resources */,
 				2119C8FA17FF1A2400D4A284 /* 83-calendar@2x.png in Resources */,
 				2119C8F617FF1A2400D4A284 /* 53-house@2x.png in Resources */,
 				2126B4391849386600DF79FF /* HoursView.xib in Resources */,
@@ -945,24 +900,17 @@
 				2102F7DD180F8436005FB01C /* 321-like.png in Resources */,
 				21E66EC81818DD2200BA803F /* DSLCalendarDaySelection-left.png in Resources */,
 				2126B437184937BC00DF79FF /* TrafficView.xib in Resources */,
-				21F6DA04181087F800B52D56 /* blue_star.png in Resources */,
 				21278A891807B5A100E76BD0 /* 354-newspaper-w.png in Resources */,
 				21E66ECF1818DD2200BA803F /* DSLCalendarDaySelection@2x.png in Resources */,
 				21E66ECE1818DD2200BA803F /* DSLCalendarDaySelection.png in Resources */,
 				2119C8FD17FF1A2400D4A284 /* 112-group.png in Resources */,
-				2150C9771801BE2100DCB3E5 /* Linen - 320x640 - iPhone.jpg in Resources */,
 				2102F7E0180F8436005FB01C /* 332-rotate@2x.png in Resources */,
 				2119C8F417FF1A2400D4A284 /* 11-clock@2x.png in Resources */,
 				21E66EBB1818DD2200BA803F /* DSLCalendarDayCalloutView.xib in Resources */,
-				21F6DA02181087F800B52D56 /* blue_x.png in Resources */,
 				21E66ECC1818DD2200BA803F /* DSLCalendarDaySelection-right.png in Resources */,
 				2119C8FF17FF1A2400D4A284 /* 402-globe2.png in Resources */,
 				2126B42E1849365000DF79FF /* HomeView.xib in Resources */,
-				21F6DA01181087F800B52D56 /* blue_man.png in Resources */,
 				21E66EBE1818DD2200BA803F /* DSLCalendarMonthSelectorView.xib in Resources */,
-				21F6D9FF181087F800B52D56 /* blue_check.png in Resources */,
-				21F6DA00181087F800B52D56 /* blue_left_arrow.png in Resources */,
-				21F6DA05181087F800B52D56 /* blue_clock.png in Resources */,
 				218E9AFB18078F6100629285 /* 428-checkmark1@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
