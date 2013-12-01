@@ -18,4 +18,7 @@
 
 @property (nonatomic, strong) BMArrowButton* leftButton;
 @property (nonatomic, strong) BMArrowButton* rightButton;
+
+@property (nonatomic, strong) UIButton* todayButton;
+@property (nonatomic, strong) UILabel* timeLabel;
 @end
