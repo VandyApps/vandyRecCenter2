@@ -136,9 +136,17 @@ static CGFloat TodayButtonWidth = 100;
     
     UIView* contentView = [[UIView alloc] initWithFrame: CGRectMake(contentViewPadding, contentViewPadding, pager.pageSize.width - 2 * contentViewPadding, pager.pageSize.height - 2 * contentViewPadding)];
     
-    contentView.layer.borderColor = [UIColor brownColor].CGColor;
-    contentView.layer.borderWidth = 5.f;
-    contentView.layer.cornerRadius = 5.f;
+    contentView.layer.cornerRadius = 10.f;
+    
+    UIColor* vandyGold = vanderbiltGold;
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    CGFloat alpha;
+    [vandyGold getRed: &red green: &green blue: &blue alpha: &alpha];
+    UIColor* backgroundColor = [UIColor colorWithRed: red green: green blue: blue alpha: .5];
+    contentView.layer.backgroundColor = backgroundColor.CGColor;
+
     
     [view addSubview: contentView];
     
