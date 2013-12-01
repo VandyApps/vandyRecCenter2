@@ -93,13 +93,19 @@ static CGFloat buttonPadding = 100.f;
     
     //today button setup
     self.todayButton = [[UIButton alloc] initWithFrame: CGRectMake((self.optionsContentView.frame.size.width - collectiveButtonSize)/ 2.f, (self.optionsContentView.frame.size.height - buttonSize) /2.f, buttonSize, buttonSize)];
+    UIImage* todayButtonIcon = [UIImage imageNamed:@"426-calendar.png"];
     
-    self.todayButton.backgroundColor = [UIColor lightGrayColor];
+    [self.todayButton setImage: todayButtonIcon forState: UIControlStateNormal];
+    [self.todayButton addTarget: self action: @selector(todayButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     
     //favorite button setup
     self.favoriteButton = [[UIButton alloc] initWithFrame: CGRectMake(self.todayButton.frame.origin.x + self.todayButton.frame.size.width + buttonPadding, (self.optionsContentView.frame.size.height - buttonSize) / 2.f, buttonSize, buttonSize)];
-    self.favoriteButton.backgroundColor = [UIColor lightGrayColor];
+    UIImage* favoriteButtonIcon = [UIImage imageNamed: @"428-checkmark1.png"];
+    
+    [self.favoriteButton setImage: favoriteButtonIcon forState: UIControlStateNormal];
+    [self.todayButton addTarget: self action: @selector(favoriteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
     
     //add the subviews to the options view
     [self.optionsView addSubview: self.optionsContentView];
@@ -111,6 +117,45 @@ static CGFloat buttonPadding = 100.f;
 
 }
 
+#pragma mark - Events
+
+- (void) todayButtonPressed: (id) sender {
+    NSDateComponents* start = [[NSDateComponents alloc] init];
+    NSDateComponents* end = [[NSDateComponents alloc] init];
+    NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
+    
+    start.day = 1;
+    start.month = 12;
+    start.year = 2013;
+    start.weekday = 1;
+    start.calendar = calendar;
+    NSLog(@"%@", start.date);
+#warning - Add this code to the date category
+    
+    //calculate beginning of week
+    NSDate* iterationDate = [[NSDate alloc] init];
+    while (iterationDate.weekDay != 0) {
+        iterationDate = [iterationDate dateByDecrementingDay];
+    }
+    start.day = iterationDate.day;
+    start.month = iterationDate.month + 1;
+    start.year = iterationDate.year;
+    
+    //calculate end of week
+    iterationDate = [iterationDate dateByAddingTimeInterval: 60 * 60 * 24 * 6];
+    end.day = iterationDate.day;
+    end.month = iterationDate.month + 1;
+    end.year = iterationDate.year;
+    end.calendar = calendar;
+    
+    DSLCalendarRange* thisWeek = [[DSLCalendarRange alloc] initWithStartDay:start endDay:end];
+    self.calendar.selectedRange = thisWeek;
+    [self.calendar.delegate calendarView: self.calendar didSelectRange: thisWeek];
+}
+
+- (void) favoriteButtonPressed: (id) sender {
+    
+}
 
 #pragma  mark - Helper Methods
 
