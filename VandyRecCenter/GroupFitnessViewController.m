@@ -9,8 +9,8 @@
 @interface GroupFitnessViewController () <DSLCalendarViewDelegate>
 
 @property (nonatomic, strong) UIView* optionsView;
-@property (nonatomic, strong) UIView* topLayerOptionsView;
-@property (nonatomic, strong) UIView* bottomLayerOptionsView;
+@property (nonatomic, strong) UIView* optionsContentView;
+
 @end
 
 @implementation GroupFitnessViewController
@@ -23,7 +23,7 @@
 
 #pragma mark - Private Static Variables
 static CGFloat navBarHeight = 64;
-static CGFloat bottomLayerBorderDistance = 6.f;
+static CGFloat OptionsViewPadding = 6.f;
 static CGFloat buttonSize = 40.f;
 static CGFloat buttonPadding = 100.f;
 
@@ -73,31 +73,38 @@ static CGFloat buttonPadding = 100.f;
     self.optionsView.backgroundColor = [UIColor colorWithRed: .95f green: .95f blue: .95f alpha:1];
     
     
-    //set up nested views
-    self.bottomLayerOptionsView = [[UIView alloc] initWithFrame: CGRectMake(bottomLayerBorderDistance, bottomLayerBorderDistance, self.optionsView.frame.size.width - (2* bottomLayerBorderDistance), self.optionsView.frame.size.height - (2* bottomLayerBorderDistance))];
     
-    self.topLayerOptionsView = [[UIView alloc] initWithFrame: CGRectMake(bottomLayerBorderDistance * 2, bottomLayerBorderDistance * 2, self.optionsView.frame.size.width - (4* bottomLayerBorderDistance), self.optionsView.frame.size.height - (4* bottomLayerBorderDistance))];
     
-    self.bottomLayerOptionsView.layer.borderWidth = 1.f;
-    self.bottomLayerOptionsView.layer.borderColor = [UIColor blackColor].CGColor;
-    self.topLayerOptionsView.layer.borderWidth = 1.f;
-    self.bottomLayerOptionsView.layer.borderColor = [UIColor blackColor].CGColor;
+    self.optionsContentView = [[UIView alloc] initWithFrame: CGRectMake(OptionsViewPadding * 2, OptionsViewPadding * 2, self.optionsView.frame.size.width - (4* OptionsViewPadding), self.optionsView.frame.size.height - (4* OptionsViewPadding))];
+    self.optionsContentView.layer.cornerRadius = 10.f;
+    UIColor* vandyGold = vanderbiltGold;
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    CGFloat alpha;
+    [vandyGold getRed: &red green: &green blue: &blue alpha: &alpha];
+    UIColor* backgroundColor = [UIColor colorWithRed: red green: green blue: blue alpha: .5];
+    self.optionsContentView.layer.backgroundColor = backgroundColor.CGColor;
     
     //create the buttons to the interface
     //buttons are to be nested within the bottomLayer for the
     //options view
     CGFloat collectiveButtonSize = (buttonSize * 2) + buttonPadding;
-    self.todayButton = [[UIButton alloc] initWithFrame: CGRectMake((self.topLayerOptionsView.frame.size.width - collectiveButtonSize)/ 2.f, (self.topLayerOptionsView.frame.size.height - buttonSize) /2.f, buttonSize, buttonSize)];
+    
+    //today button setup
+    self.todayButton = [[UIButton alloc] initWithFrame: CGRectMake((self.optionsContentView.frame.size.width - collectiveButtonSize)/ 2.f, (self.optionsContentView.frame.size.height - buttonSize) /2.f, buttonSize, buttonSize)];
+    
     self.todayButton.backgroundColor = [UIColor lightGrayColor];
     
-    self.favoriteButton = [[UIButton alloc] initWithFrame: CGRectMake(self.todayButton.frame.origin.x + self.todayButton.frame.size.width + buttonPadding, (self.topLayerOptionsView.frame.size.height - buttonSize) / 2.f, buttonSize, buttonSize)];
+    
+    //favorite button setup
+    self.favoriteButton = [[UIButton alloc] initWithFrame: CGRectMake(self.todayButton.frame.origin.x + self.todayButton.frame.size.width + buttonPadding, (self.optionsContentView.frame.size.height - buttonSize) / 2.f, buttonSize, buttonSize)];
     self.favoriteButton.backgroundColor = [UIColor lightGrayColor];
     
     //add the subviews to the options view
-    [self.optionsView addSubview: self.bottomLayerOptionsView];
-    [self.optionsView addSubview: self.topLayerOptionsView];
-    [self.topLayerOptionsView addSubview: self.todayButton];
-    [self.topLayerOptionsView addSubview: self.favoriteButton];
+    [self.optionsView addSubview: self.optionsContentView];
+    [self.optionsContentView addSubview: self.todayButton];
+    [self.optionsContentView addSubview: self.favoriteButton];
     
     [self.view addSubview: self.optionsView];
     
@@ -112,20 +119,17 @@ static CGFloat buttonPadding = 100.f;
         CGRect optionsViewFrame = CGRectMake(0, self.calendar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.calendar.frame.size.height);
         self.optionsView.frame = optionsViewFrame;
         
-        CGRect bottomLayerFrame = CGRectMake(bottomLayerBorderDistance, bottomLayerBorderDistance, self.optionsView.frame.size.width - (2* bottomLayerBorderDistance), self.optionsView.frame.size.height - (2* bottomLayerBorderDistance));
-        self.bottomLayerOptionsView.frame = bottomLayerFrame;
+        CGRect topLayerFrame = CGRectMake(OptionsViewPadding * 2, OptionsViewPadding * 2, self.optionsView.frame.size.width - (4* OptionsViewPadding), self.optionsView.frame.size.height - (4* OptionsViewPadding));
         
-        CGRect topLayerFrame = CGRectMake(bottomLayerBorderDistance * 2, bottomLayerBorderDistance * 2, self.optionsView.frame.size.width - (4* bottomLayerBorderDistance), self.optionsView.frame.size.height - (4* bottomLayerBorderDistance));
-        
-        self.topLayerOptionsView.frame = topLayerFrame;
+        self.optionsContentView.frame = topLayerFrame;
         
         
         CGFloat collectiveButtonSize = (buttonSize * 2) + buttonPadding;
-        CGRect todayButtonFrame = CGRectMake((self.topLayerOptionsView.frame.size.width - collectiveButtonSize)/ 2.f, (self.topLayerOptionsView.frame.size.height - buttonSize) /2.f, buttonSize, buttonSize);
+        CGRect todayButtonFrame = CGRectMake((self.optionsContentView.frame.size.width - collectiveButtonSize)/ 2.f, (self.optionsContentView.frame.size.height - buttonSize) /2.f, buttonSize, buttonSize);
         
         self.todayButton.frame = todayButtonFrame;
         
-        CGRect favoriteButtonFrame = CGRectMake(self.todayButton.frame.origin.x + self.todayButton.frame.size.width + buttonPadding, (self.topLayerOptionsView.frame.size.height - buttonSize) / 2.f, buttonSize, buttonSize);
+        CGRect favoriteButtonFrame = CGRectMake(self.todayButton.frame.origin.x + self.todayButton.frame.size.width + buttonPadding, (self.optionsContentView.frame.size.height - buttonSize) / 2.f, buttonSize, buttonSize);
         
         self.favoriteButton.frame = favoriteButtonFrame;
 
