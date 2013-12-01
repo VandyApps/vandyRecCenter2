@@ -79,13 +79,10 @@ static CGFloat IconDimensions = 25;
     }
     
     //add the text label
-    UILabel* titleLabel = [[UILabel alloc] initWithFrame: CGRectMake(IconPadding + IconDimensions + 10, 0, self.tableView.frame.size.width - (IconDimensions + IconPadding + 40), self.tableView.frame.size.height)];
-    titleLabel.layer.borderColor = [UIColor blueColor].CGColor;
-    titleLabel.layer.borderWidth = 1.f;
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = [UIFont systemFontOfSize: 21];
-    titleLabel.text = [self.mainMenu objectAtIndex: indexPath.row];
+    UILabel* titleLabel = [[UILabel alloc] initWithFrame: CGRectMake(IconPadding + IconDimensions + 10, 0, self.tableView.frame.size.width - (IconDimensions + IconPadding + 40), CellHeight)];
     
+    titleLabel.text = [self.mainMenu objectAtIndex: indexPath.row];
+    titleLabel.textColor = [UIColor whiteColor];
     [cell addSubview: titleLabel];
 
     //add the icon
@@ -94,7 +91,7 @@ static CGFloat IconDimensions = 25;
     [cell addSubview: iconView];
     
     
-    cell.backgroundColor = (indexPath.row %2) ? cellColor1 : cellColor2;
+    cell.backgroundColor = (indexPath.row % 2) ? cellColor1 : cellColor2;
     
     
     //set the background view for a selected cell
