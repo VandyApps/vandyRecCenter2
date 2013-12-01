@@ -124,14 +124,6 @@ static CGFloat buttonPadding = 100.f;
     NSDateComponents* end = [[NSDateComponents alloc] init];
     NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
     
-    start.day = 1;
-    start.month = 12;
-    start.year = 2013;
-    start.weekday = 1;
-    start.calendar = calendar;
-    NSLog(@"%@", start.date);
-#warning - Add this code to the date category
-    
     //calculate beginning of week
     NSDate* iterationDate = [[NSDate alloc] init];
     while (iterationDate.weekDay != 0) {
