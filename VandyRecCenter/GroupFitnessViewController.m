@@ -126,20 +126,20 @@ static CGFloat buttonPadding = 100.f;
     
     //calculate beginning of week
     NSDate* iterationDate = [[NSDate alloc] init];
-    while ([iterationDate weekDayForTimeZone: NasvhilleTime] != 0) {
+    while ([iterationDate weekDayForTimeZone: NashvilleTime] != 0) {
         iterationDate = [iterationDate dateByDecrementingDay];
         
     }
-    start.day = [iterationDate dayForTimeZone: NasvhilleTime];
-    start.month = [iterationDate monthForTimeZone: NasvhilleTime] + 1;
-    start.year = [iterationDate yearForTimeZone: NasvhilleTime];
+    start.day = [iterationDate dayForTimeZone: NashvilleTime];
+    start.month = [iterationDate monthForTimeZone: NashvilleTime] + 1;
+    start.year = [iterationDate yearForTimeZone: NashvilleTime];
     start.calendar = calendar;
     
     //calculate end of week
     iterationDate = [iterationDate dateByAddingTimeInterval: 60 * 60 * 24 * 6];
-    end.day = [iterationDate dayForTimeZone: NasvhilleTime];
-    end.month = [iterationDate monthForTimeZone: NasvhilleTime] + 1;
-    end.year = [iterationDate yearForTimeZone: NasvhilleTime];
+    end.day = [iterationDate dayForTimeZone: NashvilleTime];
+    end.month = [iterationDate monthForTimeZone: NashvilleTime] + 1;
+    end.year = [iterationDate yearForTimeZone: NashvilleTime];
     end.calendar = calendar;
     
     DSLCalendarRange* thisWeek = [[DSLCalendarRange alloc] initWithStartDay:start endDay:end];
@@ -200,9 +200,11 @@ static CGFloat buttonPadding = 100.f;
 #pragma mark - Modal View Prep
 
 - (void) displayResultsFromDate: (NSDate*) start toDate: (NSDate*) end {
+
     [self addClassesToModalViewFromDate: start toDate:end];
-    [self presentViewController: self.modalView animated: YES completion:nil];
     [self.modalView.tableView reloadData];
+    [self presentViewController: self.modalView animated: YES completion: nil];
+    
 }
 
 - (void) addClassesToModalViewFromDate: (NSDate*) start toDate: (NSDate*) end {
@@ -215,10 +217,12 @@ static CGFloat buttonPadding = 100.f;
                 formatDate.timeStyle = NSDateFormatterNoStyle;
                 formatDate.dateStyle = NSDateFormatterMediumStyle;
                 
-                NSString* dateString = [NSString stringWithFormat: @"%@, %@", [formatDate stringFromDate: start], [DateHelper weekDayForIndex: [start weekDayForTimeZone: NasvhilleTime]]];
+                NSString* dateString = [NSString stringWithFormat: @"%@, %@", [formatDate stringFromDate: start], [DateHelper weekDayForIndex: [start weekDayForTimeZone: NashvilleTime]]];
                 
                 [self.modalView.classData pushGFClasses: GFClasses withTitle: dateString];
+                NSLog(@"Success");
             }
+            NSLog(@"Done");
         }];
         
         start = [start dateByIncrementingDay];

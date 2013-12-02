@@ -121,6 +121,7 @@
 
 - (void) setupTableViewForCell: (UITableViewCell*) cell atIndexPath: (NSIndexPath*) indexPath {
     NSDictionary* class = [self.classData GFClassForIndexPath: indexPath];
+    NSLog(@"Cell");
     
     static NSUInteger classNameLabelTag = 1;
     static NSUInteger hoursLabelTag = 2;
@@ -169,7 +170,6 @@
     
     if (addButton == nil) {
         addButton = [UIButton buttonWithType: UIButtonTypeContactAdd];
-        addButton.selected = YES;
         addButton.frame = CGRectMake(cell.frame.size.width - 40 - 10, 120/2.f - 40/2.f, 40, 40);
         addButton.tag = addButtonTag;
         [cell addSubview: addButton];
@@ -221,6 +221,7 @@
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"Number of rows");
     return (self.classData.sectionCount) ? [self.classData countForGFClassesInSectionAtIndex: section] : 1;
 }
 

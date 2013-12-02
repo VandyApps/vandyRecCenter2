@@ -19,5 +19,5 @@
     #define cellColor1 [UIColor colorWithRed: .28 green: .28 blue:.28 alpha:1]
     #define cellColor2 [UIColor colorWithRed: .2 green: .2 blue:.2 alpha:1]
 
-    #define NasvhilleTime [NSTimeZone timeZoneWithName: @"Central Time (US & Canada)"]
+    #define NashvilleTime [NSTimeZone timeZoneWithName: @"Central Time (US & Canada)"]
 #endif

@@ -69,10 +69,9 @@
     
 }
 - (void) GFModelForCurrentMonth:(void (^)(NSError *, GFModel *))block {
-    NSTimeZone* nashville = [NSTimeZone timeZoneWithName: NASHVILLE_TIMEZONE];
     NSDate* current = [[NSDate alloc] init];
-    NSUInteger month = [current monthForTimeZone: nashville];
-    NSUInteger year = [current yearForTimeZone: nashville];
+    NSUInteger month = [current monthForTimeZone: NashvilleTime];
+    NSUInteger year = [current yearForTimeZone: NashvilleTime];
     [self GFModelForYear: year month: month block:^(NSError *error, GFModel *model) {
         block(error, model);
     }];
