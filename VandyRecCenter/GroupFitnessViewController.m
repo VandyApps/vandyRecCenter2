@@ -214,7 +214,9 @@ static CGFloat buttonPadding = 100.f;
                 NSDateFormatter* formatDate = [[NSDateFormatter alloc] init];
                 formatDate.timeStyle = NSDateFormatterNoStyle;
                 formatDate.dateStyle = NSDateFormatterMediumStyle;
-                                NSString* dateString = [formatDate stringFromDate: start];
+                
+                NSString* dateString = [NSString stringWithFormat: @"%@, %@", [formatDate stringFromDate: start], [DateHelper weekDayForIndex: [start weekDayForTimeZone: NasvhilleTime]]];
+                
                 [self.modalView.classData pushGFClasses: GFClasses withTitle: dateString];
             }
         }];
