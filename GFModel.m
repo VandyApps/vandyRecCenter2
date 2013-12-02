@@ -134,15 +134,14 @@
 
 - (NSDictionary*) currentGFClass {
     NSDate *currentDate = [[NSDate alloc] init];
-    NSTimeZone* nashville = [NSTimeZone timeZoneWithName: NASHVILLE_TIMEZONE];
-    if (self.month == [currentDate monthForTimeZone: nashville] && self.year == [currentDate yearForTimeZone: nashville ]) {
+    if (self.month == [currentDate monthForTimeZone: NashvilleTime] && self.year == [currentDate yearForTimeZone: NashvilleTime]) {
         
-        NSArray* GFClasses = [self GFClassesForDay: [currentDate dayForTimeZone: nashville]];
+        NSArray* GFClasses = [self GFClassesForDay: [currentDate dayForTimeZone: NashvilleTime]];
         for (NSDictionary* GFClass in GFClasses) {
             NSArray* arrayOfTimes = [[GFClass objectForKey: @"timeRange"] componentsSeparatedByString: @" - "];
             TimeString* start = [[TimeString alloc] initWithString: [arrayOfTimes objectAtIndex: 0]];
             TimeString* end = [[TimeString alloc] initWithString: [arrayOfTimes objectAtIndex: 1]];
-            TimeString* current = [[TimeString alloc] initWithTimeZone: nashville];
+            TimeString* current = [[TimeString alloc] initWithTimeZone: NashvilleTime];
             if ([TimeString compareTimeString1: start timeString2: current] != NSOrderedDescending && [TimeString compareTimeString1: end timeString2: current] != NSOrderedAscending) {
                 return GFClass;
             }

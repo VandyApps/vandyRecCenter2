@@ -99,7 +99,7 @@
             block(error, nil);
         } else {
             NSDate* current = [[NSDate alloc] init];
-            NSUInteger day = [current dayForTimeZone: [NSTimeZone timeZoneWithName: NASHVILLE_TIMEZONE]];
+            NSUInteger day = [current dayForTimeZone: NashvilleTime];
             NSArray* currentClasses = [model GFClassesForDay: day];
             currentClasses = [self filterClasses: currentClasses bySpecialDateForYear: [current year] month: [current month] day: [current day]];
             block(nil, currentClasses);
@@ -109,7 +109,7 @@
 
 - (void) GFClassesForDaysAfterCurrentDay:(NSInteger)days block:(void (^)(NSError *, NSArray *))block {
     
-    NSDate* date = [DateHelper currentDateForTimeZone:[NSTimeZone timeZoneWithName: NASHVILLE_TIMEZONE]];
+    NSDate* date = [DateHelper currentDateForTimeZone: NashvilleTime];
     //add days to the date
     date = [date dateByAddingTimeInterval: days * 24 * 60 * 60];
     
@@ -162,8 +162,8 @@
 
 - (void) loadCurrentMonth:(void (^)(NSError *, GFModel *))block {
     NSDate *current = [[NSDate alloc] init];
-    NSUInteger month = [current monthForTimeZone: [NSTimeZone timeZoneWithName: NASHVILLE_TIMEZONE]];
-    NSUInteger year = [current yearForTimeZone: [NSTimeZone timeZoneWithName: NASHVILLE_TIMEZONE]];
+    NSUInteger month = [current monthForTimeZone: NashvilleTime];
+    NSUInteger year = [current yearForTimeZone: NashvilleTime];
     [self loadMonth: month andYear: year block:^(NSError *error, GFModel *model) {
         if (error) {
             block(error, nil);

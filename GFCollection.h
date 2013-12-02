@@ -13,9 +13,6 @@
 #import "NSDate-MyDateClass.h"
 #import "DateHelper.h"
 
-#ifndef NASHVILLE_TIMEZONE
-#define NASHVILLE_TIMEZONE @"America/Chicago"
-#endif
 
 @interface GFCollection : NSObject
 
