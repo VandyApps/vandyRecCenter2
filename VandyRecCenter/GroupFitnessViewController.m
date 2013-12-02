@@ -126,18 +126,20 @@ static CGFloat buttonPadding = 100.f;
     
     //calculate beginning of week
     NSDate* iterationDate = [[NSDate alloc] init];
-    while (iterationDate.weekDay != 0) {
+    while ([iterationDate weekDayForTimeZone: NasvhilleTime] != 0) {
         iterationDate = [iterationDate dateByDecrementingDay];
+        
     }
-    start.day = iterationDate.day;
-    start.month = iterationDate.month + 1;
-    start.year = iterationDate.year;
+    start.day = [iterationDate dayForTimeZone: NasvhilleTime];
+    start.month = [iterationDate monthForTimeZone: NasvhilleTime] + 1;
+    start.year = [iterationDate yearForTimeZone: NasvhilleTime];
+    start.calendar = calendar;
     
     //calculate end of week
     iterationDate = [iterationDate dateByAddingTimeInterval: 60 * 60 * 24 * 6];
-    end.day = iterationDate.day;
-    end.month = iterationDate.month + 1;
-    end.year = iterationDate.year;
+    end.day = [iterationDate dayForTimeZone: NasvhilleTime];
+    end.month = [iterationDate monthForTimeZone: NasvhilleTime] + 1;
+    end.year = [iterationDate yearForTimeZone: NasvhilleTime];
     end.calendar = calendar;
     
     DSLCalendarRange* thisWeek = [[DSLCalendarRange alloc] initWithStartDay:start endDay:end];
