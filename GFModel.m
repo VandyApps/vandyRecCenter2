@@ -43,6 +43,22 @@
     if (month < 0 || year < 0) {
         self.month = -1;
         self.year = -1;
+        [self.webClient fetchGroupFitness:^(NSError *error, NSArray *classes) {
+            
+            if (error) {
+                block(error, classes);
+            } else {
+                self.dataLoaded = YES;
+                self.GFClasses = classes;
+                
+                block(nil, classes);
+            }
+        }];
+        
+    } else {
+        self.month = month;
+        self.year = year;
+        
         [self.webClient fetchGroupFitnessForMonth: month year: year block:^(NSError *error, NSArray *classes) {
             
             if (error) {
@@ -50,19 +66,7 @@
             } else {
                 self.dataLoaded = YES;
                 self.GFClasses = classes;
-                block(nil, classes);
-            }
-        }];
-    } else {
-        self.month = month;
-        self.year = year;
-        [self.webClient fetchGroupFitness:^(NSError *error, NSArray *classes) {
-    
-            if (error) {
-                block(error, classes);
-            } else {
-                self.dataLoaded = YES;
-                self.GFClasses = classes;
+                
                 block(nil, classes);
             }
         }];
@@ -75,14 +79,17 @@
 #pragma mark - Public
 
 - (NSArray*) GFClassesForDay:(NSUInteger)day {
+    
     //check if the GFModel instance is for a given
     //month
     if (self.month >= 0) {
+        
         NSArray *GFClasses = [[NSArray alloc] init];
         for (NSDictionary* GFClass in self.GFClasses) {
             
             if ([self GFClass: GFClass isOnDay: day]) {
                 GFClasses = [GFClasses arrayByAddingObject: GFClass];
+                
             }
         }
         
@@ -104,8 +111,10 @@
 
 
 - (BOOL) GFClass: (NSDictionary*) GFClass isOnDay: (NSUInteger) day {
+    
     NSDate *date = [NSDate dateWithYear: self.year month: self.month andDay: day];
-    if ([[GFClass objectForKey: @"dayOfWeek"] intValue] != [date weekDay]) {
+    
+    if ([[GFClass objectForKey: @"dayOfWeek"] intValue] != (NSInteger) date.weekDay) {
        
         return NO;
     }

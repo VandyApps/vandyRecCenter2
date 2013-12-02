@@ -211,6 +211,8 @@ static CGFloat buttonPadding = 100.f;
     
     while ([start compare: end] != NSOrderedDescending) {
         [self.collection GFClassesForYear: start.year month:start.month day:start.day block:^(NSError *error, NSArray *GFClasses) {
+            
+            
             //must check for errors
             if (GFClasses.count) {
                 NSDateFormatter* formatDate = [[NSDateFormatter alloc] init];
@@ -253,6 +255,7 @@ static CGFloat buttonPadding = 100.f;
     }
     
     [self.collection loadMonth: startDate.month andYear:startDate.year block:^(NSError *error, GFModel *model) {
+        
         if (fetchFromServer && !makeTwoFetches) {
             [self displayResultsFromDate: startDate toDate: endDate];
             [HUD hide: YES];
@@ -262,6 +265,7 @@ static CGFloat buttonPadding = 100.f;
     
     if (makeTwoFetches) {
         [self.collection loadMonth: endDate.month andYear:endDate.year block:^(NSError *error, GFModel *model) {
+            
             if (fetchFromServer) {
                 [self displayResultsFromDate: startDate toDate: endDate];
                 [HUD hide: YES];

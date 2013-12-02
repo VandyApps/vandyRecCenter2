@@ -83,11 +83,14 @@
 - (void) GFClassesForYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day block:(void (^)(NSError *, NSArray *))block {
     
     [self GFModelForYear: year month: month block:^(NSError *error, GFModel *model) {
+        
         if (error) {
             block(error, nil);
         } else {
+            
             NSArray* classesForDay = [model GFClassesForDay: day];
             classesForDay = [self filterClasses: classesForDay bySpecialDateForYear: year month:month day: day];
+            
             block(nil,classesForDay);
         }
     }];
@@ -147,13 +150,16 @@
     }
     
     if (!foundModel) {
+        
         GFModel* newModel = [[GFModel alloc] init];
         [newModel loadData:^(NSError *error, NSArray *data) {
             if (error) {
                 block(error, nil);
             } else {
+                
                 self.models = [self.models arrayByAddingObject: newModel];
                 [self sort];
+                
                 block(nil, newModel);
             }
         } forMonth: month andYear: year];
