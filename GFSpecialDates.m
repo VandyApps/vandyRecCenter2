@@ -29,23 +29,24 @@
 #pragma mark - Public
 
 - (void) loadData:(void (^)(NSError *, GFSpecialDates *))block {
-    
-    
-    if (self.specialDates == nil) {
-       
+
+    if (self.dates == nil) {
+        
         //month and year do not matter for special dates type
         [self.webClient fetchGroupFitnessSpecialDates:^(NSError *error, NSArray *specialDates) {
             
             if (specialDates != nil) {
-                self.specialDates = specialDates;
+                self.dates = specialDates;
             }
             block(error, self);
             
         }];
-
+        
     } else {
+        
         block(nil, self);
     }
+
 }
 
 - (BOOL) isSpecialDateForDate:(NSDate *)date {
@@ -62,7 +63,7 @@
 
 - (NSDictionary*) specialDateForDate:(NSDate *)date {
     
-    for (NSDictionary* specialDate in self.specialDates) {
+    for (NSDictionary* specialDate in self.dates) {
         NSDate* startDate = [NSDate dateWithDateString: [specialDate objectForKey: @"startDate"]];
         NSDate* endDate = [NSDate dateWithDateString: [specialDate objectForKey: @"endDate"]];
         if (([date compare: startDate] == NSOrderedDescending || [date compare: startDate] == NSOrderedSame) && ([date compare: endDate] == NSOrderedAscending || [date compare: endDate] == NSOrderedSame)) {

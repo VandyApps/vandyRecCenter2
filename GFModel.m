@@ -88,6 +88,7 @@
         for (NSDictionary* GFClass in self.GFClasses) {
             
             if ([self GFClass: GFClass isOnDay: day]) {
+                
                 GFClasses = [GFClasses arrayByAddingObject: GFClass];
                 
             }
@@ -113,6 +114,10 @@
 - (BOOL) GFClass: (NSDictionary*) GFClass isOnDay: (NSUInteger) day {
     
     NSDate *date = [NSDate dateWithYear: self.year month: self.month andDay: day];
+    NSLog(@"%u", day);
+    NSLog(@"%@", date);
+    NSLog(@"%i", date.weekDay);
+    NSLog(@"%i", [[GFClass objectForKey: @"dayOfWeek"] intValue]);
     
     if ([[GFClass objectForKey: @"dayOfWeek"] intValue] != (NSInteger) date.weekDay) {
        
@@ -124,6 +129,7 @@
 
     NSDate* startDate = [NSDate dateWithYear: [[startDateArray objectAtIndex: 2] intValue]  month:[[startDateArray objectAtIndex: 0] intValue] - 1 andDay:[[startDateArray objectAtIndex: 1] intValue]];
     if ([startDate compare: date] == NSOrderedDescending) {
+        
         return NO;
     }
     NSString* endDateString = [GFClass objectForKey: @"endDate"];
@@ -131,6 +137,7 @@
         NSArray* endDateArray = [endDateString componentsSeparatedByString: @"/"];
         NSDate* endDate = [NSDate dateWithYear: [[endDateArray objectAtIndex: 2] intValue] month: [[endDateArray objectAtIndex: 0] intValue] - 1 andDay: [[endDateArray objectAtIndex: 1] intValue] ];
         if ([date compare: endDate] == NSOrderedDescending) {
+            
             return NO;
         }
     }

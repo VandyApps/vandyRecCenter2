@@ -12,7 +12,7 @@
 
 @interface GFSpecialDates : NSObject
 
-@property (nonatomic, strong) NSArray* specialDates;
+@property (nonatomic, strong) NSArray* dates;
 
 //loads the data and places the data within the specialDates property
 //if this is called subsequently after the load, then it does not

@@ -89,6 +89,7 @@
         } else {
             
             NSArray* classesForDay = [model GFClassesForDay: day];
+            
             classesForDay = [self filterClasses: classesForDay bySpecialDateForYear: year month:month day: day];
             
             block(nil,classesForDay);
@@ -135,35 +136,42 @@
 //loading methods do not need to be called unless a model wants to be
 //reloaded.  Getters will automatically load data
 - (void) loadMonth:(NSUInteger)month andYear:(NSUInteger)year block:(void (^)(NSError *, GFModel *))block {
-    BOOL foundModel = NO;
-    for (GFModel* model in self.models) {
-        if (model.month == month && model.year == year) {
-            foundModel = YES;
-            [model loadData:^(NSError *error, NSArray *data) {
+    //load special dates before trying to do anything else
+    [self loadSpecialDates:^{
+        
+        BOOL foundModel = NO;
+        for (GFModel* model in self.models) {
+            if (model.month == month && model.year == year) {
+                foundModel = YES;
+                [model loadData:^(NSError *error, NSArray *data) {
+                    if (error) {
+                        block(error, nil);
+                    } else {
+                        block(nil, model);
+                    }
+                } forMonth: month andYear: year];
+            }
+        }
+        
+        if (!foundModel) {
+            
+            GFModel* newModel = [[GFModel alloc] init];
+            [newModel loadData:^(NSError *error, NSArray *data) {
                 if (error) {
                     block(error, nil);
                 } else {
-                    block(nil, model);
+                    
+                    self.models = [self.models arrayByAddingObject: newModel];
+                    [self sort];
+                    
+                    block(nil, newModel);
                 }
             } forMonth: month andYear: year];
         }
-    }
-    
-    if (!foundModel) {
         
-        GFModel* newModel = [[GFModel alloc] init];
-        [newModel loadData:^(NSError *error, NSArray *data) {
-            if (error) {
-                block(error, nil);
-            } else {
-                
-                self.models = [self.models arrayByAddingObject: newModel];
-                [self sort];
-                
-                block(nil, newModel);
-            }
-        } forMonth: month andYear: year];
-    }
+        
+    }];
+    
 }
 
 - (void) loadCurrentMonth:(void (^)(NSError *, GFModel *))block {
@@ -209,28 +217,41 @@
 
 
 #pragma mark - Private
+- (void) loadSpecialDates: (void(^)()) completion {
+    static BOOL isLoaded = NO;
+    
+    if (!isLoaded) {
+        
+        [self.specialDates loadData:^(NSError *error, GFSpecialDates *specialDates) {
+            isLoaded = YES;
+            
+            completion();
+        }];
+    } else {
+        
+        completion();
+    }
+    
+}
 
+/*SHOULD CALL LOAD SPECIALDATES BEFORE THIS METHOD IS CALLED FOR IT TO WORK PROPERLY*/
 - (NSArray*) filterClasses: (NSArray*) GFClasses bySpecialDateForYear: (NSUInteger) year month: (NSUInteger) month day: (NSUInteger) day {
     
-    __block NSArray* filteredClasses = [[NSArray alloc] init];
-    [self.specialDates loadData:^(NSError *error, GFSpecialDates *specialDates) {
-        
-        
-        if ([specialDates isSpecialDateForYear: year month: month day: day]) {
-            for (NSDictionary* GFClass in GFClasses) {
-                if ([[GFClass objectForKey: @"specialDateClass"] boolValue]) {
-                    filteredClasses = [filteredClasses arrayByAddingObject: GFClass];
-                }
-            }
-        } else {
-            for (NSDictionary* GFClass in GFClasses) {
-                if (![[GFClass objectForKey: @"specialDateClass"] boolValue]) {
-                    filteredClasses = [filteredClasses arrayByAddingObject: GFClass];
-                }
+    NSArray* filteredClasses = [[NSArray alloc] init];
+    
+    if ([self.specialDates isSpecialDateForYear: year month: month day: day]) {
+        for (NSDictionary* GFClass in GFClasses) {
+            if ([[GFClass objectForKey: @"specialDateClass"] boolValue]) {
+                filteredClasses = [filteredClasses arrayByAddingObject: GFClass];
             }
         }
-        
-    }];
+    } else {
+        for (NSDictionary* GFClass in GFClasses) {
+            if (![[GFClass objectForKey: @"specialDateClass"] boolValue]) {
+                filteredClasses = [filteredClasses arrayByAddingObject: GFClass];
+            }
+        }
+    }
     return filteredClasses;
 }
 @end
