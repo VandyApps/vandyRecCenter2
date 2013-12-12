@@ -84,8 +84,6 @@ static CGFloat buttonPadding = 100.f;
 /* this should be called after setUpCalendar*/
 - (void) setUpOptionPanel {
     
-    NSLog(@"%g", self.view.frame.size.height);
-    
     self.optionsView = [[UIView alloc] initWithFrame: CGRectMake(0, self.calendar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.calendar.frame.size.height)];
     
     self.optionsView.backgroundColor = [UIColor colorWithRed: .95f green: .95f blue: .95f alpha:1];
@@ -235,6 +233,15 @@ static CGFloat buttonPadding = 100.f;
 - (void)calendarView:(DSLCalendarView*)calendarView didSelectRange:(DSLCalendarRange*)range {
     NSDate* startDate = range.startDay.date;
     NSDate* endDate = range.endDay.date;
+    
+    //set the title of the modal view
+    NSDateFormatter* df = [[NSDateFormatter alloc] init];
+    df.dateStyle = NSDateFormatterShortStyle;
+    df.timeStyle = NSDateFormatterNoStyle;
+    self.modalView.titleView.text = ([startDate compare: endDate] != NSOrderedSame) ?
+    [NSString stringWithFormat: @"%@ - %@", [df stringFromDate: startDate], [df stringFromDate: endDate]] :
+    [df stringFromDate: startDate];
+    
     
     BOOL fetchFromServer = ![self.collection dataLoadedForMonth: startDate.month year: startDate.year]
                         || ![self.collection dataLoadedForMonth: endDate.month year:endDate.year];

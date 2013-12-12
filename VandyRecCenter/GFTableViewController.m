@@ -121,7 +121,6 @@
 
 - (void) setupTableViewForCell: (UITableViewCell*) cell atIndexPath: (NSIndexPath*) indexPath {
     NSDictionary* class = [self.classData GFClassForIndexPath: indexPath];
-    NSLog(@"Cell");
     
     static NSUInteger classNameLabelTag = 1;
     static NSUInteger hoursLabelTag = 2;
