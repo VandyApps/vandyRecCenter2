@@ -22,7 +22,6 @@
 @synthesize optionsView = _optionsView;
 
 #pragma mark - Private Static Variables
-static CGFloat navBarHeight = 64;
 static CGFloat OptionsViewPadding = 6.f;
 static CGFloat buttonSize = 40.f;
 static CGFloat buttonPadding = 100.f;
@@ -44,15 +43,26 @@ static CGFloat buttonPadding = 100.f;
     return _modalView;
 }
 
-#pragma mark - Initializer
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+#pragma mark - Lifecycle
+
+- (void)viewDidLoad
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
 }
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear: YES];
+    [self setup];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 
 #pragma mark - Setup
 
@@ -68,7 +78,10 @@ static CGFloat buttonPadding = 100.f;
 
 /* this should be called after setUpCalendar*/
 - (void) setUpOptionPanel {
-    self.optionsView = [[UIView alloc] initWithFrame: CGRectMake(0, self.calendar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.calendar.frame.size.height - navBarHeight)];
+    
+    NSLog(@"%g", self.view.frame.size.height);
+    
+    self.optionsView = [[UIView alloc] initWithFrame: CGRectMake(0, self.calendar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.calendar.frame.size.height)];
     
     self.optionsView.backgroundColor = [UIColor colorWithRed: .95f green: .95f blue: .95f alpha:1];
     
@@ -177,25 +190,6 @@ static CGFloat buttonPadding = 100.f;
 }
 
 
-#pragma mark - Lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self setup];
-}
-
-- (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear: YES];
-    
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Modal View Prep
 
