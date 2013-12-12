@@ -54,7 +54,12 @@ static CGFloat buttonPadding = 100.f;
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear: YES];
-    [self setup];
+    static BOOL initialSetup = YES;
+    if (initialSetup) {
+        initialSetup = NO;
+        [self setup];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
