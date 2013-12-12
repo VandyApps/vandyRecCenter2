@@ -10,4 +10,20 @@
 
 @implementation GFFavorite
 
+- (id) initWithGFClass: (NSDictionary*) GFClass {
+    self = [super init];
+    if (self) {
+        self.GFClass = GFClass;
+    }
+    return self;
+}
+
+- (BOOL) isEqualToGFClass: (NSDictionary*) GFClass {
+    NSLog(@"%@", [GFClass objectForKey: @"_id"]);
+    return [[self.GFClass objectForKey: @"_id"] isEqualToString: [GFClass objectForKey: @"_id"]];
+}
+
+- (NSComparisonResult) compare: (GFFavorite*) favorite {
+    return NSOrderedSame;
+}
 @end

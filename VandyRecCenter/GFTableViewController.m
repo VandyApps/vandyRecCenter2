@@ -175,6 +175,8 @@
     
     if (addButton == nil) {
         addButton = [[BMAddRemoveButton alloc] initWithFrame:CGRectMake(cell.frame.size.width - 30 - 10, 120/2.f - 30/2.f, 30, 30)];
+        addButton.tag = addButtonTag;
+        
         [cell addSubview: addButton];
     }
     
@@ -196,6 +198,10 @@
     locationLabel.text = [class objectForKey: @"location"];
     locationLabel.font = [UIFont systemFontOfSize: 12];
     locationLabel.textColor = [UIColor blueColor];
+    
+    [addButton addTarget: self action: @selector(addButtonClicked:) forControlEvents: UIControlEventTouchUpInside];
+    addButton.selected = [[GFFavorites sharedInstance] contains: class];
+    addButton.info = @{@"GFClass": class};
 }
 
 - (void) setupBlankTableViewCell: (UITableViewCell*) cell {
@@ -230,6 +236,26 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
     return (self.classData.sectionCount) ? self.classData.sectionCount : 1;
+}
+
+#pragma mark Add button
+
+- (void) addButtonClicked: (BMAddRemoveButton*) sender {
+    sender.selected = !sender.selected;
+    NSString* message;
+    if (sender.selected) {
+        message = @"Class Added";
+        [[GFFavorites sharedInstance] add: [sender.info objectForKey: @"GFClass"]];
+    } else {
+        message = @"Class Removed";
+        [[GFFavorites sharedInstance] remove: [sender.info objectForKey: @"GFClass"]];
+    }
+    MBProgressHUD* HUD = [MBProgressHUD showHUDAddedTo: self.tableView animated: YES];
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.customView = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"37x-Checkmark.png"]];
+    HUD.labelText = message;
+    [HUD hide: YES afterDelay: .7];
+
 }
 
 @end

@@ -16,6 +16,12 @@
 static GFFavorites* sInstance;
 static NSString* mPathname;
 
+- (NSArray*) GFClasses {
+    if (_GFClasses == nil) {
+        _GFClasses = @[];
+    }
+    return _GFClasses;
+}
 - (void) load {
     
 }
@@ -25,14 +31,14 @@ static NSString* mPathname;
 
 
 + (GFFavorites*) sharedInstance {
-    if (sInstance) {
+    if (sInstance == nil) {
         sInstance = [[GFFavorites alloc] init];
     }
     return sInstance;
 }
 
 - (void) add: (NSDictionary*) GFClass {
-    _GFClasses = [self.GFClasses arrayByAddingObject: GFClass];
+    _GFClasses = [self.GFClasses arrayByAddingObject: [[GFFavorite alloc] initWithGFClass: GFClass]];
 }
 - (void) remove: (NSDictionary*) GFClass {
     for (NSUInteger i = 0; i < self.GFClasses.count; ++i) {
@@ -49,6 +55,7 @@ static NSString* mPathname;
 }
 
 - (BOOL) contains: (NSDictionary*) GFClass {
+    
     for (GFFavorite* favorite in self.GFClasses) {
         if ([favorite isEqualToGFClass: GFClass]) {
             return YES;

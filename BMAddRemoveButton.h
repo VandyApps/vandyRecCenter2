@@ -10,4 +10,7 @@
 
 @interface BMAddRemoveButton : UIButton
 
+//a dictionary object for storing whatever info you would like
+//useful for responding to events
+@property (nonatomic, strong) NSDictionary* info;
 @end
