@@ -23,7 +23,7 @@
 
 - (NSArray*) GFClassesForTable {
     if (_GFClassesForTable == nil) {
-        _GFClassesForTable = @[];
+        _GFClassesForTable = [[NSArray alloc] init];
     }
     return _GFClassesForTable;
 }
@@ -46,8 +46,7 @@
 
 - (void) pushGFClasses: (NSArray*) GFClasses withTitle: (NSString*) title {
     NSDictionary* newEntry = @{@"title": title, @"GFClasses": GFClasses};
-    self.GFClassesForTable = [_GFClassesForTable arrayByAddingObject: newEntry];
-    NSLog(@"Table: %@",  self.GFClassesForTable);
+    _GFClassesForTable = [self.GFClassesForTable arrayByAddingObject: newEntry];
 }
 
 - (void) clearClasses {
@@ -56,11 +55,12 @@
 
 @end
 
-
 @implementation GFTableViewController
 
 @synthesize tableView = _tableView;
 @synthesize classData = _classData;
+@synthesize titleView = _titleView;
+@synthesize header = _header;
 
 #pragma mark - Getters
 
@@ -72,6 +72,14 @@
     return _classData;
 }
 
+
+#pragma mark - Setters
+
+- (void) setHeader:(NSString *)header {
+    _header = header;
+    _titleView.text = _header;
+}
+
 #pragma mark - Events
 
 - (IBAction)done:(id)sender {
@@ -80,16 +88,13 @@
 }
 
 #pragma mark - Lifecycle
-
-- (void) viewDidLoad:(BOOL)animated {
-    [super viewDidAppear: animated];
-    
-}
-
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear: animated];
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    [self.tableView reloadData];
     self.navigationView.backgroundColor = vanderbiltGold;
+    _titleView.text = _header;
 }
+
 
 
 #pragma mark - TableViewDataSource

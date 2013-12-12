@@ -200,6 +200,9 @@ static CGFloat buttonPadding = 100.f;
 
     [self addClassesToModalViewFromDate: start toDate:end];
     [self.modalView.tableView reloadData];
+    
+    NSLog(@"%@", self.modalView.classData);
+    
     [self presentViewController: self.modalView animated: YES completion: nil];
     
 }
@@ -209,8 +212,8 @@ static CGFloat buttonPadding = 100.f;
     while ([start compare: end] != NSOrderedDescending) {
         [self.collection GFClassesForYear: start.year month:start.month day:start.day block:^(NSError *error, NSArray *GFClasses) {
             
+#warning - Must check for errors
             
-            //must check for errors
             if (GFClasses.count) {
                 NSDateFormatter* formatDate = [[NSDateFormatter alloc] init];
                 formatDate.timeStyle = NSDateFormatterNoStyle;
@@ -219,9 +222,7 @@ static CGFloat buttonPadding = 100.f;
                 NSString* dateString = [NSString stringWithFormat: @"%@, %@", [formatDate stringFromDate: start], [DateHelper weekDayForIndex: [start weekDayForTimeZone: NashvilleTime]]];
                 
                 [self.modalView.classData pushGFClasses: GFClasses withTitle: dateString];
-                NSLog(@"Success");
             }
-            NSLog(@"Done");
         }];
         
         start = [start dateByIncrementingDay];
@@ -238,10 +239,9 @@ static CGFloat buttonPadding = 100.f;
     NSDateFormatter* df = [[NSDateFormatter alloc] init];
     df.dateStyle = NSDateFormatterShortStyle;
     df.timeStyle = NSDateFormatterNoStyle;
-    self.modalView.titleView.text = ([startDate compare: endDate] != NSOrderedSame) ?
+    self.modalView.header = ([startDate compare: endDate] != NSOrderedSame) ?
     [NSString stringWithFormat: @"%@ - %@", [df stringFromDate: startDate], [df stringFromDate: endDate]] :
     [df stringFromDate: startDate];
-    
     
     BOOL fetchFromServer = ![self.collection dataLoadedForMonth: startDate.month year: startDate.year]
                         || ![self.collection dataLoadedForMonth: endDate.month year:endDate.year];
@@ -260,25 +260,30 @@ static CGFloat buttonPadding = 100.f;
         [HUD show: YES];
     }
     
-    [self.collection loadMonth: startDate.month andYear:startDate.year block:^(NSError *error, GFModel *model) {
+    //must make network call to get the data
+    if (fetchFromServer) {
+        [self.collection loadMonth: startDate.month andYear:startDate.year block:^(NSError *error, GFModel *model) {
+            
+            if (!makeTwoFetches) {
+                [HUD hide: YES];
+                [self displayResultsFromDate: startDate toDate: endDate];
+                
+            }
+            
+        }];
         
-        if (fetchFromServer && !makeTwoFetches) {
-            [self displayResultsFromDate: startDate toDate: endDate];
-            [HUD hide: YES];
+        if (makeTwoFetches) {
+            [self.collection loadMonth: endDate.month andYear:endDate.year block:^(NSError *error, GFModel *model) {
+                [HUD hide: YES];
+                [self displayResultsFromDate: startDate toDate: endDate];
+            }];
         }
         
-    }];
-    
-    if (makeTwoFetches) {
-        [self.collection loadMonth: endDate.month andYear:endDate.year block:^(NSError *error, GFModel *model) {
-            
-            if (fetchFromServer) {
-                [self displayResultsFromDate: startDate toDate: endDate];
-                [HUD hide: YES];
-            }
-        }];
     }
-    
+    //can just fetch data with making a network call, data is cached
+    else {
+        [self displayResultsFromDate: startDate toDate: endDate];
+    }
 }
 
 - (void) calendarView:(DSLCalendarView *)calendarView willChangeToVisibleMonth:(NSDateComponents *)month duration:(NSTimeInterval)duration {

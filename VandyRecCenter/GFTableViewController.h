@@ -41,7 +41,9 @@
 @property (nonatomic, strong) NSArray* GFClassesToDisplay;
 @property (nonatomic, weak) IBOutlet UITableView* tableView;
 @property (nonatomic, weak) IBOutlet UIView* navigationView;
-@property (nonatomic, weak) IBOutlet UILabel* titleView;
+@property (nonatomic, weak, readonly) IBOutlet UILabel* titleView;
+@property (nonatomic, strong) NSString* header;
+
 
 - (IBAction)done:(id)sender;
 @end

@@ -205,9 +205,11 @@
 }
 
 #pragma mark - Validate
-- (BOOL) dataLoadedForMonth:(NSUInteger)year year:(NSUInteger)month {
+- (BOOL) dataLoadedForMonth:(NSUInteger)month year:(NSUInteger)year {
     for (GFModel* model in self.models) {
+        
         NSLog(@"Found model for month %u and year %u", month, year);
+        
         if (model.year == year && model.month == month) {
             return [model dataLoaded];
         }
