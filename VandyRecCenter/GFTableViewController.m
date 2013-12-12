@@ -8,7 +8,8 @@
 
 #import "GFTableViewController.h"
 #import "MBProgressHUD.h"
-
+#import "BMAddRemoveButton.h"
+#import "GFFavorites.h"
 
 @interface GFTableViewClassData()
 
@@ -138,14 +139,14 @@
     UILabel* hoursLabel;
     UILabel* instructorLabel;
     UILabel* locationLabel;
-    UIButton* addButton;
+    BMAddRemoveButton* addButton;
     UILabel* blankCellLabel;
 
     classNameLabel = (UILabel*) [cell viewWithTag: classNameLabelTag];
     hoursLabel = (UILabel*) [cell viewWithTag: hoursLabelTag];
     instructorLabel = (UILabel*) [cell viewWithTag: instructorLabelTag];
     locationLabel = (UILabel*) [cell viewWithTag: locationLabelTag];
-    addButton = (UIButton*) [cell viewWithTag: addButtonTag];
+    addButton = (BMAddRemoveButton*) [cell viewWithTag: addButtonTag];
     blankCellLabel = (UILabel*) [cell viewWithTag: blankCellTag];
     
     if (classNameLabel == nil) {
@@ -173,9 +174,7 @@
     }
     
     if (addButton == nil) {
-        addButton = [UIButton buttonWithType: UIButtonTypeContactAdd];
-        addButton.frame = CGRectMake(cell.frame.size.width - 40 - 10, 120/2.f - 40/2.f, 40, 40);
-        addButton.tag = addButtonTag;
+        addButton = [[BMAddRemoveButton alloc] initWithFrame:CGRectMake(cell.frame.size.width - 30 - 10, 120/2.f - 30/2.f, 30, 30)];
         [cell addSubview: addButton];
     }
     

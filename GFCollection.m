@@ -33,13 +33,6 @@
     return _specialDates;
 }
 
-- (GFFavorites*) favorites {
-    if (_favorites == nil) {
-        _favorites = [[GFFavorites alloc] init];
-    }
-    return _favorites;
-}
-
 
 #pragma mark - Model Getters
 - (void) GFModelForYear:(NSUInteger)year month:(NSUInteger)month block:(void (^)(NSError *error, GFModel *model))block {

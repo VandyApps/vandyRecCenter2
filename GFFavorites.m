@@ -7,105 +7,62 @@
 //
 
 #import "GFFavorites.h"
+#import "GFFavorite.h"
+
+
 
 @implementation GFFavorites
 
-@synthesize GFClasses = _favorites;
+static GFFavorites* sInstance;
+static NSString* mPathname;
 
-
-
-- (NSArray*) GFClasses {
-    if (_favorites == nil) {
-        _favorites = [[NSArray alloc] init];
-    }
-    return _favorites;
+- (void) load {
+    
 }
-- (void) add:(NSDictionary *)GFClass {
-    if (![self isFavorite: GFClass]) {
-        self.GFClasses = [self.GFClasses arrayByAddingObject: GFClass];
-        [self sort];
-        NSLog(@"%@", self.GFClasses);
-    }
+- (void) save {
+    
 }
 
-- (void) removeGFClassWithID:(NSString *)ID {
+
++ (GFFavorites*) sharedInstance {
+    if (sInstance) {
+        sInstance = [[GFFavorites alloc] init];
+    }
+    return sInstance;
+}
+
+- (void) add: (NSDictionary*) GFClass {
+    _GFClasses = [self.GFClasses arrayByAddingObject: GFClass];
+}
+- (void) remove: (NSDictionary*) GFClass {
     for (NSUInteger i = 0; i < self.GFClasses.count; ++i) {
-        if ([[[self.GFClasses objectAtIndex: i] objectForKey: @"_id"] isEqualToString: ID]) {
-            if (i == 0) {
-                self.GFClasses = [self.GFClasses subarrayWithRange: NSMakeRange(1, self.GFClasses.count - 1)];
-            } else if (i == self.GFClasses.count - 1) {
-                self.GFClasses = [self.GFClasses subarrayWithRange: NSMakeRange(0, self.GFClasses.count - 1)];
-            } else {
-                NSArray* partial1 = [self.GFClasses subarrayWithRange: NSMakeRange(0, i)];
-                NSArray* partial2 = [self.GFClasses subarrayWithRange: NSMakeRange(i+1, self.GFClasses.count - i - 1)];
-                self.GFClasses = partial1;
-                self.GFClasses = [self.GFClasses arrayByAddingObjectsFromArray: partial2];
-            }
+        if ([(GFFavorite*) self.GFClasses[i] isEqualToGFClass: GFClass]) {
+            _GFClasses = [[self.GFClasses subarrayWithRange: NSMakeRange(0, i)] arrayByAddingObjectsFromArray: [self.GFClasses subarrayWithRange:NSMakeRange(i+1, _GFClasses.count - i - 1)]];
         }
     }
-    NSLog(@"%@", self.GFClasses);
-}
-
-- (NSDictionary*) GFClassWithID: (NSString*) ID {
-    for (NSDictionary* GFClass in self.GFClasses) {
-        if ([[GFClass objectForKey: @"_id"] isEqualToString: ID]) {
-            return GFClass;
-        }
-    }
-    return nil;
 }
 
 - (void) sort {
-    self.GFClasses = [self.GFClasses sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString* startDate1 = [obj1 objectForKey: @"startDate"];
-        NSString* startDate2 = [obj2 objectForKey: @"startDate"];
-        NSArray* dateArray1 = [startDate1 componentsSeparatedByString: @"/"];
-        NSArray* dateArray2 = [startDate2 componentsSeparatedByString: @"/"];
-        if ([[dateArray1 objectAtIndex: 2] intValue] < [[dateArray2 objectAtIndex: 2] intValue]) {
-            return NSOrderedAscending;
-        } else if ([[dateArray1 objectAtIndex: 2] intValue] > [[dateArray2 objectAtIndex: 2] intValue]) {
-            return NSOrderedDescending;
-        } else {
-            //same year
-            NSString* time1 = [obj1 objectForKey: @"timeRange"];
-            NSString* startTime1 = [[time1 componentsSeparatedByString: @" - "] objectAtIndex:0];
-            
-            NSString* time2 = [obj2 objectForKey: @"timeRange"];
-            NSString* startTime2 = [[time2 componentsSeparatedByString: @" - "] objectAtIndex:0];
-            TimeString* timeString1 = [[TimeString alloc] initWithString:  startTime1];
-            TimeString* timeString2 = [[TimeString alloc] initWithString: startTime2];
-            return [TimeString compareTimeString1: timeString1 timeString2: timeString2];
-        }
+    [self.GFClasses sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [(GFFavorite*) obj1 compare: (GFFavorite*) obj2];
     }];
 }
 
-- (BOOL) isFavorite:(NSDictionary *)GFClass {
-    for (NSDictionary* favClass in self.GFClasses) {
-        if ([[GFClass objectForKey: @"_id"] isEqualToString: [favClass objectForKey: @"_id"]]) {
+- (BOOL) contains: (NSDictionary*) GFClass {
+    for (GFFavorite* favorite in self.GFClasses) {
+        if ([favorite isEqualToGFClass: GFClass]) {
             return YES;
         }
     }
     return NO;
 }
 
-#pragma mark - Array-like methods
-- (NSDictionary*) GFClassForIndex:(NSUInteger)index {
+//array-like methods
+- (NSDictionary*) GFClassForIndex: (NSUInteger) index {
     return [self.GFClasses objectAtIndex: index];
 }
 
 - (NSUInteger) count {
     return self.GFClasses.count;
-}
-
-
-#pragma mark - Persistant Data
-
-//saves data to a property list
-- (void) saveData {
-    //implement CORE DATA to save favorites list
-}
-
-- (void) loadData {
-    //implement CORE DATA to load favorites list
 }
 @end

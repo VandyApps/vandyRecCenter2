@@ -14,15 +14,19 @@
 //classes that are marked as favorites
 @property (nonatomic, strong) NSArray* GFClasses;
 //path at which data is loaded and removed
-@property (nonatomic, strong) NSString* pathName;
+@property (nonatomic, strong, readonly) NSString* pathName;
 
-- (void) loadData;
-- (void) saveData;
+- (void) load;
+- (void) save;
 
+
++ (GFFavorites*) sharedInstance;
 
 - (void) add: (NSDictionary*) GFClass;
-- (void) removeGFClassWithID: (NSString*) ID;
-- (NSDictionary*) GFClassWithID: (NSString*) ID;
+- (void) remove: (NSDictionary*) GFClass;
+
+
+
 //sorts the elements in the list of favorites
 //the GFClasses are sorted so that those with earlier
 //starting dates come first
@@ -30,9 +34,7 @@
 //then they are sorted based on the times the classes start
 - (void) sort;
 
-//determines if the dictionary already exists in the
-//list of favorites
-- (BOOL) isFavorite: (NSDictionary*) GFClass;
+- (BOOL) contains: (NSDictionary*) GFClass;
 
 //array-like methods
 - (NSDictionary*) GFClassForIndex: (NSUInteger) index;
