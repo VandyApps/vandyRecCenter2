@@ -225,7 +225,6 @@
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"Number of rows");
     return (self.classData.sectionCount) ? [self.classData countForGFClassesInSectionAtIndex: section] : 1;
 }
 

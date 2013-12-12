@@ -67,7 +67,6 @@ static BOOL initialized = NO;
     
     [self GET: @"GF" parameters: params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         block(nil, (NSArray*) responseObject);
-        NSLog(@"Fetching for month %@", responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         block(error, nil);
     }];

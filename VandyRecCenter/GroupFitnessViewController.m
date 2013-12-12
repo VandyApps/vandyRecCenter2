@@ -201,8 +201,6 @@ static CGFloat buttonPadding = 100.f;
     [self addClassesToModalViewFromDate: start toDate:end];
     [self.modalView.tableView reloadData];
     
-    NSLog(@"%@", self.modalView.classData);
-    
     [self presentViewController: self.modalView animated: YES completion: nil];
     
 }
