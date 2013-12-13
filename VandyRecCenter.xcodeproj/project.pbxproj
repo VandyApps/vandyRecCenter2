@@ -124,6 +124,9 @@
 		937A65C21821B8CF00152BD5 /* TimeStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A65C11821B8CF00152BD5 /* TimeStringTests.m */; };
 		FC21617F185A99C2002DA7E2 /* GFFavoritesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC21617E185A99C2002DA7E2 /* GFFavoritesView.xib */; };
 		FC216182185A9AD4002DA7E2 /* GFFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC216181185A9AD4002DA7E2 /* GFFavoritesViewController.m */; };
+		FC216185185AE013002DA7E2 /* BMContainerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FC216184185AE013002DA7E2 /* BMContainerButton.m */; };
+		FC216188185AE246002DA7E2 /* 298-circlex.png in Resources */ = {isa = PBXBuildFile; fileRef = FC216186185AE246002DA7E2 /* 298-circlex.png */; };
+		FC216189185AE246002DA7E2 /* 298-circlex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FC216187185AE246002DA7E2 /* 298-circlex@2x.png */; };
 		FCA506B11859911E008802F1 /* BMAddRemoveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA506B01859911E008802F1 /* BMAddRemoveButton.m */; };
 		FCE94310185A4C4300030692 /* GFFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE9430F185A4C4300030692 /* GFFavorite.m */; };
 		FCE94313185A5AF700030692 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE94311185A5AF700030692 /* 37x-Checkmark.png */; };
@@ -314,6 +317,10 @@
 		FC21617E185A99C2002DA7E2 /* GFFavoritesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GFFavoritesView.xib; sourceTree = "<group>"; };
 		FC216180185A9AD4002DA7E2 /* GFFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFFavoritesViewController.h; sourceTree = "<group>"; };
 		FC216181185A9AD4002DA7E2 /* GFFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFFavoritesViewController.m; sourceTree = "<group>"; };
+		FC216183185AE013002DA7E2 /* BMContainerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMContainerButton.h; sourceTree = "<group>"; };
+		FC216184185AE013002DA7E2 /* BMContainerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMContainerButton.m; sourceTree = "<group>"; };
+		FC216186185AE246002DA7E2 /* 298-circlex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex.png"; sourceTree = "<group>"; };
+		FC216187185AE246002DA7E2 /* 298-circlex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex@2x.png"; sourceTree = "<group>"; };
 		FCA506AF1859911E008802F1 /* BMAddRemoveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAddRemoveButton.h; sourceTree = "<group>"; };
 		FCA506B01859911E008802F1 /* BMAddRemoveButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAddRemoveButton.m; sourceTree = "<group>"; };
 		FCE9430E185A4C4300030692 /* GFFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFFavorite.h; sourceTree = "<group>"; };
@@ -725,6 +732,8 @@
 		21BC3F3418012F6500F6C4E3 /* gray */ = {
 			isa = PBXGroup;
 			children = (
+				FC216186185AE246002DA7E2 /* 298-circlex.png */,
+				FC216187185AE246002DA7E2 /* 298-circlex@2x.png */,
 				2102F7D5180F8436005FB01C /* 310-alarm-clock.png */,
 				2102F7E1180F845E005FB01C /* 426-calendar.png */,
 				2102F7E2180F845E005FB01C /* 426-calendar@2x.png */,
@@ -801,6 +810,8 @@
 			children = (
 				FCA506AF1859911E008802F1 /* BMAddRemoveButton.h */,
 				FCA506B01859911E008802F1 /* BMAddRemoveButton.m */,
+				FC216183185AE013002DA7E2 /* BMContainerButton.h */,
+				FC216184185AE013002DA7E2 /* BMContainerButton.m */,
 			);
 			name = BMAddRemoveButton;
 			sourceTree = "<group>";
@@ -909,6 +920,7 @@
 				211C2E9817FF5F4100C4400A /* 374-basketball.png in Resources */,
 				FCE94314185A5AF700030692 /* 37x-Checkmark@2x.png in Resources */,
 				2102F7DC180F8436005FB01C /* 310-alarm-clock@2x.png in Resources */,
+				FC216188185AE246002DA7E2 /* 298-circlex.png in Resources */,
 				21E66EC71818DD2200BA803F /* DSLCalendarDayCallout@2x.png in Resources */,
 				FC21617F185A99C2002DA7E2 /* GFFavoritesView.xib in Resources */,
 				2126B43B1849390300DF79FF /* GFView.xib in Resources */,
@@ -925,6 +937,7 @@
 				2102F7E3180F845E005FB01C /* 426-calendar.png in Resources */,
 				2102F7DD180F8436005FB01C /* 321-like.png in Resources */,
 				21E66EC81818DD2200BA803F /* DSLCalendarDaySelection-left.png in Resources */,
+				FC216189185AE246002DA7E2 /* 298-circlex@2x.png in Resources */,
 				2126B437184937BC00DF79FF /* TrafficView.xib in Resources */,
 				21278A891807B5A100E76BD0 /* 354-newspaper-w.png in Resources */,
 				FCE94313185A5AF700030692 /* 37x-Checkmark.png in Resources */,
@@ -1007,6 +1020,7 @@
 				21E66EC11818DD2200BA803F /* DSLCalendarView.m in Sources */,
 				215B8DAD1809B50F009C248E /* GFFavorites.m in Sources */,
 				2132530A18085B3000ED855D /* Intramural.m in Sources */,
+				FC216185185AE013002DA7E2 /* BMContainerButton.m in Sources */,
 				215B8DAB1809B50F009C248E /* DateHelper.m in Sources */,
 				212FB75918010659009C6A83 /* GroupFitnessViewController.m in Sources */,
 			);
