@@ -22,17 +22,13 @@ static NSString* mPathname;
     }
     return _GFClasses;
 }
-- (void) load {
-    
-}
-- (void) save {
-    
-}
+
 
 
 + (GFFavorites*) sharedInstance {
     if (sInstance == nil) {
         sInstance = [[GFFavorites alloc] init];
+        [sInstance load];
     }
     return sInstance;
 }
@@ -72,4 +68,42 @@ static NSString* mPathname;
 - (NSUInteger) count {
     return self.GFClasses.count;
 }
+
+#pragma mark - Persistence
+
+- (NSString *)dataFilePath
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    return [documentsDirectory stringByAppendingPathComponent: @"GFFavorites_Backup.plist"];
+}
+
+- (NSArray*) generatePList {
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    for (GFFavorite* favorite in self.GFClasses) {
+        [array addObject: favorite.GFClass];
+    }
+    return [array copy];
+}
+
+- (void) parsePList: (NSArray*) plist {
+    _GFClasses = [[NSArray alloc] init];
+    for (NSDictionary* GFClass in plist) {
+        _GFClasses = [_GFClasses arrayByAddingObject: [[GFFavorite alloc] initWithGFClass:GFClass]];
+    }
+    
+}
+
+//wipes current data and loads persisted data
+- (void) load {
+    if ([[NSFileManager defaultManager] fileExistsAtPath: [self dataFilePath]]) {
+        [self parsePList: [[NSArray alloc] initWithContentsOfFile: [self dataFilePath]]];
+    }
+    
+}
+- (void) save {
+    [[self generatePList] writeToFile: [self dataFilePath] atomically: YES];
+}
+
+
 @end

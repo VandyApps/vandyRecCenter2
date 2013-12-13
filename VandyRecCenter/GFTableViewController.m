@@ -250,6 +250,9 @@
         message = @"Class Removed";
         [[GFFavorites sharedInstance] remove: [sender.info objectForKey: @"GFClass"]];
     }
+    [[GFFavorites sharedInstance] save];
+    
+    
     MBProgressHUD* HUD = [MBProgressHUD showHUDAddedTo: self.tableView animated: YES];
     HUD.mode = MBProgressHUDModeCustomView;
     HUD.customView = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"37x-Checkmark.png"]];
