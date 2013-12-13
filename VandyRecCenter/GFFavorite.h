@@ -26,6 +26,8 @@
 @property (nonatomic, strong) TimeString* startTime;
 @property (nonatomic, strong) TimeString* endTime;
 
+@property (nonatomic, strong) NSArray* cancelledDates;
+
 
 - (id) initWithGFClass: (NSDictionary*) GFClass;
 - (BOOL) isEqualToGFClass: (NSDictionary*) GFClass;

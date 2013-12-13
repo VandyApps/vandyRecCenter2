@@ -15,6 +15,9 @@
 @synthesize startTime = _startTime;
 @synthesize endTime = _endTime;
 
+@synthesize cancelledDates = _cancelledDates;
+
+
 #pragma mark - Getters
 
 - (TimeString*) startTime {
@@ -35,6 +38,16 @@
     return _endTime;
 }
 
+
+- (NSArray*) cancelledDates {
+    if (_cancelledDates == nil) {
+        NSArray* dates = @[];
+        for (NSString* dateString in [_GFClass objectForKey: @"cancelledDates"]) {
+            dates = [dates arrayByAddingObject: [NSDate dateWithDateString: dateString]];
+        }
+    }
+    return _cancelledDates;
+}
 #pragma mark Pseudo Getters
 
 - (NSString*) className {

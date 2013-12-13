@@ -69,8 +69,8 @@
     
     [self dailyInfoLabelForCell: cell].text = [NSString stringWithFormat: @"%@s from %@ to %@", [DateHelper weekDayForIndex: favorite.weekDay], favorite.startTime, favorite.endTime];
     
-    [self cancelledDatesButtonForCell: cell];
-    
+    BMContainerButton* cancelledDatesButton = [self cancelledDatesButtonForCell: cell];
+    cancelledDatesButton.info = @{@"cancelledDates" : favorite.cancelledDates};
     return cell;
 }
 
