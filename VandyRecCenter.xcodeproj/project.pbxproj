@@ -130,6 +130,7 @@
 		FC216191185AEC02002DA7E2 /* FPPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC21618C185AEC02002DA7E2 /* FPPopoverController.m */; };
 		FC216192185AEC02002DA7E2 /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC21618E185AEC02002DA7E2 /* FPPopoverView.m */; };
 		FC216193185AEC02002DA7E2 /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC216190185AEC02002DA7E2 /* FPTouchView.m */; };
+		FC216197185AECDE002DA7E2 /* GFCancelledDatesController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC216196185AECDE002DA7E2 /* GFCancelledDatesController.m */; };
 		FCA506B11859911E008802F1 /* BMAddRemoveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA506B01859911E008802F1 /* BMAddRemoveButton.m */; };
 		FCE94310185A4C4300030692 /* GFFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE9430F185A4C4300030692 /* GFFavorite.m */; };
 		FCE94313185A5AF700030692 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE94311185A5AF700030692 /* 37x-Checkmark.png */; };
@@ -331,6 +332,8 @@
 		FC21618E185AEC02002DA7E2 /* FPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPopoverView.m; sourceTree = "<group>"; };
 		FC21618F185AEC02002DA7E2 /* FPTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPTouchView.h; sourceTree = "<group>"; };
 		FC216190185AEC02002DA7E2 /* FPTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPTouchView.m; sourceTree = "<group>"; };
+		FC216195185AECDE002DA7E2 /* GFCancelledDatesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFCancelledDatesController.h; sourceTree = "<group>"; };
+		FC216196185AECDE002DA7E2 /* GFCancelledDatesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFCancelledDatesController.m; sourceTree = "<group>"; };
 		FCA506AF1859911E008802F1 /* BMAddRemoveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAddRemoveButton.h; sourceTree = "<group>"; };
 		FCA506B01859911E008802F1 /* BMAddRemoveButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAddRemoveButton.m; sourceTree = "<group>"; };
 		FCE9430E185A4C4300030692 /* GFFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFFavorite.h; sourceTree = "<group>"; };
@@ -684,6 +687,8 @@
 				FC216181185A9AD4002DA7E2 /* GFFavoritesViewController.m */,
 				2126B43A1849390300DF79FF /* GFView.xib */,
 				210BCB6C1819B45F00666500 /* GFTableView.xib */,
+				FC216195185AECDE002DA7E2 /* GFCancelledDatesController.h */,
+				FC216196185AECDE002DA7E2 /* GFCancelledDatesController.m */,
 				215B8DB21809C7C9009C248E /* Model */,
 			);
 			name = GF;
@@ -1005,6 +1010,7 @@
 				212974DD17FE466D007210AB /* AFHTTPRequestOperationManager.m in Sources */,
 				2109AE861810C6C400EA190E /* NSArray+MyArrayClass.m in Sources */,
 				FC216191185AEC02002DA7E2 /* FPPopoverController.m in Sources */,
+				FC216197185AECDE002DA7E2 /* GFCancelledDatesController.m in Sources */,
 				FCA506B11859911E008802F1 /* BMAddRemoveButton.m in Sources */,
 				2126B44F1849681A00DF79FF /* BMHorizontalPager.m in Sources */,
 				2126B455184969CF00DF79FF /* BMArrowButton.m in Sources */,
