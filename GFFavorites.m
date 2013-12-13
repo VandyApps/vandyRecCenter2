@@ -15,6 +15,7 @@
 
 static GFFavorites* sInstance;
 static NSString* mPathname;
+static BOOL isSorted = NO;
 
 - (NSArray*) GFClasses {
     if (_GFClasses == nil) {
@@ -35,6 +36,9 @@ static NSString* mPathname;
 
 - (void) add: (NSDictionary*) GFClass {
     _GFClasses = [self.GFClasses arrayByAddingObject: [[GFFavorite alloc] initWithGFClass: GFClass]];
+    if (_GFClasses.count > 1) {
+        isSorted = NO;
+    }
 }
 - (void) remove: (NSDictionary*) GFClass {
     for (NSUInteger i = 0; i < self.GFClasses.count; ++i) {
@@ -45,9 +49,12 @@ static NSString* mPathname;
 }
 
 - (void) sort {
-    [self.GFClasses sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        return [(GFFavorite*) obj1 compare: (GFFavorite*) obj2];
-    }];
+    if (!isSorted) {
+        [self.GFClasses sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            return [(GFFavorite*) obj1 compare: (GFFavorite*) obj2];
+        }];
+        isSorted = YES;
+    }
 }
 
 - (BOOL) contains: (NSDictionary*) GFClass {
@@ -61,8 +68,8 @@ static NSString* mPathname;
 }
 
 //array-like methods
-- (NSDictionary*) GFClassForIndex: (NSUInteger) index {
-    return [[self.GFClasses objectAtIndex: index] GFClass];
+- (GFFavorite*) GFFavoriteForIndex: (NSUInteger) index {
+    return [self.GFClasses objectAtIndex: index];
 }
 
 - (NSUInteger) count {
@@ -99,9 +106,11 @@ static NSString* mPathname;
     if ([[NSFileManager defaultManager] fileExistsAtPath: [self dataFilePath]]) {
         [self parsePList: [[NSArray alloc] initWithContentsOfFile: [self dataFilePath]]];
     }
+    isSorted = YES;
     
 }
 - (void) save {
+    [self sort];
     [[self generatePList] writeToFile: [self dataFilePath] atomically: YES];
 }
 

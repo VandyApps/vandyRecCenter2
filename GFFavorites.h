@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "TimeString.h"
+#import "GFFavorite.h"
+
 
 @interface GFFavorites : NSObject
 
@@ -37,6 +39,6 @@
 - (BOOL) contains: (NSDictionary*) GFClass;
 
 //array-like methods
-- (NSDictionary*) GFClassForIndex: (NSUInteger) index;
+- (GFFavorite*) GFFavoriteForIndex: (NSUInteger) index;
 - (NSUInteger) count;
 @end

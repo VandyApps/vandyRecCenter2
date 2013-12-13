@@ -49,7 +49,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = [[[GFFavorites sharedInstance] GFClassForIndex: indexPath.row] objectForKey: @"className"];
+    cell.textLabel.text = [[[GFFavorites sharedInstance] GFFavoriteForIndex: indexPath.row].GFClass objectForKey: @"className"];
     
     return cell;
 }
@@ -62,6 +62,19 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 80.f;
+}
+
+#pragma mark - Table View Delegate
+
+- (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+#warning Complete deletion logic
+        
+    }
 }
 
 #pragma mark - Events

@@ -10,6 +10,62 @@
 
 @implementation GFFavorite
 
+@synthesize startTime = _startTime;
+@synthesize endTime = _endTime;
+
+#pragma mark - Getters
+
+- (TimeString*) startTime {
+    if (_startTime == nil) {
+        NSArray* timeStrings = [[_GFClass objectForKey: @"timeRange"] componentsSeparatedByString: @" - "];
+        _startTime = [[TimeString alloc] initWithString: timeStrings[0]];
+        _endTime = [[TimeString alloc] initWithString: timeStrings[1]];
+    }
+    return _startTime;
+}
+
+- (TimeString*) endTime {
+    if (_endTime == nil) {
+        NSArray* timeStrings = [[_GFClass objectForKey: @"timeRange"] componentsSeparatedByString: @" - "];
+        _startTime = [[TimeString alloc] initWithString: timeStrings[0]];
+        _endTime = [[TimeString alloc] initWithString: timeStrings[1]];
+    }
+    return _endTime;
+}
+
+#pragma mark Pseudo Getters
+
+- (NSString*) className {
+    return [_GFClass objectForKey: @"className"];
+}
+
+- (NSString*) instructor {
+    return [_GFClass objectForKey: @"instructor"];
+}
+
+- (NSString*) location {
+    return [_GFClass objectForKey: @"location"];
+}
+
+- (NSDate*) startDate {
+    return nil;
+}
+
+- (NSDate*) endDate {
+    return nil;
+}
+
+- (BOOL) oneDayClass {
+    return [self.startDate compare: self.endDate] == NSOrderedSame;
+}
+
+- (NSUInteger) weekDay {
+    return [[_GFClass objectForKey: @"dayOfWeek"] intValue];
+}
+
+
+#pragma mark - Initialization
+
 - (id) initWithGFClass: (NSDictionary*) GFClass {
     self = [super init];
     if (self) {
