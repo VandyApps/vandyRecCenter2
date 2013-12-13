@@ -131,8 +131,8 @@
 - (BMContainerButton*) cancelledDatesButtonForCell: (UITableViewCell*) cell {
     static NSInteger CancelledDatesButtonTag = 5;
     if ([cell viewWithTag: CancelledDatesButtonTag] == nil) {
-        UIButton* button = [UIButton buttonWithType: UIButtonTypeCustom];
-        button.frame = CGRectMake(self.tableView.frame.size.width - 40 - 30, 35.f, 30, 30);
+        BMContainerButton* button = [[BMContainerButton alloc] initWithFrame: CGRectMake(self.tableView.frame.size.width - 40 - 30, 45.f, 30, 30)];
+        
         button.tag = CancelledDatesButtonTag;
         [button setImage:[UIImage imageNamed: @"298-circlex.png"] forState: UIControlStateNormal];
         [cell addSubview: button];

@@ -45,6 +45,7 @@
         for (NSString* dateString in [_GFClass objectForKey: @"cancelledDates"]) {
             dates = [dates arrayByAddingObject: [NSDate dateWithDateString: dateString]];
         }
+        _cancelledDates = dates;
     }
     return _cancelledDates;
 }
