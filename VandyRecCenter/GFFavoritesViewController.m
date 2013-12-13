@@ -57,6 +57,7 @@
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     GFFavorite* favorite = [[GFFavorites sharedInstance] GFFavoriteForIndex: indexPath.row];
