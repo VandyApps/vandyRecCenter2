@@ -64,13 +64,15 @@
                                                [df stringFromDate: favorite.startDate],
                                                [df stringFromDate:favorite.endDate]];
     } else {
-        [self datesLabelForCell: cell].text = [NSString stringWithFormat: @"Begins from %@", [df stringFromDate:favorite.startDate]];
+        [self datesLabelForCell: cell].text = [NSString stringWithFormat: @"Fitness classes start %@", [df stringFromDate:favorite.startDate]];
     }
     
     [self dailyInfoLabelForCell: cell].text = [NSString stringWithFormat: @"%@s from %@ to %@", [DateHelper weekDayForIndex: favorite.weekDay], favorite.startTime, favorite.endTime];
     
     BMContainerButton* cancelledDatesButton = [self cancelledDatesButtonForCell: cell];
     cancelledDatesButton.info = @{@"cancelledDates" : favorite.cancelledDates};
+    [cancelledDatesButton addTarget: self action: @selector(cancelButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
+    
     return cell;
 }
 
@@ -152,8 +154,7 @@
 
 - (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-#warning Complete deletion logic here
-        
+        //[[GFFavorites sharedInstance] remove: ];
     }
 }
 
@@ -163,4 +164,8 @@
     [self dismissViewControllerAnimated: YES completion:nil];
 }
 
+- (void) cancelButtonSelected: (BMContainerButton*) sender {
+#warning Implement me
+    NSLog(@"Cancel selected with data: %@", [sender.info objectForKey: @"cancelledDates"]);
+}
 @end

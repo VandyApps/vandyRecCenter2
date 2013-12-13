@@ -26,7 +26,7 @@
 
 - (void) add: (NSDictionary*) GFClass;
 - (void) remove: (NSDictionary*) GFClass;
-
+- (void) removeFromIndex: (NSUInteger) index;
 
 
 //sorts the elements in the list of favorites

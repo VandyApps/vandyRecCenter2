@@ -43,10 +43,15 @@ static BOOL isSorted = NO;
 - (void) remove: (NSDictionary*) GFClass {
     for (NSUInteger i = 0; i < self.GFClasses.count; ++i) {
         if ([(GFFavorite*) self.GFClasses[i] isEqualToGFClass: GFClass]) {
-            _GFClasses = [[self.GFClasses subarrayWithRange: NSMakeRange(0, i)] arrayByAddingObjectsFromArray: [self.GFClasses subarrayWithRange:NSMakeRange(i+1, _GFClasses.count - i - 1)]];
+            [self removeFromIndex: i];
         }
     }
 }
+
+- (void) removeFromIndex:(NSUInteger)index {
+    _GFClasses = [[self.GFClasses subarrayWithRange: NSMakeRange(0, index)] arrayByAddingObjectsFromArray: [self.GFClasses subarrayWithRange:NSMakeRange(index+1, _GFClasses.count - index - 1)]];
+}
+
 
 - (void) sort {
     if (!isSorted) {
