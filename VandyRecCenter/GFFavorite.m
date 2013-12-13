@@ -8,6 +8,8 @@
 
 #import "GFFavorite.h"
 
+#import "NSDate+DateHelper.h"
+
 @implementation GFFavorite
 
 @synthesize startTime = _startTime;
@@ -48,11 +50,13 @@
 }
 
 - (NSDate*) startDate {
-    return nil;
+    NSLog(@"%@", [NSDate dateWithDateString: [_GFClass objectForKey: @"startDate"]]);
+    return [NSDate dateWithDateString: [_GFClass objectForKey: @"startDate"]];
+    
 }
 
 - (NSDate*) endDate {
-    return nil;
+    return [NSDate dateWithDateString: [_GFClass objectForKey: @"endDate"]];
 }
 
 - (BOOL) oneDayClass {
@@ -80,6 +84,15 @@
 }
 
 - (NSComparisonResult) compare: (GFFavorite*) favorite {
-    return NSOrderedSame;
+    switch ([self.startDate compare: favorite.startDate]) {
+        case NSOrderedAscending:
+            return NSOrderedAscending;
+        case NSOrderedDescending:
+            return NSOrderedDescending;
+        default: //ns ordered same
+            return [self.startTime compareTimeString: favorite.startTime];
+    }
 }
+
+
 @end
