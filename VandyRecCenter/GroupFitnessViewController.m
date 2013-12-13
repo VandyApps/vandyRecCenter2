@@ -253,9 +253,33 @@ static CGFloat buttonPadding = 100.f;
     [NSString stringWithFormat: @"%@ - %@", [df stringFromDate: startDate], [df stringFromDate: endDate]] :
     [df stringFromDate: startDate];
     
-    BOOL fetchFromServer = ![self.collection dataLoadedForMonth: startDate.month year: startDate.year]
-                        || ![self.collection dataLoadedForMonth: endDate.month year:endDate.year];
+    NSUInteger month_it = startDate.month;
+    NSUInteger year_it = startDate.year;
     
+    BOOL fetchFromServer = YES;
+    while (month_it <= endDate.month && year_it <= endDate.year && fetchFromServer) {
+        
+        //update boolean
+        fetchFromServer = ![self.collection dataLoadedForMonth: month_it year:year_it];
+        
+        //increment
+        month_it = (month_it + 1) % 12;
+        year_it = (month_it) ? year_it : year_it + 1;
+        
+    }
+    
+    //BOOL fetchFromServer = ![self.collection dataLoadedForMonth: startDate.month year: startDate.year]
+                        //|| ![self.collection dataLoadedForMonth: endDate.month year:endDate.year];
+    
+    if (fetchFromServer) {
+        NSLog(@"Fetching from server");
+        [self fetchAndDisplayDataFromServerFromStartDate: startDate toEndDate: endDate];
+    } else {
+        NSLog(@"Not Fetching from server");
+        [self displayResultsFromDate: startDate toDate: endDate];
+    }
+    
+    /*
     BOOL makeTwoFetches = startDate.month != endDate.month;
     
     static MBProgressHUD* HUD;
@@ -270,6 +294,8 @@ static CGFloat buttonPadding = 100.f;
         [HUD show: YES];
     }
     
+    //used when syncing up two network fetches
+    __block BOOL isReadyForDisplay = NO;
     //must make network call to get the data
     if (fetchFromServer) {
         [self.collection loadMonth: startDate.month andYear:startDate.year block:^(NSError *error, GFModel *model) {
@@ -278,14 +304,24 @@ static CGFloat buttonPadding = 100.f;
                 [HUD hide: YES];
                 [self displayResultsFromDate: startDate toDate: endDate];
                 
+            } else if (isReadyForDisplay) {
+                [HUD hide: YES];
+                [self displayResultsFromDate: startDate toDate: endDate];
+            } else {
+                isReadyForDisplay = YES;
             }
             
         }];
         
         if (makeTwoFetches) {
             [self.collection loadMonth: endDate.month andYear:endDate.year block:^(NSError *error, GFModel *model) {
-                [HUD hide: YES];
-                [self displayResultsFromDate: startDate toDate: endDate];
+                if (isReadyForDisplay) {
+                    [HUD hide: YES];
+                    [self displayResultsFromDate: startDate toDate: endDate];
+                } else {
+                    isReadyForDisplay = YES;
+                }
+                
             }];
         }
         
@@ -294,6 +330,46 @@ static CGFloat buttonPadding = 100.f;
     else {
         [self displayResultsFromDate: startDate toDate: endDate];
     }
+     */
+}
+
+- (void) fetchAndDisplayDataFromServerFromStartDate: (NSDate*) startDate toEndDate: (NSDate*) endDate {
+    
+    static MBProgressHUD* HUD;
+    
+    if (!HUD) {
+        HUD = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
+        HUD.mode = MBProgressHUDModeIndeterminate;
+        HUD.labelText = @"Loading...";
+    }
+    
+    NSUInteger numberOfFetches = (endDate.month + endDate.year * 12) - (startDate.month + startDate.year * 12) + 1;
+    __block NSUInteger remainingFetches = numberOfFetches;
+    
+    NSUInteger month = startDate.month;
+    NSUInteger year = startDate.year;
+    
+    for (NSUInteger i = 0 ; i < numberOfFetches; ++i) {
+        
+        __block NSUInteger a_month = month;
+        __block NSUInteger a_year = year;
+        
+        //fetch
+        [self.collection loadMonth: startDate.month andYear:startDate.year block:^(NSError *error, GFModel *model) {
+            --remainingFetches;
+            NSLog(@"should decrement: %i", remainingFetches);
+            if (!remainingFetches) {
+                [HUD hide: YES];
+                [self displayResultsFromDate: startDate toDate: endDate];
+            }
+        }];
+        
+        //increment month
+        a_month = (a_month + 1) % 12;
+        a_year = (a_month) ? a_year : a_year + 1;
+        
+    }
+
 }
 
 - (void) calendarView:(DSLCalendarView *)calendarView willChangeToVisibleMonth:(NSDateComponents *)month duration:(NSTimeInterval)duration {
