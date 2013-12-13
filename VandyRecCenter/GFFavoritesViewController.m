@@ -12,7 +12,7 @@
 #import "GFFavorites.h"
 #import "DateHelper.h"
 @interface GFFavoritesViewController ()
-
+@property (nonatomic, strong) NSIndexPath* queuedIndexPath;
 @end
 
 @implementation GFFavoritesViewController
@@ -154,8 +154,21 @@
 
 - (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //[[GFFavorites sharedInstance] remove: ];
+        self.queuedIndexPath = indexPath;
+        UIAlertView* deletionAlert = [[UIAlertView alloc] initWithTitle: @"Remove Fitness Class" message: @"Are you sure you want to remove this Group Fitness Class from your list of favorites" delegate:self cancelButtonTitle: @"NO" otherButtonTitles: @"YES", nil];
+        [deletionAlert show];
+        
     }
+}
+
+#pragma mark - Alert View Delegate
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [[GFFavorites sharedInstance] removeFromIndex: self.queuedIndexPath.row];
+        [self.tableView deleteRowsAtIndexPaths: @[self.queuedIndexPath] withRowAnimation: UITableViewRowAnimationTop];
+    }
+
 }
 
 #pragma mark - Events

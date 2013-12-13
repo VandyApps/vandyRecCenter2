@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GFFavoritesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface GFFavoritesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 
 @property (nonatomic, weak) IBOutlet UIView* headerView;
