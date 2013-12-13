@@ -122,6 +122,8 @@
 		937A65BE1821B88800152BD5 /* ArrayCategoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A65BD1821B88800152BD5 /* ArrayCategoryTests.m */; };
 		937A65C01821B8B300152BD5 /* HoursModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A65BF1821B8B300152BD5 /* HoursModelTests.m */; };
 		937A65C21821B8CF00152BD5 /* TimeStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 937A65C11821B8CF00152BD5 /* TimeStringTests.m */; };
+		FC21617F185A99C2002DA7E2 /* GFFavoritesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC21617E185A99C2002DA7E2 /* GFFavoritesView.xib */; };
+		FC216182185A9AD4002DA7E2 /* GFFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC216181185A9AD4002DA7E2 /* GFFavoritesViewController.m */; };
 		FCA506B11859911E008802F1 /* BMAddRemoveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA506B01859911E008802F1 /* BMAddRemoveButton.m */; };
 		FCE94310185A4C4300030692 /* GFFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE9430F185A4C4300030692 /* GFFavorite.m */; };
 		FCE94313185A5AF700030692 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE94311185A5AF700030692 /* 37x-Checkmark.png */; };
@@ -309,6 +311,9 @@
 		937A65BD1821B88800152BD5 /* ArrayCategoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayCategoryTests.m; sourceTree = "<group>"; };
 		937A65BF1821B8B300152BD5 /* HoursModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoursModelTests.m; sourceTree = "<group>"; };
 		937A65C11821B8CF00152BD5 /* TimeStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeStringTests.m; sourceTree = "<group>"; };
+		FC21617E185A99C2002DA7E2 /* GFFavoritesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GFFavoritesView.xib; sourceTree = "<group>"; };
+		FC216180185A9AD4002DA7E2 /* GFFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFFavoritesViewController.h; sourceTree = "<group>"; };
+		FC216181185A9AD4002DA7E2 /* GFFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFFavoritesViewController.m; sourceTree = "<group>"; };
 		FCA506AF1859911E008802F1 /* BMAddRemoveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAddRemoveButton.h; sourceTree = "<group>"; };
 		FCA506B01859911E008802F1 /* BMAddRemoveButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAddRemoveButton.m; sourceTree = "<group>"; };
 		FCE9430E185A4C4300030692 /* GFFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFFavorite.h; sourceTree = "<group>"; };
@@ -656,6 +661,9 @@
 				212FB75818010659009C6A83 /* GroupFitnessViewController.m */,
 				21325304180853C100ED855D /* GFTableViewController.h */,
 				21325305180853C100ED855D /* GFTableViewController.m */,
+				FC21617E185A99C2002DA7E2 /* GFFavoritesView.xib */,
+				FC216180185A9AD4002DA7E2 /* GFFavoritesViewController.h */,
+				FC216181185A9AD4002DA7E2 /* GFFavoritesViewController.m */,
 				2126B43A1849390300DF79FF /* GFView.xib */,
 				210BCB6C1819B45F00666500 /* GFTableView.xib */,
 				215B8DB21809C7C9009C248E /* Model */,
@@ -902,6 +910,7 @@
 				FCE94314185A5AF700030692 /* 37x-Checkmark@2x.png in Resources */,
 				2102F7DC180F8436005FB01C /* 310-alarm-clock@2x.png in Resources */,
 				21E66EC71818DD2200BA803F /* DSLCalendarDayCallout@2x.png in Resources */,
+				FC21617F185A99C2002DA7E2 /* GFFavoritesView.xib in Resources */,
 				2126B43B1849390300DF79FF /* GFView.xib in Resources */,
 				2119C8F317FF1A2400D4A284 /* 11-clock.png in Resources */,
 				2126B42B18492A8700DF79FF /* MainMenuView.xib in Resources */,
@@ -961,6 +970,7 @@
 				2126B44F1849681A00DF79FF /* BMHorizontalPager.m in Sources */,
 				2126B455184969CF00DF79FF /* BMArrowButton.m in Sources */,
 				212974DF17FE466D007210AB /* AFNetworkReachabilityManager.m in Sources */,
+				FC216182185A9AD4002DA7E2 /* GFFavoritesViewController.m in Sources */,
 				2126B4521849681A00DF79FF /* BMVerticalPagerImpl.m in Sources */,
 				93789CB6181A381B00BA764C /* NSDate+DateHelper.m in Sources */,
 				212974E317FE466D007210AB /* AFURLResponseSerialization.m in Sources */,
