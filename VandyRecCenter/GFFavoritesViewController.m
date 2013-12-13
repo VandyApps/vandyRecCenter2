@@ -188,20 +188,23 @@
 
 - (void) cancelButtonSelected: (BMContainerButton*) sender {
     NSArray* dates;
-    if ([(NSArray*) sender.info[@"cancelledDates"] count]) {
+    NSDateFormatter* df = [[NSDateFormatter alloc] init];
+    df.dateStyle = NSDateFormatterMediumStyle;
+    df.timeStyle = NSDateFormatterNoStyle;
+    dates = @[];
+    for (NSDate* date in sender.info[@"cancelledDates"]) {
         
-        NSDateFormatter* df = [[NSDateFormatter alloc] init];
-        df.dateStyle = NSDateFormatterMediumStyle;
-        df.timeStyle = NSDateFormatterNoStyle;
-        dates = @[];
-        for (NSDate* date in sender.info[@"cancelledDates"]) {
+        NSDate* currentDate = [NSDate new];
+        //remove the time from the current day
+        NSDate* today = [NSDate dateWithYear: currentDate.year month: currentDate.month andDay:currentDate.day];
+        if (![today compare: date] == NSOrderedDescending) {
             dates = [dates arrayByAddingObject: [df stringFromDate: date]];
         }
-        
-        
-    } else {
-        dates = @[@"None!"];
     }
+    if (dates.count == 0) {
+        dates = [dates arrayByAddingObject: @"None!"];
+    }
+    
     self.pv = [PopoverView showPopoverAtPoint: sender.center inView: sender.superview withTitle:@"Cancelled Dates" withStringArray: dates delegate: nil];
     
     
