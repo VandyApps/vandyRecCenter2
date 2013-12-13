@@ -1,10 +1,14 @@
 
 #import "GroupFitnessViewController.h"
+
 #import "GFTableViewController.h"
+#import "GFFavoritesViewController.h"
+
 #import "GFCollection.h"
 #import "MBProgressHUD.h"
 #import "DSLCalendarView.h"
 #import "NSDate-MyDateClass.h"
+
 
 @interface GroupFitnessViewController () <DSLCalendarViewDelegate>
 
@@ -18,7 +22,7 @@
 #pragma mark - Synthesize
 @synthesize collection = _collection;
 @synthesize calendar = _calendar;
-@synthesize modalView = _modalView;
+@synthesize classModalView = _classModalView;
 @synthesize optionsView = _optionsView;
 
 #pragma mark - Private Static Variables
@@ -36,11 +40,18 @@ static CGFloat buttonPadding = 100.f;
 }
 
 
-- (GFTableViewController*) modalView {
-    if (!_modalView) {
-        _modalView = [[GFTableViewController alloc] initWithNibName: @"GFTableView" bundle: [NSBundle mainBundle]];
+- (GFTableViewController*) classModalView {
+    if (!_classModalView) {
+        _classModalView = [[GFTableViewController alloc] initWithNibName: @"GFTableView" bundle: [NSBundle mainBundle]];
     }
-    return _modalView;
+    return _classModalView;
+}
+
+- (GFFavoritesViewController*) favoritesModalView {
+    if (!_favoritesModalView) {
+        _favoritesModalView = [[GFFavoritesViewController alloc] initWithNibName: @"GFFavoritesView" bundle: [NSBundle mainBundle]];
+    }
+    return _favoritesModalView;
 }
 
 #pragma mark - Lifecycle
@@ -120,7 +131,7 @@ static CGFloat buttonPadding = 100.f;
     UIImage* favoriteButtonIcon = [UIImage imageNamed: @"428-checkmark1.png"];
     
     [self.favoriteButton setImage: favoriteButtonIcon forState: UIControlStateNormal];
-    [self.todayButton addTarget: self action: @selector(favoriteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.favoriteButton addTarget: self action: @selector(favoriteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     
     //add the subviews to the options view
@@ -164,6 +175,7 @@ static CGFloat buttonPadding = 100.f;
 }
 
 - (void) favoriteButtonPressed: (id) sender {
+    [self presentViewController: self.favoritesModalView animated: YES completion:nil];
     
 }
 
@@ -199,9 +211,9 @@ static CGFloat buttonPadding = 100.f;
 - (void) displayResultsFromDate: (NSDate*) start toDate: (NSDate*) end {
 
     [self addClassesToModalViewFromDate: start toDate:end];
-    [self.modalView.tableView reloadData];
+    [self.classModalView.tableView reloadData];
     
-    [self presentViewController: self.modalView animated: YES completion: nil];
+    [self presentViewController: self.classModalView animated: YES completion: nil];
     
 }
 
@@ -219,7 +231,7 @@ static CGFloat buttonPadding = 100.f;
                 
                 NSString* dateString = [NSString stringWithFormat: @"%@, %@", [formatDate stringFromDate: start], [DateHelper weekDayForIndex: [start weekDayForTimeZone: NashvilleTime]]];
                 
-                [self.modalView.classData pushGFClasses: GFClasses withTitle: dateString];
+                [self.classModalView.classData pushGFClasses: GFClasses withTitle: dateString];
             }
         }];
         
@@ -237,7 +249,7 @@ static CGFloat buttonPadding = 100.f;
     NSDateFormatter* df = [[NSDateFormatter alloc] init];
     df.dateStyle = NSDateFormatterShortStyle;
     df.timeStyle = NSDateFormatterNoStyle;
-    self.modalView.header = ([startDate compare: endDate] != NSOrderedSame) ?
+    self.classModalView.header = ([startDate compare: endDate] != NSOrderedSame) ?
     [NSString stringWithFormat: @"%@ - %@", [df stringFromDate: startDate], [df stringFromDate: endDate]] :
     [df stringFromDate: startDate];
     

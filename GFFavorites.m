@@ -62,7 +62,7 @@ static NSString* mPathname;
 
 //array-like methods
 - (NSDictionary*) GFClassForIndex: (NSUInteger) index {
-    return [self.GFClasses objectAtIndex: index];
+    return [[self.GFClasses objectAtIndex: index] GFClass];
 }
 
 - (NSUInteger) count {

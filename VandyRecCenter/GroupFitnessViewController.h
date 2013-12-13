@@ -11,12 +11,14 @@
 @class GFCollection;
 @class DSLCalendarView;
 @class GFTableViewController;
+@class GFFavoritesViewController;
 
 @interface GroupFitnessViewController : UIViewController
 
 @property (nonatomic, strong) GFCollection* collection;
 @property (nonatomic, weak) IBOutlet DSLCalendarView* calendar;
-@property (nonatomic, strong) GFTableViewController* modalView;
+@property (nonatomic, strong) GFTableViewController* classModalView;
+@property (nonatomic, strong) GFFavoritesViewController* favoritesModalView;
 
 @property (nonatomic, strong) UIButton* todayButton;
 @property (nonatomic, strong) UIButton* favoriteButton;

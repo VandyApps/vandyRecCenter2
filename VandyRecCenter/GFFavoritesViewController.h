@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GFFavoritesViewController : UIViewController
+@interface GFFavoritesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 
 @property (nonatomic, weak) IBOutlet UIView* headerView;
 @property (nonatomic, weak) IBOutlet UITableView* tableView;
+
+-(IBAction) done:(id)sender;
 @end
