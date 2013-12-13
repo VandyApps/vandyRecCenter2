@@ -7,12 +7,18 @@
 //
 
 #import "GFFavoritesViewController.h"
+
 #import "BMContainerButton.h"
 
 #import "GFFavorites.h"
 #import "DateHelper.h"
+
+#import "PopoverView.h"
+
 @interface GFFavoritesViewController ()
+
 @property (nonatomic, strong) NSIndexPath* queuedIndexPath;
+@property (nonatomic, strong) PopoverView* pv;
 @end
 
 @implementation GFFavoritesViewController
@@ -20,6 +26,7 @@
 
 @synthesize headerView = _headerView;
 @synthesize tableView = _tableView;
+
 
 #pragma mark - Lifecycle
 
@@ -179,7 +186,25 @@
 }
 
 - (void) cancelButtonSelected: (BMContainerButton*) sender {
-#warning Implement me
-    NSLog(@"Cancel selected with data: %@", [sender.info objectForKey: @"cancelledDates"]);
+    NSArray* dates;
+    if ([(NSArray*) sender.info[@"cancelledDates"] count]) {
+        
+        NSDateFormatter* df = [[NSDateFormatter alloc] init];
+        df.dateStyle = NSDateFormatterMediumStyle;
+        df.timeStyle = NSDateFormatterNoStyle;
+        dates = @[];
+        for (NSDate* date in sender.info[@"cancelledDates"]) {
+            dates = [dates arrayByAddingObject: [df stringFromDate: date]];
+        }
+        
+        
+    } else {
+        dates = @[@"None!"];
+    }
+    self.pv = [PopoverView showPopoverAtPoint: sender.center inView: sender.superview withTitle:@"Cancelled Dates" withStringArray: dates delegate: nil];
+    
+    
+    
 }
+
 @end

@@ -127,14 +127,11 @@
 		FC216185185AE013002DA7E2 /* BMContainerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FC216184185AE013002DA7E2 /* BMContainerButton.m */; };
 		FC216188185AE246002DA7E2 /* 298-circlex.png in Resources */ = {isa = PBXBuildFile; fileRef = FC216186185AE246002DA7E2 /* 298-circlex.png */; };
 		FC216189185AE246002DA7E2 /* 298-circlex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FC216187185AE246002DA7E2 /* 298-circlex@2x.png */; };
-		FC216191185AEC02002DA7E2 /* FPPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC21618C185AEC02002DA7E2 /* FPPopoverController.m */; };
-		FC216192185AEC02002DA7E2 /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC21618E185AEC02002DA7E2 /* FPPopoverView.m */; };
-		FC216193185AEC02002DA7E2 /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC216190185AEC02002DA7E2 /* FPTouchView.m */; };
-		FC216197185AECDE002DA7E2 /* GFCancelledDatesController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC216196185AECDE002DA7E2 /* GFCancelledDatesController.m */; };
 		FCA506B11859911E008802F1 /* BMAddRemoveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA506B01859911E008802F1 /* BMAddRemoveButton.m */; };
 		FCE94310185A4C4300030692 /* GFFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE9430F185A4C4300030692 /* GFFavorite.m */; };
 		FCE94313185A5AF700030692 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE94311185A5AF700030692 /* 37x-Checkmark.png */; };
 		FCE94314185A5AF700030692 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE94312185A5AF700030692 /* 37x-Checkmark@2x.png */; };
+		FCFF9669185B768A00F6D981 /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFF9666185B768A00F6D981 /* PopoverView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -325,21 +322,16 @@
 		FC216184185AE013002DA7E2 /* BMContainerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMContainerButton.m; sourceTree = "<group>"; };
 		FC216186185AE246002DA7E2 /* 298-circlex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex.png"; sourceTree = "<group>"; };
 		FC216187185AE246002DA7E2 /* 298-circlex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex@2x.png"; sourceTree = "<group>"; };
-		FC21618A185AEC02002DA7E2 /* ARCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCMacros.h; sourceTree = "<group>"; };
-		FC21618B185AEC02002DA7E2 /* FPPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPPopoverController.h; sourceTree = "<group>"; };
-		FC21618C185AEC02002DA7E2 /* FPPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPopoverController.m; sourceTree = "<group>"; };
-		FC21618D185AEC02002DA7E2 /* FPPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPPopoverView.h; sourceTree = "<group>"; };
-		FC21618E185AEC02002DA7E2 /* FPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPopoverView.m; sourceTree = "<group>"; };
-		FC21618F185AEC02002DA7E2 /* FPTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPTouchView.h; sourceTree = "<group>"; };
-		FC216190185AEC02002DA7E2 /* FPTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPTouchView.m; sourceTree = "<group>"; };
-		FC216195185AECDE002DA7E2 /* GFCancelledDatesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFCancelledDatesController.h; sourceTree = "<group>"; };
-		FC216196185AECDE002DA7E2 /* GFCancelledDatesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFCancelledDatesController.m; sourceTree = "<group>"; };
 		FCA506AF1859911E008802F1 /* BMAddRemoveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAddRemoveButton.h; sourceTree = "<group>"; };
 		FCA506B01859911E008802F1 /* BMAddRemoveButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAddRemoveButton.m; sourceTree = "<group>"; };
 		FCE9430E185A4C4300030692 /* GFFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFFavorite.h; sourceTree = "<group>"; };
 		FCE9430F185A4C4300030692 /* GFFavorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFFavorite.m; sourceTree = "<group>"; };
 		FCE94311185A5AF700030692 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
 		FCE94312185A5AF700030692 /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
+		FCFF9665185B768A00F6D981 /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
+		FCFF9666185B768A00F6D981 /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
+		FCFF9667185B768A00F6D981 /* PopoverView_Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView_Configuration.h; sourceTree = "<group>"; };
+		FCFF9668185B768A00F6D981 /* PopoverViewCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverViewCompatibility.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -651,7 +643,7 @@
 		2129753417FE4D89007210AB /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				FC216194185AEC08002DA7E2 /* FPPopover */,
+				FCFF9664185B768A00F6D981 /* PopoverView */,
 				FCA506B218599122008802F1 /* BMAddRemoveButton */,
 				2126B456184969D500DF79FF /* BMArrowView */,
 				2126B43C1849681A00DF79FF /* BMInfinitePager */,
@@ -687,8 +679,6 @@
 				FC216181185A9AD4002DA7E2 /* GFFavoritesViewController.m */,
 				2126B43A1849390300DF79FF /* GFView.xib */,
 				210BCB6C1819B45F00666500 /* GFTableView.xib */,
-				FC216195185AECDE002DA7E2 /* GFCancelledDatesController.h */,
-				FC216196185AECDE002DA7E2 /* GFCancelledDatesController.m */,
 				215B8DB21809C7C9009C248E /* Model */,
 			);
 			name = GF;
@@ -821,20 +811,6 @@
 			path = VandyRecCenter;
 			sourceTree = "<group>";
 		};
-		FC216194185AEC08002DA7E2 /* FPPopover */ = {
-			isa = PBXGroup;
-			children = (
-				FC21618A185AEC02002DA7E2 /* ARCMacros.h */,
-				FC21618B185AEC02002DA7E2 /* FPPopoverController.h */,
-				FC21618C185AEC02002DA7E2 /* FPPopoverController.m */,
-				FC21618D185AEC02002DA7E2 /* FPPopoverView.h */,
-				FC21618E185AEC02002DA7E2 /* FPPopoverView.m */,
-				FC21618F185AEC02002DA7E2 /* FPTouchView.h */,
-				FC216190185AEC02002DA7E2 /* FPTouchView.m */,
-			);
-			name = FPPopover;
-			sourceTree = "<group>";
-		};
 		FCA506B218599122008802F1 /* BMAddRemoveButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -844,6 +820,17 @@
 				FC216184185AE013002DA7E2 /* BMContainerButton.m */,
 			);
 			name = BMAddRemoveButton;
+			sourceTree = "<group>";
+		};
+		FCFF9664185B768A00F6D981 /* PopoverView */ = {
+			isa = PBXGroup;
+			children = (
+				FCFF9665185B768A00F6D981 /* PopoverView.h */,
+				FCFF9666185B768A00F6D981 /* PopoverView.m */,
+				FCFF9667185B768A00F6D981 /* PopoverView_Configuration.h */,
+				FCFF9668185B768A00F6D981 /* PopoverViewCompatibility.h */,
+			);
+			path = PopoverView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1009,8 +996,6 @@
 				21E66EBD1818DD2200BA803F /* DSLCalendarMonthSelectorView.m in Sources */,
 				212974DD17FE466D007210AB /* AFHTTPRequestOperationManager.m in Sources */,
 				2109AE861810C6C400EA190E /* NSArray+MyArrayClass.m in Sources */,
-				FC216191185AEC02002DA7E2 /* FPPopoverController.m in Sources */,
-				FC216197185AECDE002DA7E2 /* GFCancelledDatesController.m in Sources */,
 				FCA506B11859911E008802F1 /* BMAddRemoveButton.m in Sources */,
 				2126B44F1849681A00DF79FF /* BMHorizontalPager.m in Sources */,
 				2126B455184969CF00DF79FF /* BMArrowButton.m in Sources */,
@@ -1045,7 +1030,6 @@
 				21E66ED01818DD2200BA803F /* NSDate+DSLCalendarView.m in Sources */,
 				212974A417FE465C007210AB /* AppDelegate.m in Sources */,
 				2126B4311849366800DF79FF /* HomeViewController.m in Sources */,
-				FC216192185AEC02002DA7E2 /* FPPopoverView.m in Sources */,
 				212974A017FE465C007210AB /* main.m in Sources */,
 				2129753B17FE4E0D007210AB /* UIViewController+JASidePanel.m in Sources */,
 				215B8DAF1809B50F009C248E /* GFSpecialDates.m in Sources */,
@@ -1053,7 +1037,7 @@
 				21E66EC11818DD2200BA803F /* DSLCalendarView.m in Sources */,
 				215B8DAD1809B50F009C248E /* GFFavorites.m in Sources */,
 				2132530A18085B3000ED855D /* Intramural.m in Sources */,
-				FC216193185AEC02002DA7E2 /* FPTouchView.m in Sources */,
+				FCFF9669185B768A00F6D981 /* PopoverView.m in Sources */,
 				FC216185185AE013002DA7E2 /* BMContainerButton.m in Sources */,
 				215B8DAB1809B50F009C248E /* DateHelper.m in Sources */,
 				212FB75918010659009C6A83 /* GroupFitnessViewController.m in Sources */,
