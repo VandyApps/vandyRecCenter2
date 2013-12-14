@@ -115,6 +115,7 @@
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     if (self.classData.sectionCount) {
         [self setupTableViewForCell: cell atIndexPath: indexPath];
