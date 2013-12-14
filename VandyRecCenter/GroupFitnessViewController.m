@@ -278,59 +278,6 @@ static CGFloat buttonPadding = 100.f;
         NSLog(@"Not Fetching from server");
         [self displayResultsFromDate: startDate toDate: endDate];
     }
-    
-    /*
-    BOOL makeTwoFetches = startDate.month != endDate.month;
-    
-    static MBProgressHUD* HUD;
-    
-    if (fetchFromServer && !HUD) {
-        
-        HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        HUD.labelText = @"Loading";
-        HUD.mode = MBProgressHUDModeIndeterminate;
-    } else if (fetchFromServer) {
-        //don't need to re-initialize the loading view
-        [HUD show: YES];
-    }
-    
-    //used when syncing up two network fetches
-    __block BOOL isReadyForDisplay = NO;
-    //must make network call to get the data
-    if (fetchFromServer) {
-        [self.collection loadMonth: startDate.month andYear:startDate.year block:^(NSError *error, GFModel *model) {
-            
-            if (!makeTwoFetches) {
-                [HUD hide: YES];
-                [self displayResultsFromDate: startDate toDate: endDate];
-                
-            } else if (isReadyForDisplay) {
-                [HUD hide: YES];
-                [self displayResultsFromDate: startDate toDate: endDate];
-            } else {
-                isReadyForDisplay = YES;
-            }
-            
-        }];
-        
-        if (makeTwoFetches) {
-            [self.collection loadMonth: endDate.month andYear:endDate.year block:^(NSError *error, GFModel *model) {
-                if (isReadyForDisplay) {
-                    [HUD hide: YES];
-                    [self displayResultsFromDate: startDate toDate: endDate];
-                } else {
-                    isReadyForDisplay = YES;
-                }
-                
-            }];
-        }
-        
-    }
-    //can just fetch data with making a network call, data is cached
-    else {
-        [self displayResultsFromDate: startDate toDate: endDate];
-    }
-     */
 }
 
 - (void) fetchAndDisplayDataFromServerFromStartDate: (NSDate*) startDate toEndDate: (NSDate*) endDate {
