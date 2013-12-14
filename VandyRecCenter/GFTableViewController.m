@@ -108,6 +108,7 @@ static NSInteger CancelViewTag = 10;
 #pragma mark - TableViewDataSource
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     static NSString* cellIdentifier = @"cell";
     static NSString* blankCellIdentifier = @"emptyCell";
     
@@ -124,6 +125,7 @@ static NSInteger CancelViewTag = 10;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
     if (self.classData.sectionCount) {
         [self setupTableViewForCell: cell atIndexPath: indexPath];
     } else {
@@ -278,7 +280,7 @@ static NSInteger CancelViewTag = 10;
         format.dateStyle = NSDateFormatterShortStyle;
         format.timeStyle = NSDateFormatterNoStyle;
     }
-    NSDate* date =[self.classData dateForSectionAtIndex: section];
+    NSDate* date = (self.classData.sectionCount) ? [self.classData dateForSectionAtIndex: section] : nil;
     
     return (self.classData.sectionCount) ? [NSString stringWithFormat: @"%@, %@", [format stringFromDate: [self.classData dateForSectionAtIndex: section]], [DateHelper weekDayForIndex: date.weekDay]] : @"TRY ANOTHER DATE";
 }
