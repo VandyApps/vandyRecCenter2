@@ -53,37 +53,54 @@
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString* cellIdentifier = @"GFFavoritesCell";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
+    static NSString* emptyCellIdentifier = @"NoFavoritesCell";
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    UITableViewCell* cell;
+    if ([GFFavorites sharedInstance].count) {
+        cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        GFFavorite* favorite = [[GFFavorites sharedInstance] GFFavoriteForIndex: indexPath.row];
+        [self classNameLabelForCell: cell].text = favorite.className;
+        [self instructorNameLabelForCell: cell].text = favorite.instructor;
+        
+        NSDateFormatter* df = [[NSDateFormatter alloc] init];
+        df.dateStyle = NSDateFormatterShortStyle;
+        df.timeStyle = NSDateFormatterNoStyle;
+        
+        if (favorite.endDate) {
+            [self datesLabelForCell: cell].text = [NSString stringWithFormat: @"Takes place from %@ to %@",
+                                                   [df stringFromDate: favorite.startDate],
+                                                   [df stringFromDate:favorite.endDate]];
+        } else {
+            [self datesLabelForCell: cell].text = [NSString stringWithFormat: @"Fitness classes start %@", [df stringFromDate:favorite.startDate]];
+        }
+        
+        [self dailyInfoLabelForCell: cell].text = [NSString stringWithFormat: @"%@s from %@ to %@", [DateHelper weekDayForIndex: favorite.weekDay], favorite.startTime, favorite.endTime];
+        
+    } else  {
+        cell = [tableView dequeueReusableCellWithIdentifier: emptyCellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:emptyCellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        if (indexPath.row == 1) {
+            [self emptyListLabelForCell: cell].text = @"No Favorites";
+            [self emptyDetailsLabelForCell: cell].text = @"Add Your Favorite Fitness Classes to Save and View Here";
+        }
+        
     }
-    
-    GFFavorite* favorite = [[GFFavorites sharedInstance] GFFavoriteForIndex: indexPath.row];
-    [self classNameLabelForCell: cell].text = favorite.className;
-    [self instructorNameLabelForCell: cell].text = favorite.instructor;
-    
-    NSDateFormatter* df = [[NSDateFormatter alloc] init];
-    df.dateStyle = NSDateFormatterShortStyle;
-    df.timeStyle = NSDateFormatterNoStyle;
-    
-    if (favorite.endDate) {
-        [self datesLabelForCell: cell].text = [NSString stringWithFormat: @"Takes place from %@ to %@",
-                                               [df stringFromDate: favorite.startDate],
-                                               [df stringFromDate:favorite.endDate]];
-    } else {
-        [self datesLabelForCell: cell].text = [NSString stringWithFormat: @"Fitness classes start %@", [df stringFromDate:favorite.startDate]];
-    }
-    
-    [self dailyInfoLabelForCell: cell].text = [NSString stringWithFormat: @"%@s from %@ to %@", [DateHelper weekDayForIndex: favorite.weekDay], favorite.startTime, favorite.endTime];
-    
     return cell;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [GFFavorites sharedInstance].count;
+    return ([GFFavorites sharedInstance].count) ? [GFFavorites sharedInstance].count : 2;
 }
 
 #pragma mark TableViewCell subviews
@@ -135,10 +152,36 @@
     return (UILabel*) [cell viewWithTag: DailyInfoLabelTag];
 }
 
+- (UILabel*) emptyListLabelForCell: (UITableViewCell*) cell {
+    static NSInteger EmptyLabelTag = 1;
+    if ([cell viewWithTag: EmptyLabelTag] == nil) {
+        UILabel* label = [[UILabel alloc] initWithFrame: CGRectMake(10, 20, self.tableView.frame.size.width - 20, 30)];
+        label.tag = EmptyLabelTag;
+        label.font = [UIFont systemFontOfSize: 17];
+        label.textAlignment = NSTextAlignmentCenter;
+        [cell addSubview: label];
+    }
+    return (UILabel*) [cell viewWithTag: EmptyLabelTag];
+}
+
+- (UILabel*) emptyDetailsLabelForCell: (UITableViewCell*) cell {
+    static NSInteger EmptyDetailsLabelTag= 2;
+    if ([cell viewWithTag: EmptyDetailsLabelTag] == nil) {
+        UILabel* label = [[UILabel alloc] initWithFrame: CGRectMake(30, 50, self.tableView.frame.size.width - 60, 40)];
+        label.tag = EmptyDetailsLabelTag;
+        label.font = [UIFont systemFontOfSize: 13];
+        label.textColor = [UIColor blueColor];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.numberOfLines = 2;
+        [cell addSubview: label];
+    }
+    return (UILabel*) [cell viewWithTag: EmptyDetailsLabelTag];
+}
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 110.f;
 }
+
 
 #pragma mark - Table View Delegate
 
