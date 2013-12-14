@@ -78,10 +78,6 @@
     
     [self dailyInfoLabelForCell: cell].text = [NSString stringWithFormat: @"%@s from %@ to %@", [DateHelper weekDayForIndex: favorite.weekDay], favorite.startTime, favorite.endTime];
     
-    BMContainerButton* cancelledDatesButton = [self cancelledDatesButtonForCell: cell];
-    cancelledDatesButton.info = @{@"cancelledDates" : favorite.cancelledDates};
-    [cancelledDatesButton addTarget: self action: @selector(cancelButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
-    
     return cell;
 }
 
@@ -139,17 +135,6 @@
     return (UILabel*) [cell viewWithTag: DailyInfoLabelTag];
 }
 
-- (BMContainerButton*) cancelledDatesButtonForCell: (UITableViewCell*) cell {
-    static NSInteger CancelledDatesButtonTag = 5;
-    if ([cell viewWithTag: CancelledDatesButtonTag] == nil) {
-        BMContainerButton* button = [[BMContainerButton alloc] initWithFrame: CGRectMake(self.tableView.frame.size.width - 40 - 30, 45.f, 30, 30)];
-        
-        button.tag = CancelledDatesButtonTag;
-        [button setImage:[UIImage imageNamed: @"298-circlex.png"] forState: UIControlStateNormal];
-        [cell addSubview: button];
-    }
-    return (BMContainerButton*) [cell viewWithTag: CancelledDatesButtonTag];
-}
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 110.f;
@@ -170,6 +155,30 @@
     }
 }
 
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray* dates;
+    NSDateFormatter* df = [[NSDateFormatter alloc] init];
+    df.dateStyle = NSDateFormatterMediumStyle;
+    df.timeStyle = NSDateFormatterNoStyle;
+    dates = @[];
+    
+    for (NSDate* date in [[GFFavorites sharedInstance] GFFavoriteForIndex: indexPath.row].cancelledDates) {
+        
+        NSDate* currentDate = [NSDate new];
+        //remove the time from the current day
+        NSDate* today = [NSDate dateWithYear: currentDate.year month: currentDate.month andDay:currentDate.day];
+        if (![today compare: date] == NSOrderedDescending) {
+            dates = [dates arrayByAddingObject: [df stringFromDate: date]];
+        }
+    }
+    if (dates.count == 0) {
+        dates = [dates arrayByAddingObject: @"None!"];
+    }
+    
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath: indexPath];
+    self.pv = [PopoverView showPopoverAtPoint: cell.center inView: tableView withTitle:@"Cancelled Dates" withStringArray: dates delegate: nil];
+    
+}
 #pragma mark - Alert View Delegate
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -184,31 +193,6 @@
 
 - (IBAction)done:(id)sender {
     [self dismissViewControllerAnimated: YES completion:nil];
-}
-
-- (void) cancelButtonSelected: (BMContainerButton*) sender {
-    NSArray* dates;
-    NSDateFormatter* df = [[NSDateFormatter alloc] init];
-    df.dateStyle = NSDateFormatterMediumStyle;
-    df.timeStyle = NSDateFormatterNoStyle;
-    dates = @[];
-    for (NSDate* date in sender.info[@"cancelledDates"]) {
-        
-        NSDate* currentDate = [NSDate new];
-        //remove the time from the current day
-        NSDate* today = [NSDate dateWithYear: currentDate.year month: currentDate.month andDay:currentDate.day];
-        if (![today compare: date] == NSOrderedDescending) {
-            dates = [dates arrayByAddingObject: [df stringFromDate: date]];
-        }
-    }
-    if (dates.count == 0) {
-        dates = [dates arrayByAddingObject: @"None!"];
-    }
-    
-    self.pv = [PopoverView showPopoverAtPoint: sender.center inView: sender.superview withTitle:@"Cancelled Dates" withStringArray: dates delegate: nil];
-    
-    
-    
 }
 
 @end
