@@ -98,10 +98,7 @@ static CGFloat buttonPadding = 100.f;
     self.optionsView = [[UIView alloc] initWithFrame: CGRectMake(0, self.calendar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.calendar.frame.size.height)];
     
     self.optionsView.backgroundColor = [UIColor colorWithRed: .95f green: .95f blue: .95f alpha:1];
-    
-    
-    
-    
+
     self.optionsContentView = [[UIView alloc] initWithFrame: CGRectMake(OptionsViewPadding * 2, OptionsViewPadding * 2, self.optionsView.frame.size.width - (4* OptionsViewPadding), self.optionsView.frame.size.height - (4* OptionsViewPadding))];
     self.optionsContentView.layer.cornerRadius = 10.f;
     UIColor* vandyGold = vanderbiltGold;
@@ -220,18 +217,12 @@ static CGFloat buttonPadding = 100.f;
 - (void) addClassesToModalViewFromDate: (NSDate*) start toDate: (NSDate*) end {
     
     while ([start compare: end] != NSOrderedDescending) {
+        //this should not be making network calls because this method is invoked AFTER
+        //all the data is fethed from the network
         [self.collection GFClassesForYear: start.year month:start.month day:start.day block:^(NSError *error, NSArray *GFClasses) {
             
-#warning - Must check for errors
-            
             if (GFClasses.count) {
-                NSDateFormatter* formatDate = [[NSDateFormatter alloc] init];
-                formatDate.timeStyle = NSDateFormatterNoStyle;
-                formatDate.dateStyle = NSDateFormatterMediumStyle;
-                
-                NSString* dateString = [NSString stringWithFormat: @"%@, %@", [formatDate stringFromDate: start], [DateHelper weekDayForIndex: [start weekDayForTimeZone: NashvilleTime]]];
-                
-                [self.classModalView.classData pushGFClasses: GFClasses withTitle: dateString];
+                [self.classModalView.classData pushGFClasses: GFClasses withDate: start];
             }
         }];
         

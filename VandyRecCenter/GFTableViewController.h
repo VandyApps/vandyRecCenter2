@@ -25,11 +25,11 @@
 //private property needed which is an array of arrays
 //another private property with an array of section titles
 - (NSUInteger) countForGFClassesInSectionAtIndex: (NSUInteger) index;
-- (NSString*) titleForSectionAtIndex: (NSUInteger) index;
+- (NSDate*) dateForSectionAtIndex: (NSUInteger) index;
 - (NSDictionary*) GFClassForIndexPath: (NSIndexPath*) indexPath;
 
 //add classes to the end of the table in a new section
-- (void) pushGFClasses: (NSArray*) GFClasses withTitle: (NSString*) title;
+- (void) pushGFClasses: (NSArray*) GFClasses withDate: (NSDate*) title;
 //clear the enter set of classes
 - (void) clearClasses;
 @end

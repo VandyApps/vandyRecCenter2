@@ -11,6 +11,8 @@
 #import "BMAddRemoveButton.h"
 #import "GFFavorites.h"
 
+#import "DateHelper.h"
+
 @interface GFTableViewClassData()
 
 @property (nonatomic, strong) NSArray* GFClassesForTable;
@@ -37,16 +39,16 @@
 - (NSUInteger) countForGFClassesInSectionAtIndex: (NSUInteger) index {
     return [[_GFClassesForTable[index] objectForKey: @"GFClasses"] count];
 }
-- (NSString*) titleForSectionAtIndex: (NSUInteger) index {
-    return [_GFClassesForTable[index] objectForKey: @"title"];
+- (NSDate*) dateForSectionAtIndex: (NSUInteger) index {
+    return [_GFClassesForTable[index] objectForKey: @"date"];
 }
 - (NSDictionary*) GFClassForIndexPath: (NSIndexPath*) indexPath {
     NSArray* GFClasses = [_GFClassesForTable[indexPath.section] objectForKey: @"GFClasses"];
     return GFClasses[indexPath.row];
 }
 
-- (void) pushGFClasses: (NSArray*) GFClasses withTitle: (NSString*) title {
-    NSDictionary* newEntry = @{@"title": title, @"GFClasses": GFClasses};
+- (void) pushGFClasses: (NSArray*) GFClasses withDate: (NSDate*) date {
+    NSDictionary* newEntry = @{@"date": date, @"GFClasses": GFClasses};
     _GFClassesForTable = [self.GFClassesForTable arrayByAddingObject: newEntry];
 }
 
@@ -227,7 +229,15 @@
 
 - (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    return (self.classData.sectionCount) ? [self.classData titleForSectionAtIndex: section] : @"TRY ANOTHER DATE";
+    static NSDateFormatter* format;
+    if (!format) {
+        format = [[NSDateFormatter alloc] init];
+        format.dateStyle = NSDateFormatterShortStyle;
+        format.timeStyle = NSDateFormatterNoStyle;
+    }
+    NSDate* date =[self.classData dateForSectionAtIndex: section];
+    
+    return (self.classData.sectionCount) ? [NSString stringWithFormat: @"%@, %@", [format stringFromDate: [self.classData dateForSectionAtIndex: section]], [DateHelper weekDayForIndex: date.weekDay]] : @"TRY ANOTHER DATE";
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
