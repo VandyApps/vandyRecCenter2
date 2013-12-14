@@ -222,7 +222,7 @@ static CGFloat buttonPadding = 100.f;
         [self.collection GFClassesForYear: start.year month:start.month day:start.day block:^(NSError *error, NSArray *GFClasses) {
             
             if (GFClasses.count) {
-                [self.classModalView.classData pushGFClasses: GFClasses withDate: start];
+                [self.classModalView.classData pushGFClasses: GFClasses withDate: [NSDate dateWithYear:start.year month:start.month andDay:start.day]];
             }
         }];
         
