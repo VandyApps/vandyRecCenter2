@@ -7,6 +7,7 @@
 //
 
 #import "RecClient.h"
+#import "ErrorHandler.h"
 
 @implementation RecClient
 static RecClient* client;
@@ -36,9 +37,8 @@ static BOOL initialized = NO;
     block(nil, (NSArray*) responseObject);
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Failed");
-        NSLog(@"%@", operation.responseString);
-        block(error, nil);
+        [ErrorHandler handleError: error withResponse: operation.response type: NetworkErrorConnection];
+        //block(error, nil);
     }];
 }
 
@@ -46,7 +46,9 @@ static BOOL initialized = NO;
     [self GET:@"hours" parameters:Nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         block(nil, (NSArray*) responseObject);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [ErrorHandler handleError: error withResponse: operation.response type: NetworkErrorConnection];
             block(error, nil);
+            
         }];
 }
 
@@ -55,7 +57,8 @@ static BOOL initialized = NO;
     [self GET: @"GF" parameters: nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         block(nil, (NSArray*) responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        block(error, nil);
+        [ErrorHandler handleError: error withResponse: operation.response type: NetworkErrorConnection];
+        //block(error, nil);
     }];
 }
 
@@ -68,7 +71,8 @@ static BOOL initialized = NO;
     [self GET: @"GF" parameters: params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         block(nil, (NSArray*) responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        block(error, nil);
+        [ErrorHandler handleError: error withResponse:operation.response type: NetworkErrorConnection];
+        //block(error, nil);
     }];
 }
 
@@ -78,7 +82,8 @@ static BOOL initialized = NO;
     [self GET: @"GF" parameters: params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         block(nil, (NSArray*) responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        block(error, nil);
+        [ErrorHandler handleError: error withResponse: operation.response type: NetworkErrorConnection];
+        //block(error, nil);
     }];
 }
 
