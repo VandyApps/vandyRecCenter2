@@ -9,6 +9,7 @@
 #import "DSLCalendarView.h"
 #import "NSDate-MyDateClass.h"
 
+#import "ErrorHandler.h"
 
 @interface GroupFitnessViewController () <DSLCalendarViewDelegate>
 
@@ -87,10 +88,21 @@ static CGFloat buttonPadding = 100.f;
 - (void) setup {
     [self setUpCalendar];
     [self setUpOptionPanel];
+    [self setupObservers];
 }
 - (void) setUpCalendar {
     self.calendar.delegate = self;
     [self.view addSubview: self.calendar];
+}
+
+- (void) setupObservers {
+    [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(networkConnectionFailed:) name:NetworkErrorConnection object: nil];
+}
+
+- (void) networkConnectionFailed: (NSNotification*) notification {
+    [self.HUD hide: YES];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle: @"Network Error" message: @"Could not connect to the internet, please check your connection" delegate: nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
+    [alert show];
 }
 
 /* this should be called after setUpCalendar*/
