@@ -37,7 +37,7 @@ static BOOL initialized = NO;
     block((NSArray*) responseObject);
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [ErrorHandler handleError: error withResponse: operation.response type: NetworkErrorConnection];
+        [ErrorHandler handleError: error withResponse: operation.response];
     }];
 }
 
@@ -46,7 +46,7 @@ static BOOL initialized = NO;
     [self GET:@"hours" parameters:Nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         block(nil, (NSArray*) responseObject);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [ErrorHandler handleError: error withResponse: operation.response type: NetworkErrorConnection];
+            [ErrorHandler handleError: error withResponse: operation.response];
             block(error, nil);
             
         }];
@@ -57,7 +57,7 @@ static BOOL initialized = NO;
     [self GET: @"GF" parameters: nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         block((NSArray*) responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [ErrorHandler handleError: error withResponse: operation.response type: NetworkErrorConnection];
+        [ErrorHandler handleError: error withResponse: operation.response];
     }];
 }
 
@@ -70,7 +70,7 @@ static BOOL initialized = NO;
     [self GET: @"GF" parameters: params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         block((NSArray*) responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [ErrorHandler handleError: error withResponse:operation.response type: NetworkErrorConnection];
+        [ErrorHandler handleError: error withResponse:operation.response];
     }];
 }
 
@@ -80,7 +80,7 @@ static BOOL initialized = NO;
     [self GET: @"GF" parameters: params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         block((NSArray*) responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [ErrorHandler handleError: error withResponse: operation.response type: NetworkErrorConnection];
+        [ErrorHandler handleError: error withResponse: operation.response];
     }];
 }
 

@@ -13,6 +13,6 @@ extern NSString* NetworkErrorUnknown;
 
 @interface ErrorHandler : NSObject
 
-+ (void) handleError: (NSError*) error withResponse: (NSHTTPURLResponse*) response type: (NSString*) errorType;
++ (void) handleError: (NSError*) error withResponse: (NSHTTPURLResponse*) response;
 
 @end

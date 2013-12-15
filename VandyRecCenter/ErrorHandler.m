@@ -14,7 +14,7 @@ NSString* NetworkErrorUnknown = @"NetworkErrorUnknown";
 @implementation ErrorHandler
 
 
-+ (void) handleError:(NSError *)error withResponse:(NSHTTPURLResponse *)response type:(NSString *)errorType
++ (void) handleError:(NSError *)error withResponse:(NSHTTPURLResponse *)response
 {
     
 }
