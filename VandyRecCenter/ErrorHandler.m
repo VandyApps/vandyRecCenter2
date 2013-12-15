@@ -16,6 +16,13 @@ NSString* NetworkErrorUnknown = @"NetworkErrorUnknown";
 
 + (void) handleError:(NSError *)error withResponse:(NSHTTPURLResponse *)response
 {
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName: NetworkErrorConnection
+                                                        object: [self tokenForError:
+                                                                 error withResponse: response]];
+}
+
++ (NSDictionary*) tokenForError: (NSError*) error withResponse: (NSHTTPURLResponse*) response
+{
+    return @{};
 }
 @end
