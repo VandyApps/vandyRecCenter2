@@ -131,6 +131,7 @@
 		FCE94310185A4C4300030692 /* GFFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE9430F185A4C4300030692 /* GFFavorite.m */; };
 		FCE94313185A5AF700030692 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE94311185A5AF700030692 /* 37x-Checkmark.png */; };
 		FCE94314185A5AF700030692 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE94312185A5AF700030692 /* 37x-Checkmark@2x.png */; };
+		FCF5FC24185D5C510042FA96 /* ErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF5FC23185D5C510042FA96 /* ErrorHandler.m */; };
 		FCFF9669185B768A00F6D981 /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFF9666185B768A00F6D981 /* PopoverView.m */; };
 /* End PBXBuildFile section */
 
@@ -328,6 +329,8 @@
 		FCE9430F185A4C4300030692 /* GFFavorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFFavorite.m; sourceTree = "<group>"; };
 		FCE94311185A5AF700030692 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
 		FCE94312185A5AF700030692 /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
+		FCF5FC22185D5C510042FA96 /* ErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHandler.h; sourceTree = "<group>"; };
+		FCF5FC23185D5C510042FA96 /* ErrorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorHandler.m; sourceTree = "<group>"; };
 		FCFF9665185B768A00F6D981 /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
 		FCFF9666185B768A00F6D981 /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
 		FCFF9667185B768A00F6D981 /* PopoverView_Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView_Configuration.h; sourceTree = "<group>"; };
@@ -416,6 +419,8 @@
 			children = (
 				211C2E9A17FF606C00C4400A /* RecClient.h */,
 				211C2E9B17FF606C00C4400A /* RecClient.m */,
+				FCF5FC22185D5C510042FA96 /* ErrorHandler.h */,
+				FCF5FC23185D5C510042FA96 /* ErrorHandler.m */,
 			);
 			name = "Web Client";
 			sourceTree = "<group>";
@@ -1011,6 +1016,7 @@
 				211C2EA117FF642700C4400A /* MBProgressHUD.m in Sources */,
 				212974E017FE466D007210AB /* AFSecurityPolicy.m in Sources */,
 				21325306180853C100ED855D /* GFTableViewController.m in Sources */,
+				FCF5FC24185D5C510042FA96 /* ErrorHandler.m in Sources */,
 				21244F2B1800B22900EE27BC /* TimeString.m in Sources */,
 				2119C8E217FF140400D4A284 /* MainMenuViewController.m in Sources */,
 				215B8DB11809B50F009C248E /* NSDate-MyDateClass.m in Sources */,
