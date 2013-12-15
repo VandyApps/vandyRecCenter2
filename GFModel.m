@@ -39,36 +39,24 @@
 
 #pragma mark load data
 
-- (void) loadData:(void (^)(NSError *, NSArray *))block forMonth:(NSInteger)month andYear:(NSInteger)year {
+- (void) loadData:(void (^)(NSArray *))block forMonth:(NSInteger)month andYear:(NSInteger)year {
     if (month < 0 || year < 0) {
         self.month = -1;
         self.year = -1;
-        [self.webClient fetchGroupFitness:^(NSError *error, NSArray *classes) {
-            
-            if (error) {
-                block(error, classes);
-            } else {
-                self.dataLoaded = YES;
-                self.GFClasses = classes;
-                
-                block(nil, classes);
-            }
+        [self.webClient fetchGroupFitness:^(NSArray *classes) {
+            self.dataLoaded = YES;
+            self.GFClasses = classes;
+            block(classes);
         }];
         
     } else {
         self.month = month;
         self.year = year;
         
-        [self.webClient fetchGroupFitnessForMonth: month year: year block:^(NSError *error, NSArray *classes) {
-            
-            if (error) {
-                block(error, nil);
-            } else {
+        [self.webClient fetchGroupFitnessForMonth: month year: year block:^(NSArray *classes) {
                 self.dataLoaded = YES;
                 self.GFClasses = classes;
-                
-                block(nil, classes);
-            }
+                block(classes);
         }];
     
     }

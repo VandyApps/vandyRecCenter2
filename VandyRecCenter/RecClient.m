@@ -31,17 +31,17 @@ static BOOL initialized = NO;
 }
 
 #pragma mark - Fetch methods
-- (void) fetchNews:(void (^)(NSError *, NSArray*))block {
+- (void) fetchNews:(void (^)(NSArray*))block {
     [self GET: @"news" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-    block(nil, (NSArray*) responseObject);
+    block((NSArray*) responseObject);
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [ErrorHandler handleError: error withResponse: operation.response type: NetworkErrorConnection];
-        //block(error, nil);
     }];
 }
 
+#warning - Let Aaron know this has changed
 - (void) fetchHours:(void (^)(NSError *, NSArray *))block {
     [self GET:@"hours" parameters:Nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         block(nil, (NSArray*) responseObject);
@@ -52,38 +52,35 @@ static BOOL initialized = NO;
         }];
 }
 
-- (void) fetchGroupFitness:(void (^)(NSError *, NSArray*))block {
+- (void) fetchGroupFitness:(void (^)(NSArray*))block {
     
     [self GET: @"GF" parameters: nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        block(nil, (NSArray*) responseObject);
+        block((NSArray*) responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [ErrorHandler handleError: error withResponse: operation.response type: NetworkErrorConnection];
-        //block(error, nil);
     }];
 }
 
-- (void) fetchGroupFitnessForMonth:(NSInteger)month year:(NSInteger)year block:(void (^)(NSError *, NSArray*))block {
+- (void) fetchGroupFitnessForMonth:(NSInteger)month year:(NSInteger)year block:(void (^)(NSArray*))block {
 
     NSDictionary* params = @{@"type":@"GFClass",
                              @"month": @(month),
                              @"year": @(year)};
     
     [self GET: @"GF" parameters: params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        block(nil, (NSArray*) responseObject);
+        block((NSArray*) responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [ErrorHandler handleError: error withResponse:operation.response type: NetworkErrorConnection];
-        //block(error, nil);
     }];
 }
 
-- (void) fetchGroupFitnessSpecialDates:(void (^)(NSError *, NSArray *))block {
+- (void) fetchGroupFitnessSpecialDates:(void (^)(NSArray *))block {
     NSDictionary* params = @{@"type": @"GFSpecialDate"};
     
     [self GET: @"GF" parameters: params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        block(nil, (NSArray*) responseObject);
+        block((NSArray*) responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [ErrorHandler handleError: error withResponse: operation.response type: NetworkErrorConnection];
-        //block(error, nil);
     }];
 }
 

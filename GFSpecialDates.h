@@ -19,7 +19,7 @@
 //connect to the web client but just calls the block
 //this method must be called before calling any other methods
 //in this class
-- (void) loadData: (void(^)(NSError* error, GFSpecialDates* specialDates)) block;
+- (void) loadData: (void(^)(GFSpecialDates* specialDates)) block;
 
 //for finding out if the given date has a special date or not
 - (BOOL) isSpecialDateForDate: (NSDate*) date;

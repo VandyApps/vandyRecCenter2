@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) UIView* optionsView;
 @property (nonatomic, strong) UIView* optionsContentView;
+@property (nonatomic, strong) MBProgressHUD* HUD;
 
 @end
 
@@ -219,7 +220,7 @@ static CGFloat buttonPadding = 100.f;
     while ([start compare: end] != NSOrderedDescending) {
         //this should not be making network calls because this method is invoked AFTER
         //all the data is fethed from the network
-        [self.collection GFClassesForYear: start.year month:start.month day:start.day block:^(NSError *error, NSArray *GFClasses) {
+        [self.collection GFClassesForYear: start.year month:start.month day:start.day block:^(NSArray *GFClasses) {
             
             if (GFClasses.count) {
                 [self.classModalView.classData pushGFClasses: GFClasses withDate: [NSDate dateWithYear:start.year month:start.month andDay:start.day]];
@@ -273,13 +274,10 @@ static CGFloat buttonPadding = 100.f;
 
 - (void) fetchAndDisplayDataFromServerFromStartDate: (NSDate*) startDate toEndDate: (NSDate*) endDate {
     
-    static MBProgressHUD* HUD;
     
-    if (!HUD) {
-        HUD = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
-        HUD.mode = MBProgressHUDModeIndeterminate;
-        HUD.labelText = @"Loading...";
-    }
+    self.HUD = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
+    self.HUD.mode = MBProgressHUDModeIndeterminate;
+    self.HUD.labelText = @"Loading...";
     
     NSUInteger numberOfFetches = (endDate.month + endDate.year * 12) - (startDate.month + startDate.year * 12) + 1;
     __block NSUInteger remainingFetches = numberOfFetches;
@@ -293,11 +291,11 @@ static CGFloat buttonPadding = 100.f;
         __block NSUInteger a_year = year;
         
         //fetch
-        [self.collection loadMonth: startDate.month andYear:startDate.year block:^(NSError *error, GFModel *model) {
+        [self.collection loadMonth: startDate.month andYear:startDate.year block:^(GFModel *model) {
             --remainingFetches;
             NSLog(@"should decrement: %i", remainingFetches);
             if (!remainingFetches) {
-                [HUD hide: YES];
+                [self.HUD hide: YES];
                 [self displayResultsFromDate: startDate toDate: endDate];
             }
         }];

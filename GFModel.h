@@ -33,7 +33,7 @@
 //if month or year are set to a negative number, the data being loaded
 //will contain ALL of the GF data available with no month or year
 //boundaries
-- (void) loadData: (void (^)(NSError* error, NSArray* data)) block forMonth: (NSInteger) month andYear: (NSInteger) year;
+- (void) loadData: (void (^)(NSArray* data)) block forMonth: (NSInteger) month andYear: (NSInteger) year;
 
 
 //returns true if the class is on the day for the month and year

@@ -35,84 +35,73 @@
 
 
 #pragma mark - Model Getters
-- (void) GFModelForYear:(NSUInteger)year month:(NSUInteger)month block:(void (^)(NSError *error, GFModel *model))block {
+- (void) GFModelForYear:(NSUInteger)year month:(NSUInteger)month block:(void (^)(GFModel *model))block {
   //array of models is in chronological order
     BOOL foundModel = NO;
     for (GFModel* model in self.models) {
         if (model.month == month && model.year == year) {
             foundModel = YES;
-            block(nil, model);
+            block(model);
         }
     }
     
     if (!foundModel) {
         GFModel * newModel = [[GFModel alloc] init];
-        [newModel loadData:^(NSError *error, NSArray *data) {
-            if (error) {
-                NSLog(@"%@", error);
-                block(error, nil);
-            } else {
-                self.models = [self.models arrayByAddingObject: newModel];
-                [self sort];
-                block(nil, newModel);
-            }
+        [newModel loadData:^(NSArray *data) {
+            
+            self.models = [self.models arrayByAddingObject: newModel];
+            [self sort];
+            block(newModel);
         } forMonth: month andYear: year];
     }
    
     
 }
-- (void) GFModelForCurrentMonth:(void (^)(NSError *, GFModel *))block {
+- (void) GFModelForCurrentMonth:(void (^)(GFModel *))block {
     NSDate* current = [[NSDate alloc] init];
     NSUInteger month = [current monthForTimeZone: NashvilleTime];
     NSUInteger year = [current yearForTimeZone: NashvilleTime];
-    [self GFModelForYear: year month: month block:^(NSError *error, GFModel *model) {
-        block(error, model);
+    [self GFModelForYear: year month: month block:^(GFModel *model) {
+        block(model);
     }];
     
 }
 
 #pragma mark - Sub-model getters
 
-- (void) GFClassesForYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day block:(void (^)(NSError *, NSArray *))block {
+- (void) GFClassesForYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day block:(void (^)(NSArray *))block {
     
-    [self GFModelForYear: year month: month block:^(NSError *error, GFModel *model) {
+    [self GFModelForYear: year month: month block:^(GFModel *model) {
         
-        if (error) {
-            block(error, nil);
-        } else {
-            
-            NSArray* classesForDay = [model GFClassesForDay: day];
-            
-            classesForDay = [self filterClasses: classesForDay bySpecialDateForYear: year month:month day: day];
-            
-            block(nil,classesForDay);
-        }
+        NSArray* classesForDay = [model GFClassesForDay: day];
+        
+        classesForDay = [self filterClasses: classesForDay bySpecialDateForYear: year month:month day: day];
+        
+        block(classesForDay);
+        
     }];
 }
 
-- (void) GFClassesForCurrentDay:(void (^)(NSError *, NSArray *))block {
-    [self GFModelForCurrentMonth:^(NSError *error, GFModel *model) {
-        if (error) {
-            block(error, nil);
-        } else {
-            NSDate* current = [[NSDate alloc] init];
-            NSUInteger day = [current dayForTimeZone: NashvilleTime];
-            NSArray* currentClasses = [model GFClassesForDay: day];
-            currentClasses = [self filterClasses: currentClasses bySpecialDateForYear: [current year] month: [current month] day: [current day]];
-            block(nil, currentClasses);
-        }
+- (void) GFClassesForCurrentDay:(void (^)(NSArray *))block {
+    [self GFModelForCurrentMonth:^(GFModel *model) {
+        
+        NSDate* current = [[NSDate alloc] init];
+        NSUInteger day = [current dayForTimeZone: NashvilleTime];
+        NSArray* currentClasses = [model GFClassesForDay: day];
+        currentClasses = [self filterClasses: currentClasses bySpecialDateForYear: [current year] month: [current month] day: [current day]];
+        block(currentClasses);
     }];
 }
 
-- (void) GFClassesForDaysAfterCurrentDay:(NSInteger)days block:(void (^)(NSError *, NSArray *))block {
+- (void) GFClassesForDaysAfterCurrentDay:(NSInteger)days block:(void (^)(NSArray *))block {
     
     NSDate* date = [DateHelper currentDateForTimeZone: NashvilleTime];
     //add days to the date
     date = [date dateByAddingTimeInterval: days * 24 * 60 * 60];
     
-    [self GFClassesForYear:[date year] month: [date month] day: [date day] block:^(NSError *error, NSArray *GFClasses) {
+    [self GFClassesForYear:[date year] month: [date month] day: [date day] block:^(NSArray *GFClasses) {
         
-        block(error, GFClasses);
+        block(GFClasses);
     }];
 }
 
@@ -128,7 +117,7 @@
 #pragma mark - Loading/Reloading
 //loading methods do not need to be called unless a model wants to be
 //reloaded.  Getters will automatically load data
-- (void) loadMonth:(NSUInteger)month andYear:(NSUInteger)year block:(void (^)(NSError *, GFModel *))block {
+- (void) loadMonth:(NSUInteger)month andYear:(NSUInteger)year block:(void (^)(GFModel *))block {
     //load special dates before trying to do anything else
     [self loadSpecialDates:^{
         
@@ -136,12 +125,8 @@
         for (GFModel* model in self.models) {
             if (model.month == month && model.year == year) {
                 foundModel = YES;
-                [model loadData:^(NSError *error, NSArray *data) {
-                    if (error) {
-                        block(error, nil);
-                    } else {
-                        block(nil, model);
-                    }
+                [model loadData:^(NSArray *data) {
+                    block(model);
                 } forMonth: month andYear: year];
             }
         }
@@ -149,51 +134,35 @@
         if (!foundModel) {
             
             GFModel* newModel = [[GFModel alloc] init];
-            [newModel loadData:^(NSError *error, NSArray *data) {
-                if (error) {
-                    block(error, nil);
-                } else {
-                    
-                    self.models = [self.models arrayByAddingObject: newModel];
-                    [self sort];
-                    
-                    block(nil, newModel);
-                }
+            [newModel loadData:^(NSArray *data) {
+                self.models = [self.models arrayByAddingObject: newModel];
+                [self sort];
+                block(newModel);
+                
             } forMonth: month andYear: year];
         }
-        
-        
     }];
     
 }
 
-- (void) loadCurrentMonth:(void (^)(NSError *, GFModel *))block {
+- (void) loadCurrentMonth:(void (^)(GFModel *)) block {
     NSDate *current = [[NSDate alloc] init];
     NSUInteger month = [current monthForTimeZone: NashvilleTime];
     NSUInteger year = [current yearForTimeZone: NashvilleTime];
-    [self loadMonth: month andYear: year block:^(NSError *error, GFModel *model) {
-        if (error) {
-            block(error, nil);
-        } else {
-            block(error, model);
-        }
+    [self loadMonth: month andYear: year block:^(GFModel *model) {
+        block(model);
     }];
 }
 
 #pragma mark - Query
-- (void) getClassForYear: (NSUInteger) year month: (NSUInteger) month ID: (NSString*) ID block: (void(^)(NSError* error, NSDictionary* GFClass)) block {
+- (void) getClassForYear: (NSUInteger) year month: (NSUInteger) month ID: (NSString*) ID block: (void(^)(NSDictionary* GFClass)) block {
     
-    [self GFModelForYear:year month:month block:^(NSError *error, GFModel *model) {
-        if (error) {
-            block(error, nil);
-        } else {
-            for (NSDictionary* GFClass in model.GFClasses) {
-                if ([[GFClass objectForKey: @"_id"] isEqualToString: ID]) {
-                    block(nil, GFClass);
-                }
+    [self GFModelForYear:year month:month block:^(GFModel *model) {
+        for (NSDictionary* GFClass in model.GFClasses) {
+            if ([[GFClass objectForKey: @"_id"] isEqualToString: ID]) {
+                block(GFClass);
             }
         }
-        
     }];
 }
 
@@ -209,19 +178,19 @@
 
 
 #pragma mark - Private
-- (void) loadSpecialDates: (void(^)()) completion {
+- (void) loadSpecialDates: (void(^)()) block {
     static BOOL isLoaded = NO;
     
     if (!isLoaded) {
         
-        [self.specialDates loadData:^(NSError *error, GFSpecialDates *specialDates) {
+        [self.specialDates loadData:^(GFSpecialDates *specialDates) {
             isLoaded = YES;
             
-            completion();
+            block();
         }];
     } else {
         
-        completion();
+        block();
     }
     
 }

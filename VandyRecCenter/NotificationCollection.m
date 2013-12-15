@@ -30,19 +30,16 @@ static BOOL initialized = NO;
 
 #pragma mark - Async
 - (void) initialImport {
-    [[RecClient sharedClient] fetchNews:^(NSError *error, NSArray* news) {
-        if (error == nil) {
-            _items = [[NSArray alloc] init];
-            for (NSUInteger i = 0; i < news.count; ++i) {
-                NSDictionary* newsElement = [news objectAtIndex: i];
-                
-                _items = [_items arrayByAddingObject:[[Notification alloc] initWithType: NotificationTypeNews message: [newsElement objectForKey: @"description"] priority: [[newsElement objectForKey: @"priorityNumber"] intValue]]];
-            }
-            //sort after appending all the elements
-            [self sortItems];
-
+    [[RecClient sharedClient] fetchNews:^(NSArray* news) {
+        _items = [[NSArray alloc] init];
+        for (NSUInteger i = 0; i < news.count; ++i) {
+            NSDictionary* newsElement = [news objectAtIndex: i];
+            
+            _items = [_items arrayByAddingObject:[[Notification alloc] initWithType: NotificationTypeNews message: [newsElement objectForKey: @"description"] priority: [[newsElement objectForKey: @"priorityNumber"] intValue]]];
         }
-        
+        //sort after appending all the elements
+        [self sortItems];
+
         //call block to signify completion
         if (self.delegate) {
             [self.delegate collectionCompletedInitialImport: self];

@@ -22,9 +22,9 @@
 
 //loads the collection with a single element
 //in the model array that represents the current date
-- (void) loadCurrentMonth: (void(^)(NSError*error, GFModel* model)) block;
+- (void) loadCurrentMonth: (void(^)(GFModel* model)) block;
 
-- (void) loadMonth: (NSUInteger) month andYear: (NSUInteger) year block: (void(^)(NSError* error, GFModel* model)) block;
+- (void) loadMonth: (NSUInteger) month andYear: (NSUInteger) year block: (void(^)(GFModel* model)) block;
 
 
 - (BOOL) dataLoadedForMonth: (NSUInteger) year year: (NSUInteger) month;
@@ -32,19 +32,19 @@
 //gets the classes for the current day
 //if the GFClasses for the the day have not
 //loaded, they are loaded before calling the block
-- (void) GFClassesForCurrentDay: (void (^)(NSError* error, NSArray* GFClasses)) block;
+- (void) GFClassesForCurrentDay: (void (^)(NSArray* GFClasses)) block;
 
 //if a negative number is passed in, this will
 //return the GFClasses for that many days before
 //the current day
-- (void) GFClassesForDaysAfterCurrentDay: (NSInteger) days block: (void (^)(NSError* error, NSArray* GFClasses)) block;
-- (void) GFClassesForYear: (NSUInteger) year month: (NSUInteger) month day: (NSUInteger) day block: (void (^)(NSError* error, NSArray* GFClasses)) block;
+- (void) GFClassesForDaysAfterCurrentDay: (NSInteger) days block: (void (^)(NSArray* GFClasses)) block;
+- (void) GFClassesForYear: (NSUInteger) year month: (NSUInteger) month day: (NSUInteger) day block: (void (^)(NSArray* GFClasses)) block;
 
-- (void) GFModelForCurrentMonth: (void (^)(NSError* error, GFModel *model)) block;
-- (void) GFModelForYear: (NSUInteger) year month: (NSUInteger) month block: (void (^)(NSError *error, GFModel* model)) block;
+- (void) GFModelForCurrentMonth: (void (^)(GFModel *model)) block;
+- (void) GFModelForYear: (NSUInteger) year month: (NSUInteger) month block: (void (^)(GFModel* model)) block;
 
 //querying for a single class
-- (void) getClassForYear: (NSUInteger) year month: (NSUInteger) month ID: (NSString*) ID block: (void(^)(NSError* error, NSDictionary* GFClass)) block;
+- (void) getClassForYear: (NSUInteger) year month: (NSUInteger) month ID: (NSString*) ID block: (void(^)(NSDictionary* GFClass)) block;
 
 
 @end

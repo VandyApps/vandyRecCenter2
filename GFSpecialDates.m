@@ -28,23 +28,23 @@
 
 #pragma mark - Public
 
-- (void) loadData:(void (^)(NSError *, GFSpecialDates *))block {
+- (void) loadData:(void (^)(GFSpecialDates *))block {
 
     if (self.dates == nil) {
         
         //month and year do not matter for special dates type
-        [self.webClient fetchGroupFitnessSpecialDates:^(NSError *error, NSArray *specialDates) {
+        [self.webClient fetchGroupFitnessSpecialDates:^(NSArray *specialDates) {
             
             if (specialDates != nil) {
                 self.dates = specialDates;
             }
-            block(error, self);
+            block(self);
             
         }];
         
     } else {
         
-        block(nil, self);
+        block(self);
     }
 
 }
