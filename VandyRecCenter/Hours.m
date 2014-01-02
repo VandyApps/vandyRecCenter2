@@ -29,6 +29,12 @@
 
 - (id) init {
     self = [super init];
+    [self loadData:^(NSError *error, Hours *hoursModel) {
+        if (error) {
+            NSLog(@"There was an error");
+        }
+    }];
+    NSLog(@"hours: %@", _hours);
     return self;
 }
 

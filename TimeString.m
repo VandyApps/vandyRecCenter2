@@ -105,6 +105,7 @@
         if (self.isAM) {
             indicator = @" am";
             
+
         } else {
             indicator = @" pm";
         }

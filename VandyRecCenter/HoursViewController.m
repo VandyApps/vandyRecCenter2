@@ -62,6 +62,15 @@ static CGFloat TodayButtonWidth = 100;
 - (void) setupTimeLabel {
     self.timeLabel = [[UILabel alloc] initWithFrame: CGRectMake(self.view.frame.size.width / 2.f - TimeLabelWidth / 2.f, 64 + TimeLabelPadding, TimeLabelWidth, TimeLabelHeight)];
     
+    self.timeLabel.text = @"Opening in 1 hour 27 minutes";
+    // format: "Closing in 1 hour 21 minutes"
+//    Hours *time = [[Hours alloc] init];
+//    if (time.willOpenLaterToday == TRUE || time.wasOpenEarlierToday == TRUE) {
+//        self.timeLabel.text = @"Opening in %@", [time timeUntilOpen];
+//    } else if (time.isOpen == TRUE) {
+//        self.timeLabel.text = @"Closing in %@", [time timeUntilClosed];
+//    }
+    
     self.timeLabel.text = @"Closing in 1 hour 21 minutes";
     self.timeLabel.textColor = [UIColor blueColor];
     self.timeLabel.font = [UIFont systemFontOfSize: 14];
@@ -146,7 +155,34 @@ static CGFloat TodayButtonWidth = 100;
     [vandyGold getRed: &red green: &green blue: &blue alpha: &alpha];
     UIColor* backgroundColor = [UIColor colorWithRed: red green: green blue: blue alpha: .5];
     contentView.layer.backgroundColor = backgroundColor.CGColor;
-
+    
+    
+    Hours *time = [[Hours alloc] init];
+    NSLog(@"Hours: %@", [time defaultHours]);
+    
+    // create opening time label
+    UILabel *openingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, pager.pageSize.width, 20)];
+    NSString *openingTimeString = [NSString stringWithFormat:@"offset: %d", [offset row]];
+    openingTimeLabel.text = openingTimeString;
+    
+    // Align the label at center
+    openingTimeLabel.textAlignment = NSTextAlignmentCenter;
+    
+    // Add label to contentView
+    [contentView addSubview:openingTimeLabel];
+    
+    
+    // create closing time label
+    UILabel *closingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 60, pager.pageSize.width, 20)];
+    NSString *closingTimeString = [NSString stringWithFormat:@"closing at noon"];
+    closingTimeLabel.text = closingTimeString;
+    
+    // Align the label at center
+    closingTimeLabel.textAlignment = NSTextAlignmentCenter;
+    
+    // Add label to contentView
+    [contentView addSubview:closingTimeLabel];
+    
     
     [view addSubview: contentView];
     

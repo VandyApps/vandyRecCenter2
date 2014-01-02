@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BMInfinitePagerDelegate.h"
+#import "Hours.h"
+#import "TimeString.h"
 
 @class BMInfinitePager;
 @class BMArrowButton;
