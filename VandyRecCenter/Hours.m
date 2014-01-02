@@ -20,7 +20,11 @@
 
 - (NSArray*) hours {
     if (!_hours) {
-        // What do I do here? call loadData?
+        [self loadData:^(NSError *error, Hours *hoursModel) {
+            if (error) {
+                NSLog(@"There was an error");
+            }
+        }];
     }
     return _hours;
 }
@@ -30,11 +34,11 @@
 - (id) init {
     self = [super init];
     [self loadData:^(NSError *error, Hours *hoursModel) {
+        NSLog(@"Hours: %@", _hours);
         if (error) {
             NSLog(@"There was an error");
         }
     }];
-    NSLog(@"hours: %@", _hours);
     return self;
 }
 

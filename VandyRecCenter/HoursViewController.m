@@ -18,6 +18,8 @@
 
 #pragma mark - Static Variables
 
+static CGFloat contentViewPadding = 10;
+
 static CGFloat TimeLabelPadding = 10;
 static CGFloat TimeLabelHeight = 20;
 static CGFloat TimeLabelWidth = 250;
@@ -140,7 +142,6 @@ static CGFloat TodayButtonWidth = 100;
 #pragma mark - Pager Delegate
 
 - (UIView*) pager:(BMInfinitePager *)pager viewForOffset:(BMIndexPath *)offset {
-    static CGFloat contentViewPadding = 10;
     UIView* view = [[UIView alloc] init];
     
     UIView* contentView = [[UIView alloc] initWithFrame: CGRectMake(contentViewPadding, contentViewPadding, pager.pageSize.width - 2 * contentViewPadding, pager.pageSize.height - 2 * contentViewPadding)];
@@ -158,35 +159,64 @@ static CGFloat TodayButtonWidth = 100;
     
     
     Hours *time = [[Hours alloc] init];
-    NSLog(@"Hours: %@", [time defaultHours]);
+//    NSLog(@"Hours: %@", [time otherHours]);
     
+    // create opening time label & add to contentView
+    UILabel *openingTimeLabel = [self setupOpeningTimeLabelWithPager:pager];
+    [contentView addSubview:openingTimeLabel];
+    
+    // create to label & add to contentView
+    UILabel *toLabel = [self setupToSeparatorLabelWithPager:pager];
+    [contentView addSubview:toLabel];
+    
+    // create closing time label & add to contentView
+    UILabel *closingTimeLabel = [self setupClosingTimeLabelWithPager:pager];
+    [contentView addSubview:closingTimeLabel];
+    
+    // create type of hours label
+    UILabel *typeOfHoursLabel = [self setupTypeOfHoursLabelWithPager:pager];
+    [contentView addSubview:typeOfHoursLabel];
+    
+    // add the content we set up to the view
+    [view addSubview: contentView];
+    
+    return view;
+}
+
+- (UILabel*) setupOpeningTimeLabelWithPager: (BMInfinitePager*) pager {
     // create opening time label
-    UILabel *openingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, pager.pageSize.width, 20)];
-    NSString *openingTimeString = [NSString stringWithFormat:@"offset: %d", [offset row]];
+    UILabel *openingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 1 * pager.pageSize.height / 8, pager.pageSize.width, 20)];
+    NSString *openingTimeString = @"8:00 pm";
     openingTimeLabel.text = openingTimeString;
     
     // Align the label at center
     openingTimeLabel.textAlignment = NSTextAlignmentCenter;
-    
-    // Add label to contentView
-    [contentView addSubview:openingTimeLabel];
-    
-    
-    // create closing time label
-    UILabel *closingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 60, pager.pageSize.width, 20)];
-    NSString *closingTimeString = [NSString stringWithFormat:@"closing at noon"];
+    return openingTimeLabel;
+}
+
+- (UILabel*) setupClosingTimeLabelWithPager: (BMInfinitePager*) pager {
+    UILabel *closingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 3 * pager.pageSize.height / 8, pager.pageSize.width, 20)];
+    NSString *closingTimeString = [NSString stringWithFormat:@"10:00 pm"];
     closingTimeLabel.text = closingTimeString;
     
     // Align the label at center
     closingTimeLabel.textAlignment = NSTextAlignmentCenter;
-    
-    // Add label to contentView
-    [contentView addSubview:closingTimeLabel];
-    
-    
-    [view addSubview: contentView];
-    
-    return view;
+    return closingTimeLabel;
+}
+
+- (UILabel*) setupToSeparatorLabelWithPager: (BMInfinitePager*) pager {
+    UILabel *toLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 2 * pager.pageSize.height / 8, pager.pageSize.width, 20)];
+    NSString *toString = @"to";
+    toLabel.text = toString;
+    toLabel.textAlignment = NSTextAlignmentCenter;
+    return toLabel;
+}
+
+- (UILabel*) setupTypeOfHoursLabelWithPager: (BMInfinitePager*) pager {
+    UILabel *typeOfHoursLabel = [[UILabel alloc] initWithFrame:CGRectMake(contentViewPadding, pager.pageSize.height - 5 * contentViewPadding, pager.pageSize.width, 20)];
+    NSString *typeOfHoursString = [NSString stringWithFormat:@"Fall Hours"];
+    typeOfHoursLabel.text = typeOfHoursString;
+    return typeOfHoursLabel;
 }
 
 @end
