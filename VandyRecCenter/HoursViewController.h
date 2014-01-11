@@ -10,6 +10,7 @@
 #import "BMInfinitePagerDelegate.h"
 #import "Hours.h"
 #import "TimeString.h"
+#import "MBProgressHUD.h"
 
 @class BMInfinitePager;
 @class BMArrowButton;
@@ -23,4 +24,8 @@
 
 @property (nonatomic, strong) UIButton* todayButton;
 @property (nonatomic, strong) UILabel* timeLabel;
+
+@property (nonatomic, strong) MBProgressHUD *HUD;
+@property (nonatomic, strong) Hours *hours;
+
 @end

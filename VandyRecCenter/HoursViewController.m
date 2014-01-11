@@ -16,6 +16,9 @@
 
 @implementation HoursViewController
 
+@synthesize HUD = _HUD;
+@synthesize hours = _hours;
+
 #pragma mark - Static Variables
 
 static CGFloat contentViewPadding = 10;
@@ -44,6 +47,25 @@ static CGFloat TodayButtonWidth = 100;
 {
     [super viewDidLoad];
     [self setup];
+    
+    if (!_hours) {
+        self.hours = [[Hours alloc] init];
+    }
+    
+    self.HUD = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
+    self.HUD.mode = MBProgressHUDModeIndeterminate;
+    self.HUD.labelText = @"Loading...";
+    
+    [_hours loadData:^(NSError *error, Hours *hoursModel) {
+        if (error) {
+            NSLog(@"There was an error: %@", error);
+        }
+        if (hoursModel.hours) {
+            [_HUD hide:YES];
+            [self setupPager];
+            [self setupTimeLabel];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,8 +77,6 @@ static CGFloat TodayButtonWidth = 100;
 #pragma mark - Setup
 
 - (void) setup {
-    [self setupTimeLabel];
-    [self setupPager];
     [self setupArrowButtons];
     [self setupTodayButton];
 }
@@ -64,13 +84,14 @@ static CGFloat TodayButtonWidth = 100;
 - (void) setupTimeLabel {
     self.timeLabel = [[UILabel alloc] initWithFrame: CGRectMake(self.view.frame.size.width / 2.f - TimeLabelWidth / 2.f, 64 + TimeLabelPadding, TimeLabelWidth, TimeLabelHeight)];
     
-    self.timeLabel.text = @"Opening in 1 hour 27 minutes";
+    self.timeLabel.text = @"Closing in 1 hours 21 minutes";
     // format: "Closing in 1 hour 21 minutes"
-//    Hours *time = [[Hours alloc] init];
-//    if (time.willOpenLaterToday == TRUE || time.wasOpenEarlierToday == TRUE) {
-//        self.timeLabel.text = @"Opening in %@", [time timeUntilOpen];
-//    } else if (time.isOpen == TRUE) {
-//        self.timeLabel.text = @"Closing in %@", [time timeUntilClosed];
+//    NSLog(@"timeUntilOpen: %@", [_hours currentHours]);
+//    NSLog(@"Okay");
+//    if ([_hours willOpenLaterToday] == TRUE || [_hours wasOpenEarlierToday] == TRUE) {
+//        self.timeLabel.text = @"Opening in %@", [_hours timeUntilOpen];
+//    } else if (_hours.isOpen == TRUE) {
+//        self.timeLabel.text = @"Closing in %@", [_hours timeUntilClosed];
 //    }
     
     self.timeLabel.text = @"Closing in 1 hour 21 minutes";
@@ -120,7 +141,6 @@ static CGFloat TodayButtonWidth = 100;
     self.todayButton.layer.cornerRadius = 2.f;
     
     [self.view addSubview: self.todayButton];
-
 }
 
 
@@ -156,10 +176,6 @@ static CGFloat TodayButtonWidth = 100;
     [vandyGold getRed: &red green: &green blue: &blue alpha: &alpha];
     UIColor* backgroundColor = [UIColor colorWithRed: red green: green blue: blue alpha: .5];
     contentView.layer.backgroundColor = backgroundColor.CGColor;
-    
-    
-    Hours *time = [[Hours alloc] init];
-//    NSLog(@"Hours: %@", [time otherHours]);
     
     // create opening time label & add to contentView
     UILabel *openingTimeLabel = [self setupOpeningTimeLabelWithPager:pager];
