@@ -46,7 +46,7 @@
 - (NSTimeInterval) timeUntilClosed;
 - (NSTimeInterval) timeUntilOpen;
 
-- (NSDictionary*) hoursFromCurrentDay: (NSInteger) offset;
+//- (NSDictionary*) hoursFromCurrentDay: (NSInteger) offset;
 
 @end
 

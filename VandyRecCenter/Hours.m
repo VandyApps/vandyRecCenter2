@@ -19,8 +19,13 @@
 # pragma mark - Properties
 
 - (NSArray*) hours {
+//    NSLog(@"hours array: %@", _hours);
     if (!_hours) {
-        // What do I do here? call loadData?
+        [self loadData:^(NSError *error, Hours *hoursModel) {
+            if (error) {
+                NSLog(@"There was an error");
+            }
+        }];
     }
     return _hours;
 }

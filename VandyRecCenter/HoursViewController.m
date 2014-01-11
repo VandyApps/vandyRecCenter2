@@ -16,7 +16,12 @@
 
 @implementation HoursViewController
 
+@synthesize HUD = _HUD;
+@synthesize hours = _hours;
+
 #pragma mark - Static Variables
+
+static CGFloat contentViewPadding = 10;
 
 static CGFloat TimeLabelPadding = 10;
 static CGFloat TimeLabelHeight = 20;
@@ -42,6 +47,25 @@ static CGFloat TodayButtonWidth = 100;
 {
     [super viewDidLoad];
     [self setup];
+    
+    if (!_hours) {
+        self.hours = [[Hours alloc] init];
+    }
+    
+    self.HUD = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
+    self.HUD.mode = MBProgressHUDModeIndeterminate;
+    self.HUD.labelText = @"Loading...";
+    
+    [_hours loadData:^(NSError *error, Hours *hoursModel) {
+        if (error) {
+            NSLog(@"There was an error: %@", error);
+        }
+        if (hoursModel.hours) {
+            [_HUD hide:YES];
+            [self setupPager];
+            [self setupTimeLabel];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,14 +77,22 @@ static CGFloat TodayButtonWidth = 100;
 #pragma mark - Setup
 
 - (void) setup {
-    [self setupTimeLabel];
-    [self setupPager];
     [self setupArrowButtons];
     [self setupTodayButton];
 }
 
 - (void) setupTimeLabel {
     self.timeLabel = [[UILabel alloc] initWithFrame: CGRectMake(self.view.frame.size.width / 2.f - TimeLabelWidth / 2.f, 64 + TimeLabelPadding, TimeLabelWidth, TimeLabelHeight)];
+    
+    self.timeLabel.text = @"Closing in 1 hours 21 minutes";
+    // format: "Closing in 1 hour 21 minutes"
+//    NSLog(@"timeUntilOpen: %@", [_hours currentHours]);
+//    NSLog(@"Okay");
+//    if ([_hours willOpenLaterToday] == TRUE || [_hours wasOpenEarlierToday] == TRUE) {
+//        self.timeLabel.text = @"Opening in %@", [_hours timeUntilOpen];
+//    } else if (_hours.isOpen == TRUE) {
+//        self.timeLabel.text = @"Closing in %@", [_hours timeUntilClosed];
+//    }
     
     self.timeLabel.text = @"Closing in 1 hour 21 minutes";
     self.timeLabel.textColor = [UIColor blueColor];
@@ -109,7 +141,6 @@ static CGFloat TodayButtonWidth = 100;
     self.todayButton.layer.cornerRadius = 2.f;
     
     [self.view addSubview: self.todayButton];
-
 }
 
 
@@ -131,7 +162,6 @@ static CGFloat TodayButtonWidth = 100;
 #pragma mark - Pager Delegate
 
 - (UIView*) pager:(BMInfinitePager *)pager viewForOffset:(BMIndexPath *)offset {
-    static CGFloat contentViewPadding = 10;
     UIView* view = [[UIView alloc] init];
     
     UIView* contentView = [[UIView alloc] initWithFrame: CGRectMake(contentViewPadding, contentViewPadding, pager.pageSize.width - 2 * contentViewPadding, pager.pageSize.height - 2 * contentViewPadding)];
@@ -146,11 +176,63 @@ static CGFloat TodayButtonWidth = 100;
     [vandyGold getRed: &red green: &green blue: &blue alpha: &alpha];
     UIColor* backgroundColor = [UIColor colorWithRed: red green: green blue: blue alpha: .5];
     contentView.layer.backgroundColor = backgroundColor.CGColor;
-
     
+    // create opening time label & add to contentView
+    UILabel *openingTimeLabel = [self setupOpeningTimeLabelWithPager:pager];
+    [contentView addSubview:openingTimeLabel];
+    
+    // create to label & add to contentView
+    UILabel *toLabel = [self setupToSeparatorLabelWithPager:pager];
+    [contentView addSubview:toLabel];
+    
+    // create closing time label & add to contentView
+    UILabel *closingTimeLabel = [self setupClosingTimeLabelWithPager:pager];
+    [contentView addSubview:closingTimeLabel];
+    
+    // create type of hours label
+    UILabel *typeOfHoursLabel = [self setupTypeOfHoursLabelWithPager:pager];
+    [contentView addSubview:typeOfHoursLabel];
+    
+    // add the content we set up to the view
     [view addSubview: contentView];
     
     return view;
+}
+
+- (UILabel*) setupOpeningTimeLabelWithPager: (BMInfinitePager*) pager {
+    // create opening time label
+    UILabel *openingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 1 * pager.pageSize.height / 8, pager.pageSize.width, 20)];
+    NSString *openingTimeString = @"8:00 pm";
+    openingTimeLabel.text = openingTimeString;
+    
+    // Align the label at center
+    openingTimeLabel.textAlignment = NSTextAlignmentCenter;
+    return openingTimeLabel;
+}
+
+- (UILabel*) setupClosingTimeLabelWithPager: (BMInfinitePager*) pager {
+    UILabel *closingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 3 * pager.pageSize.height / 8, pager.pageSize.width, 20)];
+    NSString *closingTimeString = [NSString stringWithFormat:@"10:00 pm"];
+    closingTimeLabel.text = closingTimeString;
+    
+    // Align the label at center
+    closingTimeLabel.textAlignment = NSTextAlignmentCenter;
+    return closingTimeLabel;
+}
+
+- (UILabel*) setupToSeparatorLabelWithPager: (BMInfinitePager*) pager {
+    UILabel *toLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 2 * pager.pageSize.height / 8, pager.pageSize.width, 20)];
+    NSString *toString = @"to";
+    toLabel.text = toString;
+    toLabel.textAlignment = NSTextAlignmentCenter;
+    return toLabel;
+}
+
+- (UILabel*) setupTypeOfHoursLabelWithPager: (BMInfinitePager*) pager {
+    UILabel *typeOfHoursLabel = [[UILabel alloc] initWithFrame:CGRectMake(contentViewPadding, pager.pageSize.height - 5 * contentViewPadding, pager.pageSize.width, 20)];
+    NSString *typeOfHoursString = [NSString stringWithFormat:@"Fall Hours"];
+    typeOfHoursLabel.text = typeOfHoursString;
+    return typeOfHoursLabel;
 }
 
 @end
