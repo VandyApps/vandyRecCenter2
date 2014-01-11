@@ -112,7 +112,11 @@ static CGFloat buttonPadding = 100.f;
 }
 - (void) networkConnectionFailed: (NSNotification*) notification {
     [self.HUD hide: YES];
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle: @"Network Error" message: @"Could not connect to the internet, please check your connection" delegate: nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle: @"Network Error"
+                                                    message: @"Could not connect to the internet, please check your connection"
+                                                   delegate: nil
+                                          cancelButtonTitle: @"OK"
+                                          otherButtonTitles: nil];
     [alert show];
 }
 
@@ -298,7 +302,6 @@ static CGFloat buttonPadding = 100.f;
 }
 
 - (void) fetchAndDisplayDataFromServerFromStartDate: (NSDate*) startDate toEndDate: (NSDate*) endDate {
-    
     
     self.HUD = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
     self.HUD.mode = MBProgressHUDModeIndeterminate;

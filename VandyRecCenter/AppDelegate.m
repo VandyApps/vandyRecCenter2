@@ -39,7 +39,6 @@
 - (UINavigationController*) centralViewController {
     if (_centralViewController == nil) {
         _centralViewController = [[UINavigationController alloc] init];
-        //_centralViewController.navigationBar.items = @[item];
     }
     return _centralViewController;
 }
@@ -74,6 +73,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [[UINavigationBar appearance] setBarTintColor: vanderbiltGold];
@@ -88,6 +88,7 @@
     
     [self setUpViewControllers];
     
+    [self.window makeKeyAndVisible];
     self.window.rootViewController = self.panelViewController;
     
     return YES;
