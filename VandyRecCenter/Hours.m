@@ -129,7 +129,7 @@
 
 // TODO make it use timezone
 - (NSDictionary*) currentHours {
-    NSDate *today = [[NSDate alloc] init]; // get today's date object
+    NSDate *today = [DateHelper currentDateForTimeZone:[NSTimeZone localTimeZone]]; // get today's date object
     
     // get array of hours dicts where closed == false and facilityHours == true
     NSArray *facilityAndNotClosedHours = [_hours filter:^BOOL(id element, NSUInteger index) {
@@ -173,7 +173,7 @@
     // select dict matching today's weekday
     NSArray *times = [hours objectForKey:@"times"];
     // TODO check time zone and stuff for weekday
-    NSDictionary *currentHours = times[today.weekDay - 1]; // subtract one because Sunday should be 0
+    NSDictionary *currentHours = times[today.weekDay]; // subtract one because Sunday should be 0
     
     // return dict of today's hours with highest priority
     return currentHours;

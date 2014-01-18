@@ -28,4 +28,7 @@
 @property (nonatomic, strong) MBProgressHUD *HUD;
 @property (nonatomic, strong) Hours *hours;
 
+// helpers
+- (NSString *) timeIntervalStringValueWithHours:(NSInteger)hours andMinutes:(NSInteger)minutes;
+
 @end

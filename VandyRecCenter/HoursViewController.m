@@ -84,17 +84,21 @@ static CGFloat TodayButtonWidth = 100;
 - (void) setupTimeLabel {
     self.timeLabel = [[UILabel alloc] initWithFrame: CGRectMake(self.view.frame.size.width / 2.f - TimeLabelWidth / 2.f, 64 + TimeLabelPadding, TimeLabelWidth, TimeLabelHeight)];
     
-    self.timeLabel.text = @"Closing in 1 hours 21 minutes";
-    // format: "Closing in 1 hour 21 minutes"
-//    NSLog(@"timeUntilOpen: %@", [_hours currentHours]);
-//    NSLog(@"Okay");
-//    if ([_hours willOpenLaterToday] == TRUE || [_hours wasOpenEarlierToday] == TRUE) {
-//        self.timeLabel.text = @"Opening in %@", [_hours timeUntilOpen];
-//    } else if (_hours.isOpen == TRUE) {
-//        self.timeLabel.text = @"Closing in %@", [_hours timeUntilClosed];
-//    }
+    NSTimeInterval timeInSeconds;
     
-    self.timeLabel.text = @"Closing in 1 hour 21 minutes";
+    // format: "Closing in 1 hour 21 minutes"
+    if ([_hours willOpenLaterToday] == TRUE || [_hours wasOpenEarlierToday] == TRUE) {
+        timeInSeconds = [_hours timeUntilOpen];
+        self.timeLabel.text = @"Opening in ";
+    } else { // Rec is currently open
+        timeInSeconds = [_hours timeUntilClosed];
+        self.timeLabel.text = @"Closing in ";
+    }
+    
+    NSInteger remainingHours = (NSInteger)timeInSeconds / 3600;
+    NSInteger remainingMinutes = ((NSInteger)timeInSeconds % 3600) / 60;
+    self.timeLabel.text = [self.timeLabel.text stringByAppendingString:[self timeIntervalStringValueWithHours:remainingHours andMinutes:remainingMinutes]];
+    
     self.timeLabel.textColor = [UIColor blueColor];
     self.timeLabel.font = [UIFont systemFontOfSize: 14];
     self.timeLabel.textAlignment = NSTextAlignmentCenter;
@@ -102,6 +106,29 @@ static CGFloat TodayButtonWidth = 100;
     [self.view addSubview: self.timeLabel];
 
 }
+
+// Returns a string with the format "1 hour 27 minutes" or, if hours == 0, "27 minutes"
+- (NSString *) timeIntervalStringValueWithHours:(NSInteger)hours andMinutes:(NSInteger)minutes {
+    NSString* returnString = [[NSString alloc] init];
+    
+    if (hours == 1) {
+        returnString = [returnString stringByAppendingFormat:@"%i", hours];
+        returnString = [returnString stringByAppendingString:@" hour "];
+    } else if (hours > 1) {
+        returnString = [returnString stringByAppendingFormat:@"%i", hours];
+        returnString = [returnString stringByAppendingString:@" hours "];
+    }
+    
+    returnString = [returnString stringByAppendingFormat:@"%i", minutes];
+    if (minutes == 1) {
+        returnString = [returnString stringByAppendingString:@" minute"];
+    } else {
+        returnString = [returnString stringByAppendingString:@" minutes"];
+    }
+    
+    return returnString;
+}
+
 
 - (void) setupPager {
     self.pager = [BMInfinitePager pagerWithFrame: CGRectMake(PagerSidePadding, 64 + TimeLabelPadding + TimeLabelHeight + TimeLabelPagerPadding, self.view.frame.size.width - 2 * PagerSidePadding, PagerHeight)
@@ -202,7 +229,7 @@ static CGFloat TodayButtonWidth = 100;
 - (UILabel*) setupOpeningTimeLabelWithPager: (BMInfinitePager*) pager {
     // create opening time label
     UILabel *openingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 1 * pager.pageSize.height / 8, pager.pageSize.width, 20)];
-    NSString *openingTimeString = @"8:00 pm";
+    NSString *openingTimeString = [[_hours openingTime] stringValue];
     openingTimeLabel.text = openingTimeString;
     
     // Align the label at center
@@ -212,7 +239,7 @@ static CGFloat TodayButtonWidth = 100;
 
 - (UILabel*) setupClosingTimeLabelWithPager: (BMInfinitePager*) pager {
     UILabel *closingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 3 * pager.pageSize.height / 8, pager.pageSize.width, 20)];
-    NSString *closingTimeString = [NSString stringWithFormat:@"10:00 pm"];
+    NSString *closingTimeString = [[_hours closedTime] stringValue];
     closingTimeLabel.text = closingTimeString;
     
     // Align the label at center
