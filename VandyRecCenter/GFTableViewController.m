@@ -279,10 +279,15 @@ static NSInteger CancelViewTag = 10;
         format = [[NSDateFormatter alloc] init];
         format.dateStyle = NSDateFormatterShortStyle;
         format.timeStyle = NSDateFormatterNoStyle;
+        format.timeZone = [NSTimeZone timeZoneForSecondsFromGMT: 0];
     }
     NSDate* date = (self.classData.sectionCount) ? [self.classData dateForSectionAtIndex: section] : nil;
     
-    return (self.classData.sectionCount) ? [NSString stringWithFormat: @"%@, %@", [format stringFromDate: [self.classData dateForSectionAtIndex: section]], [DateHelper weekDayForIndex: date.weekDay]] : @"TRY ANOTHER DATE";
+    return (self.classData.sectionCount) ?
+    
+    [NSString stringWithFormat: @"%@, %@", [format stringFromDate: [self.classData dateForSectionAtIndex: section]], [DateHelper weekDayForIndex: date.weekDay]]
+    
+    : @"TRY ANOTHER DATE";
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

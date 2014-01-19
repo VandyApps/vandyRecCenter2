@@ -293,10 +293,8 @@ static CGFloat buttonPadding = 100.f;
                         //|| ![self.collection dataLoadedForMonth: endDate.month year:endDate.year];
     
     if (fetchFromServer) {
-        NSLog(@"Fetching from server");
         [self fetchAndDisplayDataFromServerFromStartDate: startDate toEndDate: endDate];
     } else {
-        NSLog(@"Not Fetching from server");
         [self displayResultsFromDate: startDate toDate: endDate];
     }
 }
@@ -321,7 +319,6 @@ static CGFloat buttonPadding = 100.f;
         //fetch
         [self.collection loadMonth: startDate.month andYear:startDate.year block:^(GFModel *model) {
             --remainingFetches;
-            NSLog(@"should decrement: %i", remainingFetches);
             if (!remainingFetches) {
                 [self.HUD hide: YES];
                 [self displayResultsFromDate: startDate toDate: endDate];
