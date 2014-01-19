@@ -16,7 +16,12 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+*.hmap
+*.ipa
 
 # Doxygen
 html/
 latex/
+
+# CocoaPods
+Pods
