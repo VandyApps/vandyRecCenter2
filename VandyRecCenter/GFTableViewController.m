@@ -58,6 +58,8 @@
 
 @end
 
+
+
 @implementation GFTableViewController
 
 @synthesize tableView = _tableView;
@@ -328,7 +330,6 @@ static NSInteger CancelViewTag = 10;
 - (BOOL) GFClass: (NSDictionary*) GFClass isCanceledOnDate: (NSDate*) date {
     
     for (NSString* dateString in [GFClass objectForKey: @"cancelledDates"]) {
-        NSLog(@"%@", date);
         
         if ([[NSDate dateWithDateString: dateString] compare: date] == NSOrderedSame) {
             return YES;

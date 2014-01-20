@@ -279,7 +279,6 @@ static CGFloat buttonPadding = 100.f;
     
     BOOL fetchFromServer = YES;
     while (month_it <= endDate.month && year_it <= endDate.year && fetchFromServer) {
-        
         //update boolean
         fetchFromServer = ![self.collection dataLoadedForMonth: month_it year:year_it];
         
@@ -288,9 +287,6 @@ static CGFloat buttonPadding = 100.f;
         year_it = (month_it) ? year_it : year_it + 1;
         
     }
-    
-    //BOOL fetchFromServer = ![self.collection dataLoadedForMonth: startDate.month year: startDate.year]
-                        //|| ![self.collection dataLoadedForMonth: endDate.month year:endDate.year];
     
     if (fetchFromServer) {
         [self fetchAndDisplayDataFromServerFromStartDate: startDate toEndDate: endDate];

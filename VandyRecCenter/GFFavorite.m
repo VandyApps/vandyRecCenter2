@@ -64,7 +64,6 @@
 }
 
 - (NSDate*) startDate {
-    NSLog(@"%@", [NSDate dateWithDateString: [_GFClass objectForKey: @"startDate"]]);
     return [NSDate dateWithDateString: [_GFClass objectForKey: @"startDate"]];
     
 }
@@ -93,7 +92,6 @@
 }
 
 - (BOOL) isEqualToGFClass: (NSDictionary*) GFClass {
-    NSLog(@"%@", [GFClass objectForKey: @"_id"]);
     return [[self.GFClass objectForKey: @"_id"] isEqualToString: [GFClass objectForKey: @"_id"]];
 }
 
