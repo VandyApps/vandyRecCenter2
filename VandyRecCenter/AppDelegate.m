@@ -13,6 +13,8 @@
 #import "TrafficViewController.h"
 #import "HoursViewController.h"
 #import "GroupFitnessViewController.h"
+#import "IntramuralsViewController.h"
+
 #import "NotificationViewController.h"
 
 @implementation AppDelegate
@@ -31,7 +33,8 @@
         _viewControllers =
             @[  [[HomeViewController alloc] initWithNibName: @"HomeView" bundle: [NSBundle mainBundle]], [[HoursViewController alloc] initWithNibName: @"HoursView" bundle: [NSBundle mainBundle]],
                 [[TrafficViewController alloc] initWithNibName: @"TrafficView" bundle: [NSBundle mainBundle]],
-                [[GroupFitnessViewController alloc] initWithNibName: @"GFView" bundle: [NSBundle mainBundle]]];
+                [[GroupFitnessViewController alloc] initWithNibName: @"GFView" bundle: [NSBundle mainBundle]],
+                [[IntramuralsViewController alloc] initWithNibName: @"Intramurals.Sports" bundle:[NSBundle mainBundle]]];
     }
     return _viewControllers;
 }

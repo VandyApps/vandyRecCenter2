@@ -83,7 +83,6 @@
 		2129753B17FE4E0D007210AB /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2129753917FE4E0D007210AB /* UIViewController+JASidePanel.m */; };
 		212FB75918010659009C6A83 /* GroupFitnessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 212FB75818010659009C6A83 /* GroupFitnessViewController.m */; };
 		21325306180853C100ED855D /* GFTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21325305180853C100ED855D /* GFTableViewController.m */; };
-		2132530A18085B3000ED855D /* Intramural.m in Sources */ = {isa = PBXBuildFile; fileRef = 2132530918085B3000ED855D /* Intramural.m */; };
 		215B8DAB1809B50F009C248E /* DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 215B8D9E1809B50F009C248E /* DateHelper.m */; };
 		215B8DAC1809B50F009C248E /* GFCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 215B8DA01809B50F009C248E /* GFCollection.m */; };
 		215B8DAD1809B50F009C248E /* GFFavorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 215B8DA21809B50F009C248E /* GFFavorites.m */; };
@@ -127,7 +126,11 @@
 		FC216185185AE013002DA7E2 /* BMContainerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FC216184185AE013002DA7E2 /* BMContainerButton.m */; };
 		FC216188185AE246002DA7E2 /* 298-circlex.png in Resources */ = {isa = PBXBuildFile; fileRef = FC216186185AE246002DA7E2 /* 298-circlex.png */; };
 		FC216189185AE246002DA7E2 /* 298-circlex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FC216187185AE246002DA7E2 /* 298-circlex@2x.png */; };
+		FC73A5821891F34700974696 /* IntramuralsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73A5811891F34700974696 /* IntramuralsViewController.m */; };
+		FC73A5841891F37300974696 /* Intramurals.Sports.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC73A5831891F37300974696 /* Intramurals.Sports.xib */; };
 		FCA506B11859911E008802F1 /* BMAddRemoveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA506B01859911E008802F1 /* BMAddRemoveButton.m */; };
+		FCE145521892301D00558D19 /* LeagueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE145511892301D00558D19 /* LeagueViewController.m */; };
+		FCE145541892326100558D19 /* Intramurals.League.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCE145531892326100558D19 /* Intramurals.League.xib */; };
 		FCE94310185A4C4300030692 /* GFFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE9430F185A4C4300030692 /* GFFavorite.m */; };
 		FCE94313185A5AF700030692 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE94311185A5AF700030692 /* 37x-Checkmark.png */; };
 		FCE94314185A5AF700030692 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE94312185A5AF700030692 /* 37x-Checkmark@2x.png */; };
@@ -260,8 +263,6 @@
 		212FB75818010659009C6A83 /* GroupFitnessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupFitnessViewController.m; sourceTree = "<group>"; };
 		21325304180853C100ED855D /* GFTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFTableViewController.h; sourceTree = "<group>"; };
 		21325305180853C100ED855D /* GFTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFTableViewController.m; sourceTree = "<group>"; };
-		2132530818085B2F00ED855D /* Intramural.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intramural.h; sourceTree = "<group>"; };
-		2132530918085B3000ED855D /* Intramural.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Intramural.m; sourceTree = "<group>"; };
 		215B8D9D1809B50F009C248E /* DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelper.h; sourceTree = "<group>"; };
 		215B8D9E1809B50F009C248E /* DateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateHelper.m; sourceTree = "<group>"; };
 		215B8D9F1809B50F009C248E /* GFCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GFCollection.h; path = ../GFCollection.h; sourceTree = "<group>"; };
@@ -323,8 +324,14 @@
 		FC216184185AE013002DA7E2 /* BMContainerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMContainerButton.m; sourceTree = "<group>"; };
 		FC216186185AE246002DA7E2 /* 298-circlex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex.png"; sourceTree = "<group>"; };
 		FC216187185AE246002DA7E2 /* 298-circlex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex@2x.png"; sourceTree = "<group>"; };
+		FC73A5801891F34700974696 /* IntramuralsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntramuralsViewController.h; sourceTree = "<group>"; };
+		FC73A5811891F34700974696 /* IntramuralsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntramuralsViewController.m; sourceTree = "<group>"; };
+		FC73A5831891F37300974696 /* Intramurals.Sports.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intramurals.Sports.xib; sourceTree = "<group>"; };
 		FCA506AF1859911E008802F1 /* BMAddRemoveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAddRemoveButton.h; sourceTree = "<group>"; };
 		FCA506B01859911E008802F1 /* BMAddRemoveButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAddRemoveButton.m; sourceTree = "<group>"; };
+		FCE145501892301D00558D19 /* LeagueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueViewController.h; sourceTree = "<group>"; };
+		FCE145511892301D00558D19 /* LeagueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeagueViewController.m; sourceTree = "<group>"; };
+		FCE145531892326100558D19 /* Intramurals.League.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intramurals.League.xib; sourceTree = "<group>"; };
 		FCE9430E185A4C4300030692 /* GFFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFFavorite.h; sourceTree = "<group>"; };
 		FCE9430F185A4C4300030692 /* GFFavorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFFavorite.m; sourceTree = "<group>"; };
 		FCE94311185A5AF700030692 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
@@ -692,8 +699,12 @@
 		2132530718085B1700ED855D /* Intramurals */ = {
 			isa = PBXGroup;
 			children = (
-				2132530818085B2F00ED855D /* Intramural.h */,
-				2132530918085B3000ED855D /* Intramural.m */,
+				FC73A5801891F34700974696 /* IntramuralsViewController.h */,
+				FC73A5811891F34700974696 /* IntramuralsViewController.m */,
+				FCE145501892301D00558D19 /* LeagueViewController.h */,
+				FCE145511892301D00558D19 /* LeagueViewController.m */,
+				FC73A5831891F37300974696 /* Intramurals.Sports.xib */,
+				FCE145531892326100558D19 /* Intramurals.League.xib */,
 			);
 			name = Intramurals;
 			sourceTree = "<group>";
@@ -962,6 +973,7 @@
 				FC216189185AE246002DA7E2 /* 298-circlex@2x.png in Resources */,
 				2126B437184937BC00DF79FF /* TrafficView.xib in Resources */,
 				21278A891807B5A100E76BD0 /* 354-newspaper-w.png in Resources */,
+				FCE145541892326100558D19 /* Intramurals.League.xib in Resources */,
 				FCE94313185A5AF700030692 /* 37x-Checkmark.png in Resources */,
 				21E66ECF1818DD2200BA803F /* DSLCalendarDaySelection@2x.png in Resources */,
 				21E66ECE1818DD2200BA803F /* DSLCalendarDaySelection.png in Resources */,
@@ -974,6 +986,7 @@
 				2126B42E1849365000DF79FF /* HomeView.xib in Resources */,
 				21E66EBE1818DD2200BA803F /* DSLCalendarMonthSelectorView.xib in Resources */,
 				218E9AFB18078F6100629285 /* 428-checkmark1@2x.png in Resources */,
+				FC73A5841891F37300974696 /* Intramurals.Sports.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1008,8 +1021,10 @@
 				FC216182185A9AD4002DA7E2 /* GFFavoritesViewController.m in Sources */,
 				2126B4521849681A00DF79FF /* BMVerticalPagerImpl.m in Sources */,
 				93789CB6181A381B00BA764C /* NSDate+DateHelper.m in Sources */,
+				FC73A5821891F34700974696 /* IntramuralsViewController.m in Sources */,
 				212974E317FE466D007210AB /* AFURLResponseSerialization.m in Sources */,
 				215B8DAC1809B50F009C248E /* GFCollection.m in Sources */,
+				FCE145521892301D00558D19 /* LeagueViewController.m in Sources */,
 				2126B44D1849681A00DF79FF /* BMIndexPath.m in Sources */,
 				212974E117FE466D007210AB /* AFURLConnectionOperation.m in Sources */,
 				21E66EC01818DD2200BA803F /* DSLCalendarRange.m in Sources */,
@@ -1042,7 +1057,6 @@
 				211C2E9C17FF606C00C4400A /* RecClient.m in Sources */,
 				21E66EC11818DD2200BA803F /* DSLCalendarView.m in Sources */,
 				215B8DAD1809B50F009C248E /* GFFavorites.m in Sources */,
-				2132530A18085B3000ED855D /* Intramural.m in Sources */,
 				FCFF9669185B768A00F6D981 /* PopoverView.m in Sources */,
 				FC216185185AE013002DA7E2 /* BMContainerButton.m in Sources */,
 				215B8DAB1809B50F009C248E /* DateHelper.m in Sources */,
