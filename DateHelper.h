@@ -13,6 +13,7 @@
 + (NSDate*) currentDateForTimeZone: (NSTimeZone*) timezone;
 
 + (NSString*) monthNameForIndex: (NSUInteger) index;
++ (NSString*) monthNameAbbreviationForIndex: (NSUInteger) index;
 + (NSString*) weekDayForIndex: (NSUInteger) index;
 + (NSString*) weekDayAbbreviationForIndex: (NSUInteger) index;
 

@@ -40,6 +40,8 @@ static CGFloat PagerTodayButtonPadding = 40;
 static CGFloat TodayButtonHeight = 30;
 static CGFloat TodayButtonWidth = 100;
 
+static CGFloat OpenTimeRangePadding = 40;
+
 
 #pragma mark - Lifecycle
 
@@ -112,14 +114,14 @@ static CGFloat TodayButtonWidth = 100;
     NSString* returnString = [[NSString alloc] init];
     
     if (hours == 1) {
-        returnString = [returnString stringByAppendingFormat:@"%i", hours];
+        returnString = [returnString stringByAppendingFormat:@"%li", (long)hours];
         returnString = [returnString stringByAppendingString:@" hour "];
     } else if (hours > 1) {
-        returnString = [returnString stringByAppendingFormat:@"%i", hours];
+        returnString = [returnString stringByAppendingFormat:@"%li", (long)hours];
         returnString = [returnString stringByAppendingString:@" hours "];
     }
     
-    returnString = [returnString stringByAppendingFormat:@"%i", minutes];
+    returnString = [returnString stringByAppendingFormat:@"%li", (long)minutes];
     if (minutes == 1) {
         returnString = [returnString stringByAppendingString:@" minute"];
     } else {
@@ -204,6 +206,10 @@ static CGFloat TodayButtonWidth = 100;
     UIColor* backgroundColor = [UIColor colorWithRed: red green: green blue: blue alpha: .5];
     contentView.layer.backgroundColor = backgroundColor.CGColor;
     
+    // create day of week label & add it to contentView
+    UILabel *dayOfWeekLabel = [self setupDayOfWeekLabelWithPager:pager];
+    [contentView addSubview:dayOfWeekLabel];
+    
     // create opening time label & add to contentView
     UILabel *openingTimeLabel = [self setupOpeningTimeLabelWithPager:pager];
     [contentView addSubview:openingTimeLabel];
@@ -226,9 +232,29 @@ static CGFloat TodayButtonWidth = 100;
     return view;
 }
 
+- (UILabel*) setupDayOfWeekLabelWithPager: (BMInfinitePager*) pager {
+    // create dayOfWeekLabel
+    UILabel *dayOfWeekLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 1 * pager.pageSize.height / 8, pager.pageSize.width, 20)];
+    
+    NSDate *currentDate = [DateHelper currentDateForTimeZone:[NSTimeZone localTimeZone]];
+    NSString *dayOfWeekString = [DateHelper weekDayForIndex:[currentDate weekDay]];
+    NSString *monthString = [DateHelper monthNameAbbreviationForIndex:[currentDate month]];
+    NSUInteger dayOfMonthString = [currentDate day];
+    NSUInteger year = [currentDate year];
+    
+    NSString *dateString = [NSString stringWithFormat:@"%@, %@ %lu, %lu", dayOfWeekString, monthString, (unsigned long)dayOfMonthString, (unsigned long)year];
+    
+    
+    dayOfWeekLabel.text = dateString;
+    
+    // Align the label at center
+    dayOfWeekLabel.textAlignment = NSTextAlignmentCenter;
+    return dayOfWeekLabel;
+}
+
 - (UILabel*) setupOpeningTimeLabelWithPager: (BMInfinitePager*) pager {
     // create opening time label
-    UILabel *openingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 1 * pager.pageSize.height / 8, pager.pageSize.width, 20)];
+    UILabel *openingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 1 * pager.pageSize.height / 8 + OpenTimeRangePadding, pager.pageSize.width, 20)];
     NSString *openingTimeString = [[_hours openingTime] stringValue];
     openingTimeLabel.text = openingTimeString;
     
@@ -238,7 +264,7 @@ static CGFloat TodayButtonWidth = 100;
 }
 
 - (UILabel*) setupClosingTimeLabelWithPager: (BMInfinitePager*) pager {
-    UILabel *closingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 3 * pager.pageSize.height / 8, pager.pageSize.width, 20)];
+    UILabel *closingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 3 * pager.pageSize.height / 8 + OpenTimeRangePadding, pager.pageSize.width, 20)];
     NSString *closingTimeString = [[_hours closedTime] stringValue];
     closingTimeLabel.text = closingTimeString;
     
@@ -248,7 +274,7 @@ static CGFloat TodayButtonWidth = 100;
 }
 
 - (UILabel*) setupToSeparatorLabelWithPager: (BMInfinitePager*) pager {
-    UILabel *toLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 2 * pager.pageSize.height / 8, pager.pageSize.width, 20)];
+    UILabel *toLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 2 * pager.pageSize.height / 8 + OpenTimeRangePadding, pager.pageSize.width, 20)];
     NSString *toString = @"to";
     toLabel.text = toString;
     toLabel.textAlignment = NSTextAlignmentCenter;
