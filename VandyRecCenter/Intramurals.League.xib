@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LeagueViewController">
             <connections>
+                <outlet property="segmentedControl" destination="DKj-YA-evI" id="Yl7-dn-GwO"/>
                 <outlet property="view" destination="1" id="UyD-Ed-BbB"/>
             </connections>
         </placeholder>

@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Brendan McNamara. All rights reserved.
 //
 
-#define kIntramuralsChildViewTag 1
 #import "IntramuralsViewController.h"
 
 #import "LeagueViewController.h"
@@ -15,6 +14,7 @@
 @interface IntramuralsViewController ()
 
 @property (nonatomic, strong) NSDictionary* demoData;
+
 @end
 
 @implementation IntramuralsViewController

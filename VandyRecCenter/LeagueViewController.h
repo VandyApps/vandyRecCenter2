@@ -10,4 +10,6 @@
 
 @interface LeagueViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UISegmentedControl* segmentedControl;
+
 @end
