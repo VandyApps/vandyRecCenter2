@@ -12,15 +12,20 @@
 
 @interface HoursViewController ()
 
+@property (nonatomic) CGSize pagerSize;
+@property (nonatomic) UIColor* pageColor;
+
+@property (nonatomic, strong) UIView* placeholderView;
+
 @end
 
 @implementation HoursViewController
 
-@synthesize HUD = _HUD;
 @synthesize hours = _hours;
 
 #pragma mark - Static Variables
 
+static CGFloat pageRadius = 10;
 static CGFloat contentViewPadding = 10;
 
 static CGFloat TimeLabelPadding = 10;
@@ -43,6 +48,8 @@ static CGFloat TodayButtonWidth = 100;
 static CGFloat OpenTimeRangePadding = 40;
 
 
+
+
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad
@@ -54,21 +61,34 @@ static CGFloat OpenTimeRangePadding = 40;
         self.hours = [[Hours alloc] init];
     }
     
-    self.HUD = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
-    self.HUD.mode = MBProgressHUDModeIndeterminate;
-    self.HUD.labelText = @"Loading...";
-    
     [_hours loadData:^(NSError *error, Hours *hoursModel) {
         if (error) {
             NSLog(@"There was an error: %@", error);
         }
         if (hoursModel.hours) {
-            [_HUD hide:YES];
+            [self.view bringSubviewToFront: self.placeholderView];
             [self setupPager];
+            
             [self setupTimeLabel];
+            [self showArrowButtonsAnimated: YES];
+            [self removePlaceholderViewAnimated: YES];
         }
     }];
 }
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear: animated];
+    
+    //pager size must be set in viewWillAppear: since the view's frame is not
+    //correctly set until here
+    self.pagerSize = CGSizeMake(self.view.frame.size.width - 2 * PagerSidePadding, PagerHeight);
+    
+    //this must be done in view will appear since it depends on pager size to be set
+    if (!self.hours.isLoaded) {
+        [self setupPlaceholderView];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -79,8 +99,20 @@ static CGFloat OpenTimeRangePadding = 40;
 #pragma mark - Setup
 
 - (void) setup {
-    [self setupArrowButtons];
+    [self setupPageColor];
+    [self setupArrowButtonsWithoutDisplay];
     [self setupTodayButton];
+}
+
+
+- (void) setupPageColor {
+    UIColor* vandyGold = vanderbiltGold;
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    CGFloat alpha;
+    [vandyGold getRed: &red green: &green blue: &blue alpha: &alpha];
+    self.pageColor = [UIColor colorWithRed: red green: green blue: blue alpha: .9];
 }
 
 - (void) setupTimeLabel {
@@ -109,6 +141,25 @@ static CGFloat OpenTimeRangePadding = 40;
 
 }
 
+- (void) setupPlaceholderView {
+    CGSize placeHolderSize = CGSizeMake(self.pagerSize.width - 2 * contentViewPadding, self.pagerSize.height - 2*contentViewPadding);
+    
+    self.placeholderView = [[UIView alloc] initWithFrame: CGRectMake(PagerSidePadding + contentViewPadding, 64 + TimeLabelPadding + TimeLabelHeight + TimeLabelPagerPadding + contentViewPadding, placeHolderSize.width, placeHolderSize.height)];
+    
+    self.placeholderView.backgroundColor = vanderbiltGold;
+    self.placeholderView.layer.cornerRadius = pageRadius;
+    
+    UIActivityIndicatorView* hub = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
+    
+    hub.center = CGPointMake(placeHolderSize.width/2.f, placeHolderSize.height/2.f);
+    [hub startAnimating];
+    
+    [self.placeholderView addSubview: hub];
+    
+    [self.view addSubview: self.placeholderView];
+}
+
+
 // Returns a string with the format "1 hour 27 minutes" or, if hours == 0, "27 minutes"
 - (NSString *) timeIntervalStringValueWithHours:(NSInteger)hours andMinutes:(NSInteger)minutes {
     NSString* returnString = [[NSString alloc] init];
@@ -133,17 +184,21 @@ static CGFloat OpenTimeRangePadding = 40;
 
 
 - (void) setupPager {
-    self.pager = [BMInfinitePager pagerWithFrame: CGRectMake(PagerSidePadding, 64 + TimeLabelPadding + TimeLabelHeight + TimeLabelPagerPadding, self.view.frame.size.width - 2 * PagerSidePadding, PagerHeight)
+    self.pager = [BMInfinitePager pagerWithFrame: CGRectMake(PagerSidePadding, 64 + TimeLabelPadding + TimeLabelHeight + TimeLabelPagerPadding, self.pagerSize.width, self.pagerSize.height)
                                            style: BMInfinitePagerStyleHorizontal];
     self.pager.delegate = self;
     
     [self.view addSubview: self.pager];
 }
 
-- (void) setupArrowButtons {
+- (void) setupArrowButtonsWithoutDisplay {
     self.leftButton = [BMArrowButton arrowButtonWithFrame: CGRectMake(ArrowButtonPadding, 64 + TimeLabelPadding + TimeLabelHeight + TimeLabelPagerPadding + PagerHeight / 2.f, ArrowButtonWidth, ArrowButtonHeight) style: BMArrowButtonStyleLeft];
     
     self.rightButton = [BMArrowButton arrowButtonWithFrame: CGRectMake(self.view.frame.size.width - ArrowButtonPadding - ArrowButtonWidth, 64 + TimeLabelPadding + TimeLabelHeight + TimeLabelPagerPadding + PagerHeight / 2.f, ArrowButtonWidth, ArrowButtonHeight) style: BMArrowButtonStyleRight];
+    
+    self.leftButton.alpha = 0;
+    self.rightButton.alpha = 0;
+    
     
     [self.leftButton addTarget: self
                         action: @selector(leftButtonPressed:)
@@ -156,6 +211,18 @@ static CGFloat OpenTimeRangePadding = 40;
     [self.view addSubview: self.leftButton];
     [self.view addSubview: self.rightButton];
 
+}
+
+- (void) showArrowButtonsAnimated: (BOOL) animated {
+    if (animated) {
+        [UIView animateWithDuration:.5f animations:^{
+            self.leftButton.alpha = 1;
+            self.rightButton.alpha = 1;
+        }];
+    } else {
+        self.leftButton.alpha = 1;
+        self.leftButton.alpha = 1;
+    }
 }
 
 - (void) setupTodayButton {
@@ -172,7 +239,22 @@ static CGFloat OpenTimeRangePadding = 40;
     [self.view addSubview: self.todayButton];
 }
 
+#pragma mark - Teardown
 
+- (void) removePlaceholderViewAnimated: (BOOL) animated {
+    if (animated) {
+        [UIView animateWithDuration: .5f animations:^{
+            self.placeholderView.alpha = 0;
+        } completion:^(BOOL finished) {
+            self.placeholderView = nil;
+        }];
+        
+    } else {
+        [self.placeholderView removeFromSuperview];
+        self.placeholderView = nil;
+    }
+    
+}
 
 #pragma mark - Button Press Events
 
@@ -195,16 +277,10 @@ static CGFloat OpenTimeRangePadding = 40;
     
     UIView* contentView = [[UIView alloc] initWithFrame: CGRectMake(contentViewPadding, contentViewPadding, pager.pageSize.width - 2 * contentViewPadding, pager.pageSize.height - 2 * contentViewPadding)];
     
-    contentView.layer.cornerRadius = 10.f;
+    contentView.layer.cornerRadius = pageRadius;
     
-    UIColor* vandyGold = vanderbiltGold;
-    CGFloat red;
-    CGFloat green;
-    CGFloat blue;
-    CGFloat alpha;
-    [vandyGold getRed: &red green: &green blue: &blue alpha: &alpha];
-    UIColor* backgroundColor = [UIColor colorWithRed: red green: green blue: blue alpha: .5];
-    contentView.layer.backgroundColor = backgroundColor.CGColor;
+    
+    contentView.layer.backgroundColor = self.pageColor.CGColor;
     
     // create day of week label & add it to contentView
     UILabel *dayOfWeekLabel = [self setupDayOfWeekLabelWithPager:pager];

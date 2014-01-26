@@ -48,7 +48,9 @@
     [webClient fetchHours:^(NSError *error, NSArray *hours) {
         if (!error) {
             _hours = hours;
+            _isLoaded = YES;
         }
+        
         block(error, self);
     }];
 }

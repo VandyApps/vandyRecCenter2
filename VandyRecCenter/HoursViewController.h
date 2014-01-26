@@ -28,7 +28,6 @@
 @property (nonatomic, strong) UILabel* timeLabel;
 @property (nonatomic, strong) UILabel* dayOfWeekLabel;
 
-@property (nonatomic, strong) MBProgressHUD *HUD;
 @property (nonatomic, strong) Hours *hours;
 
 // helpers

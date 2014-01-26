@@ -15,6 +15,8 @@
 @interface Hours : NSObject
 
 @property (nonatomic, strong, readonly) NSArray* hours;
+@property (nonatomic, readonly) BOOL isLoaded;
+
 
 - (id) init;
 
