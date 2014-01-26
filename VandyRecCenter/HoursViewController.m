@@ -68,8 +68,8 @@ static CGFloat OpenTimeRangePadding = 40;
         if (hoursModel.hours) {
             [self.view bringSubviewToFront: self.placeholderView];
             [self setupPager];
-            
             [self setupTimeLabel];
+            [self showTimeLabelAnimated: YES];
             [self showArrowButtonsAnimated: YES];
             [self removePlaceholderViewAnimated: YES];
         }
@@ -102,6 +102,7 @@ static CGFloat OpenTimeRangePadding = 40;
     [self setupPageColor];
     [self setupArrowButtonsWithoutDisplay];
     [self setupTodayButton];
+    
 }
 
 
@@ -137,6 +138,7 @@ static CGFloat OpenTimeRangePadding = 40;
     self.timeLabel.font = [UIFont systemFontOfSize: 14];
     self.timeLabel.textAlignment = NSTextAlignmentCenter;
     
+    self.timeLabel.alpha = 0;
     [self.view addSubview: self.timeLabel];
 
 }
@@ -213,17 +215,7 @@ static CGFloat OpenTimeRangePadding = 40;
 
 }
 
-- (void) showArrowButtonsAnimated: (BOOL) animated {
-    if (animated) {
-        [UIView animateWithDuration:.5f animations:^{
-            self.leftButton.alpha = 1;
-            self.rightButton.alpha = 1;
-        }];
-    } else {
-        self.leftButton.alpha = 1;
-        self.leftButton.alpha = 1;
-    }
-}
+
 
 - (void) setupTodayButton {
     self.todayButton = [UIButton buttonWithType: UIButtonTypeRoundedRect];
@@ -243,7 +235,7 @@ static CGFloat OpenTimeRangePadding = 40;
 
 - (void) removePlaceholderViewAnimated: (BOOL) animated {
     if (animated) {
-        [UIView animateWithDuration: .5f animations:^{
+        [UIView animateWithDuration: .6f animations:^{
             self.placeholderView.alpha = 0;
         } completion:^(BOOL finished) {
             self.placeholderView = nil;
@@ -254,6 +246,30 @@ static CGFloat OpenTimeRangePadding = 40;
         self.placeholderView = nil;
     }
     
+}
+
+#pragma mark - Animations
+
+- (void) showArrowButtonsAnimated: (BOOL) animated {
+    if (animated) {
+        [UIView animateWithDuration:.6f animations:^{
+            self.leftButton.alpha = 1;
+            self.rightButton.alpha = 1;
+        }];
+    } else {
+        self.leftButton.alpha = 1;
+        self.leftButton.alpha = 1;
+    }
+}
+
+- (void) showTimeLabelAnimated: (BOOL) animated {
+    if (animated) {
+        [UIView animateWithDuration: .6f animations:^{
+            self.timeLabel.alpha = 1;
+        }];
+    } else {
+        self.timeLabel.alpha = 1;
+    }
 }
 
 #pragma mark - Button Press Events
