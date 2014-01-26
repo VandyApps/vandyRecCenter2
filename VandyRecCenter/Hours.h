@@ -36,11 +36,15 @@
 //pool hours, tennis court hours, bball court hours
 - (NSArray*) otherHours;
 
+
 //vandyrec.hhh/JSON/hours
 
 - (NSDictionary*) currentHours;
+- (NSDictionary*) currentHoursForDate:(NSDate*)date;
 - (TimeString*) openingTime;
 - (TimeString*) closedTime;
+- (TimeString*) openingTimeForDate:(NSDate*)date;
+- (TimeString*) closedTimeForDate:(NSDate*)date;
 
 - (BOOL) isOpen;
 - (BOOL) willOpenLaterToday;

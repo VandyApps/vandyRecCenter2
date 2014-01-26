@@ -235,7 +235,7 @@ static CGFloat OpenTimeRangePadding = 40;
 - (UILabel*) setupDayOfWeekLabelWithPager: (BMInfinitePager*) pager {
     // create dayOfWeekLabel
     UILabel *dayOfWeekLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 1 * pager.pageSize.height / 8, pager.pageSize.width, 20)];
-    
+        
     NSDate *currentDate = [DateHelper currentDateForTimeZone:[NSTimeZone localTimeZone]];
     NSString *dayOfWeekString = [DateHelper weekDayForIndex:[currentDate weekDay]];
     NSString *monthString = [DateHelper monthNameAbbreviationForIndex:[currentDate month]];

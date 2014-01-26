@@ -120,16 +120,22 @@
 
 # pragma mark - Current hours methods
 
+
+
+- (NSDictionary*) currentHours {
+    NSDate *today = [DateHelper currentDateForTimeZone:[NSTimeZone localTimeZone]];
+    return [self currentHoursForDate:today];
+}
+
 /* TODO PROBLEMS: 1. What if dict for today is empty? How to fall back?
-             2. What if the priority number and dates are the same?
-*/
+ 2. What if the priority number and dates are the same?
+ */
 
 // Uses starting/ending dates, priority number, and times (with timeString)
 // to determine the current hours
 
-// TODO make it use timezone
-- (NSDictionary*) currentHours {
-    NSDate *today = [DateHelper currentDateForTimeZone:[NSTimeZone localTimeZone]]; // get today's date object
+- (NSDictionary*) currentHoursForDate:(NSDate*)date {
+    NSDate *today = date;
     
     // get array of hours dicts where closed == false and facilityHours == true
     NSArray *facilityAndNotClosedHours = [_hours filter:^BOOL(id element, NSUInteger index) {
@@ -206,6 +212,16 @@
     return [[TimeString alloc] initWithString:closingHoursString];
 }
 
+- (TimeString*) openingTimeForDate:(NSDate*)date {
+    NSString* openingHoursString = [[self currentHoursForDate:date] objectForKey:@"startTime"];
+    return [[TimeString alloc] initWithString:openingHoursString];
+}
+
+- (TimeString*) closedTimeForDate:(NSDate*)date {
+    NSString* closingHoursString = [[self currentHoursForDate:date] objectForKey:@"endTime"];
+    return [[TimeString alloc] initWithString:closingHoursString];
+}
+
 # pragma mark - Boolean methods
 
 - (BOOL) isOpen {
@@ -256,8 +272,11 @@
 
 - (NSTimeInterval) timeUntilOpen {
     TimeString *currentTime = [[TimeString alloc] initWithTimeZone:[NSTimeZone localTimeZone]];
-    if ([self isOpen] == NO) {
+    if ([self willOpenLaterToday] == YES) {
         return [TimeString timeRangeBetweenTime:currentTime andTime:[self openingTime]];
+    } else if ([self wasOpenEarlierToday]){
+        NSDate *tomorrow = [[DateHelper currentDateForTimeZone:[NSTimeZone localTimeZone]] dateByIncrementingDay];
+        return [TimeString timeRangeBetweenTime:currentTime andTime:[self openingTimeForDate:tomorrow]];
     }
     
     return 0; // Rec is already open
