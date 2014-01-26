@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TeamsViewController : UIViewController
+@interface TeamsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) UIView* teamView;
+@property (nonatomic, strong) UITableView* tableView;
+
+- (id) initWithContentSize: (CGSize) size;
 
 @end
