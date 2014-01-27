@@ -13,6 +13,7 @@
 @property (nonatomic) CGSize size;
 @property (nonatomic, strong) NSArray* tempData;
 @property (nonatomic, strong) UIView* teamSubview;
+@property (nonatomic) NSInteger currentRow;
 @end
 
 @implementation TeamsViewController
@@ -36,6 +37,8 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //set to -1 to not interfere with initial selection
+    self.currentRow = -1;
     
     //NOTE: the dimentions of the view are being set by the calling view controller
     
@@ -57,16 +60,9 @@ typedef enum {
     [self.view addSubview: self.tableView];
 }
 
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear: animated];
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear: animated];
     
-#warning should also hilight this row
-    [self.tableView selectRowAtIndexPath: [NSIndexPath indexPathForRow:0 inSection:0] animated: NO scrollPosition: UITableViewScrollPositionTop];
-}
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -158,6 +154,7 @@ typedef enum {
         cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
     cell.textLabel.text = self.tempData[indexPath.row];
+    
     return cell;
 }
 
@@ -169,23 +166,25 @@ typedef enum {
 #pragma mark - Table View Delegate
 
 
-- (void) tableView:(UITableView*) tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //switch the view
-    UIView* newTeamSubview = [self constructTeamViewForTeamAtIndex: indexPath.row withFrame: self.teamView.frame];
-    
-    newTeamSubview.alpha = 0;
-    
-    [self.teamView addSubview: newTeamSubview];
-    [self.teamView sendSubviewToBack: newTeamSubview];
-    
-    [UIView animateWithDuration: .3f animations:^{
-        self.teamSubview.alpha = 0;
-        newTeamSubview.alpha = 1;
-    } completion:^(BOOL finished) {
-        [self.teamSubview removeFromSuperview];
-        self.teamSubview = newTeamSubview;
-    }];
-    
+    if (indexPath.row != self.currentRow) {
+        UIView* newTeamSubview = [self constructTeamViewForTeamAtIndex: indexPath.row withFrame: self.teamView.frame];
+        
+        newTeamSubview.alpha = 0;
+        
+        [self.teamView addSubview: newTeamSubview];
+        [self.teamView sendSubviewToBack: newTeamSubview];
+        
+        [UIView animateWithDuration: .3f animations:^{
+            self.teamSubview.alpha = 0;
+            newTeamSubview.alpha = 1;
+        } completion:^(BOOL finished) {
+            [self.teamSubview removeFromSuperview];
+            self.teamSubview = newTeamSubview;
+        }];
+        self.currentRow = indexPath.row;
+    }
 }
 
 
