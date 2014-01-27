@@ -12,10 +12,16 @@
 
 @property (nonatomic) CGSize size;
 @property (nonatomic, strong) NSArray* tempData;
+@property (nonatomic, strong) UIView* teamSubview;
 @end
 
 @implementation TeamsViewController
 
+typedef enum {
+    WLTTypeWin,
+    WLTTypeLoss,
+    WLTTypeTie
+} WLTType;
 
 #pragma mark - Initializer
 
@@ -67,55 +73,79 @@
 #pragma mark - Managing Team Views
 - (UIView*) constructTeamViewForTeamAtIndex: (NSUInteger) index withFrame: (CGRect) frame {
     
+    static CGSize teamNameLabelSize = (CGSize) {200, 30};
+    static CGFloat teamNameLabelTopPadding = 10;
+    
+    
+    UIView* teamView = [[UIView alloc] initWithFrame: frame];
+    
+    UILabel* teamNameLabel = [[UILabel alloc] initWithFrame: CGRectMake((self.teamView.frame.size.width/ 2.f) - teamNameLabelSize.width / 2.f, teamNameLabelTopPadding, teamNameLabelSize.width, teamNameLabelSize.height)];
+    
+    teamNameLabel.text = self.tempData[index];
+    teamNameLabel.font = [UIFont systemFontOfSize: 18];
+    teamNameLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [teamView addSubview: teamNameLabel];
+    [teamView addSubview: [self constructViewOfType: WLTTypeWin withCount: 12]];
+    [teamView addSubview: [self constructViewOfType: WLTTypeLoss withCount: 8]];
+    [teamView addSubview: [self constructViewOfType: WLTTypeTie withCount: 1]];
+    return teamView;
+}
+
+- (UIView*) constructViewOfType: (WLTType) type withCount: (NSUInteger) count {
+    
     static CGSize wltSize = (CGSize) {80, 60};
     static CGFloat wltLeftRightPadding = 15;
     static CGFloat wltTopPadding = 60;
     static CGFloat wltCornerRadius = 5;
     
-    static CGSize wltLabelSize = (CGSize) {30,20};
+    static CGSize wltLabelSize = (CGSize) {60,20};
     static CGSize wltStatsSize = (CGSize) {30, 20};
-    static CGFloat wltLabelTopPadding = 40.f;
+    static CGFloat wltLabelTopPadding = 30.f;
     static CGFloat wltStatsTopPadding = 10.f;
     
+    //set WLTSpecific variables here
     
-    UIView* teamView = [[UIView alloc] initWithFrame: frame];
+    CGRect frame;
+    NSString* wltTypeString;
     
-    UIView* winsView = [[UIView alloc] initWithFrame: CGRectMake(wltLeftRightPadding, wltTopPadding, wltSize.width, wltSize.height)];
+    if (type == WLTTypeWin) {
+        frame = CGRectMake(wltLeftRightPadding, wltTopPadding, wltSize.width, wltSize.height);
+        wltTypeString = @"wins";
+    } else if (type == WLTTypeLoss) {
+        frame = CGRectMake(self.teamView.center.x - (wltSize.width / 2.f), wltTopPadding, wltSize.width, wltSize.height);
+        
+        wltTypeString = @"losses";
+    } else { //ties
+        frame = CGRectMake(self.teamView.frame.size.width - wltSize.width - wltLeftRightPadding, wltTopPadding, wltSize.width, wltSize.height);
+        
+        wltTypeString = @"ties";
+    }
     
-    winsView.layer.cornerRadius = wltCornerRadius;
-    winsView.layer.backgroundColor = vanderbiltGold.CGColor;
+    
+    
+    UIView* wltView = [[UIView alloc] initWithFrame: frame];
+    
+    wltView.layer.cornerRadius = wltCornerRadius;
+    wltView.layer.backgroundColor = vanderbiltGold.CGColor;
     
     UILabel* wltLabel = [[UILabel alloc] initWithFrame: CGRectMake((wltSize.width / 2.f) - (wltLabelSize.width / 2.f), wltLabelTopPadding, wltLabelSize.width, wltLabelSize.height)];
     
-    wltLabel.text = @"wins";
+    wltLabel.text = wltTypeString;
     wltLabel.textAlignment = NSTextAlignmentCenter;
     
     UILabel* wltStats = [[UILabel alloc] initWithFrame: CGRectMake((wltSize.width / 2.f) - (wltStatsSize.width / 2.f), wltStatsTopPadding, wltStatsSize.width, wltStatsSize.height)];
-
-    wltStats.text = @"12";
+    
+    wltStats.text = [NSString stringWithFormat: @"%u", count];
     wltStats.textAlignment = NSTextAlignmentCenter;
+    wltStats.textColor = [UIColor redColor];
+    wltStats.font = [UIFont systemFontOfSize: 20];
     
-    [winsView addSubview: wltLabel];
-    [winsView addSubview: wltStats];
+    [wltView addSubview: wltLabel];
+    [wltView addSubview: wltStats];
     
-    UIView* lossesView = [[UIView alloc] initWithFrame: CGRectMake(self.teamView.center.x - (wltSize.width / 2.f), wltTopPadding, wltSize.width, wltSize.height)];
-    
-    
-    lossesView.layer.cornerRadius = wltCornerRadius;
-    lossesView.layer.backgroundColor = vanderbiltGold.CGColor;
-    
-    UIView* tiesView = [[UIView alloc] initWithFrame: CGRectMake(self.teamView.frame.size.width - wltSize.width - wltLeftRightPadding, wltTopPadding, wltSize.width, wltSize.height)];
-    
-    tiesView.layer.cornerRadius = wltCornerRadius;
-    tiesView.layer.backgroundColor = vanderbiltGold.CGColor;
-    
-    
-    [teamView addSubview: winsView];
-    [teamView addSubview: lossesView];
-    [teamView addSubview: tiesView];
-    return teamView;
+    return wltView;
 }
-
 
 #pragma mark - Table View Datasource
 
@@ -141,7 +171,21 @@
 
 - (void) tableView:(UITableView*) tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     //switch the view
-    [self.teamView addSubview: [self constructTeamViewForTeamAtIndex: indexPath.row withFrame: self.teamView.frame]];
+    UIView* newTeamSubview = [self constructTeamViewForTeamAtIndex: indexPath.row withFrame: self.teamView.frame];
+    
+    newTeamSubview.alpha = 0;
+    
+    [self.teamView addSubview: newTeamSubview];
+    [self.teamView sendSubviewToBack: newTeamSubview];
+    
+    [UIView animateWithDuration: .3f animations:^{
+        self.teamSubview.alpha = 0;
+        newTeamSubview.alpha = 1;
+    } completion:^(BOOL finished) {
+        [self.teamSubview removeFromSuperview];
+        self.teamSubview = newTeamSubview;
+    }];
+    
 }
 
 
