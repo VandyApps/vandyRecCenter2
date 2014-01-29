@@ -14,18 +14,22 @@
 
 @implementation SeasonViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+#pragma mark - Initializer
+
+- (id) initWithContentSize: (CGSize) size {
+    if (self = [super init]) {
+        _size = size;
     }
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.frame = CGRectMake(0, 0, self.size.width, self.size.height);
+    
 	self.view.backgroundColor = [UIColor blueColor];
 }
 

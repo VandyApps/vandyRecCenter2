@@ -38,14 +38,14 @@
 
 - (SeasonViewController*) seasonViewController {
     if (!_seasonViewController) {
-        _seasonViewController = [[SeasonViewController alloc] init];
+        _seasonViewController = [[SeasonViewController alloc] initWithContentSize: self.contentView.frame.size];
     }
     return _seasonViewController;
 }
 
 - (PlayoffsViewController*) playoffsViewController {
     if (!_playoffsViewController) {
-        _playoffsViewController = [[PlayoffsViewController alloc] init];
+        _playoffsViewController = [[PlayoffsViewController alloc] initWithContentSize: self.contentView.frame.size];
     }
     return _playoffsViewController;
 }

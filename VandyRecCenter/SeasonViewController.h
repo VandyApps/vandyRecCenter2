@@ -10,4 +10,9 @@
 
 @interface SeasonViewController : UIViewController
 
+
+@property (nonatomic,readonly) CGSize size;
+
+- (id) initWithContentSize: (CGSize) size;
+
 @end

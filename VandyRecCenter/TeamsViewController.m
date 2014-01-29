@@ -10,7 +10,7 @@
 
 @interface TeamsViewController ()
 
-@property (nonatomic) CGSize size;
+
 @property (nonatomic, strong) NSArray* tempData;
 @property (nonatomic, strong) UIView* teamSubview;
 @property (nonatomic) NSInteger currentRow;
@@ -28,7 +28,7 @@ typedef enum {
 
 - (id) initWithContentSize: (CGSize) size {
     if (self = [super init]) {
-        self.size = size;
+        _size = size;
     }
     return self;
 }

@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UIView* teamView;
 @property (nonatomic, strong) UITableView* tableView;
+@property (nonatomic, readonly) CGSize size;
 
 - (id) initWithContentSize: (CGSize) size;
 

@@ -10,4 +10,8 @@
 
 @interface PlayoffsViewController : UIViewController
 
+@property (nonatomic, readonly) CGSize size;
+
+- (id) initWithContentSize: (CGSize) size;
+
 @end
