@@ -46,6 +46,7 @@ typedef enum {
 #warning Add variables for sizes
     
     self.teamView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, 140)];
+    [self.teamView addSubview: (self.teamSubview = [self constructDefaultTeamsViewWithFrame: self.teamView.frame])];
     
     self.tableView = [[UITableView alloc] initWithFrame: CGRectMake(0, 140, self.view.frame.size.width, self.view.frame.size.height - 140)];
     
@@ -67,6 +68,23 @@ typedef enum {
 
 
 #pragma mark - Managing Team Views
+
+- (UIView*) constructDefaultTeamsViewWithFrame: (CGRect) frame {
+    
+    static CGSize labelSize = (CGSize) {140, 30};
+    UIView* defaultView = [[UIView alloc] initWithFrame: frame];
+    UILabel* label = [[UILabel alloc] initWithFrame: CGRectMake(defaultView.center.x - labelSize.width / 2.f, defaultView.center.y - (labelSize.height / 2.f), labelSize.width, labelSize.height)];
+    
+    label.text = @"Select A Team";
+    label.textColor = [UIColor redColor];
+    
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    [defaultView addSubview: label];
+    
+    return defaultView;
+}
+
 - (UIView*) constructTeamViewForTeamAtIndex: (NSUInteger) index withFrame: (CGRect) frame {
     
     static CGSize teamNameLabelSize = (CGSize) {200, 30};
@@ -132,7 +150,7 @@ typedef enum {
     
     UILabel* wltStats = [[UILabel alloc] initWithFrame: CGRectMake((wltSize.width / 2.f) - (wltStatsSize.width / 2.f), wltStatsTopPadding, wltStatsSize.width, wltStatsSize.height)];
     
-    wltStats.text = [NSString stringWithFormat: @"%u", count];
+    wltStats.text = [NSString stringWithFormat: @"%lu", count];
     wltStats.textAlignment = NSTextAlignmentCenter;
     wltStats.textColor = [UIColor redColor];
     wltStats.font = [UIFont systemFontOfSize: 20];
