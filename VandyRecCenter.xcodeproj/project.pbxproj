@@ -93,6 +93,8 @@
 		FC216185185AE013002DA7E2 /* BMContainerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FC216184185AE013002DA7E2 /* BMContainerButton.m */; };
 		FC216188185AE246002DA7E2 /* 298-circlex.png in Resources */ = {isa = PBXBuildFile; fileRef = FC216186185AE246002DA7E2 /* 298-circlex.png */; };
 		FC216189185AE246002DA7E2 /* 298-circlex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FC216187185AE246002DA7E2 /* 298-circlex@2x.png */; };
+		FC423A0C18996454009671BA /* IMTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = FC423A0B18996454009671BA /* IMTeam.m */; };
+		FC423A10189966CE009671BA /* IMGame.m in Sources */ = {isa = PBXBuildFile; fileRef = FC423A0F189966CE009671BA /* IMGame.m */; };
 		FC9FBF83189447D3001C8C94 /* Intramurals.League.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9FBF77189447D3001C8C94 /* Intramurals.League.xib */; };
 		FC9FBF84189447D3001C8C94 /* Intramurals.Sports.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9FBF78189447D3001C8C94 /* Intramurals.Sports.xib */; };
 		FC9FBF85189447D3001C8C94 /* IntramuralsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9FBF7A189447D3001C8C94 /* IntramuralsViewController.m */; };
@@ -242,6 +244,11 @@
 		FC216184185AE013002DA7E2 /* BMContainerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMContainerButton.m; sourceTree = "<group>"; };
 		FC216186185AE246002DA7E2 /* 298-circlex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex.png"; sourceTree = "<group>"; };
 		FC216187185AE246002DA7E2 /* 298-circlex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex@2x.png"; sourceTree = "<group>"; };
+		FC423A0A18996454009671BA /* IMTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMTeam.h; sourceTree = "<group>"; };
+		FC423A0B18996454009671BA /* IMTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMTeam.m; sourceTree = "<group>"; };
+		FC423A0D18996519009671BA /* RecModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecModelProtocol.h; sourceTree = "<group>"; };
+		FC423A0E189966CE009671BA /* IMGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMGame.h; sourceTree = "<group>"; };
+		FC423A0F189966CE009671BA /* IMGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMGame.m; sourceTree = "<group>"; };
 		FC9FBF77189447D3001C8C94 /* Intramurals.League.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intramurals.League.xib; sourceTree = "<group>"; };
 		FC9FBF78189447D3001C8C94 /* Intramurals.Sports.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intramurals.Sports.xib; sourceTree = "<group>"; };
 		FC9FBF79189447D3001C8C94 /* IntramuralsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntramuralsViewController.h; sourceTree = "<group>"; };
@@ -491,6 +498,7 @@
 		2129749917FE465C007210AB /* VandyRecCenter */ = {
 			isa = PBXGroup;
 			children = (
+				FC423A0D18996519009671BA /* RecModelProtocol.h */,
 				212974A217FE465C007210AB /* AppDelegate.h */,
 				212974A317FE465C007210AB /* AppDelegate.m */,
 				211C2E9D17FF607200C4400A /* Web Client */,
@@ -570,6 +578,7 @@
 		2132530718085B1700ED855D /* Intramurals */ = {
 			isa = PBXGroup;
 			children = (
+				FC423A11189966D2009671BA /* Model */,
 				FC9FBF77189447D3001C8C94 /* Intramurals.League.xib */,
 				FC9FBF78189447D3001C8C94 /* Intramurals.Sports.xib */,
 				FC9FBF79189447D3001C8C94 /* IntramuralsViewController.h */,
@@ -659,6 +668,17 @@
 			);
 			name = DateHelper;
 			path = VandyRecCenter;
+			sourceTree = "<group>";
+		};
+		FC423A11189966D2009671BA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FC423A0A18996454009671BA /* IMTeam.h */,
+				FC423A0B18996454009671BA /* IMTeam.m */,
+				FC423A0E189966CE009671BA /* IMGame.h */,
+				FC423A0F189966CE009671BA /* IMGame.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		FCA506B218599122008802F1 /* BMAddRemoveButton */ = {
@@ -854,6 +874,7 @@
 				211C2E8E17FF492D00C4400A /* Notification.m in Sources */,
 				2109AE861810C6C400EA190E /* NSArray+MyArrayClass.m in Sources */,
 				FC9FBF87189447D3001C8C94 /* PlayoffsViewController.m in Sources */,
+				FC423A10189966CE009671BA /* IMGame.m in Sources */,
 				FCA506B11859911E008802F1 /* BMAddRemoveButton.m in Sources */,
 				2126B44F1849681A00DF79FF /* BMHorizontalPager.m in Sources */,
 				2126B455184969CF00DF79FF /* BMArrowButton.m in Sources */,
@@ -863,6 +884,7 @@
 				93789CB6181A381B00BA764C /* NSDate+DateHelper.m in Sources */,
 				215B8DAC1809B50F009C248E /* GFCollection.m in Sources */,
 				FC9FBF88189447D3001C8C94 /* SeasonViewController.m in Sources */,
+				FC423A0C18996454009671BA /* IMTeam.m in Sources */,
 				2126B44D1849681A00DF79FF /* BMIndexPath.m in Sources */,
 				21325306180853C100ED855D /* GFTableViewController.m in Sources */,
 				FCF5FC24185D5C510042FA96 /* ErrorHandler.m in Sources */,
