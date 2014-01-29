@@ -1,5 +1,5 @@
 //
-//  RecModelProtocol.h
+//  IMTeams.h
 //  VandyRecCenter
 //
 //  Created by Brendan McNamra on 1/29/14.
@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RecModelProtocol.h"
 
-@protocol RecModelProtocol <NSObject>
+@interface IMTeams : NSObject <RecModelProtocol>
 
-- (void) parse: (id) hash;
-- (NSDictionary*) serialize;
+@property (nonatomic, readonly, strong) NSArray* teams;
 
 @end
