@@ -10,9 +10,11 @@
 
 #import "DateHelper.h"
 
+#import "RecModelProtocol.h"
+
 @class TimeString;
 
-@interface Hours : NSObject
+@interface Hours : NSObject <RecModelProtocol>
 
 @property (nonatomic, strong, readonly) NSArray* hours;
 @property (nonatomic, readonly) BOOL isLoaded;

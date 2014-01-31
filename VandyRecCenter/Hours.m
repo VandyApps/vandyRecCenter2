@@ -288,4 +288,16 @@
 //    
 //}
 
+#pragma mark - Protocol
+
+#warning  Implement me
+
+- (void) parse:(NSArray*)hash {
+
+}
+
+- (NSArray*) serialize {
+    return nil;
+}
+
 @end
