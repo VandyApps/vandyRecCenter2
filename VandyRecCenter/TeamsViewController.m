@@ -8,12 +8,16 @@
 
 #import "TeamsViewController.h"
 
-#define IMUsingPhoData 1
+#import "IMTeams.h"
+#import "IMTeam.h"
 
 @interface TeamsViewController ()
 
 
 @property (nonatomic, strong) NSArray* tempData;
+
+@property (nonatomic, strong) IMTeams* teamsCollection;
+
 @property (nonatomic, strong) UIView* teamSubview;
 @property (nonatomic) NSInteger currentRow;
 @end
@@ -56,6 +60,41 @@ typedef enum {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    
+    self.teamsCollection = [[IMTeams alloc] init];
+    [self.teamsCollection parse:
+  
+        @[@{
+              @"_id": @"00",
+              @"name": @"Grizzlies",
+              @"wins": @12,
+              @"losses": @8,
+              @"ties": @0
+            },
+          @{
+              @"_id": @"01",
+              @"name": @"Lakers",
+              @"wins": @13,
+              @"losses": @4,
+              @"ties": @0
+            },
+          @{
+              @"_id": @"02",
+              @"name": @"Spurs",
+              @"wins": @2,
+              @"losses": @13,
+              @"ties": @3
+            },
+          @{
+              @"_id": @"03",
+              @"name": @"Clippers",
+              @"wins": @3,
+              @"losses": @12,
+              @"ties": @0
+            }]
+     ];
+    
+    
     self.tempData = @[@"Team Awesome", @"Cool Catz", @"Lakers", @"Clipper", @"Mavericks", @"Spurs", @"Grizzlies", @"Patriots", @"Kings", @"Liverpool"];
     
     
@@ -97,7 +136,7 @@ typedef enum {
     
     UILabel* teamNameLabel = [[UILabel alloc] initWithFrame: CGRectMake((self.teamView.frame.size.width/ 2.f) - teamNameLabelSize.width / 2.f, teamNameLabelTopPadding, teamNameLabelSize.width, teamNameLabelSize.height)];
     
-    teamNameLabel.text = self.tempData[index];
+    teamNameLabel.text = [self.teamsCollection at:index].name;
     teamNameLabel.font = [UIFont systemFontOfSize: 18];
     teamNameLabel.textAlignment = NSTextAlignmentCenter;
     
@@ -173,13 +212,13 @@ typedef enum {
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-    cell.textLabel.text = self.tempData[indexPath.row];
+    cell.textLabel.text = [self.teamsCollection at:indexPath.row].name;
     
     return cell;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.tempData.count;
+    return self.teamsCollection.count;
 }
 
 
@@ -208,14 +247,5 @@ typedef enum {
 }
 
 
-#pragma mark - temporary pho data
-
-#if IMUsingPhoData
-
-- (void) phoDataForTeams {
-    //this should return a teams view
-}
-
-#endif
 
 @end

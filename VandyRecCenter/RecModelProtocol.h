@@ -10,7 +10,15 @@
 
 @protocol RecModelProtocol <NSObject>
 
+//parse and serialize should deal with values that are property lists
+// - NSNumber
+// - NSString
+// - NSDictionary
+// - NSArray
+// - NSDate
+// - NSData
+
 - (void) parse: (id) hash;
-- (NSDictionary*) serialize;
+- (id) serialize;
 
 @end

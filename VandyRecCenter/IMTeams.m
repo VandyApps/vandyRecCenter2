@@ -11,15 +11,33 @@
 
 @implementation IMTeams
 
+- (NSUInteger) count {
+    return _teams.count;
+}
+
+- (IMTeams*) at: (NSUInteger) index {
+    return [self.teams objectAtIndex: index];
+}
+
 - (void) parse:(NSArray*)hash {
-    
+    NSMutableArray* teamsArray = [[NSMutableArray alloc] init];
+    for (NSDictionary* teamHash in hash) {
+        IMTeam* newTeam = [[IMTeam alloc] init];
+        [newTeam parse: teamHash];
+        [teamsArray addObject: newTeam];
+    }
+    //immutable copy
+    _teams = [teamsArray copy];
     
 }
 
-- (NSDictionary*) serialize {
-    
-#warning Implement me
-    return nil;
+- (NSArray*) serialize {
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    for (IMTeam* team in self.teams) {
+        [array addObject: [team serialize]];
+    }
+    //return immutable copy
+    return [array copy];
 }
 
 @end

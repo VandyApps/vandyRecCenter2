@@ -9,8 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "RecModelProtocol.h"
 
+@class IMTeam;
+
 @interface IMTeams : NSObject <RecModelProtocol>
 
 @property (nonatomic, readonly, strong) NSArray* teams;
+@property (nonatomic, readonly) NSUInteger count;
+
+- (IMTeam*) at: (NSUInteger) index;
 
 @end
