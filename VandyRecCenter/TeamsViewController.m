@@ -141,9 +141,9 @@ typedef enum {
     teamNameLabel.textAlignment = NSTextAlignmentCenter;
     
     [teamView addSubview: teamNameLabel];
-    [teamView addSubview: [self constructViewOfType: WLTTypeWin withCount: 12]];
-    [teamView addSubview: [self constructViewOfType: WLTTypeLoss withCount: 8]];
-    [teamView addSubview: [self constructViewOfType: WLTTypeTie withCount: 1]];
+    [teamView addSubview: [self constructViewOfType: WLTTypeWin withCount: [self.teamsCollection at:index].wins]];
+    [teamView addSubview: [self constructViewOfType: WLTTypeLoss withCount: [self.teamsCollection at:index].losses]];
+    [teamView addSubview: [self constructViewOfType: WLTTypeTie withCount: [self.teamsCollection at:index].ties]] ;
     return teamView;
 }
 
