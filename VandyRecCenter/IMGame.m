@@ -7,15 +7,48 @@
 //
 
 #import "IMGame.h"
+#import "IMTeam.h"
+#import "NSDate+DateHelper.h"
+
+#import "TimeString.h"
 
 @implementation IMGame
 
 - (void) parse:(NSDictionary *)hash {
+    __id = hash[@"_id"];
+    _date = [NSDate dateWithDateString: hash[@"date"]];
+    _startTime = [[TimeString alloc] initWithString: hash[@"startTime"]];
+    _endTime = [[TimeString alloc] initWithString: hash[@"endTime"]];
+    
+    _homeTeam = [[IMTeam alloc] init];
+    [_homeTeam parse: hash [@"homeTeam"]];
+    
+    _awayTeam = [[IMTeam alloc] init];
+    [_awayTeam parse: hash[@"awayTeam"]];
+    
+    _homeScore = [hash[@"homeScore"] intValue];
+    _awayScore = [hash[@"awayScore"] intValue];
+    
+    _status = [hash[@"status"] intValue];
+    
     
 }
 
 - (NSDictionary*) serialize {
-    return nil;
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+    
+    [dict setObject: self._id forKey: @"_id"];
+#warning Missing date hash
+    [dict setObject: [self.startTime stringValue] forKey: @"startTime"];
+    [dict setObject: [self.endTime stringValue] forKey: @"endTime"];
+    
+    [dict setObject: @(self.homeScore) forKey: @"homeScore"];
+    [dict setObject: @(self.awayScore) forKey: @"awayScore"];
+    
+    [dict setObject: @(self.status) forKey: @"status"];
+    
+    //immutable copy
+    return [dict copy];
 }
 
 @end

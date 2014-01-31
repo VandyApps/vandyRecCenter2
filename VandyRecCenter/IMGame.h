@@ -10,6 +10,8 @@
 #import "RecModelProtocol.h"
 
 @class IMTeam;
+@class TimeString;
+
 typedef  enum {
 
     IMTeamStatusHomeTeamWon = 0,
@@ -23,7 +25,11 @@ typedef  enum {
 @interface IMGame : NSObject <RecModelProtocol>
 
 @property (nonatomic, strong, readonly) NSString* _id;
-@property (nonatomic, strong, readonly) NSString* name;
+
+@property (nonatomic, strong, readonly) NSDate* date;
+@property (nonatomic, strong, readonly) TimeString* startTime;
+@property (nonatomic, strong, readonly) TimeString* endTime;
+
 @property (nonatomic, strong, readonly) IMTeam* homeTeam;
 @property (nonatomic, strong, readonly) IMTeam* awayTeam;
 

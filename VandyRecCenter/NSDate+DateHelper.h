@@ -13,6 +13,9 @@
 
 @interface NSDate (DateHelper)
 
+#warning - Add a method to convert back to date string
+#warning - no properties should exist, everything should be a method
+
 @property (nonatomic, readonly) NSUInteger day;
 @property (nonatomic, readonly) NSUInteger weekDay;
 @property (nonatomic, readonly) NSUInteger month;
@@ -40,6 +43,7 @@
 /* dateString is an NSString in the form MM/DD/YYYY where MM is the month as a 1-based index, so 01 is January and 12 is December, day is also 1-based.  Returns nil if an invalid dateString is sent
  */
 + (id) dateWithDateString: (NSString*) dateString;
+
 
 @end
 
