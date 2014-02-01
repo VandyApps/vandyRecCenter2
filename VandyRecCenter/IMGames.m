@@ -11,6 +11,9 @@
 
 @implementation IMGames
 
+@synthesize games = _games;
+@dynamic count;
+
 - (void) parse:(NSArray*)hash {
     NSMutableArray* array = [[NSMutableArray alloc] init];
     
@@ -30,4 +33,9 @@
     }
     return [array copy];
 }
+
+- (NSUInteger) count {
+    return self.games.count;
+}
+
 @end

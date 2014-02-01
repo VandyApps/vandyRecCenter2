@@ -38,4 +38,6 @@ typedef  enum {
 
 @property (nonatomic, readonly) IMTeamStatus status;
 
+@property (nonatomic, strong, readonly) NSString* location;
+
 @end

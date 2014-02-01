@@ -31,6 +31,8 @@
     
     _status = [hash[@"status"] intValue];
     
+    _location = hash[@"location"];
+    
     
 }
 
@@ -46,6 +48,8 @@
     [dict setObject: @(self.awayScore) forKey: @"awayScore"];
     
     [dict setObject: @(self.status) forKey: @"status"];
+    
+    [dict setObject: self.location forKey: @"location"];
     
     //immutable copy
     return [dict copy];

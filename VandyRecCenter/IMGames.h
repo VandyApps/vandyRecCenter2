@@ -14,5 +14,7 @@
 @interface IMGames : NSObject <RecModelProtocol>
 
 @property (nonatomic, strong) NSArray* games;
+@property (nonatomic, assign, readonly) NSUInteger count;
+
 
 @end
