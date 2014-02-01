@@ -16,5 +16,5 @@
 @property (nonatomic, readonly) NSUInteger wins;
 @property (nonatomic, readonly) NSUInteger losses;
 @property (nonatomic, readonly) NSUInteger ties;
-
+@property (nonatomic, assign, getter = hasDropped) BOOL dropped;
 @end

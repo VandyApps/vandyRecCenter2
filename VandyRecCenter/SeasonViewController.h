@@ -15,4 +15,7 @@
 
 - (id) initWithContentSize: (CGSize) size;
 
+@property (nonatomic, strong) UITableView* tableView;
+
+
 @end

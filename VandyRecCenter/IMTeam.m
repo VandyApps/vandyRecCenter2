@@ -17,6 +17,7 @@
     _wins = [hash[@"wins"] intValue];
     _losses = [hash[@"losses"] intValue];
     _ties = [hash[@"ties"] intValue];
+    _dropped = [hash[@"dropped"] boolValue];
     
 }
 
@@ -27,7 +28,8 @@
       @"name": self.name,
       @"wins": @(self.wins),
       @"losses": @(self.losses),
-      @"ties": @(self.ties)
+      @"ties": @(self.ties),
+      @"dropped": @(self.dropped)
     };
 }
 
