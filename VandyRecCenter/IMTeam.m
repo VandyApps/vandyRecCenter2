@@ -12,7 +12,7 @@
 
 
 - (void) parse:(NSDictionary *)hash {
-    _cid = hash[@"_id"];
+    _cid = hash[@"id"];
     _name = hash[@"name"];
     _wins = [hash[@"wins"] intValue];
     _losses = [hash[@"losses"] intValue];

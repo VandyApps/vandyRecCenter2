@@ -96,6 +96,8 @@
 		FC423A0C18996454009671BA /* IMTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = FC423A0B18996454009671BA /* IMTeam.m */; };
 		FC423A10189966CE009671BA /* IMGame.m in Sources */ = {isa = PBXBuildFile; fileRef = FC423A0F189966CE009671BA /* IMGame.m */; };
 		FC423A14189969B8009671BA /* IMTeams.m in Sources */ = {isa = PBXBuildFile; fileRef = FC423A13189969B8009671BA /* IMTeams.m */; };
+		FC4FF682189D6AE700A4FCCA /* IMLeague.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4FF681189D6AE700A4FCCA /* IMLeague.m */; };
+		FC4FF685189D6D9700A4FCCA /* IMSport.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4FF684189D6D9700A4FCCA /* IMSport.m */; };
 		FC9FBF83189447D3001C8C94 /* Intramurals.League.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9FBF77189447D3001C8C94 /* Intramurals.League.xib */; };
 		FC9FBF84189447D3001C8C94 /* Intramurals.Sports.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9FBF78189447D3001C8C94 /* Intramurals.Sports.xib */; };
 		FC9FBF85189447D3001C8C94 /* IntramuralsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9FBF7A189447D3001C8C94 /* IntramuralsViewController.m */; };
@@ -253,6 +255,10 @@
 		FC423A0F189966CE009671BA /* IMGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMGame.m; sourceTree = "<group>"; };
 		FC423A12189969B8009671BA /* IMTeams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMTeams.h; sourceTree = "<group>"; };
 		FC423A13189969B8009671BA /* IMTeams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMTeams.m; sourceTree = "<group>"; };
+		FC4FF680189D6AE700A4FCCA /* IMLeague.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMLeague.h; sourceTree = "<group>"; };
+		FC4FF681189D6AE700A4FCCA /* IMLeague.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMLeague.m; sourceTree = "<group>"; };
+		FC4FF683189D6D9700A4FCCA /* IMSport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMSport.h; sourceTree = "<group>"; };
+		FC4FF684189D6D9700A4FCCA /* IMSport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMSport.m; sourceTree = "<group>"; };
 		FC9FBF77189447D3001C8C94 /* Intramurals.League.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intramurals.League.xib; sourceTree = "<group>"; };
 		FC9FBF78189447D3001C8C94 /* Intramurals.Sports.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intramurals.Sports.xib; sourceTree = "<group>"; };
 		FC9FBF79189447D3001C8C94 /* IntramuralsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntramuralsViewController.h; sourceTree = "<group>"; };
@@ -687,6 +693,10 @@
 				FC423A0F189966CE009671BA /* IMGame.m */,
 				FCC352E7189CBC330075A7C3 /* IMGames.h */,
 				FCC352E8189CBC330075A7C3 /* IMGames.m */,
+				FC4FF680189D6AE700A4FCCA /* IMLeague.h */,
+				FC4FF681189D6AE700A4FCCA /* IMLeague.m */,
+				FC4FF683189D6D9700A4FCCA /* IMSport.h */,
+				FC4FF684189D6D9700A4FCCA /* IMSport.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -887,11 +897,13 @@
 				FC423A10189966CE009671BA /* IMGame.m in Sources */,
 				FCA506B11859911E008802F1 /* BMAddRemoveButton.m in Sources */,
 				2126B44F1849681A00DF79FF /* BMHorizontalPager.m in Sources */,
+				FC4FF685189D6D9700A4FCCA /* IMSport.m in Sources */,
 				2126B455184969CF00DF79FF /* BMArrowButton.m in Sources */,
 				FC423A14189969B8009671BA /* IMTeams.m in Sources */,
 				FC216182185A9AD4002DA7E2 /* GFFavoritesViewController.m in Sources */,
 				FC9FBF86189447D3001C8C94 /* LeagueViewController.m in Sources */,
 				2126B4521849681A00DF79FF /* BMVerticalPagerImpl.m in Sources */,
+				FC4FF682189D6AE700A4FCCA /* IMLeague.m in Sources */,
 				93789CB6181A381B00BA764C /* NSDate+DateHelper.m in Sources */,
 				215B8DAC1809B50F009C248E /* GFCollection.m in Sources */,
 				FC9FBF88189447D3001C8C94 /* SeasonViewController.m in Sources */,

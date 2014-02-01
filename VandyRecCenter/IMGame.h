@@ -24,7 +24,7 @@ typedef  enum {
 } IMTeamStatus;
 @interface IMGame : NSObject <RecModelProtocol>
 
-@property (nonatomic, strong, readonly) NSString* _id;
+@property (nonatomic, strong, readonly) NSString* cid;
 
 @property (nonatomic, strong, readonly) NSDate* date;
 @property (nonatomic, strong, readonly) TimeString* startTime;

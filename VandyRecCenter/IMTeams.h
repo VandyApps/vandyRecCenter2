@@ -18,4 +18,6 @@
 
 - (IMTeam*) at: (NSUInteger) index;
 
+- (IMTeam*) teamWithId: (NSString*) id;
+
 @end

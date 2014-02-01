@@ -32,12 +32,7 @@
 	self.view.backgroundColor = [UIColor redColor];
     
     self.view.frame = CGRectMake(0, 0, self.size.width, self.size.height);
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
 @end

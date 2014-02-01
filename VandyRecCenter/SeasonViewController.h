@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SeasonViewController : UIViewController
+@interface SeasonViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 
 @property (nonatomic,readonly) CGSize size;

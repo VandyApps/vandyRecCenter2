@@ -15,7 +15,7 @@
 @implementation IMGame
 
 - (void) parse:(NSDictionary *)hash {
-    __id = hash[@"_id"];
+    _cid = hash[@"id"];
     _date = [NSDate dateWithDateString: hash[@"date"]];
     _startTime = [[TimeString alloc] initWithString: hash[@"startTime"]];
     _endTime = [[TimeString alloc] initWithString: hash[@"endTime"]];
@@ -39,7 +39,7 @@
 - (NSDictionary*) serialize {
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     
-    [dict setObject: self._id forKey: @"_id"];
+    [dict setObject: self.cid forKey: @"id"];
 #warning Missing date hash
     [dict setObject: [self.startTime stringValue] forKey: @"startTime"];
     [dict setObject: [self.endTime stringValue] forKey: @"endTime"];
