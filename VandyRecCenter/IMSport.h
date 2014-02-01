@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "RecModelProtocol.h"
 
-@interface IMSport : NSObject
+@interface IMSport : NSObject <RecModelProtocol>
 
 @property (nonatomic, strong, readonly) NSArray* leagues;
 

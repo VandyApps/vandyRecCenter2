@@ -7,12 +7,31 @@
 //
 
 #import "IMGame.h"
-#import "IMTeam.h"
 #import "NSDate+DateHelper.h"
 
 #import "TimeString.h"
 
+#import "IMTeam.h"
+#import "IMTeams.h"
+
 @implementation IMGame
+
+
+- (BOOL) teamsResolved {
+    if ([self.homeTeam isKindOfClass: [IMTeam class]]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void) resolveTeamsWithCollection:(IMTeams *)teams {
+    if (![self teamsResolved]) {
+        _homeTeam = [teams teamWithId: _homeTeam];
+        _awayTeam = [teams teamWithId: _awayTeam];
+    }
+}
+
+#pragma mark - Rec Model Protocol
 
 - (void) parse:(NSDictionary *)hash {
     _cid = hash[@"id"];
@@ -20,11 +39,9 @@
     _startTime = [[TimeString alloc] initWithString: hash[@"startTime"]];
     _endTime = [[TimeString alloc] initWithString: hash[@"endTime"]];
     
-    _homeTeam = [[IMTeam alloc] init];
-    [_homeTeam parse: hash [@"homeTeam"]];
-    
-    _awayTeam = [[IMTeam alloc] init];
-    [_awayTeam parse: hash[@"awayTeam"]];
+    //these should just be string for id's, not actual team models
+    _homeTeam = hash[@"homeTeam"];
+    _awayTeam = hash[@"awayTeam"];
     
     _homeScore = [hash[@"homeScore"] intValue];
     _awayScore = [hash[@"awayScore"] intValue];

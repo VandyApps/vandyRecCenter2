@@ -20,8 +20,9 @@ typedef enum {
     
 } IMLeagueSeason;
 
-@interface IMLeague : NSObject
+@interface IMLeague : NSObject <RecModelProtocol>
 
+@property (nonatomic, strong, readonly) NSString* name;
 @property (nonatomic, strong, readonly) NSString* cid;
 
 @property (nonatomic, strong,readonly) NSDate* entryStartDate;
@@ -30,7 +31,7 @@ typedef enum {
 @property (nonatomic, strong, readonly) NSDate* startDate;
 @property (nonatomic, strong, readonly) NSDate* endDate;
 
-@property (nonatomic, strong, readonly) NSString* name;
+
 @property (nonatomic, strong,readonly) NSArray* teams;
 @property (nonatomic, strong, readonly) NSArray* games;
 
