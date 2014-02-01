@@ -104,6 +104,7 @@
 		FC9FBF88189447D3001C8C94 /* SeasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9FBF80189447D3001C8C94 /* SeasonViewController.m */; };
 		FC9FBF89189447D3001C8C94 /* TeamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9FBF82189447D3001C8C94 /* TeamsViewController.m */; };
 		FCA506B11859911E008802F1 /* BMAddRemoveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA506B01859911E008802F1 /* BMAddRemoveButton.m */; };
+		FCC352E9189CBC330075A7C3 /* IMGames.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC352E8189CBC330075A7C3 /* IMGames.m */; };
 		FCE94310185A4C4300030692 /* GFFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE9430F185A4C4300030692 /* GFFavorite.m */; };
 		FCE94313185A5AF700030692 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE94311185A5AF700030692 /* 37x-Checkmark.png */; };
 		FCE94314185A5AF700030692 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE94312185A5AF700030692 /* 37x-Checkmark@2x.png */; };
@@ -266,6 +267,8 @@
 		FC9FBF82189447D3001C8C94 /* TeamsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamsViewController.m; sourceTree = "<group>"; };
 		FCA506AF1859911E008802F1 /* BMAddRemoveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAddRemoveButton.h; sourceTree = "<group>"; };
 		FCA506B01859911E008802F1 /* BMAddRemoveButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAddRemoveButton.m; sourceTree = "<group>"; };
+		FCC352E7189CBC330075A7C3 /* IMGames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMGames.h; sourceTree = "<group>"; };
+		FCC352E8189CBC330075A7C3 /* IMGames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMGames.m; sourceTree = "<group>"; };
 		FCE9430E185A4C4300030692 /* GFFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFFavorite.h; sourceTree = "<group>"; };
 		FCE9430F185A4C4300030692 /* GFFavorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFFavorite.m; sourceTree = "<group>"; };
 		FCE94311185A5AF700030692 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
@@ -682,6 +685,8 @@
 				FC423A13189969B8009671BA /* IMTeams.m */,
 				FC423A0E189966CE009671BA /* IMGame.h */,
 				FC423A0F189966CE009671BA /* IMGame.m */,
+				FCC352E7189CBC330075A7C3 /* IMGames.h */,
+				FCC352E8189CBC330075A7C3 /* IMGames.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -891,6 +896,7 @@
 				215B8DAC1809B50F009C248E /* GFCollection.m in Sources */,
 				FC9FBF88189447D3001C8C94 /* SeasonViewController.m in Sources */,
 				FC423A0C18996454009671BA /* IMTeam.m in Sources */,
+				FCC352E9189CBC330075A7C3 /* IMGames.m in Sources */,
 				2126B44D1849681A00DF79FF /* BMIndexPath.m in Sources */,
 				21325306180853C100ED855D /* GFTableViewController.m in Sources */,
 				FCF5FC24185D5C510042FA96 /* ErrorHandler.m in Sources */,
