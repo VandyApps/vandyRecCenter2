@@ -42,4 +42,5 @@
 - (NSDictionary*) serialize {
     return nil;
 }
+
 @end

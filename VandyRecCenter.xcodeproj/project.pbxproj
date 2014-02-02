@@ -93,6 +93,7 @@
 		FC216185185AE013002DA7E2 /* BMContainerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FC216184185AE013002DA7E2 /* BMContainerButton.m */; };
 		FC216188185AE246002DA7E2 /* 298-circlex.png in Resources */ = {isa = PBXBuildFile; fileRef = FC216186185AE246002DA7E2 /* 298-circlex.png */; };
 		FC216189185AE246002DA7E2 /* 298-circlex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FC216187185AE246002DA7E2 /* 298-circlex@2x.png */; };
+		FC325700189EF6CA00744A69 /* IMSports.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3256FF189EF6CA00744A69 /* IMSports.m */; };
 		FC423A0C18996454009671BA /* IMTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = FC423A0B18996454009671BA /* IMTeam.m */; };
 		FC423A10189966CE009671BA /* IMGame.m in Sources */ = {isa = PBXBuildFile; fileRef = FC423A0F189966CE009671BA /* IMGame.m */; };
 		FC423A14189969B8009671BA /* IMTeams.m in Sources */ = {isa = PBXBuildFile; fileRef = FC423A13189969B8009671BA /* IMTeams.m */; };
@@ -248,6 +249,8 @@
 		FC216184185AE013002DA7E2 /* BMContainerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMContainerButton.m; sourceTree = "<group>"; };
 		FC216186185AE246002DA7E2 /* 298-circlex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex.png"; sourceTree = "<group>"; };
 		FC216187185AE246002DA7E2 /* 298-circlex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "298-circlex@2x.png"; sourceTree = "<group>"; };
+		FC3256FE189EF6CA00744A69 /* IMSports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMSports.h; sourceTree = "<group>"; };
+		FC3256FF189EF6CA00744A69 /* IMSports.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMSports.m; sourceTree = "<group>"; };
 		FC423A0A18996454009671BA /* IMTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMTeam.h; sourceTree = "<group>"; };
 		FC423A0B18996454009671BA /* IMTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMTeam.m; sourceTree = "<group>"; };
 		FC423A0D18996519009671BA /* RecModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecModelProtocol.h; sourceTree = "<group>"; };
@@ -697,6 +700,8 @@
 				FC4FF681189D6AE700A4FCCA /* IMLeague.m */,
 				FC4FF683189D6D9700A4FCCA /* IMSport.h */,
 				FC4FF684189D6D9700A4FCCA /* IMSport.m */,
+				FC3256FE189EF6CA00744A69 /* IMSports.h */,
+				FC3256FF189EF6CA00744A69 /* IMSports.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -922,6 +927,7 @@
 				2126B4511849681A00DF79FF /* BMInfinitePagerImpl.m in Sources */,
 				211C2E8817FF464D00C4400A /* NotificationViewController.m in Sources */,
 				2126B44E1849681A00DF79FF /* BMInfinitePager.m in Sources */,
+				FC325700189EF6CA00744A69 /* IMSports.m in Sources */,
 				212974A417FE465C007210AB /* AppDelegate.m in Sources */,
 				2126B4311849366800DF79FF /* HomeViewController.m in Sources */,
 				212974A017FE465C007210AB /* main.m in Sources */,

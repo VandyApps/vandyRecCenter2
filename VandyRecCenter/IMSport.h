@@ -9,8 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "RecModelProtocol.h"
 
+typedef enum {
+    IMSportSeasonSummer = 0,
+    IMSportSeasonFall = 1,
+    IMSportSeasonWinter = 2,
+    IMSportSeasonSpring = 3
+    
+} IMSportSeason;
+
 @interface IMSport : NSObject <RecModelProtocol>
 
+@property (nonatomic, assign, readonly) IMSportSeason season;
 @property (nonatomic, strong, readonly) NSArray* leagues;
 
 

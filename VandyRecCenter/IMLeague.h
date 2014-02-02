@@ -14,14 +14,6 @@
 @class  IMTeams;
 @class IMGames;
 
-typedef enum {
-    IMLeagueSeasonFall = 1,
-    IMLeagueSeasonWinter = 2,
-    IMLeagueSeasonSpring = 3,
-    IMLeagueSeasonSummer = 0
-    
-} IMLeagueSeason;
-
 @interface IMLeague : NSObject <RecModelProtocol>
 
 @property (nonatomic, strong, readonly) NSString* name;

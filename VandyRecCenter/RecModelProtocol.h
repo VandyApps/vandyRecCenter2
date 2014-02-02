@@ -18,7 +18,7 @@
 // - NSDate
 // - NSData
 
-- (void) parse: (id) hash;
+- (void) parse: (id) plist;
 - (id) serialize;
 
 @end
