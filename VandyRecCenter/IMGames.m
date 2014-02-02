@@ -14,6 +14,18 @@
 @synthesize games = _games;
 @dynamic count;
 
+
+- (IMGame*) gameWithId:(NSString *)cid {
+    for (IMGame* game in self.games) {
+        if ([game.cid isEqualToString: cid]) {
+            return game;
+        }
+    }
+    return nil;
+}
+
+#pragma mark - Rec Model Protocol
+
 - (void) parse:(NSArray*)hash {
     NSMutableArray* array = [[NSMutableArray alloc] init];
     
