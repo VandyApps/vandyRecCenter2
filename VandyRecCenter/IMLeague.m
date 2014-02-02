@@ -7,19 +7,24 @@
 //
 
 #import "IMLeague.h"
+
 #import "IMTeam.h"
 #import "IMGame.h"
+#import "IMTeams.h"
+#import "IMGames.h"
+
 #import "NSDate-MyDateClass.h"
 
 @implementation IMLeague
 
 
-- (IMTeam*) teamWithId:(NSString *)team {
-    return nil;
+- (IMTeam*) teamWithId:(NSString *)cid {
+    return [self.teams teamWithId: cid];
 }
 
-- (IMGame*) gameWithId:(NSString *)game {
-    return nil;
+- (IMGame*) gameWithId:(NSString *)cid {
+    
+    return [self.games gameWithId: cid];
 }
 
 

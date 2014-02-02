@@ -11,6 +11,8 @@
 
 @class  IMTeam;
 @class  IMGame;
+@class  IMTeams;
+@class IMGames;
 
 typedef enum {
     IMLeagueSeasonFall = 1,
@@ -32,8 +34,8 @@ typedef enum {
 @property (nonatomic, strong, readonly) NSDate* endDate;
 
 
-@property (nonatomic, strong,readonly) NSArray* teams;
-@property (nonatomic, strong, readonly) NSArray* games;
+@property (nonatomic, strong,readonly) IMTeams* teams;
+@property (nonatomic, strong, readonly) IMGames* games;
 
 - (IMTeam*) teamWithId: (NSString*) team;
 - (IMGame*) gameWithId: (NSString*) game;
