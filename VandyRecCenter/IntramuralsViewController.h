@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IMSports.h"
 
 @interface IntramuralsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView* tableView;
-
+@property (nonatomic, strong, readonly) IMSports* sportsCollection;
 
 @end

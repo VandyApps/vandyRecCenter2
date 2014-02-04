@@ -19,21 +19,17 @@
 
 @implementation IntramuralsViewController
 
+//private
+@synthesize demoData = _demoData;
+
+
+//public
+@synthesize tableView = _tableView;
+@synthesize sportsCollection = _sportsCollection;
 
 #pragma mark - Static Variables
 
 static CGFloat headerHeight = 30;
-
-#pragma mark - Initializer
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 
 #pragma mark - Lifecycle
@@ -41,6 +37,160 @@ static CGFloat headerHeight = 30;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _sportsCollection = [[IMSports alloc] init];
+    [self.sportsCollection parse:
+  
+     @[
+       @{
+            @"_id": @"00",
+            @"name": @"Flag Football",
+            @"season": @1,
+            @"leagues":
+                @[
+                    @{
+                        @"id": @"00",
+                        @"name": @"Corec black",
+                        @"entryStartDate": @"01/30/2014",
+                        @"entryEndDate": @"02/01/2014",
+                        @"startDate": @"02/01/2014",
+                        @"endDate": @"03/01/2014",
+                        @"teams":
+  
+                            @[
+                                @{
+                                    @"id": @"00",
+                                    @"name": @"Patriots",
+                                    @"wins": @10,
+                                    @"losses": @3,
+                                    @"ties": @1
+                                },
+                                @{
+                                    @"id": @"01",
+                                    @"name": @"Colts",
+                                    @"wins": @6,
+                                    @"losses": @6,
+                                    @"ties": @0
+                                },
+                                @{
+                                    @"id": @"02",
+                                    @"name": @"Giants",
+                                    @"wins": @3,
+                                    @"losses": @6,
+                                    @"ties": @1
+                                },
+                                @{
+                                    @"id": @"03",
+                                    @"name": @"Broncos",
+                                    @"wins": @5,
+                                    @"losses": @7,
+                                    @"ties": @2
+                                }
+                            ],
+                        @"games": @[],
+                        @"playoffs": @[]
+                        
+                    },
+                    @{
+                        @"id": @"00",
+                        @"name": @"Corec red",
+                        @"entryStartDate": @"01/30/2014",
+                        @"entryEndDate": @"02/01/2014",
+                        @"startDate": @"02/01/2014",
+                        @"endDate": @"03/01/2014",
+                        @"teams":
+                            @[
+                                @{
+                                    @"id": @"00",
+                                    @"name": @"Team Awesome",
+                                    @"wins": @2,
+                                    @"losses": @3,
+                                    @"ties": @0
+                                },
+                                @{
+                                    @"id": @"01",
+                                    @"name": @"Cool Catz",
+                                    @"wins": @5,
+                                    @"losses": @3,
+                                    @"ties": @1
+                                },
+                                @{
+                                    @"id": @"02",
+                                    @"name": @"Warriors",
+                                    @"wins": @8,
+                                    @"losses": @2,
+                                    @"ties": @0
+                                }
+                                
+                            ],
+                        @"games":
+                            @[],
+                        @"playoffs":
+                            @[],
+                        
+                    }
+                ]
+        },
+       @{
+           @"_id": @"01",
+           @"name" : @"Basketball",
+           @"season" : @3,
+           @"leagues":
+               @[
+                   @{
+                       @"id": @"00",
+                       @"name": @"Corec black",
+                       @"entryStartDate": @"03/15/2014",
+                       @"entryEndDate": @"03/17/2014",
+                       @"startDate": @"03/20/2014",
+                       @"endDate": @"04/20/2014",
+                       @"teams":
+                           @[
+                               @{
+                                   @"id": @"00",
+                                   @"name": @"Grizzlies",
+                                   @"wins": @3,
+                                   @"ties": @4,
+                                   @"losses": @1
+                                },
+                               @{
+                                    @"id": @"01",
+                                    @"name": @"Spurs",
+                                    @"wins": @5,
+                                    @"ties": @10,
+                                    @"losses": @1
+                                },
+                               @{
+                                   @"id": @"02",
+                                   @"name": @"Lakers",
+                                   @"wins": @10,
+                                   @"ties": @3,
+                                   @"losses": @1
+                                },
+                               @{
+                                    @"id": @"03",
+                                    @"name": @"Heat",
+                                    @"wins": @11,
+                                    @"ties": @3,
+                                    @"losses": @1
+                                },
+                               
+                            ],
+                       @"games": @[],
+                       @"playoffs": @[]
+                    }
+                ]
+        },
+       
+       @{
+           @"_id": @"02",
+           @"name": @"Volleyball",
+           @"season": @3,
+           @"leagues":
+               @[]
+        }
+       
+       ]];
+    
     self.demoData = @{
                       
                       @"Basketball" :

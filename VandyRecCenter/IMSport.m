@@ -11,11 +11,29 @@
 
 @implementation IMSport
 
+@dynamic leaguesResolved;
+
+#pragma mark - Getters
+
+- (BOOL) leaguesResolved {
+    return self.leagues != nil;
+}
+
+#pragma mark - Public Methods
+
+- (void) resolveLeague:(void (^)(IMSport *))block {
+    if (!self.leaguesResolved) {
+        #warning - call the api
+    } else {
+        block(self);
+    }
+}
 
 #pragma mark - Rec Model Protocol
 
 - (void) parse:(id)plist {
     if ([plist isKindOfClass: [NSDictionary class]]) {
+        _cid = plist[@"cid"];
         _season = [plist[@"season"] intValue];
         NSMutableArray* leagues = [[NSMutableArray alloc] init];
         for (NSDictionary* leagueData in (NSArray*) plist[@"leagues"]) {
