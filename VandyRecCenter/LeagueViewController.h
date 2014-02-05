@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class IMLeague;
+
 @interface LeagueViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UISegmentedControl* segmentedControl;
+@property (nonatomic, strong) IMLeague* league;
 
 @end

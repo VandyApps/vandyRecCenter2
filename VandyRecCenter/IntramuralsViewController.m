@@ -249,6 +249,8 @@ static CGFloat headerHeight = 30;
     LeagueViewController* leagueController = [[LeagueViewController alloc] initWithNibName: @"Intramurals.League" bundle:[NSBundle mainBundle]];
     
     leagueController.title = @"League";
+    leagueController.league = [(IMSport*) self.sportsCollection.sports[indexPath.section] leagues][indexPath.row];
+    
     [self.navigationController pushViewController: leagueController
                                          animated: YES];
 }

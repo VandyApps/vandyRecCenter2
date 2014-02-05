@@ -16,7 +16,7 @@
 
 @property (nonatomic, strong) NSArray* tempData;
 
-@property (nonatomic, strong) IMTeams* teamsCollection;
+
 
 @property (nonatomic, strong) UIView* teamSubview;
 @property (nonatomic) NSInteger currentRow;
@@ -59,43 +59,6 @@ typedef enum {
     self.teamView.backgroundColor = [UIColor colorWithRed: .95 green:.95 blue:.95 alpha:1];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    
-    self.teamsCollection = [[IMTeams alloc] init];
-    [self.teamsCollection parse:
-  
-        @[@{
-              @"_id": @"00",
-              @"name": @"Grizzlies",
-              @"wins": @12,
-              @"losses": @8,
-              @"ties": @0
-            },
-          @{
-              @"_id": @"01",
-              @"name": @"Lakers",
-              @"wins": @13,
-              @"losses": @4,
-              @"ties": @0
-            },
-          @{
-              @"_id": @"02",
-              @"name": @"Spurs",
-              @"wins": @2,
-              @"losses": @13,
-              @"ties": @3
-            },
-          @{
-              @"_id": @"03",
-              @"name": @"Clippers",
-              @"wins": @3,
-              @"losses": @12,
-              @"ties": @0
-            }]
-     ];
-    
-    
-    self.tempData = @[@"Team Awesome", @"Cool Catz", @"Lakers", @"Clipper", @"Mavericks", @"Spurs", @"Grizzlies", @"Patriots", @"Kings", @"Liverpool"];
     
     
     [self.view addSubview: self.teamView];

@@ -12,6 +12,8 @@
 #import "SeasonViewController.h"
 #import "PlayoffsViewController.h"
 
+#import "IMLeague.h"
+
 @interface LeagueViewController ()
 
 @property (nonatomic, strong) TeamsViewController* teamsViewController;
@@ -31,7 +33,12 @@
 //lazy load controllers
 - (TeamsViewController*) teamsViewController {
     if (!_teamsViewController) {
+        
         _teamsViewController = [[TeamsViewController alloc] initWithContentSize: self.contentView.frame.size];
+        _teamsViewController.teamsCollection = self.league.teams;
+        
+        NSLog(@"%@", self.league.teams);
+        
     }
     return _teamsViewController;
 }
@@ -55,15 +62,11 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear: animated];
     
-    
     [self.segmentedControl addTarget: self action: @selector(segmentedControlDidChange:) forControlEvents:UIControlEventValueChanged];
     
 #warning Turn 50 and 64 into static variables/ get view instead of declaring 50
     
     self.contentView = [[UIView alloc] initWithFrame: CGRectMake(0, 64 + 50, self.view.frame.size.width, self.view.frame.size.height - (64 + 50))];
-    NSLog(@"View height is %g", self.view.frame.size.height);
-    
-    NSLog(@"content view height is %g", self.contentView.frame.size.height);
     
     [self.view addSubview: self.contentView];
     

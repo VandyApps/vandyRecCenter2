@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class IMTeams;
 
 @interface TeamsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, strong) IMTeams* teamsCollection;
 @property (nonatomic, strong) UIView* teamView;
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, readonly) CGSize size;
