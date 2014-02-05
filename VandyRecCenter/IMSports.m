@@ -12,6 +12,13 @@
 
 @implementation IMSports
 
+@synthesize sports = _sports;
+@dynamic count;
+
+
+- (NSUInteger) count {
+    return self.sports.count;
+}
 #pragma mark - Rec Model Protocol
 
 - (void) parse:(id)hash {

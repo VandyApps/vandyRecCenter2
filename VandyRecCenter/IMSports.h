@@ -14,5 +14,6 @@
 @interface IMSports : NSObject <RecModelProtocol>
 
 @property (nonatomic, strong, readonly) NSArray* sports;
+@property NSUInteger count;
 
 @end
