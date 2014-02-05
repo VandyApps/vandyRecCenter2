@@ -193,41 +193,6 @@ static CGFloat headerHeight = 30;
        
        ]];
     
-    self.demoData = @{
-                      
-                      @"Basketball" :
-                        @[
-                           @"Black League 1",
-                           @"Black League 2",
-                           @"Black League 3",
-                           @"Fraternity League",
-                           @"Cool League",
-                           @"Lame League"
-                              
-                        ],
-                      @"Football" :
-                        @[
-                            @"Green League",
-                            @"Black League",
-                            @"Blue League",
-                            @"Orange League",
-                            @"Teal League",
-                            @"Lightish-Grayish-Blue League"
-                            
-                              
-                        ],
-                      @"Volleyball" :
-                        @[
-                              @"Co-ed League",
-                              @"Orange League",
-                              @"Red League",
-                              @"Girl's League",
-                              @"Boy's League",
-                              @"Men's League",
-                              @"Women's League"
-                        ]
-                      };
-    
 	self.tableView = [[UITableView alloc] initWithFrame: self.view.frame style: UITableViewCellStyleDefault];
     
     self.tableView.delegate = self;
@@ -276,11 +241,6 @@ static CGFloat headerHeight = 30;
     return [(IMSport*) self.sportsCollection.sports[section] count];
 }
 
-- (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    
-    return [(IMSport*) self.sportsCollection.sports[section] name];
-}
-
 
 #pragma mark - UITableViewDelegate
 
@@ -300,7 +260,7 @@ static CGFloat headerHeight = 30;
     view.alpha = .75;
     UILabel* titleLabel = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, headerHeight)];
     
-    titleLabel.text = [self.demoData allKeys][section];
+    titleLabel.text = [(IMSport*) self.sportsCollection.sports[section] name];
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     
