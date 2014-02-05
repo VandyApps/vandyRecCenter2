@@ -37,6 +37,15 @@
     _entryEndDate = [NSDate dateWithDateString: hash[@"entryEndDate"]];
     _startDate = [NSDate dateWithDateString: hash[@"startDate"]];
     _endDate = [NSDate dateWithDateString: hash[@"endDate"]];
+    
+    _teams = [[IMTeams alloc] init];
+    [_teams parse: hash[@"teams"]];
+    
+    _games = [[IMGames alloc] init];
+    [_games parse: hash[@"season"][@"games"]];
+    
+
+    
 }
 
 - (NSDictionary*) serialize {
