@@ -24,13 +24,15 @@
 - (void) parse:(id)hash {
     if ([hash isKindOfClass: [NSArray class]]) {
         NSMutableArray* array = [[NSMutableArray alloc] init];
+        
         for (NSDictionary* sportHash in hash) {
             IMSport* sport = [[IMSport alloc] init];
             [sport parse: sportHash];
-            [array addObject: sportHash];
+            [array addObject: sport];
         }
         //immutable copy
         _sports = [array copy];
+        
     }
 }
 

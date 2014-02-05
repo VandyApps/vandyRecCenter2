@@ -10,6 +10,8 @@
 
 #import "LeagueViewController.h"
 
+#import "IMSport.h"
+#import "IMLeague.h"
 
 @interface IntramuralsViewController ()
 
@@ -248,22 +250,35 @@ static CGFloat headerHeight = 30;
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = [self.demoData[[self.demoData allKeys][indexPath.section]] objectAtIndex:indexPath.row];
+    NSLog(@"%li, %li", indexPath.section, indexPath.row);
+    NSLog(@"%@", self.sportsCollection.sports);
+    
+    IMSport* sport = self.sportsCollection.sports[indexPath.section];
+    
+    NSLog(@"%@", sport.leagues);
+    
+    IMLeague* league = sport.leagues[indexPath.row];
+    
+    cell.textLabel.text = league.name;
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.demoData count];
+    
+    return  self.sportsCollection.count;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.demoData[[self.demoData allKeys][section]] count];
+    
+    return [(IMSport*) self.sportsCollection.sports[section] count];
 }
 
 - (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [self.demoData allKeys][section];
+    
+    return [(IMSport*) self.sportsCollection.sports[section] name];
 }
 
 

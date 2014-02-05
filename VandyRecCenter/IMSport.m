@@ -12,6 +12,7 @@
 @implementation IMSport
 
 @dynamic leaguesResolved;
+@dynamic count;
 
 #pragma mark - Getters
 
@@ -19,6 +20,9 @@
     return self.leagues != nil;
 }
 
+- (NSUInteger) count {
+    return self.leagues.count;
+}
 #pragma mark - Public Methods
 
 - (void) resolveLeague:(void (^)(IMSport *))block {
@@ -35,6 +39,8 @@
     if ([plist isKindOfClass: [NSDictionary class]]) {
         _cid = plist[@"cid"];
         _season = [plist[@"season"] intValue];
+        _name = plist[@"name"];
+        
         NSMutableArray* leagues = [[NSMutableArray alloc] init];
         for (NSDictionary* leagueData in (NSArray*) plist[@"leagues"]) {
             IMLeague* league = [[IMLeague alloc] init];

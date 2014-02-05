@@ -20,8 +20,11 @@ typedef enum {
 @interface IMSport : NSObject <RecModelProtocol>
 
 @property (nonatomic, strong, readonly) NSString* cid;
+@property (nonatomic, strong, readonly) NSString* name;
 @property (nonatomic, assign, readonly) IMSportSeason season;
 @property (nonatomic, strong, readonly) NSArray* leagues;
+
+@property (readonly) NSUInteger count;
 @property (readonly) BOOL leaguesResolved;
 
 - (void) resolveLeague: (void(^)(IMSport* sport)) block;
