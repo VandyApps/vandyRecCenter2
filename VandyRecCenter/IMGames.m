@@ -75,12 +75,7 @@
 }
 
 - (NSArray*) serialize {
-    NSMutableArray* array = [[NSMutableArray alloc] init];
-    
-    for (IMGame* game in self.games) {
-        [array addObject: [game serialize]];
-    }
-    return [array copy];
+    return nil;
 }
 
 - (NSUInteger) count {

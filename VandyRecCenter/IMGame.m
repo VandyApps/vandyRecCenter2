@@ -56,20 +56,7 @@
 - (NSDictionary*) serialize {
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     
-    [dict setObject: self.cid forKey: @"id"];
-#warning Missing date hash
-    [dict setObject: [self.startTime stringValue] forKey: @"startTime"];
-    [dict setObject: [self.endTime stringValue] forKey: @"endTime"];
-    
-    [dict setObject: @(self.homeScore) forKey: @"homeScore"];
-    [dict setObject: @(self.awayScore) forKey: @"awayScore"];
-    
-    [dict setObject: @(self.status) forKey: @"status"];
-    
-    [dict setObject: self.location forKey: @"location"];
-    
-    //immutable copy
-    return [dict copy];
+    return nil;
 }
 
 @end

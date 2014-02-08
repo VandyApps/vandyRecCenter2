@@ -28,6 +28,7 @@
 
 @property (nonatomic, strong,readonly) IMTeams* teams;
 @property (nonatomic, strong, readonly) IMGames* games;
+#warning Add property for playoffs
 
 - (IMTeam*) teamWithId: (NSString*) team;
 - (IMGame*) gameWithId: (NSString*) game;

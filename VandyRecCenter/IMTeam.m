@@ -22,15 +22,7 @@
 }
 
 - (NSDictionary*) serialize {
-    return
-  @{
-      @"_id": self.cid,
-      @"name": self.name,
-      @"wins": @(self.wins),
-      @"losses": @(self.losses),
-      @"ties": @(self.ties),
-      @"dropped": @(self.dropped)
-    };
+    return nil;
 }
 
 @end

@@ -43,12 +43,7 @@
 }
 
 - (NSArray*) serialize {
-    NSMutableArray* array = [[NSMutableArray alloc] init];
-    for (IMTeam* team in self.teams) {
-        [array addObject: [team serialize]];
-    }
-    //return immutable copy
-    return [array copy];
+    return nil;
 }
 
 
