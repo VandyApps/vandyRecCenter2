@@ -70,7 +70,9 @@
         IMGame* game = [[IMGame alloc] init];
         [game parse: gameHash];
         [array addObject: game];
+        
     }
+    
     _games = [array copy];
 }
 

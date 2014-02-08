@@ -46,6 +46,7 @@
 - (GamesViewController*) gamesViewController {
     if (!_gamesViewController) {
         _gamesViewController = [[GamesViewController alloc] initWithContentSize: self.contentView.frame.size];
+        _gamesViewController.gamesCollection = self.league.games;
     }
     return _gamesViewController;
 }

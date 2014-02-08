@@ -42,7 +42,7 @@
     [_teams parse: hash[@"teams"]];
     
     _games = [[IMGames alloc] init];
-    [_games parse: hash[@"season"][@"games"]];
+    [_games parse: hash[@"games"]];
     
 
     

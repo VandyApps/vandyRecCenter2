@@ -11,11 +11,6 @@
 #import "IMGame.h"
 #import "IMGames.h"
 
-@interface GamesViewController ()
-
-@property (nonatomic, strong) IMGames* gamesCollection;
-
-@end
 
 @implementation GamesViewController
 
@@ -37,8 +32,8 @@
     
     self.tableView = [[UITableView alloc] initWithFrame: (CGRect) {{0,0}, self.view.frame.size}
                                                   style:UITableViewStyleGrouped];
+    NSLog(@"%lu", self.gamesCollection.count);
     
-    self.gamesCollection = [[IMGames alloc] init];
 }
 
 

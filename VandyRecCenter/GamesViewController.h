@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class IMGames;
+
 @interface GamesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 
@@ -16,6 +18,7 @@
 - (id) initWithContentSize: (CGSize) size;
 
 @property (nonatomic, strong) UITableView* tableView;
+@property (nonatomic, strong) IMGames* gamesCollection;
 
 
 @end
