@@ -8,6 +8,8 @@
 
 #import "IMGames.h"
 #import "IMGame.h"
+#import "NSArray+MyArrayClass.h"
+#import "TimeString.h"
 
 @implementation IMGames
 
@@ -22,6 +24,31 @@
         }
     }
     return nil;
+}
+
+
+- (void) sort {
+    [self.games sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        IMGame* game1 = obj1;
+        IMGame* game2 = obj2;
+        if ([game1.date compare: game2.date] == NSOrderedSame) {
+            return [game1.startTime compareTimeString: game2.startTime];
+        } else {
+            return [game1.date compare: game2.date];
+        }
+    }];
+}
+
+- (NSArray*) newGames {
+    return [self.games filter:^BOOL(id element, NSUInteger index) {
+        return [(IMGame*) element status] == IMGameStatusGameNotPlayed;
+    }];
+}
+
+- (NSArray*) oldGames {
+    return [self.games filter:^BOOL(id element, NSUInteger index) {
+        return [(IMGame*) element status] != IMGameStatusGameNotPlayed;
+    }];
 }
 
 #pragma mark - Rec Model Protocol

@@ -180,7 +180,7 @@ typedef enum {
     return cell;
 }
 
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger) section {
     return self.teamsCollection.count;
 }
 
@@ -188,7 +188,7 @@ typedef enum {
 #pragma mark - Table View Delegate
 
 
-- (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath *) indexPath {
     //switch the view
     if (indexPath.row != self.currentRow) {
         UIView* newTeamSubview = [self constructTeamViewForTeamAtIndex: indexPath.row withFrame: self.teamView.frame];

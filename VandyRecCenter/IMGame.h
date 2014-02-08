@@ -14,14 +14,14 @@
 
 typedef  enum {
 
-    IMTeamStatusHomeTeamWon = 0,
-    IMTeamStatusAwayTeamWon = 1,
-    IMTeamStatusHomeTeamForfeit = 2,
-    IMTeamStatusAwayTeamForfeit = 3,
-    IMTeamStatusGameCancelled = 4,
-    IMTeamStatusGameNotPlayed = 5
+    IMGameStatusHomeTeamWon = 0,
+    IMGameStatusAwayTeamWon = 1,
+    IMGameStatusHomeTeamForfeit = 2,
+    IMGameStatusAwayTeamForfeit = 3,
+    IMGameStatusGameCancelled = 4,
+    IMGameStatusGameNotPlayed = 5
     
-} IMTeamStatus;
+} IMGameStatus;
 @interface IMGame : NSObject <RecModelProtocol>
 
 @property (nonatomic, strong, readonly) NSString* cid;
@@ -39,7 +39,7 @@ typedef  enum {
 @property (nonatomic, readonly) NSUInteger homeScore;
 @property (nonatomic, readonly) NSUInteger awayScore;
 
-@property (nonatomic, readonly) IMTeamStatus status;
+@property (nonatomic, readonly) IMGameStatus status;
 
 @property (nonatomic, strong, readonly) NSString* location;
 

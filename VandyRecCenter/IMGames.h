@@ -18,4 +18,10 @@
 @property (nonatomic, assign, readonly) NSUInteger count;
 
 - (IMGame*) gameWithId: (NSString*) cid;
+
+- (void) sort;
+
+- (NSArray*) newGames;
+- (NSArray*) oldGames;
+
 @end

@@ -88,7 +88,71 @@ static CGFloat headerHeight = 30;
                                     @"ties": @2
                                 }
                             ],
-                        @"games": @[],
+                        @"games":
+                            @[
+                                
+                                @{
+                                    @"id": @"00",
+                                    @"date": @"02/12/2013",
+                                    @"startTime": @"12:00pm",
+                                    @"endTime": @"01:00pm",
+                                    @"homeTeam": @"02",
+                                    @"awayTeam": @"03",
+                                    @"homeScore": @0,
+                                    @"awayScore": @0,
+                                    @"status": @5,
+                                    @"location": @"Court 1"
+                                },
+                                @{
+                                    @"id": @"01",
+                                    @"date": @"02/12/2013",
+                                    @"startTime": @"12:00pm",
+                                    @"endTime": @"01:00pm",
+                                    @"homeTeam": @"02",
+                                    @"awayTeam": @"03",
+                                    @"homeScore": @0,
+                                    @"awayScore": @0,
+                                    @"status": @5,
+                                    @"location": @"Court 1"
+                                    },
+                                @{
+                                    @"id": @"02",
+                                    @"date": @"02/12/2013",
+                                    @"startTime": @"12:00pm",
+                                    @"endTime": @"01:00pm",
+                                    @"homeTeam": @"02",
+                                    @"awayTeam": @"03",
+                                    @"homeScore": @0,
+                                    @"awayScore": @0,
+                                    @"status": @5,
+                                    @"location": @"Court 1"
+                                    },
+                                @{
+                                    @"id": @"03",
+                                    @"date": @"02/12/2013",
+                                    @"startTime": @"12:00pm",
+                                    @"endTime": @"01:00pm",
+                                    @"homeTeam": @"02",
+                                    @"awayTeam": @"03",
+                                    @"homeScore": @0,
+                                    @"awayScore": @0,
+                                    @"status": @5,
+                                    @"location": @"Court 1"
+                                    },
+                                @{
+                                    @"id": @"04",
+                                    @"date": @"02/12/2013",
+                                    @"startTime": @"12:00pm",
+                                    @"endTime": @"01:00pm",
+                                    @"homeTeam": @"02",
+                                    @"awayTeam": @"03",
+                                    @"homeScore": @0,
+                                    @"awayScore": @0,
+                                    @"status": @5,
+                                    @"location": @"Court 1"
+                                    }
+                                
+                            ],
                         @"playoffs": @[]
                         
                     },
