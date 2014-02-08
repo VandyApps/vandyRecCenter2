@@ -10,12 +10,15 @@
 #import "RecModelProtocol.h"
 
 #import <Foundation/Foundation.h>
+
+@class IMTeams;
 @class IMGame;
 
 @interface IMGames : NSObject <RecModelProtocol>
 
 @property (nonatomic, strong) NSArray* games;
 @property (nonatomic, assign, readonly) NSUInteger count;
+@property (nonatomic, readonly, assign) BOOL isTeamsResolved;
 
 - (IMGame*) gameWithId: (NSString*) cid;
 
@@ -23,5 +26,7 @@
 
 - (NSArray*) newGames;
 - (NSArray*) oldGames;
+
+- (void) resolveTeamsWithCollection: (IMTeams*) teams;
 
 @end

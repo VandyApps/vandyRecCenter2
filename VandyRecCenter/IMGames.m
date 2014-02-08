@@ -8,12 +8,15 @@
 
 #import "IMGames.h"
 #import "IMGame.h"
+#import "IMTeams.h"
 #import "NSArray+MyArrayClass.h"
 #import "TimeString.h"
 
 @implementation IMGames
 
 @synthesize games = _games;
+@synthesize isTeamsResolved = _isTeamsResolved;
+
 @dynamic count;
 
 
@@ -51,6 +54,13 @@
     }];
 }
 
+- (void) resolveTeamsWithCollection:(IMTeams *)teams {
+    for (IMGame* game in self.games) {
+        [game resolveTeamsWithCollection: teams];
+    }
+    _isTeamsResolved = YES;
+}
+
 #pragma mark - Rec Model Protocol
 
 - (void) parse:(NSArray*)hash {
@@ -78,3 +88,5 @@
 }
 
 @end
+
+
