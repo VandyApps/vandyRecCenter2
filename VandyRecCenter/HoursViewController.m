@@ -299,11 +299,11 @@ static CGFloat OpenTimeRangePadding = 40;
     contentView.layer.backgroundColor = self.pageColor.CGColor;
     
     // create day of week label & add it to contentView
-    UILabel *dayOfWeekLabel = [self setupDayOfWeekLabelWithPager:pager];
+    UILabel *dayOfWeekLabel = [self setupDayOfWeekLabelWithPager:pager andOffset:offset];
     [contentView addSubview:dayOfWeekLabel];
     
     // create opening time label & add to contentView
-    UILabel *openingTimeLabel = [self setupOpeningTimeLabelWithPager:pager];
+    UILabel *openingTimeLabel = [self setupOpeningTimeLabelWithPager:pager andOffset:offset];
     [contentView addSubview:openingTimeLabel];
     
     // create to label & add to contentView
@@ -311,7 +311,7 @@ static CGFloat OpenTimeRangePadding = 40;
     [contentView addSubview:toLabel];
     
     // create closing time label & add to contentView
-    UILabel *closingTimeLabel = [self setupClosingTimeLabelWithPager:pager];
+    UILabel *closingTimeLabel = [self setupClosingTimeLabelWithPager:pager andOffset:offset];
     [contentView addSubview:closingTimeLabel];
     
     // create type of hours label
@@ -324,11 +324,12 @@ static CGFloat OpenTimeRangePadding = 40;
     return view;
 }
 
-- (UILabel*) setupDayOfWeekLabelWithPager: (BMInfinitePager*) pager {
+- (UILabel*) setupDayOfWeekLabelWithPager: (BMInfinitePager*) pager andOffset:(BMIndexPath *)offset {
     // create dayOfWeekLabel
     UILabel *dayOfWeekLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 1 * pager.pageSize.height / 8, pager.pageSize.width, 20)];
         
-    NSDate *currentDate = [DateHelper currentDateForTimeZone:[NSTimeZone localTimeZone]];
+    NSDate *currentDate = [self getCurrentDateForOffsetRow:offset.row];
+    
     NSString *dayOfWeekString = [DateHelper weekDayForIndex:[currentDate weekDay]];
     NSString *monthString = [DateHelper monthNameAbbreviationForIndex:[currentDate month]];
     NSUInteger dayOfMonthString = [currentDate day];
@@ -344,10 +345,28 @@ static CGFloat OpenTimeRangePadding = 40;
     return dayOfWeekLabel;
 }
 
-- (UILabel*) setupOpeningTimeLabelWithPager: (BMInfinitePager*) pager {
+- (NSDate*) getCurrentDateForOffsetRow: (NSInteger) row {
+    NSDate *currentDate = [DateHelper currentDateForTimeZone:[NSTimeZone localTimeZone]];
+    
+    // Increment date if index is negative; decrement date if positive
+    if (row < 0) {
+        for (int i = 0; i < -row; i++) {
+            currentDate = [currentDate dateByDecrementingDay];
+        }
+    } else if (row > 0) {
+        for (int i = 0; i < row; i++) {
+            currentDate = [currentDate dateByIncrementingDay];
+        }
+    }
+    return currentDate;
+}
+
+- (UILabel*) setupOpeningTimeLabelWithPager:(BMInfinitePager*)pager andOffset:(BMIndexPath*)offset {
     // create opening time label
     UILabel *openingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 1 * pager.pageSize.height / 8 + OpenTimeRangePadding, pager.pageSize.width, 20)];
-    NSString *openingTimeString = [[_hours openingTime] stringValue];
+    
+    NSDate *date = [self getCurrentDateForOffsetRow:offset.row];
+    NSString *openingTimeString = [[_hours openingTimeForDate:date] stringValue];
     openingTimeLabel.text = openingTimeString;
     
     // Align the label at center
@@ -355,9 +374,11 @@ static CGFloat OpenTimeRangePadding = 40;
     return openingTimeLabel;
 }
 
-- (UILabel*) setupClosingTimeLabelWithPager: (BMInfinitePager*) pager {
+- (UILabel*) setupClosingTimeLabelWithPager: (BMInfinitePager*) pager andOffset:(BMIndexPath*)offset {
     UILabel *closingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(-contentViewPadding, 3 * pager.pageSize.height / 8 + OpenTimeRangePadding, pager.pageSize.width, 20)];
-    NSString *closingTimeString = [[_hours closedTime] stringValue];
+    
+    NSDate *date = [self getCurrentDateForOffsetRow:offset.row];
+    NSString *closingTimeString = [[_hours closedTimeForDate:date] stringValue];
     closingTimeLabel.text = closingTimeString;
     
     // Align the label at center
