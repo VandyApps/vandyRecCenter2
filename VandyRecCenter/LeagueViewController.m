@@ -9,7 +9,7 @@
 #import "LeagueViewController.h"
 
 #import "TeamsViewController.h"
-#import "SeasonViewController.h"
+#import "GamesViewController.h"
 #import "PlayoffsViewController.h"
 
 #import "IMLeague.h"
@@ -17,7 +17,7 @@
 @interface LeagueViewController ()
 
 @property (nonatomic, strong) TeamsViewController* teamsViewController;
-@property (nonatomic, strong) SeasonViewController* seasonViewController;
+@property (nonatomic, strong) GamesViewController* gamesViewController;
 @property (nonatomic, strong) PlayoffsViewController* playoffsViewController;
 
 @property (nonatomic, strong) UIView* contentView;
@@ -43,11 +43,11 @@
     return _teamsViewController;
 }
 
-- (SeasonViewController*) seasonViewController {
-    if (!_seasonViewController) {
-        _seasonViewController = [[SeasonViewController alloc] initWithContentSize: self.contentView.frame.size];
+- (GamesViewController*) gamesViewController {
+    if (!_gamesViewController) {
+        _gamesViewController = [[GamesViewController alloc] initWithContentSize: self.contentView.frame.size];
     }
-    return _seasonViewController;
+    return _gamesViewController;
 }
 
 - (PlayoffsViewController*) playoffsViewController {
@@ -85,7 +85,7 @@
         newView = self.teamsViewController.view;
         
     } else if (sender.selectedSegmentIndex == 1) {
-        newView = self.seasonViewController.view;
+        newView = self.gamesViewController.view;
     } else  {
         newView = self.playoffsViewController.view;
     }

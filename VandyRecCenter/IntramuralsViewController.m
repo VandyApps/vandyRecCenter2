@@ -117,7 +117,7 @@ static CGFloat headerHeight = 30;
                                     },
                                 @{
                                     @"id": @"02",
-                                    @"date": @"02/12/2013",
+                                    @"date": @"02/16/2013",
                                     @"startTime": @"12:00pm",
                                     @"endTime": @"01:00pm",
                                     @"homeTeam": @"02",
@@ -130,8 +130,8 @@ static CGFloat headerHeight = 30;
                                 @{
                                     @"id": @"03",
                                     @"date": @"02/12/2013",
-                                    @"startTime": @"12:00pm",
-                                    @"endTime": @"01:00pm",
+                                    @"startTime": @"11:00am",
+                                    @"endTime": @"12:00pm",
                                     @"homeTeam": @"02",
                                     @"awayTeam": @"03",
                                     @"homeScore": @0,
@@ -141,9 +141,9 @@ static CGFloat headerHeight = 30;
                                     },
                                 @{
                                     @"id": @"04",
-                                    @"date": @"02/12/2013",
-                                    @"startTime": @"12:00pm",
-                                    @"endTime": @"01:00pm",
+                                    @"date": @"02/15/2013",
+                                    @"startTime": @"01:00pm",
+                                    @"endTime": @"02:00pm",
                                     @"homeTeam": @"02",
                                     @"awayTeam": @"03",
                                     @"homeScore": @0,
