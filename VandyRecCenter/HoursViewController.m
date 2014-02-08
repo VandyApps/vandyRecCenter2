@@ -22,6 +22,7 @@
 @implementation HoursViewController
 
 @synthesize hours = _hours;
+@synthesize didLoadData = _didLoadData;
 
 #pragma mark - Static Variables
 
@@ -59,6 +60,7 @@ static CGFloat OpenTimeRangePadding = 40;
     
     if (!_hours) {
         self.hours = [[Hours alloc] init];
+        self.didLoadData = NO;
     }
     
     [_hours loadData:^(NSError *error, Hours *hoursModel) {
@@ -67,11 +69,8 @@ static CGFloat OpenTimeRangePadding = 40;
         }
         if (hoursModel.hours) {
             [self.view bringSubviewToFront: self.placeholderView];
-            [self setupPager];
-            [self setupTimeLabel];
-            [self showTimeLabelAnimated: YES];
-            [self showArrowButtonsAnimated: YES];
-            [self removePlaceholderViewAnimated: YES];
+            [self setupOnAsynchLoad];
+            self.didLoadData = YES;
         }
     }];
 }
@@ -89,6 +88,12 @@ static CGFloat OpenTimeRangePadding = 40;
     }
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (self.didLoadData) {
+        [self setupOnRefresh];
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -102,7 +107,19 @@ static CGFloat OpenTimeRangePadding = 40;
     [self setupPageColor];
     [self setupArrowButtonsWithoutDisplay];
     [self setupTodayButton];
-    
+}
+
+// Things to set up after data is received from the server
+- (void) setupOnAsynchLoad {
+    [self setupPager];
+    [self setupTimeLabel];
+    [self showTimeLabelAnimated: YES];
+    [self showArrowButtonsAnimated: YES];
+    [self removePlaceholderViewAnimated: YES];
+}
+
+- (void) setupOnRefresh {
+    [self setupTimeLabelText];
 }
 
 
@@ -119,6 +136,17 @@ static CGFloat OpenTimeRangePadding = 40;
 - (void) setupTimeLabel {
     self.timeLabel = [[UILabel alloc] initWithFrame: CGRectMake(self.view.frame.size.width / 2.f - TimeLabelWidth / 2.f, 64 + TimeLabelPadding, TimeLabelWidth, TimeLabelHeight)];
     
+    [self setupTimeLabelText];
+    
+    self.timeLabel.textColor = [UIColor blueColor];
+    self.timeLabel.font = [UIFont systemFontOfSize: 14];
+    self.timeLabel.textAlignment = NSTextAlignmentCenter;
+    
+    self.timeLabel.alpha = 0;
+    [self.view addSubview: self.timeLabel];
+}
+
+- (void) setupTimeLabelText {
     NSTimeInterval timeInSeconds;
     
     // format: "Closing in 1 hour 21 minutes"
@@ -133,14 +161,6 @@ static CGFloat OpenTimeRangePadding = 40;
     NSInteger remainingHours = (NSInteger)timeInSeconds / 3600;
     NSInteger remainingMinutes = ((NSInteger)timeInSeconds % 3600) / 60;
     self.timeLabel.text = [self.timeLabel.text stringByAppendingString:[self timeIntervalStringValueWithHours:remainingHours andMinutes:remainingMinutes]];
-    
-    self.timeLabel.textColor = [UIColor blueColor];
-    self.timeLabel.font = [UIFont systemFontOfSize: 14];
-    self.timeLabel.textAlignment = NSTextAlignmentCenter;
-    
-    self.timeLabel.alpha = 0;
-    [self.view addSubview: self.timeLabel];
-
 }
 
 - (void) setupPlaceholderView {
