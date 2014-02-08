@@ -16,6 +16,13 @@
 
 @implementation IMGame
 
+@synthesize cid = _cid;
+@synthesize date = _date;
+@synthesize startTime = _startTime;
+@synthesize endTime = _endTime;
+
+@dynamic teamsResolved;
+
 
 - (BOOL) teamsResolved {
     if ([self.homeTeam isKindOfClass: [IMTeam class]]) {
@@ -31,6 +38,14 @@
     }
 }
 
+
+- (IMTeam*) resolvedHomeTeam {
+    return (self.teamsResolved) ? _homeTeam : nil;
+}
+
+- (IMTeam*) resolvedAwayTeam {
+    return (self.teamsResolved) ? _awayTeam : nil;
+}
 #pragma mark - Rec Model Protocol
 
 - (void) parse:(NSDictionary *)hash {

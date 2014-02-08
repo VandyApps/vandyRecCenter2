@@ -63,8 +63,18 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear: animated];
     
+    [self setupSegmentedControl];
+    [self setupContentView];
+    [self setupLeagueModel];
+   
+}
+
+#pragma mark - Setup
+- (void) setupSegmentedControl {
     [self.segmentedControl addTarget: self action: @selector(segmentedControlDidChange:) forControlEvents:UIControlEventValueChanged];
-    
+}
+
+- (void) setupContentView {
 #warning Turn 50 and 64 into static variables/ get view instead of declaring 50
     
     self.contentView = [[UIView alloc] initWithFrame: CGRectMake(0, 64 + 50, self.view.frame.size.width, self.view.frame.size.height - (64 + 50))];
@@ -76,6 +86,9 @@
     [self.contentView addSubview: self.displayView];
 }
 
+- (void) setupLeagueModel {
+    [self.league resolveGames];
+}
 #pragma mark - Managing Segmented Control
 
 - (void) segmentedControlDidChange: (UISegmentedControl*) sender {

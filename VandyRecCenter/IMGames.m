@@ -55,10 +55,12 @@
 }
 
 - (void) resolveTeamsWithCollection:(IMTeams *)teams {
-    for (IMGame* game in self.games) {
-        [game resolveTeamsWithCollection: teams];
+    if (!_isTeamsResolved) {
+        for (IMGame* game in self.games) {
+            [game resolveTeamsWithCollection: teams];
+        }
+        _isTeamsResolved = YES;
     }
-    _isTeamsResolved = YES;
 }
 
 #pragma mark - Rec Model Protocol

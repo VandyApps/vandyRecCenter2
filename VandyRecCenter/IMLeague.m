@@ -27,6 +27,9 @@
     return [self.games gameWithId: cid];
 }
 
+- (void) resolveGames {
+    [self.games resolveTeamsWithCollection: self.teams];
+}
 
 #pragma mark - Rec Model Protocol
 

@@ -33,4 +33,6 @@
 - (IMTeam*) teamWithId: (NSString*) team;
 - (IMGame*) gameWithId: (NSString*) game;
 
+- (void) resolveGames;
+
 @end

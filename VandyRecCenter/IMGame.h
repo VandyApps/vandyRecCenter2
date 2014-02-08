@@ -10,6 +10,7 @@
 #import "RecModelProtocol.h"
 
 @class IMTeams;
+@class IMTeam;
 @class TimeString;
 
 typedef  enum {
@@ -30,11 +31,16 @@ typedef  enum {
 @property (nonatomic, strong, readonly) TimeString* startTime;
 @property (nonatomic, strong, readonly) TimeString* endTime;
 
+@property (nonatomic, readonly) BOOL teamsResolved;
+
 //this could either be a string for the teams or
 //an actual imteam model, depending on whether
 //the team was resolved
 @property (nonatomic, strong, readonly) id homeTeam;
 @property (nonatomic, strong, readonly) id awayTeam;
+
+- (IMTeam*) resolvedHomeTeam;
+- (IMTeam*) resolvedAwayTeam;
 
 @property (nonatomic, readonly) NSUInteger homeScore;
 @property (nonatomic, readonly) NSUInteger awayScore;
@@ -43,7 +49,7 @@ typedef  enum {
 
 @property (nonatomic, strong, readonly) NSString* location;
 
-- (BOOL) teamsResolved;
+
 - (void) resolveTeamsWithCollection: (IMTeams*) teams;
 
 @end
