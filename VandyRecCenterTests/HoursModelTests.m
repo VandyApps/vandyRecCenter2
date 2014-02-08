@@ -177,4 +177,10 @@ NSArray *currentHoursArray = nil;
     NSLog(@"Time Until Open: %f", [myHours timeUntilOpen]);
 }
 
+- (void) testParseForHoursHash {
+    Hours *myHours = [[Hours alloc] init];
+    [myHours parse:currentHoursArray];
+    XCTAssert(currentHoursArray == myHours.hours, @"hours array on Hours object should be equal to the hours array that was parsed");
+}
+
 @end
