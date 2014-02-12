@@ -11,6 +11,7 @@
 #import "IMGame.h"
 #import "IMGames.h"
 #import "IMTeam.h"
+#import "TimeString.h"
 
 @interface GamesViewController()
 
@@ -23,6 +24,22 @@
 
 @synthesize newGames = _newGames;
 @synthesize oldGames = _oldGames;
+
+#pragma mark - Static Variables
+
+static CGFloat CellHeight = 80;
+static CGFloat HeaderHeight = 40;
+
+static CGFloat FontSize = 14;
+
+static CGFloat HomeNameLabelTag = 1;
+static CGFloat AwayNameLabelTag = 2;
+static CGFloat HomeScoreLabelTag = 3;
+static CGFloat AwayScoreLabelTag = 4;
+static CGFloat LocationLabelTag = 5;
+static CGFloat DateLabelTag = 6;
+static CGFloat TimeLabelTag = 7;
+
 
 #pragma mark - Getters
 /* newGames and old Games properties are using lazy
@@ -73,7 +90,7 @@
 
 - (void) setupTableView {
     self.tableView = [[UITableView alloc] initWithFrame: (CGRect) {{0,0}, self.view.frame.size}
-                                                  style:UITableViewStyleGrouped];
+                                                  style:UITableViewStylePlain];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview: self.tableView];
@@ -91,11 +108,68 @@
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellId];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     IMGame* game = (indexPath.section) ? self.oldGames[indexPath.row] : self.newGames[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat: @"%@ and %@",
-                           [game resolvedHomeTeam].name, [game resolvedAwayTeam].name];
     
+
+    UILabel* homeNameLabel;
+    UILabel* awayNameLabel;
+    UILabel* dateLabel;
+    UILabel* timeLabel;
+    UILabel* locationLabel;
+    
+    
+    if (!(homeNameLabel = (UILabel*) [cell viewWithTag: HomeNameLabelTag]))
+    {
+        homeNameLabel = [[UILabel alloc] initWithFrame: CGRectMake(20, 10, 130, 30)];
+    }
+    
+    if (!(awayNameLabel = (UILabel*) [cell viewWithTag: AwayNameLabelTag]))
+    {
+        awayNameLabel = [[UILabel alloc] initWithFrame: CGRectMake(20, 45, 130, 30)];
+    }
+    
+    homeNameLabel.text = [game resolvedHomeTeam].name;
+    homeNameLabel.font = [UIFont systemFontOfSize: FontSize];
+    
+    awayNameLabel.text = [game resolvedAwayTeam].name;
+    awayNameLabel.font = [UIFont systemFontOfSize: FontSize];
+    
+    if (!(dateLabel = (UILabel*) [cell viewWithTag: DateLabelTag]))
+    {
+        dateLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, 10, 60, 30)];
+    }
+    
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterShortStyle;
+    formatter.timeStyle = NSDateFormatterNoStyle;
+    
+    dateLabel.text = [formatter stringFromDate: game.date];
+    dateLabel.font = [UIFont systemFontOfSize: FontSize];
+    
+    if (!(timeLabel = (UILabel*) [cell viewWithTag: TimeLabelTag]))
+    {
+        timeLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, 45, 70, 30)];
+    }
+    
+    timeLabel.text = [game.startTime description];
+    timeLabel.font = [UIFont systemFontOfSize: FontSize];
+    
+    if (!(locationLabel = (UILabel*) [cell viewWithTag: LocationLabelTag]))
+    {
+        locationLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, 10, 70, 30)];
+    }
+    
+    locationLabel.text = game.location;
+    locationLabel.font = [UIFont systemFontOfSize: FontSize];
+    
+    [cell addSubview: homeNameLabel];
+    [cell addSubview: awayNameLabel];
+
+    [cell addSubview: dateLabel];
+    [cell addSubview: timeLabel];
+    [cell addSubview: locationLabel];
     return cell;
 }
 
@@ -105,6 +179,49 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return (section == 0) ? self.newGames.count : self.oldGames.count;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CellHeight;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return HeaderHeight;
+}
+
+- (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+   
+    if (section == 0)
+    {
+         UIView* headerView = [[UIView alloc] init];
+        
+        UILabel* teamLabel = [[UILabel alloc] initWithFrame: CGRectMake(20, HeaderHeight - 20, 130, 20)];
+        teamLabel.text = @"Teams";
+        teamLabel.textColor = [UIColor blueColor];
+        teamLabel.font = [UIFont systemFontOfSize: FontSize];
+        
+        UILabel* dateLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, HeaderHeight - 20, 50, 20)];
+        dateLabel.text = @"Dates";
+        dateLabel.textColor = [UIColor blueColor];
+        dateLabel.font = [UIFont systemFontOfSize: FontSize];
+        
+        UILabel* locationLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, HeaderHeight - 20, 70, 20)];
+        locationLabel.text = @"Location";
+        locationLabel.textColor = [UIColor blueColor];
+        locationLabel.font = [UIFont systemFontOfSize: FontSize];
+        
+        [headerView addSubview: teamLabel];
+        [headerView addSubview: dateLabel];
+        [headerView addSubview: locationLabel];
+        
+        headerView.backgroundColor = [UIColor colorWithRed: .95 green: .95 blue:.95 alpha:1];
+        return headerView;
+    }
+    
+    return [[UIView alloc] init];
 }
 
 
