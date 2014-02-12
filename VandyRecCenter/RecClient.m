@@ -41,7 +41,6 @@ static BOOL initialized = NO;
     }];
 }
 
-#warning - Let Aaron know this has changed
 - (void) fetchHours:(void (^)(NSError *, NSArray *))block {
     [self GET:@"hours" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         block(nil, (NSArray*) responseObject);

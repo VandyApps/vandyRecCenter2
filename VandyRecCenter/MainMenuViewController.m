@@ -24,14 +24,17 @@ static CGFloat IconDimensions = 25;
 #pragma mark - Getters
 - (NSArray*) mainMenu {
     if (_mainMenu == nil) {
-        return @[@"HOME", @"HOURS", @"TRAFFIC", @"GROUP FITNESS", @"INTRAMURALS", @"PROGRAMS", @"MAP"];
+        //return @[@"HOME", @"HOURS", @"TRAFFIC", @"GROUP FITNESS", @"INTRAMURALS", @"PROGRAMS", @"MAP"];
+        return @[@"HOME", @"HOURS", @"GROUP FITNESS", @"INTRAMURALS"];
     }
     return _mainMenu;
 }
 
 - (NSArray*) mainMenuIcons {
     if (_mainMenuIcons == nil) {
-        _mainMenuIcons = @[[UIImage imageNamed:@"53-house.png"], [UIImage imageNamed: @"11-clock.png"], [UIImage imageNamed: @"112-group.png"], [UIImage imageNamed: @"63-runner.png"], [UIImage imageNamed: @"374-basketball.png"],[UIImage imageNamed: @"83-calendar.png"],  [UIImage imageNamed: @"103-map.png"]];
+        //_mainMenuIcons = @[[UIImage imageNamed:@"53-house.png"], [UIImage imageNamed: @"11-clock.png"], [UIImage imageNamed: @"112-group.png"], [UIImage imageNamed: @"63-runner.png"], [UIImage imageNamed: @"374-basketball.png"],[UIImage imageNamed: @"83-calendar.png"],  [UIImage imageNamed: @"103-map.png"]];
+        
+        _mainMenuIcons = @[[UIImage imageNamed:@"53-house.png"], [UIImage imageNamed: @"11-clock.png"],[UIImage imageNamed: @"63-runner.png"], [UIImage imageNamed: @"374-basketball.png"]];
     }
     return _mainMenuIcons;
 }
@@ -51,7 +54,7 @@ static CGFloat IconDimensions = 25;
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.backgroundColor = vanderbiltGold;
+    self.tableView.backgroundColor = [UIColor colorWithRed: .8 green:.8 blue:.8 alpha:1];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     //select home by default
     NSIndexPath *defaultIndexPath = [NSIndexPath indexPathForRow:0 inSection: 0];
