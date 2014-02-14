@@ -154,6 +154,7 @@ static CGFloat AwayScoreLabelTag = 7;
         if (!(locationLabel = (UILabel*) [cell viewWithTag: LocationLabelTag]))
         {
             locationLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, 10, 70, 30)];
+            locationLabel.tag = LocationLabelTag;
         }
         
         locationLabel.text = game.location;
@@ -164,9 +165,8 @@ static CGFloat AwayScoreLabelTag = 7;
         if (!(dateLabel = (UILabel*) [cell viewWithTag: DateLabelTag]))
         {
             dateLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, 10, 60, 30)];
+            dateLabel.tag = DateLabelTag;
         }
-        
-        
         
         dateLabel.text = [formatter stringFromDate: game.date];
         dateLabel.font = [UIFont systemFontOfSize: FontSize];
@@ -176,6 +176,7 @@ static CGFloat AwayScoreLabelTag = 7;
         if (!(timeLabel = (UILabel*) [cell viewWithTag: TimeLabelTag]))
         {
             timeLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, 45, 70, 30)];
+            timeLabel.tag = TimeLabelTag;
         }
         
         timeLabel.text = [game.startTime description];
@@ -193,8 +194,18 @@ static CGFloat AwayScoreLabelTag = 7;
         UILabel* dateLabel;
         UILabel* timeLabel;
         
-        homeScoreLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, 10, 50, 30)];
-        awayScoreLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, 45, 50, 30)];
+        if (!(homeScoreLabel = (UILabel*) [cell viewWithTag: HomeNameLabelTag]))
+        {
+            homeScoreLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, 10, 50, 30)];
+            homeScoreLabel.tag = HomeScoreLabelTag;
+        }
+        
+        if (!(awayScoreLabel = (UILabel*) [cell viewWithTag: AwayNameLabelTag]))
+        {
+            awayScoreLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, 45, 50, 30)];
+            awayScoreLabel.tag = AwayNameLabelTag;
+        }
+        
         homeScoreLabel.font = [UIFont systemFontOfSize: FontSize];
         awayScoreLabel.font = [UIFont systemFontOfSize: FontSize];
         
@@ -237,13 +248,22 @@ static CGFloat AwayScoreLabelTag = 7;
         [cell addSubview: homeScoreLabel];
         [cell addSubview: awayScoreLabel];
         
-        dateLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, 10, 50, 30)];
+        if (!(dateLabel = (UILabel*) [cell viewWithTag: DateLabelTag]))
+        {
+            dateLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, 10, 50, 30)];
+            dateLabel.tag = DateLabelTag;
+        }
+        
         dateLabel.text = [formatter stringFromDate: game.date];
         dateLabel.font = [UIFont systemFontOfSize: FontSize];
         
         [cell addSubview: dateLabel];
         
-        timeLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, 45, 50, 30)];
+        if (!(timeLabel = (UILabel*) [cell viewWithTag: TimeLabelTag]))
+        {
+            timeLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, 45, 50, 30)];
+            timeLabel.tag = TimeLabelTag;
+        }
         timeLabel.text = [game.startTime description];
         timeLabel.font = [UIFont systemFontOfSize: FontSize];
         
