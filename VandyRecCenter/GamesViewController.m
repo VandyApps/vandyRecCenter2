@@ -28,7 +28,9 @@
 #pragma mark - Static Variables
 
 static CGFloat CellHeight = 80;
-static CGFloat HeaderHeight = 40;
+
+static CGFloat HeaderHeight1 = 40;
+static CGFloat HeaderHeight2 = 80;
 
 static CGFloat FontSize = 14;
 
@@ -188,40 +190,67 @@ static CGFloat TimeLabelTag = 7;
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return HeaderHeight;
+    return (section == 0) ? HeaderHeight1 : HeaderHeight2;
 }
 
 - (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-   
+    CGFloat HeaderHeight = (section == 0) ? HeaderHeight1 : HeaderHeight2;
+    
+    UIColor* textColor = [UIColor redColor];
+    
+    UIView* headerView = [[UIView alloc] init];
+    headerView.backgroundColor = [UIColor colorWithRed: .95 green: .95 blue:.95 alpha:1];
+    
+    UILabel* teamLabel = [[UILabel alloc] initWithFrame: CGRectMake(20, HeaderHeight - 20, 130, 20)];
+    teamLabel.text = @"Teams";
+    teamLabel.textColor = textColor;
+    teamLabel.font = [UIFont systemFontOfSize: FontSize];
+    
+    [headerView addSubview: teamLabel];
+    
     if (section == 0)
     {
-         UIView* headerView = [[UIView alloc] init];
-        
-        UILabel* teamLabel = [[UILabel alloc] initWithFrame: CGRectMake(20, HeaderHeight - 20, 130, 20)];
-        teamLabel.text = @"Teams";
-        teamLabel.textColor = [UIColor blueColor];
-        teamLabel.font = [UIFont systemFontOfSize: FontSize];
+        //headers specific to section 1
         
         UILabel* dateLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, HeaderHeight - 20, 50, 20)];
         dateLabel.text = @"Dates";
-        dateLabel.textColor = [UIColor blueColor];
+        dateLabel.textColor = textColor;
         dateLabel.font = [UIFont systemFontOfSize: FontSize];
+        
+        [headerView addSubview: dateLabel];
         
         UILabel* locationLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, HeaderHeight - 20, 70, 20)];
         locationLabel.text = @"Location";
-        locationLabel.textColor = [UIColor blueColor];
+        locationLabel.textColor = textColor;
         locationLabel.font = [UIFont systemFontOfSize: FontSize];
         
-        [headerView addSubview: teamLabel];
-        [headerView addSubview: dateLabel];
         [headerView addSubview: locationLabel];
         
-        headerView.backgroundColor = [UIColor colorWithRed: .95 green: .95 blue:.95 alpha:1];
         return headerView;
     }
+    //section 1
+    UILabel* scoreLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, HeaderHeight - 20, 50, 20)];
+    scoreLabel.text = @"Score";
+    scoreLabel.textColor = textColor;
+    scoreLabel.font = [UIFont systemFontOfSize: FontSize];
     
-    return [[UIView alloc] init];
+    [headerView addSubview: scoreLabel];
+    
+    UILabel* dateLabel = [[UILabel alloc] initWithFrame: CGRectMake(215, HeaderHeight - 20, 50, 20)];
+    dateLabel.text = @"Dates";
+    dateLabel.textColor = textColor;
+    dateLabel.font = [UIFont systemFontOfSize: FontSize];
+    
+    [headerView addSubview: dateLabel];
+    
+    UILabel* titleLabel = [[UILabel alloc] initWithFrame: CGRectMake(20, 10, 120, HeaderHeight - 20 - 10)];
+    titleLabel.text = @"Past Games";
+    titleLabel.font = [UIFont systemFontOfSize: 16];
+    
+    [headerView addSubview: titleLabel];
+    
+    return headerView;
 }
 
 
