@@ -46,6 +46,7 @@
     
     _games = [[IMGames alloc] init];
     [_games parse: hash[@"games"]];
+    [_games sort];
     
 
     

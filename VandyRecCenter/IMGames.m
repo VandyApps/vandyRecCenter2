@@ -31,7 +31,7 @@
 
 
 - (void) sort {
-    [self.games sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    _games = [_games sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         IMGame* game1 = obj1;
         IMGame* game2 = obj2;
         if ([game1.date compare: game2.date] == NSOrderedSame) {
