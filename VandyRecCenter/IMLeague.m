@@ -48,8 +48,6 @@
     [_games parse: hash[@"games"]];
     [_games sort];
     
-
-    
 }
 
 - (NSDictionary*) serialize {
