@@ -47,7 +47,7 @@
     
     [webClient fetchHours:^(NSError *error, NSArray *hours) {
         if (!error) {
-            _hours = hours;
+            [self parse:hours];
             _isLoaded = YES;
         }
         
@@ -290,10 +290,10 @@
 
 #pragma mark - Protocol
 
-#warning  Implement me
-
-- (void) parse:(NSArray*)hash {
-
+- (void) parse:(id)hash {
+    if ([hash isKindOfClass:[NSArray class]]) {
+        _hours = hash;
+    }
 }
 
 - (NSArray*) serialize {

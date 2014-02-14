@@ -19,6 +19,9 @@
 
 @interface HoursViewController : UIViewController <BMInfinitePagerDelegate>
 
+// True if hours have been loaded
+@property (nonatomic, assign) BOOL didLoadData;
+
 @property (nonatomic, strong) BMInfinitePager* pager;
 
 @property (nonatomic, strong) BMArrowButton* leftButton;
