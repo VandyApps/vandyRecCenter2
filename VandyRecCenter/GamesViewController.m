@@ -36,11 +36,12 @@ static CGFloat FontSize = 14;
 
 static CGFloat HomeNameLabelTag = 1;
 static CGFloat AwayNameLabelTag = 2;
-static CGFloat HomeScoreLabelTag = 3;
-static CGFloat AwayScoreLabelTag = 4;
-static CGFloat LocationLabelTag = 5;
-static CGFloat DateLabelTag = 6;
-static CGFloat TimeLabelTag = 7;
+static CGFloat LocationLabelTag = 3;
+static CGFloat DateLabelTag = 4;
+static CGFloat TimeLabelTag = 5;
+
+static CGFloat HomeScoreLabelTag = 6;
+static CGFloat AwayScoreLabelTag = 7;
 
 
 #pragma mark - Getters
@@ -117,9 +118,10 @@ static CGFloat TimeLabelTag = 7;
 
     UILabel* homeNameLabel;
     UILabel* awayNameLabel;
-    UILabel* dateLabel;
-    UILabel* timeLabel;
-    UILabel* locationLabel;
+    
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterShortStyle;
+    formatter.timeStyle = NSDateFormatterNoStyle;
     
     
     if (!(homeNameLabel = (UILabel*) [cell viewWithTag: HomeNameLabelTag]))
@@ -135,44 +137,121 @@ static CGFloat TimeLabelTag = 7;
     homeNameLabel.text = [game resolvedHomeTeam].name;
     homeNameLabel.font = [UIFont systemFontOfSize: FontSize];
     
+    [cell addSubview: homeNameLabel];
+    
     awayNameLabel.text = [game resolvedAwayTeam].name;
     awayNameLabel.font = [UIFont systemFontOfSize: FontSize];
     
-    if (!(dateLabel = (UILabel*) [cell viewWithTag: DateLabelTag]))
-    {
-        dateLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, 10, 60, 30)];
-    }
-    
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    formatter.dateStyle = NSDateFormatterShortStyle;
-    formatter.timeStyle = NSDateFormatterNoStyle;
-    
-    dateLabel.text = [formatter stringFromDate: game.date];
-    dateLabel.font = [UIFont systemFontOfSize: FontSize];
-    
-    if (!(timeLabel = (UILabel*) [cell viewWithTag: TimeLabelTag]))
-    {
-        timeLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, 45, 70, 30)];
-    }
-    
-    timeLabel.text = [game.startTime description];
-    timeLabel.font = [UIFont systemFontOfSize: FontSize];
-    
-    if (!(locationLabel = (UILabel*) [cell viewWithTag: LocationLabelTag]))
-    {
-        locationLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, 10, 70, 30)];
-    }
-    
-    locationLabel.text = game.location;
-    locationLabel.font = [UIFont systemFontOfSize: FontSize];
-    
-    [cell addSubview: homeNameLabel];
     [cell addSubview: awayNameLabel];
+    
+    //views specific to cell type
+    if (indexPath.section == 0)
+    {
+        UILabel* dateLabel;
+        UILabel* timeLabel;
+        UILabel* locationLabel;
+        
+        if (!(locationLabel = (UILabel*) [cell viewWithTag: LocationLabelTag]))
+        {
+            locationLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, 10, 70, 30)];
+        }
+        
+        locationLabel.text = game.location;
+        locationLabel.font = [UIFont systemFontOfSize: FontSize];
+        
+        [cell addSubview: locationLabel];
+        
+        if (!(dateLabel = (UILabel*) [cell viewWithTag: DateLabelTag]))
+        {
+            dateLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, 10, 60, 30)];
+        }
+        
+        
+        
+        dateLabel.text = [formatter stringFromDate: game.date];
+        dateLabel.font = [UIFont systemFontOfSize: FontSize];
+        
+        [cell addSubview: dateLabel];
+        
+        if (!(timeLabel = (UILabel*) [cell viewWithTag: TimeLabelTag]))
+        {
+            timeLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, 45, 70, 30)];
+        }
+        
+        timeLabel.text = [game.startTime description];
+        timeLabel.font = [UIFont systemFontOfSize: FontSize];
+        
+        [cell addSubview: timeLabel];
+        
+        
 
-    [cell addSubview: dateLabel];
-    [cell addSubview: timeLabel];
-    [cell addSubview: locationLabel];
+    }
+    else
+    {
+        UILabel* homeScoreLabel;
+        UILabel* awayScoreLabel;
+        UILabel* dateLabel;
+        UILabel* timeLabel;
+        
+        homeScoreLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, 10, 50, 30)];
+        awayScoreLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, 45, 50, 30)];
+        homeScoreLabel.font = [UIFont systemFontOfSize: FontSize];
+        awayScoreLabel.font = [UIFont systemFontOfSize: FontSize];
+        
+        switch (game.status) {
+            case IMGameStatusHomeTeamWon:
+                homeScoreLabel.text = [NSString stringWithFormat: @"%lu", game.homeScore];
+                awayScoreLabel.text = [NSString stringWithFormat: @"%lu", game.awayScore];
+                homeNameLabel.textColor = [UIColor redColor];
+                homeScoreLabel.textColor = [UIColor redColor];
+                break;
+            case IMGameStatusAwayTeamWon:
+                homeScoreLabel.text = [NSString stringWithFormat: @"%lu", game.homeScore];
+                awayScoreLabel.text = [NSString stringWithFormat: @"%lu", game.awayScore];
+                awayNameLabel.textColor = [UIColor redColor];
+                awayScoreLabel.textColor = [UIColor redColor];
+                break;
+            case IMGameStatusHomeTeamForfeit:
+                homeScoreLabel.text = @"F";
+                awayScoreLabel.text = @"W";
+                awayNameLabel.textColor = [UIColor redColor];
+                awayScoreLabel.textColor = [UIColor redColor];
+                break;
+            case IMGameStatusAwayTeamForfeit:
+                homeScoreLabel.text = @"W";
+                awayScoreLabel.text = @"F";
+                homeNameLabel.textColor = [UIColor redColor];
+                homeScoreLabel.textColor = [UIColor redColor];
+                break;
+            case IMGameStatusGameCancelled:
+                //create a cancelled view on top of game
+                break;
+            case IMGameStatusGameNotPlayed:
+                NSLog(@"Some sort of error");
+                break;
+            default:
+                NSLog(@"Should never hit default");
+                break;
+        }
+        
+        [cell addSubview: homeScoreLabel];
+        [cell addSubview: awayScoreLabel];
+        
+        dateLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, 10, 50, 30)];
+        dateLabel.text = [formatter stringFromDate: game.date];
+        dateLabel.font = [UIFont systemFontOfSize: FontSize];
+        
+        [cell addSubview: dateLabel];
+        
+        timeLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, 45, 50, 30)];
+        timeLabel.text = [game.startTime description];
+        timeLabel.font = [UIFont systemFontOfSize: FontSize];
+        
+        [cell addSubview: timeLabel];
+    }
+    
     return cell;
+    
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
@@ -197,7 +276,7 @@ static CGFloat TimeLabelTag = 7;
 {
     CGFloat HeaderHeight = (section == 0) ? HeaderHeight1 : HeaderHeight2;
     
-    UIColor* textColor = [UIColor redColor];
+    UIColor* textColor = [UIColor blueColor];
     
     UIView* headerView = [[UIView alloc] init];
     headerView.backgroundColor = [UIColor colorWithRed: .95 green: .95 blue:.95 alpha:1];
@@ -212,20 +291,21 @@ static CGFloat TimeLabelTag = 7;
     if (section == 0)
     {
         //headers specific to section 1
-        
-        UILabel* dateLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, HeaderHeight - 20, 50, 20)];
-        dateLabel.text = @"Dates";
-        dateLabel.textColor = textColor;
-        dateLabel.font = [UIFont systemFontOfSize: FontSize];
-        
-        [headerView addSubview: dateLabel];
-        
-        UILabel* locationLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, HeaderHeight - 20, 70, 20)];
+        UILabel* locationLabel = [[UILabel alloc] initWithFrame: CGRectMake(155, HeaderHeight - 20, 70, 20)];
         locationLabel.text = @"Location";
         locationLabel.textColor = textColor;
         locationLabel.font = [UIFont systemFontOfSize: FontSize];
         
         [headerView addSubview: locationLabel];
+        
+        UILabel* dateLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, HeaderHeight - 20, 50, 20)];
+        dateLabel.text = @"Date";
+        dateLabel.textColor = textColor;
+        dateLabel.font = [UIFont systemFontOfSize: FontSize];
+        
+        [headerView addSubview: dateLabel];
+        
+        
         
         return headerView;
     }
@@ -237,8 +317,8 @@ static CGFloat TimeLabelTag = 7;
     
     [headerView addSubview: scoreLabel];
     
-    UILabel* dateLabel = [[UILabel alloc] initWithFrame: CGRectMake(215, HeaderHeight - 20, 50, 20)];
-    dateLabel.text = @"Dates";
+    UILabel* dateLabel = [[UILabel alloc] initWithFrame: CGRectMake(240, HeaderHeight - 20, 50, 20)];
+    dateLabel.text = @"Date";
     dateLabel.textColor = textColor;
     dateLabel.font = [UIFont systemFontOfSize: FontSize];
     
