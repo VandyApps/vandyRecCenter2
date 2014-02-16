@@ -11,7 +11,7 @@
 @implementation Notification
 
 
-@synthesize ID = _ID;
+@synthesize id = _id;
 @synthesize message = _message;
 @synthesize type = _type;
 @synthesize priority = _priority;
@@ -24,7 +24,7 @@
         CFUUIDRef uuidRef = CFUUIDCreate(NULL);
         CFStringRef uuidStringRef = CFUUIDCreateString(NULL, uuidRef);
         CFRelease(uuidRef);
-        _ID =  (__bridge NSString *)uuidStringRef;
+        _id =  (__bridge NSString *)uuidStringRef;
         
         //set other properties
         _message = message;

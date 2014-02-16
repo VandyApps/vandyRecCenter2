@@ -50,7 +50,7 @@ typedef enum {
  * an readonly ID property, a unique ID for the notification 
  * to identify it from others
  */
-@property (nonatomic, readonly) NSString* ID;
+@property (nonatomic, readonly) NSString* id;
 
 /**
  * Default Initializer

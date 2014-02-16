@@ -88,7 +88,7 @@ static BOOL initialized = NO;
 
 - (void) removeNotificationWithID:(NSString *)ID {
     NSUInteger index = 0;
-    while (index < self.items.count && ![ID isEqualToString: [(Notification*)[self.items objectAtIndex: index] ID]]) {
+    while (index < self.items.count && ![ID isEqualToString: [(Notification*)[self.items objectAtIndex: index] id]]) {
     
         index++;
     }
@@ -104,7 +104,7 @@ static BOOL initialized = NO;
 }
 
 - (void) removeNotification: (Notification*) notification {
-    [self removeNotificationWithID: notification.ID];
+    [self removeNotificationWithID: notification.id];
 }
 
 
