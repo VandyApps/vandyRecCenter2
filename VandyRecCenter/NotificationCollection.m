@@ -21,11 +21,13 @@ static BOOL initialized = NO;
 
 + (id) sharedInstance {
     
-    if (!initialized) {
-        collection = [[NotificationCollection alloc] init];
-        initialized = YES;
-    }
-    return collection;
+    static NotificationCollection* instance;
+    dispatch_once_t block;
+    dispatch_once(&block, ^{
+        instance = [[NotificationCollection alloc] init];
+    
+    });
+    return instance;
 }
 
 #pragma mark - Async
