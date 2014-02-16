@@ -11,7 +11,11 @@
 #import "NotificationCollection.h"
 
 #import "UIScrollView+ParallaxEffect.h"
+#import "MBProgressHUD.h"
+
 @interface HomeViewController ()
+
+@property (nonatomic, strong) MBProgressHUD* HUD;
 
 @end
 
@@ -51,6 +55,10 @@ static NSInteger cellNotificationIconLabelTag = 3;
     
     [NotificationCollection sharedInstance].delegate = self;
     [[NotificationCollection sharedInstance] initialImport];
+    
+    self.HUD = [MBProgressHUD showHUDAddedTo: self.tableView animated: YES];
+    self.HUD.mode = MBProgressHUDModeIndeterminate;
+    self.HUD.labelText = @"Loading...";
 }
 
 
@@ -123,7 +131,7 @@ static NSInteger cellNotificationIconLabelTag = 3;
 
 - (void) collectionCompletedInitialImport:(NotificationCollection*) collection
 {
-    
+    [self.HUD hide: YES];
     [self.tableView reloadData];
 }
 
