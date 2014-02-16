@@ -13,7 +13,6 @@
 #import "TrafficViewController.h"
 #import "HoursViewController.h"
 #import "GroupFitnessViewController.h"
-#import "NotificationViewController.h"
 #import "IntramuralsViewController.h"
 
 @implementation AppDelegate
@@ -22,7 +21,6 @@
 @synthesize centralViewController = _centralViewController;
 @synthesize viewControllers = _viewControllers;
 @synthesize panelViewController = _panelViewController;
-@synthesize rightPanelViewController = _rightPanelViewController;
 @synthesize leftPanelViewController = _leftPanelViewController;
 
 #pragma mark - Getters
@@ -63,14 +61,6 @@
     return _leftPanelViewController;
 }
 
-- (NotificationViewController*) rightPanelViewController {
-    if (_rightPanelViewController == nil) {
-        
-        _rightPanelViewController = [[NotificationViewController alloc] initWithNibName: @"NotificationView" bundle: [NSBundle mainBundle]];
-    }
-    return _rightPanelViewController;
-}
-
 #pragma mark - Lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -86,7 +76,6 @@
     
     [self.panelViewController setCenterPanel: self.centralViewController];
     [self.panelViewController setLeftPanel: self.leftPanelViewController];
-    [self.panelViewController setRightPanel: self.rightPanelViewController];
     
     [self setUpViewControllers];
     
@@ -98,8 +87,8 @@
 
 - (void) setUpViewControllers {
     for (size_t i =0; i < self.viewControllers.count; ++i) {
-        UIViewController* controller = [self.viewControllers objectAtIndex: i];
-        controller.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"428-checkmark1.png"] style:UIBarButtonItemStylePlain target:self.panelViewController action:@selector(toggleRightPanel:)];
+        //UIViewController* controller = [self.viewControllers objectAtIndex: i];
+        //controller.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"428-checkmark1.png"] style:UIBarButtonItemStylePlain target:self.panelViewController action:@selector(toggleRightPanel:)];
     }
 }
 - (void)applicationWillResignActive:(UIApplication *)application

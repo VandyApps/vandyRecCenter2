@@ -14,15 +14,18 @@
 
 @synthesize items = _items;
 @synthesize  delegate = _delegate;
+@dynamic count;
+
 
 static NotificationCollection* collection;
 static BOOL initialized = NO;
 
+#pragma mark - Initializer
 
 + (id) sharedInstance {
     
     static NotificationCollection* instance;
-    dispatch_once_t block;
+    static dispatch_once_t block;
     dispatch_once(&block, ^{
         instance = [[NotificationCollection alloc] init];
     
@@ -30,8 +33,21 @@ static BOOL initialized = NO;
     return instance;
 }
 
+#pragma mark - Getters
+
+- (NSUInteger) count {
+    
+    return (_items) ? _items.count : 0;
+}
+
+- (void) setDelegate:(id<NoticiationDelegate>)delegate
+{
+    _delegate = delegate;
+
+}
 #pragma mark - Async
 - (void) initialImport {
+    
     [[RecClient sharedClient] fetchNews:^(NSArray* news) {
         _items = [[NSArray alloc] init];
         for (NSUInteger i = 0; i < news.count; ++i) {
@@ -91,10 +107,6 @@ static BOOL initialized = NO;
     [self removeNotificationWithID: notification.ID];
 }
 
-#pragma mark - Convenience Methods
-- (NSUInteger) count {
-    return (_items) ? _items.count : 0;
-}
 
 #pragma mark - Array Sorting
 - (void) sortItems {

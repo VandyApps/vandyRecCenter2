@@ -8,31 +8,68 @@
 
 #import "HomeViewController.h"
 
+#import "NotificationCollection.h"
+
+
 @interface HomeViewController ()
 
 @end
 
 @implementation HomeViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
+    self.tableView = [[UITableView alloc] initWithFrame: CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64) style: UITableViewStylePlain];
+    
+    self.title = @"The Rec";
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self.view addSubview: self.tableView];
+    
+    [NotificationCollection sharedInstance].delegate = self;
+    [[NotificationCollection sharedInstance] initialImport];
 }
 
-- (void)didReceiveMemoryWarning
+
+#pragma mark - TableView Datasource
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return [NotificationCollection sharedInstance].count;
 }
+
+- (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString* cellID = @"Cell";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: cellID];
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    cell.textLabel.text = @"THis is a cell";
+    return cell;
+}
+
+#pragma mark - TableView Delegate
+
+
+#pragma mark - Notification Delegate
+
+- (void) collectionCompletedInitialImport:(NotificationCollection*) collection
+{
+    
+    [self.tableView reloadData];
+}
+
+
+
 
 @end

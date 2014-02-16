@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeViewController : UIViewController
+#import "NotificationDelegate.h"
 
+@interface HomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NoticiationDelegate>
+
+@property (nonatomic, strong) UITableView* tableView;
 @end

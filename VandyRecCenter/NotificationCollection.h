@@ -10,19 +10,15 @@
 #import <Foundation/Foundation.h>
 #import "Notification.h"
 #import "RecClient.h"
+#import "NotificationDelegate.h"
 
 @class NotificationCollection;
 
-@protocol NoticiationDelegate <NSObject>
 
-- (void) notificationAdded: (Notification*) notification atIndex: (NSUInteger) index;
-- (void) notificationRemoved: (Notification*) notification fromIndex: (NSUInteger) index;
-- (void) collectionCompletedInitialImport: (NotificationCollection*) collection;
-@end
 
 @interface NotificationCollection : NSObject
 
-
+@property (nonatomic, readonly) NSUInteger count;
 @property (nonatomic, strong, readonly) NSArray* items;
 @property (nonatomic, weak) id<NoticiationDelegate> delegate;
 
@@ -35,5 +31,4 @@
 - (void) removeNotificationWithID: (NSString*) ID;
 - (void) initialImport;
 
-- (NSUInteger) count;
 @end
