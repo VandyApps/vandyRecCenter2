@@ -98,6 +98,9 @@
 		FC423A14189969B8009671BA /* IMTeams.m in Sources */ = {isa = PBXBuildFile; fileRef = FC423A13189969B8009671BA /* IMTeams.m */; };
 		FC4FF682189D6AE700A4FCCA /* IMLeague.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4FF681189D6AE700A4FCCA /* IMLeague.m */; };
 		FC4FF685189D6D9700A4FCCA /* IMSport.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4FF684189D6D9700A4FCCA /* IMSport.m */; };
+		FC944F5618B1328B0040E234 /* UIScrollView+ParallaxEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = FC944F5318B1328B0040E234 /* UIScrollView+ParallaxEffect.m */; };
+		FC944F5718B1328B0040E234 /* UIView+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = FC944F5518B1328B0040E234 /* UIView+Util.m */; };
+		FC944F5B18B134440040E234 /* rec.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FC944F5A18B134440040E234 /* rec.jpg */; };
 		FC9FBF83189447D3001C8C94 /* Intramurals.League.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9FBF77189447D3001C8C94 /* Intramurals.League.xib */; };
 		FC9FBF84189447D3001C8C94 /* Intramurals.Sports.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9FBF78189447D3001C8C94 /* Intramurals.Sports.xib */; };
 		FC9FBF85189447D3001C8C94 /* IntramuralsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9FBF7A189447D3001C8C94 /* IntramuralsViewController.m */; };
@@ -260,6 +263,12 @@
 		FC4FF683189D6D9700A4FCCA /* IMSport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMSport.h; sourceTree = "<group>"; };
 		FC4FF684189D6D9700A4FCCA /* IMSport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMSport.m; sourceTree = "<group>"; };
 		FC944F4F18B122AE0040E234 /* NotificationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationDelegate.h; sourceTree = "<group>"; };
+		FC944F5118B1328B0040E234 /* CategoryPropertyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryPropertyUtil.h; sourceTree = "<group>"; };
+		FC944F5218B1328B0040E234 /* UIScrollView+ParallaxEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+ParallaxEffect.h"; sourceTree = "<group>"; };
+		FC944F5318B1328B0040E234 /* UIScrollView+ParallaxEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+ParallaxEffect.m"; sourceTree = "<group>"; };
+		FC944F5418B1328B0040E234 /* UIView+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Util.h"; sourceTree = "<group>"; };
+		FC944F5518B1328B0040E234 /* UIView+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Util.m"; sourceTree = "<group>"; };
+		FC944F5A18B134440040E234 /* rec.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rec.jpg; sourceTree = "<group>"; };
 		FC9FBF77189447D3001C8C94 /* Intramurals.League.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intramurals.League.xib; sourceTree = "<group>"; };
 		FC9FBF78189447D3001C8C94 /* Intramurals.Sports.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Intramurals.Sports.xib; sourceTree = "<group>"; };
 		FC9FBF79189447D3001C8C94 /* IntramuralsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntramuralsViewController.h; sourceTree = "<group>"; };
@@ -332,6 +341,7 @@
 		2119C90317FF1A2800D4A284 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				FC944F5A18B134440040E234 /* rec.jpg */,
 				FCE94311185A5AF700030692 /* 37x-Checkmark.png */,
 				FCE94312185A5AF700030692 /* 37x-Checkmark@2x.png */,
 				21BC3F3418012F6500F6C4E3 /* gray */,
@@ -563,6 +573,7 @@
 		2129753417FE4D89007210AB /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				FC944F5018B1328B0040E234 /* NTParallaxView */,
 				FCA506B218599122008802F1 /* BMAddRemoveButton */,
 				2126B456184969D500DF79FF /* BMArrowView */,
 				2126B43C1849681A00DF79FF /* BMInfinitePager */,
@@ -703,6 +714,18 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		FC944F5018B1328B0040E234 /* NTParallaxView */ = {
+			isa = PBXGroup;
+			children = (
+				FC944F5118B1328B0040E234 /* CategoryPropertyUtil.h */,
+				FC944F5218B1328B0040E234 /* UIScrollView+ParallaxEffect.h */,
+				FC944F5318B1328B0040E234 /* UIScrollView+ParallaxEffect.m */,
+				FC944F5418B1328B0040E234 /* UIView+Util.h */,
+				FC944F5518B1328B0040E234 /* UIView+Util.m */,
+			);
+			path = NTParallaxView;
+			sourceTree = "<group>";
+		};
 		FCA506B218599122008802F1 /* BMAddRemoveButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -801,6 +824,7 @@
 				2126B4281849277500DF79FF /* NotificationView.xib in Resources */,
 				2119C8FB17FF1A2400D4A284 /* 103-map.png in Resources */,
 				2119C8F817FF1A2400D4A284 /* 63-runner@2x.png in Resources */,
+				FC944F5B18B134440040E234 /* rec.jpg in Resources */,
 				2119C8F517FF1A2400D4A284 /* 53-house.png in Resources */,
 				2102F7DF180F8436005FB01C /* 332-rotate.png in Resources */,
 				210BCB6D1819B45F00666500 /* GFTableView.xib in Resources */,
@@ -903,6 +927,7 @@
 				2126B455184969CF00DF79FF /* BMArrowButton.m in Sources */,
 				FC423A14189969B8009671BA /* IMTeams.m in Sources */,
 				FC216182185A9AD4002DA7E2 /* GFFavoritesViewController.m in Sources */,
+				FC944F5618B1328B0040E234 /* UIScrollView+ParallaxEffect.m in Sources */,
 				FC9FBF86189447D3001C8C94 /* LeagueViewController.m in Sources */,
 				2126B4521849681A00DF79FF /* BMVerticalPagerImpl.m in Sources */,
 				FC4FF682189D6AE700A4FCCA /* IMLeague.m in Sources */,
@@ -930,6 +955,7 @@
 				215B8DAF1809B50F009C248E /* GFSpecialDates.m in Sources */,
 				FC9FBF89189447D3001C8C94 /* TeamsViewController.m in Sources */,
 				211C2E9C17FF606C00C4400A /* RecClient.m in Sources */,
+				FC944F5718B1328B0040E234 /* UIView+Util.m in Sources */,
 				215B8DAD1809B50F009C248E /* GFFavorites.m in Sources */,
 				2132530A18085B3000ED855D /* Intramural.m in Sources */,
 				FC216185185AE013002DA7E2 /* BMContainerButton.m in Sources */,
