@@ -108,6 +108,7 @@
 		FC9FBF87189447D3001C8C94 /* PlayoffsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9FBF7E189447D3001C8C94 /* PlayoffsViewController.m */; };
 		FC9FBF88189447D3001C8C94 /* GamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9FBF80189447D3001C8C94 /* GamesViewController.m */; };
 		FC9FBF89189447D3001C8C94 /* TeamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9FBF82189447D3001C8C94 /* TeamsViewController.m */; };
+		FCA13D2418B4299700C8F61D /* NAArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA13D2318B4299700C8F61D /* NAArrowView.m */; };
 		FCA506B11859911E008802F1 /* BMAddRemoveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA506B01859911E008802F1 /* BMAddRemoveButton.m */; };
 		FCC352E9189CBC330075A7C3 /* IMGames.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC352E8189CBC330075A7C3 /* IMGames.m */; };
 		FCE94310185A4C4300030692 /* GFFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE9430F185A4C4300030692 /* GFFavorite.m */; };
@@ -281,6 +282,8 @@
 		FC9FBF80189447D3001C8C94 /* GamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamesViewController.m; sourceTree = "<group>"; };
 		FC9FBF81189447D3001C8C94 /* TeamsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamsViewController.h; sourceTree = "<group>"; };
 		FC9FBF82189447D3001C8C94 /* TeamsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamsViewController.m; sourceTree = "<group>"; };
+		FCA13D2218B4299700C8F61D /* NAArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NAArrowView.h; path = ../NavAid/NavAid/NAArrowView.h; sourceTree = "<group>"; };
+		FCA13D2318B4299700C8F61D /* NAArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NAArrowView.m; path = ../NavAid/NavAid/NAArrowView.m; sourceTree = "<group>"; };
 		FCA506AF1859911E008802F1 /* BMAddRemoveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAddRemoveButton.h; sourceTree = "<group>"; };
 		FCA506B01859911E008802F1 /* BMAddRemoveButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAddRemoveButton.m; sourceTree = "<group>"; };
 		FCC352E7189CBC330075A7C3 /* IMGames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMGames.h; sourceTree = "<group>"; };
@@ -573,6 +576,7 @@
 		2129753417FE4D89007210AB /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				FCA13D2118B4297C00C8F61D /* NAArrowView */,
 				FC944F5018B1328B0040E234 /* NTParallaxView */,
 				FCA506B218599122008802F1 /* BMAddRemoveButton */,
 				2126B456184969D500DF79FF /* BMArrowView */,
@@ -724,6 +728,15 @@
 				FC944F5518B1328B0040E234 /* UIView+Util.m */,
 			);
 			path = NTParallaxView;
+			sourceTree = "<group>";
+		};
+		FCA13D2118B4297C00C8F61D /* NAArrowView */ = {
+			isa = PBXGroup;
+			children = (
+				FCA13D2218B4299700C8F61D /* NAArrowView.h */,
+				FCA13D2318B4299700C8F61D /* NAArrowView.m */,
+			);
+			name = NAArrowView;
 			sourceTree = "<group>";
 		};
 		FCA506B218599122008802F1 /* BMAddRemoveButton */ = {
@@ -938,6 +951,7 @@
 				FCC352E9189CBC330075A7C3 /* IMGames.m in Sources */,
 				2126B44D1849681A00DF79FF /* BMIndexPath.m in Sources */,
 				21325306180853C100ED855D /* GFTableViewController.m in Sources */,
+				FCA13D2418B4299700C8F61D /* NAArrowView.m in Sources */,
 				FCF5FC24185D5C510042FA96 /* ErrorHandler.m in Sources */,
 				21244F2B1800B22900EE27BC /* TimeString.m in Sources */,
 				2119C8E217FF140400D4A284 /* MainMenuViewController.m in Sources */,

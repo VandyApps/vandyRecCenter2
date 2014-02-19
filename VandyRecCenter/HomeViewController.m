@@ -13,6 +13,8 @@
 #import "UIScrollView+ParallaxEffect.h"
 #import "MBProgressHUD.h"
 
+#import "NAArrowView.h"
+
 @interface HomeViewController ()
 
 @property (nonatomic, strong) MBProgressHUD* HUD;
@@ -42,12 +44,23 @@ static NSInteger cellNotificationIconLabelTag = 3;
     self.tableView.delegate = self;
     
     UIImage* recImage = [self imageWithImage: [UIImage imageNamed: @"rec.jpg"] scaledToSize: CGSizeMake(self.view.frame.size.width, 300)];
+    
+    
     UIImageView* parallaxView = [[UIImageView alloc] initWithImage: recImage];
+
     
     [self.tableView addBackgroundView:
      parallaxView withWindowHeight: 200
                     dragDistanceLimit: 0
                        parallaxFactor: .25];
+    
+    NAArrowView* arrowView = [[NAArrowView alloc] initWithFrame: CGRectMake(parallaxView.center.x - 50/2.f, parallaxView.center.y - 80/2.f, 50, 80)];
+    arrowView.color = [UIColor colorWithRed: .2 green:.2 blue:.2 alpha:1];
+    
+    arrowView.destination = [[CLLocation alloc] initWithLatitude: 36.1394861 longitude: -86.8091896];
+    
+    [parallaxView addSubview: arrowView];
+    [arrowView startPointing];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
